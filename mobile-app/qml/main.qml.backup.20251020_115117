@@ -1,0 +1,425 @@
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
+import RemoteAccess 1.0
+
+ApplicationWindow {
+    visible: true
+    width: 800
+    height: 600
+    title: "Remote Access Mobile"
+
+    property string currentUser: ""
+    property bool isLoggedIn: false
+    property string relayServerAddress: "127.0.0.1:2810"
+
+    ConnectionManager {
+        id: connectionManager
+        onLoginSuccess: {
+            console.log("[QML] Login successful")
+            isLoggedIn = true
+            stackView.push(pcListPage)
+        }
+        onLoginFailed: function(error) {
+            console.log("[QML] Login failed:", error)
+        }
+    }
+
+    FileManager {
+        id: fileManager
+        
+        onConnected: {
+            console.log("[QML] FileManager connected")
+        }
+        
+        onDirectoryListReceived: function(files) {
+            console.log("[QML] Directory list received:", files.length, "items")
+            fileListModel.clear()
+            for (var i = 0; i < files.length; i++) {
+                var parts = files[i].split(':')
+                if (parts.length >= 2) {
+                    var type = parts[0]
+                    var name = parts[1]
+                    var size = parts.length >= 3 ? parts[2] : "0"
+                    
+                    fileListModel.append({
+                        "name": name,
+                        "isDir": type === "DIR",
+                        "size": size
+                    })
+                }
+            }
+        }
+        
+        onErrorOccurred: function(error) {
+            console.log("[QML] FileManager error:", error)
+            errorDialog.text = error
+            errorDialog.open()
+        }
+        
+        onDownloadCompleted: function(localPath) {
+            console.log("[QML] Download completed:", localPath)
+        }
+        
+        onShareUrlGenerated: function(url) {
+            console.log("[QML] Share URL:", url)
+            shareDialog.shareUrl = url
+            shareDialog.open()
+        }
+    }
+
+    ListModel {
+        id: fileListModel
+    }
+
+    Connections {
+        target: pcManager
+        function onPcListUpdated() {
+            console.log("[QML] PC List updated, count:", pcListModel.rowCount())
+        }
+    }
+
+    Dialog {
+        id: errorDialog
+        title: "Error"
+        property string text: ""
+        
+        Label {
+            text: errorDialog.text
+        }
+        
+        standardButtons: Dialog.Ok
+    }
+
+    Dialog {
+        id: shareDialog
+        title: "Share URL"
+        property string shareUrl: ""
+        
+        ColumnLayout {
+            Label {
+                text: "Share URL:"
+            }
+            TextField {
+                Layout.fillWidth: true
+                Layout.preferredWidth: 400
+                readOnly: true
+                text: shareDialog.shareUrl
+                selectByMouse: true
+            }
+        }
+        
+        standardButtons: Dialog.Ok
+    }
+
+    StackView {
+        id: stackView
+        anchors.fill: parent
+        initialItem: loginPage
+    }
+
+    Component {
+        id: loginPage
+        
+        Page {
+            title: "Login"
+
+            ColumnLayout {
+                anchors.centerIn: parent
+                spacing: 20
+                width: 300
+
+                TextField {
+                    id: usernameField
+                    Layout.fillWidth: true
+                    placeholderText: "Username"
+                    text: "victor"
+                }
+
+                TextField {
+                    id: passwordField
+                    Layout.fillWidth: true
+                    placeholderText: "Password"
+                    echoMode: TextInput.Password
+                    text: "password123"
+                }
+
+                TextField {
+                    id: accountServerField
+                    Layout.fillWidth: true
+                    placeholderText: "Account Server (host:port)"
+                    text: "127.0.0.1:2810"
+                }
+
+                Button {
+                    Layout.fillWidth: true
+                    text: "Login"
+                    onClicked: {
+                        console.log("[QML] Login button clicked")
+                        relayServerAddress = accountServerField.text
+                        connectionManager.setAccountServerAddress(accountServerField.text)
+                        currentUser = usernameField.text
+                        connectionManager.login(usernameField.text, passwordField.text)
+                    }
+                }
+            }
+        }
+    }
+
+    Component {
+        id: pcListPage
+        
+        Page {
+            title: "Remote Access Mobile"
+
+            header: ToolBar {
+                RowLayout {
+                    anchors.fill: parent
+                    Label {
+                        text: "Logged in as: " + currentUser
+                        Layout.fillWidth: true
+                    }
+                    Button {
+                        text: "Logout"
+                        onClicked: {
+                            isLoggedIn = false
+                            currentUser = ""
+                            stackView.pop()
+                        }
+                    }
+                    Button {
+                        text: "Refresh PC List"
+                        onClicked: {
+                            var parts = relayServerAddress.split(":")
+                            pcManager.queryPCList(parts[0], parseInt(parts[1]))
+                        }
+                    }
+                }
+            }
+
+            ListView {
+                id: pcListView
+                anchors.fill: parent
+                model: pcListModel
+                spacing: 10
+                
+                delegate: Rectangle {
+                    width: pcListView.width - 20
+                    height: 100
+                    color: "#f0f0f0"
+                    radius: 5
+                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    RowLayout {
+                        anchors.fill: parent
+                        anchors.margins: 10
+                        spacing: 10
+
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            spacing: 5
+
+                            Label {
+                                text: model.hostname
+                                font.bold: true
+                                font.pixelSize: 16
+                            }
+
+                            Label {
+                                text: model.pcId
+                                font.pixelSize: 12
+                                color: "#666666"
+                            }
+                        }
+
+                        Rectangle {
+                            width: 60
+                            height: 30
+                            radius: 15
+                            color: model.isOnline ? "#4CAF50" : "#f44336"
+
+                            Label {
+                                anchors.centerIn: parent
+                                text: model.isOnline ? "online" : "offline"
+                                color: "white"
+                                font.pixelSize: 12
+                            }
+                        }
+
+                        Button {
+                            text: "Files"
+                            enabled: model.isOnline
+                            onClicked: {
+                                console.log("Browse files on", model.pcId)
+                                stackView.push(fileBrowserPage, {
+                                    "pcId": model.pcId,
+                                    "hostname": model.hostname
+                                })
+                            }
+                        }
+                    }
+                }
+            }
+
+            Component.onCompleted: {
+                console.log("[QML] PC List page loaded")
+                var parts = relayServerAddress.split(":")
+                pcManager.queryPCList(parts[0], parseInt(parts[1]))
+            }
+        }
+    }
+
+    Component {
+        id: fileBrowserPage
+        
+        Page {
+            id: fileBrowserRoot
+            title: "File Browser"
+            property string pcId: ""
+            property string hostname: ""
+            property string currentPath: "/"
+
+            header: ToolBar {
+                RowLayout {
+                    anchors.fill: parent
+                    Button {
+                        text: "Back"
+                        onClicked: {
+                            fileManager.disconnect()
+                            stackView.pop()
+                        }
+                    }
+                    Label {
+                        text: hostname + " - " + currentPath
+                        Layout.fillWidth: true
+                    }
+                }
+            }
+
+            ColumnLayout {
+                anchors.fill: parent
+                anchors.margins: 10
+                spacing: 10
+
+                TextField {
+                    id: pathField
+                    Layout.fillWidth: true
+                    placeholderText: "Enter path..."
+                    text: currentPath
+                }
+
+                RowLayout {
+                    Layout.fillWidth: true
+                    Button {
+                        text: "Browse"
+                        enabled: !fileManager.isBusy
+                        onClicked: {
+                            currentPath = pathField.text
+                            fileManager.listDirectory(currentPath)
+                        }
+                    }
+                    Button {
+                        text: "Parent Directory"
+                        enabled: !fileManager.isBusy && currentPath !== "/"
+                        onClicked: {
+                            var parts = currentPath.split('/')
+                            parts.pop()
+                            currentPath = parts.length > 1 ? parts.join('/') : "/"
+                            pathField.text = currentPath
+                            fileManager.listDirectory(currentPath)
+                        }
+                    }
+                    BusyIndicator {
+                        running: fileManager.isBusy
+                        Layout.preferredWidth: 30
+                        Layout.preferredHeight: 30
+                    }
+                }
+
+                ListView {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    model: fileListModel
+                    clip: true
+                    
+                    delegate: Rectangle {
+                        width: parent.width
+                        height: 60
+                        color: mouseArea.containsMouse ? "#e0e0e0" : "#ffffff"
+                        border.color: "#cccccc"
+                        border.width: 1
+                        
+                        MouseArea {
+                            id: mouseArea
+                            anchors.fill: parent
+                            hoverEnabled: true
+                        }
+                        
+                        RowLayout {
+                            anchors.fill: parent
+                            anchors.margins: 5
+                            spacing: 10
+                            
+                            Label {
+                                text: model.isDir ? "📁" : "📄"
+                                font.pixelSize: 24
+                            }
+                            
+                            ColumnLayout {
+                                Layout.fillWidth: true
+                                spacing: 2
+                                
+                                Label {
+                                    text: model.name
+                                    font.pixelSize: 14
+                                    font.bold: model.isDir
+                                }
+                                
+                                Label {
+                                    text: model.isDir ? "Directory" : (model.size + " bytes")
+                                    font.pixelSize: 11
+                                    color: "#666666"
+                                }
+                            }
+                            
+                            Button {
+                                text: model.isDir ? "Open" : "Download"
+                                onClicked: {
+                                    if (model.isDir) {
+                                        currentPath = currentPath === "/" ? 
+                                            "/" + model.name : 
+                                            currentPath + "/" + model.name
+                                        pathField.text = currentPath
+                                        fileManager.listDirectory(currentPath)
+                                    } else {
+                                        var remotePath = currentPath === "/" ? 
+                                            "/" + model.name : 
+                                            currentPath + "/" + model.name
+                                        fileManager.downloadFile(remotePath, "/tmp/" + model.name)
+                                    }
+                                }
+                            }
+                            
+                            Button {
+                                text: "Share"
+                                visible: !model.isDir
+                                onClicked: {
+                                    var remotePath = currentPath === "/" ? 
+                                        "/" + model.name : 
+                                        currentPath + "/" + model.name
+                                    fileManager.generateShareUrl(remotePath)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            Component.onCompleted: {
+                console.log("[QML] File browser opened for PC:", pcId)
+                fileManager.connectToPC(pcId, relayServerAddress)
+                fileManager.listDirectory(currentPath)
+            }
+        }
+    }
+}

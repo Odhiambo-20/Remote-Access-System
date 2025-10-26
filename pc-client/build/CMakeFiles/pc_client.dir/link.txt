@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/pc_client.dir/pc_client_main.cpp.o CMakeFiles/pc_client.dir/pc_client.cpp.o CMakeFiles/pc_client.dir/file_handler.cpp.o CMakeFiles/pc_client.dir/src/http_server.cpp.o -o pc_client  /usr/lib/x86_64-linux-gnu/libACE.so -lpthread 

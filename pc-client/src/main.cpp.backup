@@ -1,0 +1,54 @@
+#include <QCoreApplication>
+#include <QDebug>
+#include "pc_identifier.h"
+#include "remote_control_server.h"
+#include "file_server.h"
+
+int main(int argc, char *argv[]) {
+    QCoreApplication app(argc, argv);
+    
+    qDebug() << "========================================";
+    qDebug() << "Remote Access PC Client Starting...";
+    qDebug() << "========================================";
+    
+    // Initialize PC identifier
+    PCIdentifier identifier;
+    QString pcId = identifier.getPCId();
+    QString username = identifier.getUsername();
+    QString hostname = identifier.getHostname();
+    
+    qDebug() << "";
+    qDebug() << "PC Information:";
+    qDebug() << "  ID:" << pcId;
+    qDebug() << "  Username:" << username;
+    qDebug() << "  Hostname:" << hostname;
+    qDebug() << "";
+    
+    // Start Remote Control Server
+    RemoteControlServer remoteServer;
+    if (!remoteServer.start(2812)) {
+        qDebug() << "Failed to start remote control server";
+        return 1;
+    }
+    
+    // Start File Server
+    FileServer fileServer;
+    if (!fileServer.start(2811, 8080)) {
+        qDebug() << "Failed to start file server";
+        return 1;
+    }
+    
+    qDebug() << "";
+    qDebug() << "========================================";
+    qDebug() << "✅ PC Client Ready!";
+    qDebug() << "========================================";
+    qDebug() << "Services:";
+    qDebug() << "  Remote Control: Port 2812";
+    qDebug() << "  File Transfer:  Port 2811";
+    qDebug() << "  HTTP Sharing:   Port 8080";
+    qDebug() << "";
+    qDebug() << "Waiting for connections...";
+    qDebug() << "========================================";
+    
+    return app.exec();
+}

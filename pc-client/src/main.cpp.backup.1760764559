@@ -1,0 +1,275 @@
+#include <iostream>
+#include <fstream>
+#include <signal.h>
+#include <unistd.h>
+#include <filesystem>
+#include <ace/SOCK_Connector.h>
+#include <ace/INET_Addr.h>
+#include "../include/pc_identifier.h"
+#include "../../common/include/utils.h"
+#include "../../common/include/hardware_id.h"
+
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+
+int relay_sock = -1;
+
+bool DoReg(const std::string& pid, const std::string& uid, const std::string& un) {
+    struct sockaddr_in sa;
+    relay_sock = socket(AF_INET, SOCK_STREAM, 0);
+    if (relay_sock < 0) return false;
+    sa.sin_family = AF_INET;
+    sa.sin_port = htons(2810);
+    inet_pton(AF_INET, "127.0.0.1", &sa.sin_addr);
+    if (connect(relay_sock, (struct sockaddr*)&sa, sizeof(sa)) < 0) {
+        close(relay_sock);
+        relay_sock = -1;
+        return false;
+    }
+    std::string m = "REGISTER|" + pid + "|" + uid + "|" + un + "\n";
+    send(relay_sock, m.c_str(), m.length(), 0);
+    char b[256];
+    int n = recv(relay_sock, b, sizeof(b)-1, 0);
+    return (n > 0 && std::string(b, n).find("OK") != std::string::npos);
+}
+
+using namespace RemoteAccessSystem::Common;
+
+static bool keep_running = true;
+
+void signal_handler(int signal) {
+    keep_running = false;
+}
+
+bool SaveConfig(const std::string& config_dir, const std::string& key, const std::string& value) {
+    std::filesystem::create_directories(config_dir);
+    std::string filepath = config_dir + "/" + key + ".txt";
+    std::ofstream file(filepath);
+    if (!file.is_open()) {
+        std::cerr << "Failed to save " << key << " to " << filepath << std::endl;
+        return false;
+    }
+    file << value;
+    file.close();
+    std::cout << "Saved " << key << " to " << filepath << std::endl;
+    return true;
+}
+
+std::string LoadConfig(const std::string& config_dir, const std::string& key) {
+    std::string filepath = config_dir + "/" + key + ".txt";
+    std::ifstream file(filepath);
+    if (!file.is_open()) {
+        return "";
+    }
+    std::string value;
+    std::getline(file, value);
+    file.close();
+    return value;
+}
+
+bool ConnectToServer(const std::string& host, int port) {
+    ACE_SOCK_Stream socket;
+    ACE_SOCK_Connector connector;
+    ACE_INET_Addr addr(port, host.c_str());
+    ACE_Time_Value timeout(5);
+    
+    if (connector.connect(socket, addr, &timeout) == -1) {
+        std::cerr << "Failed to connect to " << host << ":" << port << std::endl;
+        return false;
+    }
+    
+    std::cout << "✓ Connected to " << host << ":" << port << std::endl;
+    socket.close();
+    return true;
+}
+
+int main(int argc, char* argv[]) {
+    std::cout << "Remote Access PC Client v1.0" << std::endl;
+    std::cout << "=============================" << std::endl;
+    
+    std::string usb_id;
+    std::string config_dir;
+    
+    // Parse command line arguments
+    for (int i = 1; i < argc; i++) {
+        std::string arg(argv[i]);
+        if (arg.find("--usb-id=") == 0) {
+            usb_id = arg.substr(9);
+        } else if (arg.find("--config-dir=") == 0) {
+            config_dir = arg.substr(13);
+        }
+    }
+    
+    if (usb_id.empty() || config_dir.empty()) {
+        std::cerr << "Usage: " << argv[0] << " --usb-id=<ID> --config-dir=<DIR>" << std::endl;
+        return 1;
+    }
+    
+    std::cout << "USB ID: " << usb_id << std::endl;
+    std::cout << "Config Directory: " << config_dir << std::endl;
+    std::cout << std::endl;
+    
+    // Set up signal handlers
+    signal(SIGINT, signal_handler);
+    signal(SIGTERM, signal_handler);
+    
+    try {
+        // Step 1: Generate or load PC ID
+        std::cout << "Step 1: Generating PC ID..." << std::endl;
+        std::string pc_id = LoadConfig(config_dir, "pc_id");
+        
+        if (pc_id.empty()) {
+            // Generate new PC ID based on hardware
+            try {
+                PCIdentifier identifier;
+                pc_id = identifier.GenerateID();
+                std::cout << "  Generated new PC ID: " << pc_id << std::endl;
+            } catch (const std::exception& e) {
+                // Fallback to simple UUID if hardware ID fails
+                pc_id = "pc-" + std::to_string(time(nullptr)) + "-" + std::to_string(rand());
+                std::cout << "  Generated fallback PC ID: " << pc_id << std::endl;
+            }
+            SaveConfig(config_dir, "pc_id", pc_id);
+        } else {
+            std::cout << "  Loaded existing PC ID: " << pc_id << std::endl;
+        }
+        
+        // Save USB ID
+        SaveConfig(config_dir, "usb_id", usb_id);
+        
+        // Get username
+        const char* username = getenv("USER");
+        if (!username) username = "default_user";
+        SaveConfig(config_dir, "username", username);
+        
+        // Step 2: Test connection to Account Server
+        std::cout << "\nStep 2: Testing connection to Account Server..." << std::endl;
+        bool account_connected = ConnectToServer("localhost", 2809);
+        if (account_connected) {
+            SaveConfig(config_dir, "account_server", "localhost:2809");
+            SaveConfig(config_dir, "account_status", "connected");
+            std::cout << "  ✓ Account server is reachable" << std::endl;
+        } else {
+            std::cout << "  ⚠ Account server not reachable (may not be critical)" << std::endl;
+            SaveConfig(config_dir, "account_status", "unreachable");
+        }
+        
+        // Step 3: Test connection to Relay Server
+        std::cout << "\nStep 3: Testing connection to Relay Server..." << std::endl;
+        bool relay_connected = ConnectToServer("localhost", 2810);
+        if (relay_connected) {
+            SaveConfig(config_dir, "relay_server", "localhost:2810");
+            SaveConfig(config_dir, "relay_status", "connected");
+        DoReg(pc_id, usb_id, username);
+        ConnectAndRegister(pc_id, usb_id, username);
+            std::cout << "  ✓ Relay server is reachable" << std::endl;
+        } else {
+            std::cout << "  ⚠ Relay server not reachable" << std::endl;
+            SaveConfig(config_dir, "relay_status", "unreachable");
+        }
+        
+        // Step 4: Save registration info
+        std::cout << "\nStep 4: Saving registration information..." << std::endl;
+        
+        // Create a registration record
+        std::string reg_info = "PC_ID=" + pc_id + "\n" +
+                              "USB_ID=" + usb_id + "\n" +
+                              "USERNAME=" + std::string(username) + "\n" +
+                              "REGISTERED=" + Utils::GetTimestampString() + "\n" +
+                              "ACCOUNT_SERVER=localhost:2809\n" +
+                              "RELAY_SERVER=localhost:2810\n";
+        
+        std::ofstream reg_file(config_dir + "/registration.conf");
+        if (reg_file.is_open()) {
+            reg_file << reg_info;
+            reg_file.close();
+            std::cout << "  ✓ Registration info saved to registration.conf" << std::endl;
+        }
+        
+        // Step 5: Create status file
+        std::cout << "\nStep 5: Creating status file..." << std::endl;
+
+        std::string status = std::string("STATUS=active\n") +
+                   "STARTED=" + Utils::GetTimestampString() + "\n" +
+                   "PC_ID=" + pc_id + "\n" +
+                   "USB_ID=" + usb_id + "\n";
+        
+        std::ofstream status_file(config_dir + "/status.conf");
+        if (status_file.is_open()) {
+            status_file << status;
+            status_file.close();
+            std::cout << "  ✓ Status file created" << std::endl;
+        }
+        
+        // Summary
+        std::cout << "\n=============================" << std::endl;
+        std::cout << "PC Client Initialized Successfully!" << std::endl;
+        std::cout << "=============================" << std::endl;
+        std::cout << std::endl;
+        std::cout << "Configuration:" << std::endl;
+        std::cout << "  PC ID: " << pc_id << std::endl;
+        std::cout << "  USB ID: " << usb_id << std::endl;
+        std::cout << "  Username: " << username << std::endl;
+        std::cout << "  Config Dir: " << config_dir << std::endl;
+        std::cout << "  Account Server: " << (account_connected ? "✓ Connected" : "✗ Not Connected") << std::endl;
+        std::cout << "  Relay Server: " << (relay_connected ? "✓ Connected" : "✗ Not Connected") << std::endl;
+        std::cout << std::endl;
+        std::cout << "Client is running. Press Ctrl+C to exit." << std::endl;
+        std::cout << std::endl;
+        
+        // Main event loop
+        int heartbeat_counter = 0;
+        while (keep_running) {
+            // Update status periodically
+            heartbeat_counter++;
+            if (heartbeat_counter % 30 == 0) {
+                std::cout << "[" << Utils::GetTimestampString() << "] Heartbeat" << std::endl;
+                
+                if (relay_sock < 0) DoReg(pc_id, usb_id, username);
+                if (relay_sock >= 0) {
+                    std::string hb = "HEARTBEAT|" + pc_id + "\n";
+                    if (send(relay_sock, hb.c_str(), hb.length(), 0) < 0) {
+                        close(relay_sock);
+                        relay_sock = -1;
+                        DoReg(pc_id, usb_id, username);
+                    }
+                }
+                if (relay_socket < 0) { ConnectAndRegister(pc_id, usb_id, username); }
+                if (relay_socket >= 0) {
+                    std::string hb = "HEARTBEAT|" + pc_id + "\n";
+                    if (send(relay_socket, hb.c_str(), hb.length(), 0) < 0) {
+                        close(relay_socket); relay_socket = -1;
+                        ConnectAndRegister(pc_id, usb_id, username);
+                    }
+                }
+                std::ofstream sf(config_dir + "/status.conf");
+                if (sf.is_open()) {
+                    sf << "STATUS=active\n" << "LAST_HEARTBEAT=" << Utils::GetTimestampString() << "\n" << "PC_ID=" << pc_id << "\n";
+                    sf.close();
+                }
+            }
+            }
+            
+            sleep(1);
+        }
+        
+        std::cout << "\nShutting down..." << std::endl;
+        
+        // Update status to stopped
+        std::ofstream sf(config_dir + "/status.conf");
+        if (sf.is_open()) {
+            sf << "STATUS=stopped\n";
+            sf << "STOPPED=" << Utils::GetTimestampString() << "\n";
+            sf.close();
+        }
+        
+    } catch (const std::exception& ex) {
+        std::cerr << "Exception: " << ex.what() << std::endl;
+        return 1;
+    }
+    
+    std::cout << "PC Client stopped." << std::endl;
+    return 0;
+}

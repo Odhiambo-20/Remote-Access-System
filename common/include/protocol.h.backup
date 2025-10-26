@@ -1,0 +1,36 @@
+#ifndef PROTOCOL_H
+#define PROTOCOL_H
+
+#include <ace/ACE.h>
+#include <ace/SOCK_Stream.h>
+#include <ace/INET_Addr.h>
+#include <vector>
+#include <cstdint>
+#include "message.h"
+#include "crypto.h"
+
+namespace RemoteAccessSystem {
+namespace Common {
+
+class Protocol {
+public:
+    Protocol();
+    ~Protocol();
+    
+    bool Connect(const ACE_INET_Addr& addr, ACE_SOCK_Stream& socket);
+    bool SendMessage(ACE_SOCK_Stream& socket, const Message& message, const std::vector<uint8_t>& key, const std::vector<uint8_t>& iv);
+    bool ReceiveMessage(ACE_SOCK_Stream& socket, Message& message, const std::vector<uint8_t>& key, const std::vector<uint8_t>& iv);
+    
+    // Additional protocol methods
+    bool Disconnect(ACE_SOCK_Stream& socket);
+    bool IsConnected(const ACE_SOCK_Stream& socket) const;
+
+private:
+    // Protocol state management
+    bool initialized_;
+};
+
+} // namespace Common
+} // namespace RemoteAccessSystem
+
+#endif // PROTOCOL_H

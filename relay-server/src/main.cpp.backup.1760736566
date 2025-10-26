@@ -1,0 +1,232 @@
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <sstream>
+#include <map>
+#include <vector>
+#include <ace/SOCK_Stream.h>
+#include <ace/SOCK_Acceptor.h>
+#include <ace/INET_Addr.h>
+#include <ace/Log_Msg.h>
+#include <sqlite3.h>
+
+std::string GetOnlinePCs() {
+    sqlite3* db = nullptr;
+    std::string result = "PC_LIST|";
+    
+    int rc = sqlite3_open("/var/lib/remote-access/accounts.db", &db);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Cannot open database: " << sqlite3_errmsg(db) << std::endl;
+        if (db) sqlite3_close(db);
+        return "ERROR|Database error";
+    }
+    
+    const char* sql = "SELECT pc_id, username, pc_name FROM pcs WHERE online = 1;";
+    sqlite3_stmt* stmt = nullptr;
+    
+    rc = sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Failed to prepare: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_close(db);
+        return "ERROR|Query error";
+    }
+    
+    bool first = true;
+    while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
+        if (!first) result += ";";
+        first = false;
+        
+        const char* pc_id = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
+        const char* username = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+        const char* pc_name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+        
+        result += std::string(pc_id) + "," + username + "," + pc_name;
+    }
+    
+    sqlite3_finalize(stmt);
+    sqlite3_close(db);
+    
+    std::cout << "PC List query result: " << result << std::endl;
+    return result;
+}
+
+bool UpdatePCStatus(const std::string& pc_id, bool online) {
+    sqlite3* db = nullptr;
+    
+    int rc = sqlite3_open("/var/lib/remote-access/accounts.db", &db);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Cannot open database: " << sqlite3_errmsg(db) << std::endl;
+        if (db) sqlite3_close(db);
+        return false;
+    }
+    
+    const char* sql = "UPDATE pcs SET online = ?, last_seen = datetime('now') WHERE pc_id = ?;";
+    sqlite3_stmt* stmt = nullptr;
+    
+    rc = sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Failed to prepare update: " << sqlite3_errmsg(db) << std::endl;
+        sqlite3_close(db);
+        return false;
+    }
+    
+    sqlite3_bind_int(stmt, 1, online ? 1 : 0);
+    sqlite3_bind_text(stmt, 2, pc_id.c_str(), -1, SQLITE_TRANSIENT);
+    
+    rc = sqlite3_step(stmt);
+    bool success = (rc == SQLITE_DONE);
+    
+    sqlite3_finalize(stmt);
+    sqlite3_close(db);
+    
+    std::cout << "UpdatePCStatus(" << pc_id << ", " << (online ? "online" : "offline") 
+              << "): " << (success ? "SUCCESS" : "FAILED") << std::endl;
+    
+    return success;
+}
+
+std::vector<std::string> SplitString(const std::string& str, char delimiter) {
+    std::vector<std::string> parts;
+    size_t start = 0;
+    size_t pos = 0;
+    
+    while ((pos = str.find(delimiter, start)) != std::string::npos) {
+        parts.push_back(str.substr(start, pos - start));
+        start = pos + 1;
+    }
+    parts.push_back(str.substr(start));
+    
+    return parts;
+}
+
+void HandleClient(ACE_SOCK_Stream& client_stream) {
+    char buffer[4096];
+    ssize_t bytes_received;
+    
+    while ((bytes_received = client_stream.recv(buffer, sizeof(buffer) - 1)) > 0) {
+        buffer[bytes_received] = '\0';
+        std::string message(buffer);
+        
+        // Remove trailing newline/whitespace
+        while (!message.empty() && (message.back() == '\n' || message.back() == '\r' || message.back() == ' ')) {
+            message.pop_back();
+        }
+        
+        std::cout << "Received message: [" << message << "]" << std::endl;
+        
+        if (message.substr(0, 8) == "REGISTER") {
+            // Format: REGISTER|pc_id|usb_id|username
+            std::vector<std::string> parts = SplitString(message, '|');
+            
+            std::cout << "REGISTER command - parts: " << parts.size() << std::endl;
+            for (size_t i = 0; i < parts.size(); i++) {
+                std::cout << "  Part " << i << ": [" << parts[i] << "]" << std::endl;
+            }
+            
+            if (parts.size() >= 4) {
+                std::string pc_id = parts[1];
+                std::string usb_id = parts[2];
+                std::string username = parts[3];
+                
+                std::cout << "Registration request:" << std::endl;
+                std::cout << "  PC ID: " << pc_id << std::endl;
+                std::cout << "  USB ID: " << usb_id << std::endl;
+                std::cout << "  Username: " << username << std::endl;
+                
+                if (UpdatePCStatus(pc_id, true)) {
+                    std::string response = "OK|Registered|" + pc_id + "\n";
+                    client_stream.send_n(response.c_str(), response.length());
+                    std::cout << "  ✓ Registration successful - sent response" << std::endl;
+                } else {
+                    std::string response = "ERROR|Registration failed\n";
+                    client_stream.send_n(response.c_str(), response.length());
+                    std::cout << "  ✗ Registration failed - sent error response" << std::endl;
+                }
+            } else {
+                std::string response = "ERROR|Invalid REGISTER format. Expected: REGISTER|pc_id|usb_id|username (got " 
+                                     + std::to_string(parts.size()) + " parts)\n";
+                client_stream.send_n(response.c_str(), response.length());
+                std::cout << "  ✗ Invalid format - sent error response" << std::endl;
+            }
+        } else if (message == "GET_PCS") {
+            std::cout << "GET_PCS command received" << std::endl;
+            std::string pc_list = GetOnlinePCs();
+            pc_list += "\n";
+            client_stream.send_n(pc_list.c_str(), pc_list.length());
+            std::cout << "  ✓ Sent PC list: " << pc_list << std::endl;
+        } else if (message.substr(0, 9) == "HEARTBEAT") {
+            // Format: HEARTBEAT|pc_id
+            std::vector<std::string> parts = SplitString(message, '|');
+            
+            if (parts.size() >= 2) {
+                std::string pc_id = parts[1];
+                std::cout << "HEARTBEAT from PC: " << pc_id << std::endl;
+                
+                if (UpdatePCStatus(pc_id, true)) {
+                    std::string response = "OK|Heartbeat acknowledged\n";
+                    client_stream.send_n(response.c_str(), response.length());
+                    std::cout << "  ✓ Heartbeat acknowledged" << std::endl;
+                } else {
+                    std::string response = "ERROR|Heartbeat failed\n";
+                    client_stream.send_n(response.c_str(), response.length());
+                    std::cout << "  ✗ Heartbeat failed" << std::endl;
+                }
+            }
+        } else if (message.substr(0, 10) == "DISCONNECT") {
+            // Format: DISCONNECT|pc_id
+            std::vector<std::string> parts = SplitString(message, '|');
+            
+            if (parts.size() >= 2) {
+                std::string pc_id = parts[1];
+                std::cout << "DISCONNECT from PC: " << pc_id << std::endl;
+                UpdatePCStatus(pc_id, false);
+            }
+            break;
+        } else {
+            std::string response = "ERROR|Unknown command: " + message + "\n";
+            client_stream.send_n(response.c_str(), response.length());
+            std::cout << "  ✗ Unknown command - sent error response" << std::endl;
+        }
+    }
+    
+    std::cout << "Client connection closed" << std::endl;
+    client_stream.close();
+}
+
+int main(int argc, char* argv[]) {
+    const int PORT = 2810;
+    
+    std::cout << "Relay Server v1.0" << std::endl;
+    std::cout << "Starting on port " << PORT << "..." << std::endl;
+    
+    ACE_INET_Addr server_addr(PORT);
+    ACE_SOCK_Acceptor acceptor(server_addr);
+    
+    if (acceptor.get_handle() == ACE_INVALID_HANDLE) {
+        ACE_ERROR_RETURN((LM_ERROR, "Failed to open acceptor on port %d\n", PORT), 1);
+    }
+    
+    std::cout << "Relay Server listening on port " << PORT << std::endl;
+    std::cout << "Waiting for connections..." << std::endl;
+    
+    while (true) {
+        ACE_SOCK_Stream client_stream;
+        ACE_INET_Addr client_addr;
+        
+        if (acceptor.accept(client_stream, &client_addr) == -1) {
+            ACE_ERROR((LM_ERROR, "Failed to accept connection\n"));
+            continue;
+        }
+        
+        std::cout << "\n=============================" << std::endl;
+        std::cout << "New connection from: " << client_addr.get_host_name() << std::endl;
+        std::cout << "=============================" << std::endl;
+        
+        HandleClient(client_stream);
+        
+        std::cout << "Connection closed" << std::endl;
+        std::cout << "Waiting for next connection..." << std::endl;
+    }
+    
+    return 0;
+}

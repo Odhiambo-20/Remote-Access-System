@@ -1,0 +1,27 @@
+cmake_minimum_required(VERSION 3.10)
+project(RelayServer)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Find ACE
+find_package(ACE REQUIRED)
+if(NOT ACE_FOUND)
+    message(FATAL_ERROR "ACE not found")
+endif()
+
+include_directories(${ACE_INCLUDE_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+# Add the relay server executable - using the CORRECT src/ files
+add_executable(relay_server
+    src/main.cpp
+    src/relay_manager.cpp
+    src/connection_handler.cpp
+    src/message_router.cpp
+)
+
+target_link_libraries(relay_server ${ACE_LIBRARY} pthread)
+
+# Install
+install(TARGETS relay_server DESTINATION /usr/local/bin)

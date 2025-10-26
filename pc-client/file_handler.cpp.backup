@@ -1,0 +1,202 @@
+#include "file_handler.h"
+#include <ace/Log_Msg.h>
+#include <ace/OS_NS_unistd.h>
+#include <ace/OS_NS_dirent.h>
+#include <ace/OS_NS_sys_stat.h>
+#include <fstream>
+#include <sstream>
+#include <vector>
+
+FileHandler::FileHandler(const std::string& pc_id)
+    : pc_id_(pc_id)
+    , running_(false) {
+}
+
+FileHandler::~FileHandler() {
+    shutdown();
+}
+
+int FileHandler::connect_to_relay(const std::string& relay_address, int port) {
+    ACE_INET_Addr server_addr(port, relay_address.c_str());
+    ACE_SOCK_Connector connector;
+    
+    if (connector.connect(stream_, server_addr) == -1) {
+        ACE_ERROR_RETURN((LM_ERROR, "[FileHandler] Failed to connect to relay server\n"), -1);
+    }
+    
+    ACE_DEBUG((LM_INFO, "[FileHandler] Connected to relay server\n"));
+    
+    // Register as PC file handler
+    std::string hello = "PC_FILE|" + pc_id_ + "\n";
+    stream_.send(hello.c_str(), hello.length());
+    
+    running_ = true;
+    return this->activate(THR_NEW_LWP | THR_JOINABLE);
+}
+
+int FileHandler::svc() {
+    char buffer[8192];
+    
+    while (running_) {
+        ssize_t bytes = stream_.recv(buffer, sizeof(buffer) - 1);
+        
+        if (bytes <= 0) {
+            ACE_DEBUG((LM_INFO, "[FileHandler] Connection closed\n"));
+            break;
+        }
+        
+        buffer[bytes] = '\0';
+        std::string request(buffer);
+        
+        ACE_DEBUG((LM_INFO, "[FileHandler] Received request: %s\n", request.c_str()));
+        handle_request(request);
+    }
+    
+    return 0;
+}
+
+void FileHandler::handle_request(const std::string& request) {
+    if (request.find("LIST_DIR|") == 0) {
+        // Parse: LIST_DIR|pc_id|path
+        std::vector<std::string> parts;
+        std::stringstream ss(request);
+        std::string part;
+        while (std::getline(ss, part, '|')) {
+            parts.push_back(part);
+        }
+        
+        if (parts.size() >= 3) {
+            std::string path = parts[2];
+            path = path.substr(0, path.find('\n'));
+            list_directory(path);
+        }
+    }
+    else if (request.find("DOWNLOAD|") == 0) {
+        // Parse: DOWNLOAD|pc_id|file_path
+        std::vector<std::string> parts;
+        std::stringstream ss(request);
+        std::string part;
+        while (std::getline(ss, part, '|')) {
+            parts.push_back(part);
+        }
+        
+        if (parts.size() >= 3) {
+            std::string file_path = parts[2];
+            file_path = file_path.substr(0, file_path.find('\n'));
+            send_file(file_path);
+        }
+    }
+    else if (request.find("UPLOAD|") == 0) {
+        // Parse: UPLOAD|pc_id|file_path|file_size
+        std::vector<std::string> parts;
+        std::stringstream ss(request);
+        std::string part;
+        while (std::getline(ss, part, '|')) {
+            parts.push_back(part);
+        }
+        
+        if (parts.size() >= 4) {
+            std::string file_path = parts[2];
+            size_t file_size = std::stoull(parts[3]);
+            receive_file(file_path, file_size);
+        }
+    }
+}
+
+void FileHandler::list_directory(const std::string& path) {
+    ACE_DEBUG((LM_INFO, "[FileHandler] Listing directory: %s\n", path.c_str()));
+    
+    std::ostringstream response;
+    response << "DIR_LIST|";
+    
+    ACE_DIR* dir = ACE_OS::opendir(path.c_str());
+    if (dir) {
+        ACE_DIRENT* entry;
+        while ((entry = ACE_OS::readdir(dir)) != nullptr) {
+            std::string name = entry->d_name;
+            if (name == "." || name == "..") continue;
+            
+            std::string full_path = path + "/" + name;
+            ACE_stat stat_buf;
+            
+            if (ACE_OS::stat(full_path.c_str(), &stat_buf) == 0) {
+                if (S_ISDIR(stat_buf.st_mode)) {
+                    response << name << "|dir|0;";
+                } else {
+                    response << name << "|file|" << stat_buf.st_size << ";";
+                }
+            }
+        }
+        ACE_OS::closedir(dir);
+    }
+    
+    response << "\n";
+    std::string resp_str = response.str();
+    stream_.send(resp_str.c_str(), resp_str.length());
+}
+
+void FileHandler::send_file(const std::string& file_path) {
+    ACE_DEBUG((LM_INFO, "[FileHandler] Sending file: %s\n", file_path.c_str()));
+    
+    std::ifstream file(file_path, std::ios::binary);
+    if (!file.is_open()) {
+        std::string error = "ERROR|File not found\n";
+        stream_.send(error.c_str(), error.length());
+        return;
+    }
+    
+    // Get file size
+    file.seekg(0, std::ios::end);
+    size_t file_size = file.tellg();
+    file.seekg(0, std::ios::beg);
+    
+    // Send file size
+    std::string header = "DOWNLOAD_START|" + std::to_string(file_size) + "\n";
+    stream_.send(header.c_str(), header.length());
+    
+    // Send file data
+    char buffer[8192];
+    while (file.read(buffer, sizeof(buffer)) || file.gcount() > 0) {
+        stream_.send(buffer, file.gcount());
+    }
+    
+    file.close();
+    ACE_DEBUG((LM_INFO, "[FileHandler] File sent successfully\n"));
+}
+
+void FileHandler::receive_file(const std::string& file_path, size_t file_size) {
+    ACE_DEBUG((LM_INFO, "[FileHandler] Receiving file: %s (%zu bytes)\n", 
+              file_path.c_str(), file_size));
+    
+    std::ofstream file(file_path, std::ios::binary);
+    if (!file.is_open()) {
+        std::string error = "ERROR|Cannot create file\n";
+        stream_.send(error.c_str(), error.length());
+        return;
+    }
+    
+    char buffer[8192];
+    size_t received = 0;
+    
+    while (received < file_size) {
+        ssize_t bytes = stream_.recv(buffer, std::min(sizeof(buffer), file_size - received));
+        if (bytes <= 0) break;
+        
+        file.write(buffer, bytes);
+        received += bytes;
+    }
+    
+    file.close();
+    
+    if (received == file_size) {
+        ACE_DEBUG((LM_INFO, "[FileHandler] File received successfully\n"));
+    } else {
+        ACE_ERROR((LM_ERROR, "[FileHandler] File transfer incomplete\n"));
+    }
+}
+
+void FileHandler::shutdown() {
+    running_ = false;
+    stream_.close();
+    this->wait();
+}

@@ -1,0 +1,14 @@
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/common/include ${ACE_ROOT} ${ACE_ROOT}/ace ${TAO_ROOT} ${TAO_ROOT}/tao)
+
+add_executable(relay-server
+    src/main.cpp
+    src/connection_handler.cpp
+)
+
+target_link_libraries(relay-server 
+    common 
+    ${ACE_LIB} 
+    ${TAO_LIB} 
+    OpenSSL::SSL 
+    OpenSSL::Crypto
+)

@@ -1,0 +1,246 @@
+#include "filemanager.h"
+#include <QDebug>
+#include <QFileInfo>
+#include <QDir>
+
+FileManager::FileManager(QObject *parent)
+    : QObject(parent)
+    , m_socket(new QTcpSocket(this))
+    , m_currentDirectory("/")
+    , m_isBusy(false)
+    , m_currentFile(nullptr)
+    , m_totalBytes(0)
+    , m_receivedBytes(0)
+{
+    connect(m_socket, &QTcpSocket::connected, this, &FileManager::onConnected);
+    connect(m_socket, &QTcpSocket::readyRead, this, &FileManager::onReadyRead);
+    connect(m_socket, &QTcpSocket::disconnected, this, &FileManager::onDisconnected);
+    connect(m_socket, &QTcpSocket::errorOccurred, this, &FileManager::onError);
+}
+
+FileManager::~FileManager() {
+    if (m_socket->isOpen()) {
+        m_socket->close();
+    }
+    delete m_currentFile;
+}
+
+void FileManager::connectToPC(const QString &pcId, const QString &relayServerAddress) {
+    qDebug() << "[FileManager] Connecting to PC:" << pcId;
+    m_connectedPcId = pcId;
+    
+    if (m_socket->state() == QAbstractSocket::ConnectedState) {
+        m_socket->disconnectFromHost();
+        m_socket->waitForDisconnected(1000);
+    }
+
+    QStringList parts = relayServerAddress.split(":");
+    QString host = parts[0];
+    int port = 2811; // File transfer port
+    
+    qDebug() << "[FileManager] Connecting to" << host << ":" << port;
+    m_socket->connectToHost(host, port);
+}
+
+void FileManager::listDirectory(const QString &path) {
+    if (!m_socket->isOpen()) {
+        emit errorOccurred("Not connected to PC");
+        return;
+    }
+
+    m_isBusy = true;
+    emit isBusyChanged();
+    
+    QString command = QString("LIST_DIR|%1|%2\n").arg(m_connectedPcId, path);
+    sendCommand(command);
+    m_currentDirectory = path;
+    emit currentDirectoryChanged();
+}
+
+void FileManager::uploadFile(const QString &localPath, const QString &remotePath) {
+    if (!m_socket->isOpen()) {
+        emit errorOccurred("Not connected to PC");
+        return;
+    }
+
+    QFile file(localPath);
+    if (!file.open(QIODevice::ReadOnly)) {
+        emit errorOccurred("Cannot open file: " + localPath);
+        return;
+    }
+
+    m_isBusy = true;
+    emit isBusyChanged();
+
+    QFileInfo fileInfo(localPath);
+    qint64 fileSize = file.size();
+    
+    QString command = QString("UPLOAD|%1|%2|%3\n")
+        .arg(m_connectedPcId)
+        .arg(remotePath)
+        .arg(fileSize);
+    
+    sendCommand(command);
+    
+    qint64 bytesSent = 0;
+    while (!file.atEnd()) {
+        QByteArray data = file.read(8192);
+        m_socket->write(data);
+        bytesSent += data.size();
+        
+        int progress = (bytesSent * 100) / fileSize;
+        emit uploadProgress(progress);
+    }
+    
+    m_socket->flush();
+    file.close();
+    
+    qDebug() << "[FileManager] Upload completed:" << remotePath;
+}
+
+void FileManager::downloadFile(const QString &remotePath, const QString &localPath) {
+    if (!m_socket->isOpen()) {
+        emit errorOccurred("Not connected to PC");
+        return;
+    }
+
+    m_isBusy = true;
+    emit isBusyChanged();
+
+    if (m_currentFile) {
+        delete m_currentFile;
+    }
+    
+    m_currentFile = new QFile(localPath);
+    if (!m_currentFile->open(QIODevice::WriteOnly)) {
+        emit errorOccurred("Cannot create file: " + localPath);
+        delete m_currentFile;
+        m_currentFile = nullptr;
+        return;
+    }
+
+    QString command = QString("DOWNLOAD|%1|%2\n").arg(m_connectedPcId, remotePath);
+    sendCommand(command);
+    m_pendingCommand = localPath;
+}
+
+void FileManager::generateShareUrl(const QString &remotePath) {
+    if (!m_socket->isOpen()) {
+        emit errorOccurred("Not connected to PC");
+        return;
+    }
+
+    m_isBusy = true;
+    emit isBusyChanged();
+
+    QString command = QString("GENERATE_URL|%1|%2\n").arg(m_connectedPcId, remotePath);
+    sendCommand(command);
+}
+
+void FileManager::disconnect() {
+    if (m_socket->isOpen()) {
+        m_socket->disconnectFromHost();
+    }
+}
+
+void FileManager::sendCommand(const QString &command) {
+    qDebug() << "[FileManager] Sending:" << command.trimmed();
+    m_socket->write(command.toUtf8());
+    m_socket->flush();
+}
+
+void FileManager::onConnected() {
+    qDebug() << "[FileManager] Connected to relay server";
+    QString hello = QString("MOBILE_FILE|%1\n").arg(m_connectedPcId);
+    sendCommand(hello);
+    emit connected();
+}
+
+void FileManager::onReadyRead() {
+    m_buffer.append(m_socket->readAll());
+    
+    // Check if we're downloading a file
+    if (m_currentFile && m_currentFile->isOpen()) {
+        m_currentFile->write(m_buffer);
+        m_receivedBytes += m_buffer.size();
+        m_buffer.clear();
+        
+        if (m_totalBytes > 0) {
+            int progress = (m_receivedBytes * 100) / m_totalBytes;
+            emit downloadProgress(progress);
+            
+            if (m_receivedBytes >= m_totalBytes) {
+                m_currentFile->close();
+                emit downloadCompleted(m_pendingCommand);
+                delete m_currentFile;
+                m_currentFile = nullptr;
+                m_isBusy = false;
+                emit isBusyChanged();
+            }
+        }
+        return;
+    }
+    
+    // Process text responses
+    while (m_buffer.contains('\n')) {
+        int idx = m_buffer.indexOf('\n');
+        QString response = QString::fromUtf8(m_buffer.left(idx));
+        m_buffer.remove(0, idx + 1);
+        
+        qDebug() << "[FileManager] Received:" << response;
+        processResponse(response);
+    }
+}
+
+void FileManager::processResponse(const QString &response) {
+    if (response.startsWith("DIR_LIST|")) {
+        QStringList files;
+        QString data = response.mid(9);
+        QStringList entries = data.split(';', Qt::SkipEmptyParts);
+        
+        for (const QString &entry : entries) {
+            files.append(entry);
+        }
+        
+        emit directoryListReceived(files);
+        m_isBusy = false;
+        emit isBusyChanged();
+    }
+    else if (response.startsWith("UPLOAD_OK")) {
+        emit uploadCompleted(m_pendingCommand);
+        m_isBusy = false;
+        emit isBusyChanged();
+    }
+    else if (response.startsWith("DOWNLOAD_START|")) {
+        QStringList parts = response.split('|');
+        if (parts.size() >= 2) {
+            m_totalBytes = parts[1].toLongLong();
+            m_receivedBytes = 0;
+        }
+    }
+    else if (response.startsWith("SHARE_URL|")) {
+        QString url = response.mid(10);
+        emit shareUrlGenerated(url);
+        m_isBusy = false;
+        emit isBusyChanged();
+    }
+    else if (response.startsWith("ERROR|")) {
+        QString error = response.mid(6);
+        emit errorOccurred(error);
+        m_isBusy = false;
+        emit isBusyChanged();
+    }
+}
+
+void FileManager::onDisconnected() {
+    qDebug() << "[FileManager] Disconnected";
+    m_isBusy = false;
+    emit isBusyChanged();
+}
+
+void FileManager::onError(QAbstractSocket::SocketError error) {
+    qDebug() << "[FileManager] Error:" << m_socket->errorString();
+    emit errorOccurred(m_socket->errorString());
+    m_isBusy = false;
+    emit isBusyChanged();
+}

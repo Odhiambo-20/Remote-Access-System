@@ -1,0 +1,57 @@
+#include "pc_manager.h"
+#include <QDebug>
+#include <QTcpSocket>
+
+PCManager::PCManager(QObject *parent) : QObject(parent) {}
+
+bool PCManager::refreshPCList() {
+    qDebug() << "[PCManager] Querying relay server";
+    bound_pcs_.clear();
+    
+    QTcpSocket socket;
+    socket.connectToHost("127.0.0.1", 2810);
+    
+    if (!socket.waitForConnected(3000)) {
+        qDebug() << "[PCManager] Connect failed:" << socket.errorString();
+        emit pcListUpdated(bound_pcs_);
+        return false;
+    }
+    
+    socket.write("GET_PCS\n");
+    socket.flush();
+    
+    if (!socket.waitForReadyRead(3000)) {
+        qDebug() << "[PCManager] No response";
+        socket.close();
+        emit pcListUpdated(bound_pcs_);
+        return false;
+    }
+    
+    QByteArray response = socket.readAll();
+    QString responseStr = QString::fromUtf8(response);
+    qDebug() << "[PCManager] Response:" << responseStr;
+    
+    if (responseStr.startsWith("PC_LIST|")) {
+        QString pcData = responseStr.mid(8);
+        QStringList pcs = pcData.split(';', Qt::SkipEmptyParts);
+        for (const QString& pc : pcs) {
+            QStringList parts = pc.split(',');
+            if (parts.size() >= 3) {
+                PCInfo info;
+                info.pc_id = parts[0];
+                info.usb_id = parts[1];
+                info.username = parts[2];
+                info.status = "online";
+                bound_pcs_.append(info);
+                qDebug() << "[PCManager] Found:" << info.pc_id;
+            }
+        }
+    }
+    
+    socket.close();
+    emit pcListUpdated(bound_pcs_);
+    qDebug() << "[PCManager] Total PCs:" << bound_pcs_.size();
+    return true;
+}
+
+ConnectionManager* PCManager::getConnectionManager() { return nullptr; }

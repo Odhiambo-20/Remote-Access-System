@@ -1,0 +1,16 @@
+#include "../include/database_manager.h"
+
+namespace RemoteAccessSystem {
+namespace Common {
+
+ResultSet::ResultSet(sqlite3_stmt* stmt) : stmt_(stmt) {}
+
+std::string ResultSet::getString(int column) {
+    const unsigned char* text = sqlite3_column_text(stmt_, column);
+    return text ? std::string(reinterpret_cast<const char*>(text)) : "";
+}
+
+ResultSet::~ResultSet() {}
+
+} // namespace Common
+} // namespace RemoteAccessSystem

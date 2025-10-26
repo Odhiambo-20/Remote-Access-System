@@ -1,0 +1,7 @@
+/home/victor/Videos/remote-access-system/relay-server/build/CMakeFiles/relay_server.dir
+/home/victor/Videos/remote-access-system/relay-server/build/CMakeFiles/edit_cache.dir
+/home/victor/Videos/remote-access-system/relay-server/build/CMakeFiles/rebuild_cache.dir
+/home/victor/Videos/remote-access-system/relay-server/build/CMakeFiles/list_install_components.dir
+/home/victor/Videos/remote-access-system/relay-server/build/CMakeFiles/install.dir
+/home/victor/Videos/remote-access-system/relay-server/build/CMakeFiles/install/local.dir
+/home/victor/Videos/remote-access-system/relay-server/build/CMakeFiles/install/strip.dir

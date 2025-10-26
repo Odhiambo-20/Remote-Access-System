@@ -1,0 +1,128 @@
+#include "relay_server.h"
+#include <ace/SOCK_Acceptor.h>
+#include <ace/INET_Addr.h>
+#include <ace/Log_Msg.h>
+#include <thread>
+#include <map>
+#include <mutex>
+#include <sstream>
+#include <ctime>
+
+namespace RemoteAccessSystem {
+namespace RelayServer {
+
+struct PCInfo {
+    std::string pc_id;
+    std::string usb_id;
+    std::string username;
+    time_t last_heartbeat;
+};
+
+static std::map<std::string, PCInfo> connected_pcs;
+static std::mutex pc_mutex;
+
+RelayServer::RelayServer(CORBA::ORB_ptr orb) : orb_(CORBA::ORB::_duplicate(orb)), running_(false) {}
+RelayServer::~RelayServer() { Stop(); }
+
+std::vector<std::string> split(const std::string& s, char delim) {
+    std::vector<std::string> result;
+    std::stringstream ss(s);
+    std::string item;
+    while (std::getline(ss, item, delim)) {
+        result.push_back(item);
+    }
+    return result;
+}
+
+void HandleClient(ACE_HANDLE client_handle, bool* running) {
+    char buffer[4096];
+    std::string pc_id;
+    bool registered = false;
+    
+    while (*running) {
+        ssize_t bytes = ACE_OS::recv(client_handle, buffer, sizeof(buffer) - 1, 0);
+        if (bytes <= 0) {
+            if (registered) {
+                std::lock_guard<std::mutex> lock(pc_mutex);
+                connected_pcs.erase(pc_id);
+                ACE_DEBUG((LM_INFO, "PC %s disconnected\n", pc_id.c_str()));
+            }
+            break;
+        }
+        
+        buffer[bytes] = '\0';
+        std::string message(buffer);
+        
+        if (message.find("REGISTER|") == 0) {
+            auto parts = split(message, '|');
+            if (parts.size() >= 4) {
+                pc_id = parts[1];
+                PCInfo info;
+                info.pc_id = parts[1];
+                info.usb_id = parts[2];
+                info.username = parts[3];
+                info.last_heartbeat = time(nullptr);
+                
+                std::lock_guard<std::mutex> lock(pc_mutex);
+                connected_pcs[pc_id] = info;
+                registered = true;
+                
+                std::string response = "OK|REGISTERED\n";
+                ACE_OS::send(client_handle, response.c_str(), response.length(), 0);
+                ACE_DEBUG((LM_INFO, "PC registered: %s\n", pc_id.c_str()));
+            }
+        }
+        else if (message.find("HEARTBEAT|") == 0) {
+            auto parts = split(message, '|');
+            if (parts.size() >= 2) {
+                std::lock_guard<std::mutex> lock(pc_mutex);
+                if (connected_pcs.count(parts[1])) {
+                    connected_pcs[parts[1]].last_heartbeat = time(nullptr);
+                    std::string response = "OK\n";
+                    ACE_OS::send(client_handle, response.c_str(), response.length(), 0);
+                }
+            }
+        }
+        else if (message.find("GET_PCS") == 0) {
+            std::lock_guard<std::mutex> lock(pc_mutex);
+            std::string response = "PC_LIST|";
+            time_t now = time(nullptr);
+            for (const auto& pair : connected_pcs) {
+                if (now - pair.second.last_heartbeat < 120) {
+                    response += pair.second.pc_id + "," + pair.second.usb_id + "," + pair.second.username + ";";
+                }
+            }
+            response += "\n";
+            ACE_OS::send(client_handle, response.c_str(), response.length(), 0);
+            ACE_DEBUG((LM_INFO, "Sent PC list\n"));
+            break;
+        }
+    }
+    ACE_OS::closesocket(client_handle);
+}
+
+bool RelayServer::Start(const std::string& address, uint16_t port) {
+    ACE_INET_Addr addr(port, address.c_str());
+    if (acceptor_.open(addr) == -1) {
+        ACE_ERROR_RETURN((LM_ERROR, "Failed to open\n"), false);
+    }
+    running_ = true;
+    ACE_DEBUG((LM_INFO, "Relay started on port %d\n", port));
+    
+    while (running_) {
+        ACE_SOCK_Stream client;
+        ACE_Time_Value timeout(1);
+        if (acceptor_.accept(client, nullptr, &timeout) != -1) {
+            ACE_HANDLE h = client.get_handle();
+            std::thread([this, h]() { HandleClient(h, &running_); }).detach();
+        }
+    }
+    return true;
+}
+
+void RelayServer::Stop() {
+    running_ = false;
+    acceptor_.close();
+}
+
+}}

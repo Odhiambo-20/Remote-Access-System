@@ -1,0 +1,29 @@
+#ifndef FILE_HANDLER_H
+#define FILE_HANDLER_H
+
+#include <ace/Task.h>
+#include <ace/SOCK_Stream.h>
+#include <ace/SOCK_Connector.h>
+#include <string>
+
+class FileHandler : public ACE_Task<ACE_MT_SYNCH> {
+public:
+    FileHandler(const std::string& pc_id);
+    virtual ~FileHandler();
+
+    int connect_to_relay(const std::string& relay_address, int port);
+    virtual int svc();
+    void shutdown();
+
+private:
+    void handle_request(const std::string& request);
+    void list_directory(const std::string& path);
+    void send_file(const std::string& file_path);
+    void receive_file(const std::string& file_path, size_t file_size);
+
+    std::string pc_id_;
+    ACE_SOCK_Stream stream_;
+    bool running_;
+};
+
+#endif

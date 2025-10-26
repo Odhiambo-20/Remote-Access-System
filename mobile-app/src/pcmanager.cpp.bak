@@ -1,0 +1,94 @@
+#include "pcmanager.h"
+#include <QDebug>
+#include <QStringList>
+
+PCManager::PCManager(QObject *parent)
+    : QObject(parent)
+    , m_socket(new QTcpSocket(this))
+    , m_isConnected(false)
+{
+    connect(m_socket, &QTcpSocket::connected, this, &PCManager::onConnected);
+    connect(m_socket, &QTcpSocket::readyRead, this, &PCManager::onReadyRead);
+    connect(m_socket, &QTcpSocket::disconnected, this, &PCManager::onDisconnected);
+    connect(m_socket, &QTcpSocket::errorOccurred, this, &PCManager::onError);
+}
+
+PCManager::~PCManager() {
+    if (m_socket->isOpen()) {
+        m_socket->close();
+    }
+}
+
+void PCManager::queryPCList(const QString &relayServerAddress, int port) {
+    qDebug() << "[PCManager] Querying PC list from" << relayServerAddress << ":" << port;
+    
+    if (m_socket->state() == QAbstractSocket::ConnectedState) {
+        m_socket->disconnectFromHost();
+        m_socket->waitForDisconnected(500);
+    }
+    
+    m_socket->connectToHost(relayServerAddress, port);
+}
+
+void PCManager::connectToPC(const QString &pcId, const QString &relayServerAddress) {
+    qDebug() << "[PCManager] Connecting to PC:" << pcId;
+    m_currentPcId = pcId;
+    m_connectedPcId = pcId;
+    m_isConnected = true;
+    emit isConnectedChanged();
+    emit connectedPcIdChanged();
+}
+
+void PCManager::disconnectFromPC() {
+    m_isConnected = false;
+    m_connectedPcId = "";
+    emit isConnectedChanged();
+    emit connectedPcIdChanged();
+}
+
+void PCManager::onConnected() {
+    qDebug() << "[PCManager] Socket connected";
+    QString request = "QUERY_PC_LIST\n";
+    m_socket->write(request.toUtf8());
+    m_socket->flush();
+}
+
+void PCManager::onReadyRead() {
+    QByteArray data = m_socket->readAll();
+    QString response = QString::fromUtf8(data);
+    qDebug() << "[PCManager] Response:" << response;
+    
+    if (response.startsWith("PC_LIST|")) {
+        emit clearPCList();
+        
+        QString content = response.mid(8).trimmed();
+        QStringList lines = content.split('\n', Qt::SkipEmptyParts);
+        QStringList pcList;
+        
+        for (const QString &line : lines) {
+            QStringList parts = line.split(',');
+            if (parts.size() >= 3) {
+                QString pcId = parts[0];
+                QString username = parts[1];
+                QString hostname = parts[2];
+                
+                pcList.append(pcId);
+                emit addPCToList(pcId, hostname, username, true);
+                qDebug() << "[PCManager] Added PC:" << hostname;
+            }
+        }
+        
+        emit pcListUpdated(pcList);
+    }
+    
+    m_socket->disconnectFromHost();
+}
+
+void PCManager::onDisconnected() {
+    qDebug() << "[PCManager] Disconnected";
+}
+
+void PCManager::onError(QAbstractSocket::SocketError error) {
+    qDebug() << "[PCManager] Socket error:" << m_socket->errorString();
+    emit connectionFailed(m_socket->errorString());
+}

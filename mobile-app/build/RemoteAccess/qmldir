@@ -1,0 +1,4 @@
+module RemoteAccess
+typeinfo RemoteAccessMobile.qmltypes
+prefer :/RemoteAccess/
+

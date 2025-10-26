@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/relay_server.dir/src/relay_server_standalone.cpp.o -o relay_server  -lpthread 

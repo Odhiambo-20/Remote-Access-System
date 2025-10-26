@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/RemoteAccess">
+    <file alias="qmldir">/home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccess/qmldir</file>
+  </qresource>
+</RCC>
+

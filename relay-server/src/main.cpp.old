@@ -1,0 +1,42 @@
+#include <iostream>
+#include <ace/SOCK_Stream.h>
+#include <ace/SOCK_Acceptor.h>
+#include <ace/INET_Addr.h>
+#include <ace/Log_Msg.h>
+
+int main(int argc, char* argv[]) {
+    try {
+        ACE_LOG_MSG->open(argv[0], ACE_Log_Msg::SYSLOG, ACE_TEXT("RelayServer"));
+        
+        std::cout << "Relay Server v1.0" << std::endl;
+        std::cout << "Starting on port 2810..." << std::endl;
+
+        ACE_INET_Addr server_addr(2810, "0.0.0.0");
+        ACE_SOCK_Acceptor acceptor;
+
+        if (acceptor.open(server_addr) == -1) {
+            ACE_ERROR_RETURN((LM_ERROR, "Failed to open acceptor on port 2810\n"), 1);
+        }
+
+        std::cout << "Relay Server listening on port 2810" << std::endl;
+
+        while (true) {
+            ACE_SOCK_Stream client_stream;
+            ACE_INET_Addr client_addr;
+
+            if (acceptor.accept(client_stream, &client_addr) == -1) {
+                ACE_ERROR((LM_ERROR, "Failed to accept connection\n"));
+                continue;
+            }
+
+            std::cout << "New connection from: " << client_addr.get_host_name() << std::endl;
+        }
+
+        acceptor.close();
+
+    } catch (const std::exception& e) {
+        ACE_ERROR_RETURN((LM_ERROR, "Exception: %s\n", e.what()), 1);
+    }
+
+    return 0;
+}

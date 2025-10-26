@@ -1,0 +1,280 @@
+<svg viewBox="0 0 1400 1800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1400" height="1800" fill="#0a0e27"/>
+  
+  <!-- Title -->
+  <text x="700" y="40" font-size="32" font-weight="bold" fill="#00d9ff" text-anchor="middle">
+    Remote Access System - Complete Architecture
+  </text>
+  
+  <!-- ========== MOBILE APP SECTION ========== -->
+  <g id="mobile-app">
+    <!-- Mobile Device -->
+    <rect x="50" y="100" width="300" height="500" rx="20" fill="#161b33" stroke="#6c5ce7" stroke-width="3"/>
+    <text x="200" y="130" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">📱 Mobile App (Qt/QML)</text>
+    
+    <!-- Mobile Features -->
+    <g transform="translate(70, 150)">
+      <!-- Network Detection -->
+      <rect x="0" y="0" width="260" height="60" rx="5" fill="#1e2442" stroke="#00cec9" stroke-width="2"/>
+      <text x="10" y="25" font-size="14" font-weight="bold" fill="#00cec9">🌐 Network Detection</text>
+      <text x="10" y="45" font-size="11" fill="#b2bec3">• Auto-switch Local/External</text>
+      
+      <!-- PC Binding -->
+      <rect x="0" y="70" width="260" height="60" rx="5" fill="#1e2442" stroke="#6c5ce7" stroke-width="2"/>
+      <text x="10" y="95" font-size="14" font-weight="bold" fill="#6c5ce7">🔗 PC Binding</text>
+      <text x="10" y="115" font-size="11" fill="#b2bec3">• Bind/Unbind Multiple PCs</text>
+      
+      <!-- File Operations -->
+      <rect x="0" y="140" width="260" height="80" rx="5" fill="#1e2442" stroke="#fd79a8" stroke-width="2"/>
+      <text x="10" y="165" font-size="14" font-weight="bold" fill="#fd79a8">📁 File Browser</text>
+      <text x="10" y="185" font-size="11" fill="#b2bec3">• Upload/Download Files</text>
+      <text x="10" y="200" font-size="11" fill="#b2bec3">• Generate Share URLs</text>
+      <text x="10" y="215" font-size="11" fill="#b2bec3">• Directory Navigation</text>
+      
+      <!-- Network Status -->
+      <rect x="0" y="230" width="260" height="60" rx="5" fill="#1e2442" stroke="#00d9ff" stroke-width="2"/>
+      <text x="10" y="255" font-size="14" font-weight="bold" fill="#00d9ff">📊 Connection Status</text>
+      <text x="10" y="275" font-size="11" fill="#b2bec3">• Local: 192.168.100.89</text>
+      
+      <!-- Authentication -->
+      <rect x="0" y="300" width="260" height="60" rx="5" fill="#1e2442" stroke="#ffeaa7" stroke-width="2"/>
+      <text x="10" y="325" font-size="14" font-weight="bold" fill="#ffeaa7">🔐 Authentication</text>
+      <text x="10" y="345" font-size="11" fill="#b2bec3">• Username/Password</text>
+    </g>
+    
+    <!-- Mobile Network Type Indicator -->
+    <circle cx="200" cy="590" r="5" fill="#00cec9"/>
+    <text x="210" y="595" font-size="12" fill="#00cec9">Local Network Active</text>
+  </g>
+  
+  <!-- ========== NETWORK CLOUD ========== -->
+  <g id="network-cloud">
+    <!-- Local Network -->
+    <ellipse cx="250" cy="750" rx="120" ry="60" fill="#1e2442" stroke="#00cec9" stroke-width="3" stroke-dasharray="5,5"/>
+    <text x="250" y="745" font-size="14" font-weight="bold" fill="#00cec9" text-anchor="middle">Local Network</text>
+    <text x="250" y="765" font-size="11" fill="#b2bec3" text-anchor="middle">192.168.100.x</text>
+    
+    <!-- External Network -->
+    <ellipse cx="250" cy="900" rx="120" ry="60" fill="#1e2442" stroke="#6c5ce7" stroke-width="3" stroke-dasharray="5,5"/>
+    <text x="250" y="895" font-size="14" font-weight="bold" fill="#6c5ce7" text-anchor="middle">External Network</text>
+    <text x="250" y="915" font-size="11" fill="#b2bec3" text-anchor="middle">DuckDNS</text>
+    
+    <!-- Connection Lines from Mobile -->
+    <line x1="200" y1="600" x2="200" y2="750" stroke="#00cec9" stroke-width="3"/>
+    <line x1="200" y1="600" x2="200" y2="900" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,5" opacity="0.5"/>
+    
+    <!-- Network Switch Logic -->
+    <rect x="150" y="675" width="100" height="30" rx="5" fill="#00cec9" opacity="0.8"/>
+    <text x="200" y="695" font-size="10" font-weight="bold" fill="#0a0e27" text-anchor="middle">AUTO-SWITCH</text>
+  </g>
+  
+  <!-- ========== SERVER INFRASTRUCTURE ========== -->
+  <g id="servers">
+    <!-- Account Server -->
+    <rect x="500" y="650" width="280" height="180" rx="10" fill="#161b33" stroke="#ffeaa7" stroke-width="3"/>
+    <text x="640" y="680" font-size="18" font-weight="bold" fill="#ffeaa7" text-anchor="middle">🗄️ Account Server</text>
+    <text x="520" y="710" font-size="12" fill="#ffffff">Port: 2809 (CORBA)</text>
+    <text x="520" y="730" font-size="12" fill="#b2bec3">• User Authentication</text>
+    <text x="520" y="750" font-size="12" fill="#b2bec3">• PC Binding Management</text>
+    <text x="520" y="770" font-size="12" fill="#b2bec3">• SQLite Database</text>
+    <text x="520" y="790" font-size="12" fill="#b2bec3">• Session Management</text>
+    <text x="520" y="810" font-size="12" fill="#b2bec3">• ACE+TAO (IPv4/IPv6)</text>
+    
+    <!-- Relay Server -->
+    <rect x="850" y="650" width="280" height="180" rx="10" fill="#161b33" stroke="#6c5ce7" stroke-width="3"/>
+    <text x="990" y="680" font-size="18" font-weight="bold" fill="#6c5ce7" text-anchor="middle">🔄 Relay Server</text>
+    <text x="870" y="710" font-size="12" fill="#ffffff">Port: 2810 (PC List)</text>
+    <text x="870" y="730" font-size="12" fill="#b2bec3">• Message Routing</text>
+    <text x="870" y="750" font-size="12" fill="#b2bec3">• PC Registration</text>
+    <text x="870" y="770" font-size="12" fill="#b2bec3">• Connection Management</text>
+    <text x="870" y="790" font-size="12" fill="#b2bec3">• Heartbeat Monitoring</text>
+    <text x="870" y="810" font-size="12" fill="#b2bec3">• Network Detection Support</text>
+    
+    <!-- File Transfer Handler -->
+    <rect x="850" y="860" width="280" height="120" rx="10" fill="#161b33" stroke="#fd79a8" stroke-width="3"/>
+    <text x="990" y="890" font-size="18" font-weight="bold" fill="#fd79a8" text-anchor="middle">📤 File Handler</text>
+    <text x="870" y="920" font-size="12" fill="#ffffff">Port: 2811</text>
+    <text x="870" y="940" font-size="12" fill="#b2bec3">• File Upload/Download</text>
+    <text x="870" y="960" font-size="12" fill="#b2bec3">• Binary Data Transfer</text>
+    <text x="870" y="980" font-size="12" fill="#b2bec3">• Progress Tracking</text>
+    
+    <!-- HTTP Server -->
+    <rect x="850" y="1010" width="280" height="120" rx="10" fill="#161b33" stroke="#00b894" stroke-width="3"/>
+    <text x="990" y="1040" font-size="18" font-weight="bold" fill="#00b894" text-anchor="middle">🌐 HTTP Server</text>
+    <text x="870" y="1070" font-size="12" fill="#ffffff">Port: 8080</text>
+    <text x="870" y="1090" font-size="12" fill="#b2bec3">• Public File Sharing</text>
+    <text x="870" y="1110" font-size="12" fill="#b2bec3">• Share URL Generation</text>
+    
+    <!-- Server Connections -->
+    <line x1="370" y1="750" x2="500" y2="740" stroke="#ffeaa7" stroke-width="2"/>
+    <line x1="370" y1="750" x2="850" y2="740" stroke="#6c5ce7" stroke-width="3"/>
+    <line x1="370" y1="900" x2="850" y2="800" stroke="#6c5ce7" stroke-width="2" stroke-dasharray="5,5"/>
+  </g>
+  
+  <!-- ========== PC CLIENT SECTION ========== -->
+  <g id="pc-client">
+    <!-- USB Drive -->
+    <rect x="500" y="1200" width="200" height="140" rx="10" fill="#161b33" stroke="#a29bfe" stroke-width="3"/>
+    <text x="600" y="1230" font-size="18" font-weight="bold" fill="#a29bfe" text-anchor="middle">💾 USB Drive</text>
+    <text x="520" y="1260" font-size="12" fill="#ffffff">Hardware ID:</text>
+    <text x="520" y="1280" font-size="11" fill="#00cec9">usb_device</text>
+    <text x="520" y="1305" font-size="12" fill="#b2bec3">• Unique Identifier</text>
+    <text x="520" y="1325" font-size="12" fill="#b2bec3">• Physical Security Key</text>
+    
+    <!-- PC Computer -->
+    <rect x="750" y="1200" width="320" height="400" rx="10" fill="#161b33" stroke="#00d9ff" stroke-width="3"/>
+    <text x="910" y="1230" font-size="20" font-weight="bold" fill="#00d9ff" text-anchor="middle">🖥️ PC Client</text>
+    
+    <!-- PC Details -->
+    <g transform="translate(770, 1240)">
+      <!-- PC Info -->
+      <rect x="0" y="0" width="280" height="60" rx="5" fill="#1e2442" stroke="#00d9ff" stroke-width="2"/>
+      <text x="10" y="25" font-size="14" font-weight="bold" fill="#00d9ff">PC Information</text>
+      <text x="10" y="45" font-size="11" fill="#b2bec3">ID: PC-a987adb83f2bf5628...</text>
+      
+      <!-- Hardware Binding -->
+      <rect x="0" y="70" width="280" height="60" rx="5" fill="#1e2442" stroke="#a29bfe" stroke-width="2"/>
+      <text x="10" y="95" font-size="14" font-weight="bold" fill="#a29bfe">Hardware Binding</text>
+      <text x="10" y="115" font-size="11" fill="#b2bec3">• USB Required for Access</text>
+      
+      <!-- File Handler -->
+      <rect x="0" y="140" width="280" height="80" rx="5" fill="#1e2442" stroke="#fd79a8" stroke-width="2"/>
+      <text x="10" y="165" font-size="14" font-weight="bold" fill="#fd79a8">📁 File Handler</text>
+      <text x="10" y="185" font-size="11" fill="#b2bec3">• Directory Listing</text>
+      <text x="10" y="200" font-size="11" fill="#b2bec3">• File Send/Receive</text>
+      <text x="10" y="215" font-size="11" fill="#b2bec3">• Permission Checking</text>
+      
+      <!-- Network Config -->
+      <rect x="0" y="230" width="280" height="70" rx="5" fill="#1e2442" stroke="#00cec9" stroke-width="2"/>
+      <text x="10" y="255" font-size="14" font-weight="bold" fill="#00cec9">🌐 Network</text>
+      <text x="10" y="275" font-size="11" fill="#b2bec3">Local: 192.168.100.89:2810</text>
+      <text x="10" y="290" font-size="11" fill="#b2bec3">External: victor-remote...</text>
+      
+      <!-- HTTP Server -->
+      <rect x="0" y="310" width="280" height="60" rx="5" fill="#1e2442" stroke="#00b894" stroke-width="2"/>
+      <text x="10" y="335" font-size="14" font-weight="bold" fill="#00b894">HTTP Server</text>
+      <text x="10" y="355" font-size="11" fill="#b2bec3">Port: 8080 (File Sharing)</text>
+    </g>
+    
+    <!-- USB Connection -->
+    <line x1="700" y1="1270" x2="750" y2="1270" stroke="#a29bfe" stroke-width="3"/>
+    <text x="725" y="1265" font-size="10" fill="#a29bfe" text-anchor="middle">USB</text>
+    
+    <!-- PC to Relay Connection -->
+    <line x1="910" y1="1200" x2="990" y2="830" stroke="#6c5ce7" stroke-width="3"/>
+    <text x="950" y="1000" font-size="12" fill="#6c5ce7">REGISTER</text>
+  </g>
+  
+  <!-- ========== DATA FLOW SECTION ========== -->
+  <g id="data-flow">
+    <!-- Flow Legend -->
+    <rect x="50" y="1650" width="600" height="120" rx="10" fill="#161b33" stroke="#00d9ff" stroke-width="2"/>
+    <text x="350" y="1680" font-size="18" font-weight="bold" fill="#00d9ff" text-anchor="middle">📊 Data Flow & Protocols</text>
+    
+    <text x="70" y="1710" font-size="12" fill="#00cec9">• Local Network: Direct TCP (192.168.100.89:2810)</text>
+    <text x="70" y="1730" font-size="12" fill="#6c5ce7">• External Network: DuckDNS (victor-remote.duckdns.org:2810)</text>
+    <text x="70" y="1750" font-size="12" fill="#fd79a8">• File Transfer: Binary TCP (Port 2811)</text>
+    <text x="70" y="1770" font-size="12" fill="#00b894">• Public Sharing: HTTP (Port 8080)</text>
+  </g>
+  
+  <!-- ========== PROTOCOL MESSAGES ========== -->
+  <g id="protocols">
+    <rect x="700" y="1650" width="650" height="120" rx="10" fill="#161b33" stroke="#ffeaa7" stroke-width="2"/>
+    <text x="1025" y="1680" font-size="18" font-weight="bold" fill="#ffeaa7" text-anchor="middle">📝 Protocol Messages</text>
+    
+    <text x="720" y="1710" font-size="11" fill="#ffffff">Mobile → Relay: GET_PCS | MOBILE_FILE|pc_id</text>
+    <text x="720" y="1730" font-size="11" fill="#ffffff">PC → Relay: REGISTER|pc_id|usb_id|username</text>
+    <text x="720" y="1750" font-size="11" fill="#ffffff">File Operations: LIST_DIR | DOWNLOAD | UPLOAD</text>
+    <text x="720" y="1770" font-size="11" fill="#ffffff">Share: GENERATE_URL | http://server:8080/share/token</text>
+  </g>
+  
+  <!-- ========== NETWORK DETECTION FLOW ========== -->
+  <g id="network-detection">
+    <rect x="1200" y="100" width="180" height="400" rx="10" fill="#161b33" stroke="#00cec9" stroke-width="3"/>
+    <text x="1290" y="130" font-size="16" font-weight="bold" fill="#00cec9" text-anchor="middle">🔍 Network Detection</text>
+    
+    <!-- Detection Steps -->
+    <g transform="translate(1210, 150)">
+      <circle cx="10" cy="10" r="8" fill="#00cec9"/>
+      <text x="25" y="15" font-size="11" fill="#ffffff">Check IP Range</text>
+      <text x="25" y="30" font-size="9" fill="#b2bec3">192.168.100.x?</text>
+      
+      <line x1="10" y1="20" x2="10" y2="60" stroke="#00cec9" stroke-width="2"/>
+      
+      <circle cx="10" cy="70" r="8" fill="#00cec9"/>
+      <text x="25" y="75" font-size="11" fill="#ffffff">Test Local Server</text>
+      <text x="25" y="90" font-size="9" fill="#b2bec3">Ping :8080/health</text>
+      
+      <line x1="10" y1="80" x2="10" y2="120" stroke="#00cec9" stroke-width="2"/>
+      
+      <circle cx="10" cy="130" r="8" fill="#00d9ff"/>
+      <text x="25" y="135" font-size="11" fill="#ffffff">Connection Test</text>
+      <text x="25" y="150" font-size="9" fill="#b2bec3">TCP Connect</text>
+      
+      <line x1="10" y1="140" x2="10" y2="180" stroke="#00d9ff" stroke-width="2"/>
+      
+      <rect x="-5" y="190" width="170" height="40" rx="5" fill="#00cec9" opacity="0.2"/>
+      <text x="80" y="205" font-size="10" font-weight="bold" fill="#00cec9" text-anchor="middle">✓ USE LOCAL</text>
+      <text x="80" y="220" font-size="9" fill="#00cec9" text-anchor="middle">192.168.100.89</text>
+      
+      <rect x="-5" y="240" width="170" height="40" rx="5" fill="#6c5ce7" opacity="0.2"/>
+      <text x="80" y="255" font-size="10" font-weight="bold" fill="#6c5ce7" text-anchor="middle">✗ USE EXTERNAL</text>
+      <text x="80" y="270" font-size="9" fill="#6c5ce7" text-anchor="middle">victor-remote...</text>
+      
+      <text x="80" y="300" font-size="10" font-weight="bold" fill="#ffeaa7" text-anchor="middle">Auto-Switch Every 5s</text>
+    </g>
+  </g>
+  
+  <!-- ========== KEY FEATURES BOX ========== -->
+  <g id="features">
+    <rect x="1200" y="550" width="180" height="350" rx="10" fill="#161b33" stroke="#fd79a8" stroke-width="3"/>
+    <text x="1290" y="580" font-size="16" font-weight="bold" fill="#fd79a8" text-anchor="middle">✨ Key Features</text>
+    
+    <g transform="translate(1210, 600)">
+      <text x="0" y="0" font-size="11" fill="#00cec9">✓ Auto Network Switch</text>
+      <text x="0" y="25" font-size="11" fill="#6c5ce7">✓ Multi-PC Binding</text>
+      <text x="0" y="50" font-size="11" fill="#fd79a8">✓ File Management</text>
+      <text x="0" y="75" font-size="11" fill="#00b894">✓ Public File Sharing</text>
+      <text x="0" y="100" font-size="11" fill="#a29bfe">✓ Hardware Auth (USB)</text>
+      <text x="0" y="125" font-size="11" fill="#ffeaa7">✓ Session Management</text>
+      <text x="0" y="150" font-size="11" fill="#00d9ff">✓ IPv4/IPv6 Support</text>
+      <text x="0" y="175" font-size="11" fill="#00cec9">✓ Cross-Platform Qt</text>
+      <text x="0" y="200" font-size="11" fill="#6c5ce7">✓ ACE+TAO Framework</text>
+      <text x="0" y="225" font-size="11" fill="#fd79a8">✓ Real-time Detection</text>
+      <text x="0" y="250" font-size="11" fill="#00b894">✓ Progress Tracking</text>
+      <text x="0" y="275" font-size="11" fill="#a29bfe">✓ Secure Encryption</text>
+      <text x="0" y="300" font-size="11" fill="#ffeaa7">✓ Dark Theme UI</text>
+    </g>
+  </g>
+  
+  <!-- ========== SECURITY LAYERS ========== -->
+  <g id="security">
+    <rect x="1200" y="950" width="180" height="220" rx="10" fill="#161b33" stroke="#ff7675" stroke-width="3"/>
+    <text x="1290" y="980" font-size="16" font-weight="bold" fill="#ff7675" text-anchor="middle">🔐 Security</text>
+    
+    <g transform="translate(1210, 1000)">
+      <text x="0" y="0" font-size="11" fill="#ff7675">1. Physical Security</text>
+      <text x="0" y="18" font-size="9" fill="#b2bec3">   USB Hardware Key</text>
+      
+      <text x="0" y="40" font-size="11" fill="#ff7675">2. Authentication</text>
+      <text x="0" y="58" font-size="9" fill="#b2bec3">   User/Pass + Session</text>
+      
+      <text x="0" y="80" font-size="11" fill="#ff7675">3. Network Security</text>
+      <text x="0" y="98" font-size="9" fill="#b2bec3">   TLS + AES-256-GCM</text>
+      
+      <text x="0" y="120" font-size="11" fill="#ff7675">4. Access Control</text>
+      <text x="0" y="138" font-size="9" fill="#b2bec3">   Device Binding</text>
+      
+      <text x="0" y="160" font-size="11" fill="#ff7675">5. Hardware Binding</text>
+      <text x="0" y="178" font-size="9" fill="#b2bec3">   PC ID Verification</text>
+    </g>
+  </g>
+  
+  <!-- System Status Indicator -->
+  <circle cx="700" cy="50" r="8" fill="#00cec9"/>
+  <text x="715" y="55" font-size="12" fill="#00cec9">System Operational</text>
+  
+  <!-- Version Info -->
+  <text x="1350" y="1790" font-size="10" fill="#b2bec3" text-anchor="end">v1.0 - Network-Aware Edition</text>
+</svg>

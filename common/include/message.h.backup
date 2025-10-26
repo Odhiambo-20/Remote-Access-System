@@ -1,0 +1,107 @@
+#ifndef MESSAGE_H
+#define MESSAGE_H
+
+#include <vector>
+#include <cstdint>
+#include <cstring>
+
+namespace RemoteAccessSystem {
+namespace Common {
+
+enum class MessageType : uint32_t {
+    AUTH_REQUEST,
+    AUTH_RESPONSE,
+    BIND_REQUEST,
+    BIND_RESPONSE
+};
+
+struct MessageHeader {
+    MessageType type;
+    uint64_t message_id;
+    uint64_t timestamp;
+};
+
+struct Message {
+    MessageHeader header;
+    std::vector<uint8_t> payload;
+    
+    // Serialization methods
+    std::vector<uint8_t> Serialize() const {
+        std::vector<uint8_t> result;
+        
+        // Reserve space for header + payload
+        result.reserve(sizeof(MessageHeader) + payload.size());
+        
+        // Serialize MessageType
+        uint32_t type_value = static_cast<uint32_t>(header.type);
+        result.insert(result.end(), 
+                     reinterpret_cast<const uint8_t*>(&type_value),
+                     reinterpret_cast<const uint8_t*>(&type_value) + sizeof(type_value));
+        
+        // Serialize message_id
+        result.insert(result.end(),
+                     reinterpret_cast<const uint8_t*>(&header.message_id),
+                     reinterpret_cast<const uint8_t*>(&header.message_id) + sizeof(header.message_id));
+        
+        // Serialize timestamp
+        result.insert(result.end(),
+                     reinterpret_cast<const uint8_t*>(&header.timestamp),
+                     reinterpret_cast<const uint8_t*>(&header.timestamp) + sizeof(header.timestamp));
+        
+        // Serialize payload size
+        uint64_t payload_size = payload.size();
+        result.insert(result.end(),
+                     reinterpret_cast<const uint8_t*>(&payload_size),
+                     reinterpret_cast<const uint8_t*>(&payload_size) + sizeof(payload_size));
+        
+        // Serialize payload
+        result.insert(result.end(), payload.begin(), payload.end());
+        
+        return result;
+    }
+    
+    bool Deserialize(const std::vector<uint8_t>& data) {
+        if (data.size() < sizeof(uint32_t) + sizeof(uint64_t) * 3) {
+            return false; // Not enough data for header
+        }
+        
+        size_t offset = 0;
+        
+        // Deserialize MessageType
+        uint32_t type_value;
+        std::memcpy(&type_value, data.data() + offset, sizeof(type_value));
+        header.type = static_cast<MessageType>(type_value);
+        offset += sizeof(type_value);
+        
+        // Deserialize message_id
+        std::memcpy(&header.message_id, data.data() + offset, sizeof(header.message_id));
+        offset += sizeof(header.message_id);
+        
+        // Deserialize timestamp
+        std::memcpy(&header.timestamp, data.data() + offset, sizeof(header.timestamp));
+        offset += sizeof(header.timestamp);
+        
+        // Deserialize payload size
+        uint64_t payload_size;
+        std::memcpy(&payload_size, data.data() + offset, sizeof(payload_size));
+        offset += sizeof(payload_size);
+        
+        // Check if we have enough data for payload
+        if (data.size() < offset + payload_size) {
+            return false;
+        }
+        
+        // Deserialize payload
+        payload.clear();
+        payload.insert(payload.end(), 
+                      data.begin() + offset, 
+                      data.begin() + offset + payload_size);
+        
+        return true;
+    }
+};
+
+} // namespace Common
+} // namespace RemoteAccessSystem
+
+#endif // MESSAGE_H

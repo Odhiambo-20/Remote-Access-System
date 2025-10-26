@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/PCListView.qml</file>
+        <file>qml/AddPCView.qml</file>
+        <file>qml/FileExplorerView.qml</file>
+        <file>qml/SettingsView.qml</file>
+    </qresource>
+</RCC>
