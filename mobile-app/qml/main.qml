@@ -140,58 +140,747 @@ ApplicationWindow {
     StackView {
         id: stackView
         anchors.fill: parent
-        initialItem: loginPage
+        initialItem: mainMenuPage
     }
 
+    // MAIN MENU PAGE (IMAGE 1)
+    Component {
+        id: mainMenuPage
+        
+        Page {
+            title: "Remote Access Mobile"
+            background: Rectangle { color: "#0a0e27" }
+            
+            ColumnLayout {
+                anchors.fill: parent
+                spacing: 0
+
+                // Header
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 60
+                    color: "#0f1628"
+                    
+                    Label {
+                        anchors.centerIn: parent
+                        text: "Remote Access Mobile"
+                        font.pixelSize: 20
+                        font.bold: true
+                        color: "#ffffff"
+                    }
+                }
+
+                // Left sidebar and main content
+                RowLayout {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    spacing: 0
+
+                    // LEFT SIDEBAR
+                    Rectangle {
+                        Layout.preferredWidth: 240
+                        Layout.fillHeight: true
+                        color: "#0d1220"
+
+                        ColumnLayout {
+                            anchors.fill: parent
+                            anchors.margins: 0
+                            spacing: 0
+
+                            Label {
+                                text: "Available PCs"
+                                font.pixelSize: 16
+                                font.bold: true
+                                color: "#ffffff"
+                                Layout.margins: 20
+                            }
+
+                            // Login Button
+                            Button {
+                                Layout.fillWidth: true
+                                Layout.preferredHeight: 50
+                                Layout.leftMargin: 12
+                                Layout.rightMargin: 12
+                                
+                                background: Rectangle {
+                                    color: parent.hovered ? "#3d5a80" : "#2a4365"
+                                    radius: 8
+                                }
+                                
+                                contentItem: RowLayout {
+                                    spacing: 10
+                                    
+                                    Label {
+                                        text: "→"
+                                        font.pixelSize: 20
+                                        color: "#ffffff"
+                                    }
+                                    
+                                    Label {
+                                        text: "Login"
+                                        font.pixelSize: 14
+                                        color: "#ffffff"
+                                    }
+                                }
+                                
+                                onClicked: {
+                                    console.log("[QML] Login button clicked")
+                                    stackView.push(loginPage)
+                                }
+                            }
+
+                            // Bind PC Button
+                            Button {
+                                Layout.fillWidth: true
+                                Layout.preferredHeight: 50
+                                Layout.leftMargin: 12
+                                Layout.rightMargin: 12
+                                Layout.topMargin: 8
+                                
+                                background: Rectangle {
+                                    color: parent.hovered ? "#1e88a8" : "#0e7490"
+                                    radius: 8
+                                }
+                                
+                                contentItem: RowLayout {
+                                    spacing: 10
+                                    
+                                    Label {
+                                        text: "🔗"
+                                        font.pixelSize: 18
+                                        color: "#ffffff"
+                                    }
+                                    
+                                    Label {
+                                        text: "Bind PC"
+                                        font.pixelSize: 14
+                                        color: "#ffffff"
+                                    }
+                                }
+                                
+                                onClicked: {
+                                    console.log("[QML] Bind PC button clicked")
+                                    stackView.push(bindPCPage)
+                                }
+                            }
+
+                            // PC List
+                            ListView {
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                Layout.margins: 12
+                                spacing: 8
+                                clip: true
+                                
+                                model: pcListModel
+                                
+                                delegate: Rectangle {
+                                    width: ListView.view.width
+                                    height: 90
+                                    color: "#161d31"
+                                    radius: 8
+                                    border.color: "#2a3a52"
+                                    border.width: 1
+                                    
+                                    ColumnLayout {
+                                        anchors.fill: parent
+                                        anchors.margins: 12
+                                        spacing: 4
+                                        
+                                        RowLayout {
+                                            Layout.fillWidth: true
+                                            spacing: 8
+                                            
+                                            Rectangle {
+                                                width: 10
+                                                height: 10
+                                                radius: 5
+                                                color: model.isOnline ? "#10b981" : "#6b7280"
+                                            }
+                                            
+                                            Label {
+                                                text: "PC"
+                                                font.pixelSize: 12
+                                                color: "#9ca3af"
+                                            }
+                                        }
+                                        
+                                        Label {
+                                            text: model.pcId
+                                            font.pixelSize: 13
+                                            font.bold: true
+                                            color: "#ffffff"
+                                            elide: Text.ElideMiddle
+                                            Layout.fillWidth: true
+                                        }
+                                        
+                                        Label {
+                                            text: "User: " + model.username
+                                            font.pixelSize: 11
+                                            color: "#00d9ff"
+                                        }
+                                        
+                                        Label {
+                                            text: "ID: " + model.pcId
+                                            font.pixelSize: 10
+                                            color: "#6b7280"
+                                            elide: Text.ElideMiddle
+                                            Layout.fillWidth: true
+                                        }
+                                    }
+                                    
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        onEntered: parent.color = "#1e2842"
+                                        onExited: parent.color = "#161d31"
+                                        onClicked: {
+                                            if (model.isOnline) {
+                                                console.log("[QML] Connecting to PC:", model.pcId)
+                                                pcManager.connectToPC(model.pcId, relayServerAddress)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            Item { Layout.fillHeight: true }
+                        }
+                    }
+
+                    // MAIN CONTENT AREA
+                    Rectangle {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        color: "#0a0e27"
+
+                        ColumnLayout {
+                            anchors.centerIn: parent
+                            spacing: 20
+
+                            Label {
+                                text: "Connected: PC-a987adb83f2bf5628a5919409cb5d00f"
+                                font.pixelSize: 16
+                                color: "#ffffff"
+                                Layout.alignment: Qt.AlignHCenter
+                            }
+
+                            // Large PC Info Card
+                            Rectangle {
+                                Layout.preferredWidth: 500
+                                Layout.preferredHeight: 300
+                                color: "#0f1628"
+                                radius: 16
+                                border.color: "#2a3a52"
+                                border.width: 2
+
+                                ColumnLayout {
+                                    anchors.centerIn: parent
+                                    spacing: 20
+
+                                    Label {
+                                        text: "PC-a987adb83f2bf5628a5919409cb5d00f"
+                                        font.pixelSize: 20
+                                        font.bold: true
+                                        color: "#ffffff"
+                                        Layout.alignment: Qt.AlignHCenter
+                                    }
+
+                                    RowLayout {
+                                        spacing: 8
+                                        Layout.alignment: Qt.AlignHCenter
+                                        
+                                        Rectangle {
+                                            width: 12
+                                            height: 12
+                                            radius: 6
+                                            color: "#10b981"
+                                        }
+                                        
+                                        Label {
+                                            text: "Available (Local)"
+                                            font.pixelSize: 14
+                                            color: "#00d9ff"
+                                        }
+                                    }
+
+                                    Label {
+                                        text: "User: victor"
+                                        font.pixelSize: 16
+                                        color: "#00d9ff"
+                                        Layout.alignment: Qt.AlignHCenter
+                                    }
+
+                                    Button {
+                                        text: "Connect"
+                                        font.pixelSize: 16
+                                        Layout.preferredWidth: 200
+                                        Layout.preferredHeight: 50
+                                        Layout.alignment: Qt.AlignHCenter
+                                        
+                                        background: Rectangle {
+                                            color: parent.pressed ? "#4a5f82" : (parent.hovered ? "#5a6f92" : "#3d5a80")
+                                            radius: 8
+                                        }
+                                        
+                                        contentItem: Label {
+                                            text: parent.text
+                                            color: "#ffffff"
+                                            font: parent.font
+                                            horizontalAlignment: Text.AlignHCenter
+                                            verticalAlignment: Text.AlignVCenter
+                                        }
+                                        
+                                        onClicked: {
+                                            console.log("[QML] Connect button clicked")
+                                            stackView.push(remoteControlPage)
+                                        }
+                                    }
+
+                                    Button {
+                                        text: "Unbind PC"
+                                        font.pixelSize: 14
+                                        Layout.preferredWidth: 200
+                                        Layout.preferredHeight: 40
+                                        Layout.alignment: Qt.AlignHCenter
+                                        
+                                        background: Rectangle {
+                                            color: parent.pressed ? "#dc2626" : (parent.hovered ? "#ef4444" : "transparent")
+                                            border.color: "#ef4444"
+                                            border.width: 2
+                                            radius: 8
+                                        }
+                                        
+                                        contentItem: Label {
+                                            text: parent.text
+                                            color: "#ef4444"
+                                            font: parent.font
+                                            horizontalAlignment: Text.AlignHCenter
+                                            verticalAlignment: Text.AlignVCenter
+                                        }
+                                        
+                                        onClicked: {
+                                            console.log("[QML] Unbind PC clicked")
+                                        }
+                                    }
+                                }
+                            }
+
+                            Label {
+                                text: "Query PC List"
+                                font.pixelSize: 14
+                                color: "#6b7280"
+                                Layout.alignment: Qt.AlignHCenter
+                                
+                                MouseArea {
+                                    anchors.fill: parent
+                                    cursorShape: Qt.PointingHandCursor
+                                    onClicked: {
+                                        console.log("[QML] Query PC List clicked")
+                                        pcManager.queryPCList(relayServerAddress, relayServerPort)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // LOGIN PAGE (IMAGE 2)
     Component {
         id: loginPage
         
         Page {
-            title: "Login"
+            title: "Remote Access Login"
             background: Rectangle { color: "#0a0e27" }
             
             ColumnLayout {
-                anchors.centerIn: parent
-                spacing: 20
-                width: 300
+                anchors.fill: parent
+                spacing: 0
 
-                Label {
-                    text: "Remote Access Login"
+                // Back button
+                ToolButton {
+                    text: "←"
                     font.pixelSize: 24
-                    color: "#ffffff"
-                    Layout.alignment: Qt.AlignHCenter
+                    Layout.preferredWidth: 60
+                    Layout.preferredHeight: 60
+                    
+                    contentItem: Label {
+                        text: parent.text
+                        color: "#ffffff"
+                        font: parent.font
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    
+                    background: Rectangle {
+                        color: parent.pressed ? "#1e2842" : (parent.hovered ? "#161d31" : "transparent")
+                    }
+                    
+                    onClicked: stackView.pop()
                 }
 
-                TextField {
-                    id: serverAddressField
-                    placeholderText: "Account Server Address"
-                    text: "127.0.0.1:8080"
+                // Login form centered
+                Item {
                     Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    ColumnLayout {
+                        anchors.centerIn: parent
+                        spacing: 20
+                        width: 400
+
+                        Label {
+                            text: "Remote Access Login"
+                            font.pixelSize: 28
+                            font.bold: true
+                            color: "#ffffff"
+                            Layout.alignment: Qt.AlignHCenter
+                        }
+
+                        TextField {
+                            id: serverAddressField
+                            text: "127.0.0.1:8080"
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 50
+                            font.pixelSize: 14
+                            
+                            background: Rectangle {
+                                color: "#1e2842"
+                                radius: 8
+                                border.color: parent.activeFocus ? "#3d5a80" : "#2a3a52"
+                                border.width: 2
+                            }
+                            
+                            color: "#ffffff"
+                            placeholderTextColor: "#6b7280"
+                        }
+
+                        TextField {
+                            id: usernameField
+                            text: "victor"
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 50
+                            font.pixelSize: 14
+                            
+                            background: Rectangle {
+                                color: "#1e2842"
+                                radius: 8
+                                border.color: parent.activeFocus ? "#3d5a80" : "#2a3a52"
+                                border.width: 2
+                            }
+                            
+                            color: "#ffffff"
+                            placeholderTextColor: "#6b7280"
+                        }
+
+                        TextField {
+                            id: passwordField
+                            placeholderText: "Password"
+                            echoMode: TextInput.Password
+                            text: "password"
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 50
+                            font.pixelSize: 14
+                            
+                            background: Rectangle {
+                                color: "#1e2842"
+                                radius: 8
+                                border.color: parent.activeFocus ? "#3d5a80" : "#2a3a52"
+                                border.width: 2
+                            }
+                            
+                            color: "#ffffff"
+                            placeholderTextColor: "#6b7280"
+                        }
+
+                        Button {
+                            text: "Login"
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 50
+                            font.pixelSize: 16
+                            
+                            background: Rectangle {
+                                color: parent.pressed ? "#4a5f82" : (parent.hovered ? "#5a6f92" : "#3d5a80")
+                                radius: 8
+                            }
+                            
+                            contentItem: Label {
+                                text: parent.text
+                                color: "#ffffff"
+                                font: parent.font
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                            
+                            onClicked: {
+                                console.log("[QML] Login button clicked")
+                                connectionManager.setAccountServerAddress(serverAddressField.text)
+                                connectionManager.login(usernameField.text, passwordField.text)
+                                stackView.push(pcListPage)
+                            }
+                        }
+
+                        Rectangle {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 1
+                            color: "#2a3a52"
+                            Layout.topMargin: 10
+                            Layout.bottomMargin: 10
+                        }
+
+                        Label {
+                            text: "OR"
+                            font.pixelSize: 14
+                            color: "#6b7280"
+                            Layout.alignment: Qt.AlignHCenter
+                        }
+
+                        Button {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 50
+                            font.pixelSize: 16
+                            
+                            background: Rectangle {
+                                color: "transparent"
+                                border.color: "#00d9ff"
+                                border.width: 2
+                                radius: 8
+                            }
+                            
+                            contentItem: RowLayout {
+                                spacing: 10
+                                
+                                Label {
+                                    text: "🔗"
+                                    font.pixelSize: 18
+                                    color: "#00d9ff"
+                                }
+                                
+                                Label {
+                                    text: "Bind a New PC"
+                                    font.pixelSize: 16
+                                    color: "#00d9ff"
+                                    Layout.fillWidth: true
+                                    horizontalAlignment: Text.AlignHCenter
+                                }
+                            }
+                            
+                            onClicked: {
+                                console.log("[QML] Bind a New PC clicked")
+                                stackView.push(bindPCPage)
+                            }
+                        }
+
+                        Label {
+                            text: "You can bind PCs without logging in to the account server"
+                            font.pixelSize: 12
+                            color: "#6b7280"
+                            Layout.alignment: Qt.AlignHCenter
+                            wrapMode: Text.WordWrap
+                            Layout.maximumWidth: 400
+                            horizontalAlignment: Text.AlignHCenter
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // BIND PC PAGE (IMAGE 3)
+    Component {
+        id: bindPCPage
+        
+        Page {
+            title: "Bind PC"
+            background: Rectangle { color: "#0a0e27" }
+            
+            ColumnLayout {
+                anchors.fill: parent
+                spacing: 0
+
+                // Back button
+                ToolButton {
+                    text: "←"
+                    font.pixelSize: 24
+                    Layout.preferredWidth: 60
+                    Layout.preferredHeight: 60
+                    
+                    contentItem: Label {
+                        text: parent.text
+                        color: "#ffffff"
+                        font: parent.font
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    
+                    background: Rectangle {
+                        color: parent.pressed ? "#1e2842" : (parent.hovered ? "#161d31" : "transparent")
+                    }
+                    
+                    onClicked: stackView.pop()
                 }
 
-                TextField {
-                    id: usernameField
-                    placeholderText: "Username"
-                    text: "victor"
+                // Bind PC form centered
+                Item {
                     Layout.fillWidth: true
-                }
+                    Layout.fillHeight: true
 
-                TextField {
-                    id: passwordField
-                    placeholderText: "Password"
-                    echoMode: TextInput.Password
-                    text: "password"
-                    Layout.fillWidth: true
-                }
+                    ColumnLayout {
+                        anchors.centerIn: parent
+                        spacing: 20
+                        width: 400
 
-                Button {
-                    text: "Login"
-                    Layout.fillWidth: true
-                    onClicked: {
-                        console.log("[QML] Login button clicked")
-                        connectionManager.setAccountServerAddress(serverAddressField.text)
-                        connectionManager.login(usernameField.text, passwordField.text)
-                        stackView.push(pcListPage)
+                        Label {
+                            text: "Remote Access Login"
+                            font.pixelSize: 28
+                            font.bold: true
+                            color: "#ffffff"
+                            Layout.alignment: Qt.AlignHCenter
+                        }
+
+                        TextField {
+                            id: bindServerAddressField
+                            text: "127.0.0.1:8080"
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 50
+                            font.pixelSize: 14
+                            
+                            background: Rectangle {
+                                color: "#1e2842"
+                                radius: 8
+                                border.color: parent.activeFocus ? "#3d5a80" : "#2a3a52"
+                                border.width: 2
+                            }
+                            
+                            color: "#ffffff"
+                            placeholderTextColor: "#6b7280"
+                        }
+
+                        TextField {
+                            id: bindUsernameField
+                            text: "victor"
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 50
+                            font.pixelSize: 14
+                            
+                            background: Rectangle {
+                                color: "#1e2842"
+                                radius: 8
+                                border.color: parent.activeFocus ? "#3d5a80" : "#2a3a52"
+                                border.width: 2
+                            }
+                            
+                            color: "#ffffff"
+                            placeholderTextColor: "#6b7280"
+                        }
+
+                        TextField {
+                            id: bindPasswordField
+                            text: "Password"
+                            echoMode: TextInput.Password
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 50
+                            font.pixelSize: 14
+                            
+                            background: Rectangle {
+                                color: "#1e2842"
+                                radius: 8
+                                border.color: parent.activeFocus ? "#3d5a80" : "#2a3a52"
+                                border.width: 2
+                            }
+                            
+                            color: "#ffffff"
+                            placeholderTextColor: "#6b7280"
+                        }
+
+                        Button {
+                            text: "Login"
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 50
+                            font.pixelSize: 16
+                            
+                            background: Rectangle {
+                                color: parent.pressed ? "#4a5f82" : (parent.hovered ? "#5a6f92" : "#3d5a80")
+                                radius: 8
+                            }
+                            
+                            contentItem: Label {
+                                text: parent.text
+                                color: "#ffffff"
+                                font: parent.font
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                            
+                            onClicked: {
+                                console.log("[QML] Bind PC Login clicked")
+                                // Bind PC logic here
+                            }
+                        }
+
+                        Rectangle {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 1
+                            color: "#2a3a52"
+                            Layout.topMargin: 10
+                            Layout.bottomMargin: 10
+                        }
+
+                        Label {
+                            text: "OR"
+                            font.pixelSize: 14
+                            color: "#6b7280"
+                            Layout.alignment: Qt.AlignHCenter
+                        }
+
+                        Button {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 50
+                            font.pixelSize: 16
+                            
+                            background: Rectangle {
+                                color: parent.pressed ? "#0c8599" : (parent.hovered ? "#0e9fad" : "transparent")
+                                border.color: "#00d9ff"
+                                border.width: 2
+                                radius: 8
+                            }
+                            
+                            contentItem: RowLayout {
+                                spacing: 10
+                                
+                                Label {
+                                    text: "🔗"
+                                    font.pixelSize: 18
+                                    color: "#00d9ff"
+                                }
+                                
+                                Label {
+                                    text: "Bind a New PC"
+                                    font.pixelSize: 16
+                                    color: "#00d9ff"
+                                    Layout.fillWidth: true
+                                    horizontalAlignment: Text.AlignHCenter
+                                }
+                            }
+                            
+                            onClicked: {
+                                console.log("[QML] Bind a New PC action clicked")
+                                // Handle bind PC action
+                            }
+                        }
+
+                        Label {
+                            text: "You can bind PCs without logging in to the account server"
+                            font.pixelSize: 12
+                            color: "#6b7280"
+                            Layout.alignment: Qt.AlignHCenter
+                            wrapMode: Text.WordWrap
+                            Layout.maximumWidth: 400
+                            horizontalAlignment: Text.AlignHCenter
+                        }
                     }
                 }
             }
