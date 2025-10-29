@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
 import QtQuick.Dialogs
+import QtMultimedia
 import RemoteAccess 1.0
 
 ApplicationWindow {

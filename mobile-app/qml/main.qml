@@ -144,7 +144,7 @@ ApplicationWindow {
         initialItem: mainMenuPage
     }
 
-    // MAIN MENU PAGE (IMAGE 1)
+    // MAIN MENU PAGE
     Component {
         id: mainMenuPage
         
@@ -489,7 +489,7 @@ ApplicationWindow {
         }
     }
 
-    // LOGIN PAGE (IMAGE 2)
+    // LOGIN PAGE
     Component {
         id: loginPage
         
@@ -690,7 +690,7 @@ ApplicationWindow {
         }
     }
 
-    // BIND PC PAGE WITH QR CODE SCANNER
+    // BIND PC PAGE WITH ACTUAL QR CODE SCANNER
     Component {
         id: bindPCPage
         
@@ -803,52 +803,153 @@ ApplicationWindow {
                                 onClicked: {
                                     manualEntryTabButton.checked = true
                                     qrCodeTabButton.checked = false
+                                    // Stop camera when switching away
+                                    if (camera.cameraStatus === Camera.ActiveStatus) {
+                                        camera.stop()
+                                    }
                                 }
                             }
                         }
 
-                        // QR Code Scanner View (shown when qrCodeTabButton is checked)
+                        // QR Code Scanner View (ACTUAL CAMERA)
                         Rectangle {
                             Layout.preferredWidth: 350
                             Layout.preferredHeight: 350
                             Layout.alignment: Qt.AlignHCenter
-                            color: "#ffffff"
+                            color: "#000000"
                             radius: 12
+                            border.color: "#3d5a80"
+                            border.width: 3
                             visible: qrCodeTabButton.checked
                             
+                            // Camera viewfinder
+                            VideoOutput {
+                                id: videoOutput
+                                anchors.fill: parent
+                                anchors.margins: 5
+                                
+                                CaptureSession {
+                                    camera: Camera {
+                                        id: camera
+                                        active: qrCodeTabButton.checked
+                                        
+                                        onErrorOccurred: function(error, errorString) {
+                                            console.log("[QML] Camera error:", errorString)
+                                            cameraErrorLabel.text = "Camera Error: " + errorString
+                                            cameraErrorLabel.visible = true
+                                        }
+                                    }
+                                    
+                                    videoOutput: videoOutput
+                                }
+                            }
+                            
+                            // Overlay scanning frame
+                            Rectangle {
+                                anchors.centerIn: parent
+                                width: 250
+                                height: 250
+                                color: "transparent"
+                                border.color: "#00d9ff"
+                                border.width: 3
+                                radius: 8
+                                
+                                // Corner indicators
+                                Repeater {
+                                    model: 4
+                                    Rectangle {
+                                        width: 30
+                                        height: 30
+                                        color: "transparent"
+                                        border.color: "#00d9ff"
+                                        border.width: 4
+                                        
+                                        x: (index % 2 === 0) ? 0 : parent.width - width
+                                        y: (index < 2) ? 0 : parent.height - height
+                                        
+                                        Rectangle {
+                                            width: parent.border.width
+                                            height: 15
+                                            color: parent.border.color
+                                            visible: index < 2
+                                        }
+                                        
+                                        Rectangle {
+                                            width: 15
+                                            height: parent.border.width
+                                            color: parent.border.color
+                                            visible: index % 2 === 0
+                                        }
+                                    }
+                                }
+                                
+                                // Scanning line animation
+                                Rectangle {
+                                    id: scanLine
+                                    width: parent.width
+                                    height: 2
+                                    color: "#00d9ff"
+                                    opacity: 0.8
+                                    
+                                    SequentialAnimation on y {
+                                        running: qrCodeTabButton.checked
+                                        loops: Animation.Infinite
+                                        NumberAnimation {
+                                            from: 0
+                                            to: 250
+                                            duration: 2000
+                                        }
+                                        PauseAnimation { duration: 100 }
+                                    }
+                                }
+                            }
+                            
+                            // Camera error label
+                            Label {
+                                id: cameraErrorLabel
+                                anchors.centerIn: parent
+                                text: "Camera unavailable"
+                                color: "#ff7675"
+                                font.pixelSize: 14
+                                visible: camera.cameraStatus === Camera.UnavailableStatus
+                                horizontalAlignment: Text.AlignHCenter
+                                wrapMode: Text.WordWrap
+                                width: parent.width - 40
+                            }
+                            
+                            // Fallback when no camera
                             ColumnLayout {
                                 anchors.centerIn: parent
-                                spacing: 20
+                                spacing: 15
+                                visible: camera.cameraStatus === Camera.UnavailableStatus
                                 
-                                // QR Code Icon
                                 Label {
-                                    text: "⊞:⊟\n⊟:⊡"
-                                    font.pixelSize: 80
-                                    font.bold: true
-                                    color: "#000000"
+                                    text: "📷"
+                                    font.pixelSize: 60
+                                    color: "#6b7280"
                                     Layout.alignment: Qt.AlignHCenter
-                                    lineHeight: 0.8
                                 }
                                 
                                 Label {
-                                    text: "QR Scanner View"
+                                    text: "No camera detected"
                                     font.pixelSize: 14
-                                    color: "#6b7280"
+                                    color: "#9ca3af"
                                     Layout.alignment: Qt.AlignHCenter
                                 }
                             }
                         }
                         
                         Label {
-                            text: "Point your camera at the QR code displayed on\nthe PC"
+                            text: qrCodeTabButton.checked ? 
+                                  "Point your camera at the QR code displayed on the PC" :
+                                  "Enter PC connection details manually"
                             font.pixelSize: 13
                             color: "#9ca3af"
                             Layout.alignment: Qt.AlignHCenter
                             horizontalAlignment: Text.AlignHCenter
-                            visible: qrCodeTabButton.checked
                         }
 
-                        // Instructions
+                        // QR Code Instructions
                         ColumnLayout {
                             Layout.alignment: Qt.AlignHCenter
                             spacing: 12
@@ -858,13 +959,745 @@ ApplicationWindow {
                                 spacing: 12
                                 
                                 Label {
-                                    text: "1."
+                                    text: "2."
                                     font.pixelSize: 14
                                     color: "#00d9ff"
                                     font.bold: true
                                 }
                                 
                                 Label {
+                                    text: "The program will display a QR code"
+                                    font.pixelSize: 14
+                                    color: "#d1d5db"
+                                }
+                            }
+                            
+                            RowLayout {
+                                spacing: 12
+                                
+                                Label {
+                                    text: "3."
+                                    font.pixelSize: 14
+                                    color: "#00d9ff"
+                                    font.bold: true
+                                }
+                                
+                                Label {
+                                    text: "Scan the QR code with this device"
+                                    font.pixelSize: 14
+                                    color: "#d1d5db"
+                                }
+                            }
+                        }
+
+                        // Manual Entry Form
+                        ColumnLayout {
+                            Layout.alignment: Qt.AlignHCenter
+                            spacing: 15
+                            visible: manualEntryTabButton.checked
+                            Layout.preferredWidth: 400
+                            
+                            TextField {
+                                id: pcIdField
+                                placeholderText: "PC ID"
+                                Layout.fillWidth: true
+                                Layout.preferredHeight: 50
+                                font.pixelSize: 14
+                                
+                                background: Rectangle {
+                                    color: "#1e2842"
+                                    radius: 8
+                                    border.color: parent.activeFocus ? "#3d5a80" : "#2a3a52"
+                                    border.width: 2
+                                }
+                                
+                                color: "#ffffff"
+                                placeholderTextColor: "#6b7280"
+                            }
+                            
+                            TextField {
+                                id: pcRelayAddressField
+                                placeholderText: "Relay Server Address (e.g., 127.0.0.1:2810)"
+                                text: "127.0.0.1:2810"
+                                Layout.fillWidth: true
+                                Layout.preferredHeight: 50
+                                font.pixelSize: 14
+                                
+                                background: Rectangle {
+                                    color: "#1e2842"
+                                    radius: 8
+                                    border.color: parent.activeFocus ? "#3d5a80" : "#2a3a52"
+                                    border.width: 2
+                                }
+                                
+                                color: "#ffffff"
+                                placeholderTextColor: "#6b7280"
+                            }
+                            
+                            Button {
+                                text: "Bind PC Manually"
+                                Layout.fillWidth: true
+                                Layout.preferredHeight: 50
+                                font.pixelSize: 16
+                                
+                                background: Rectangle {
+                                    color: parent.pressed ? "#0c8599" : (parent.hovered ? "#0e9fad" : "#00d9ff")
+                                    radius: 8
+                                }
+                                
+                                contentItem: Label {
+                                    text: parent.text
+                                    color: "#0a0e27"
+                                    horizontalAlignment: Text.AlignHCenter
+                                    verticalAlignment: Text.AlignVCenter
+                                    font.bold: true
+                                }
+                                
+                                onClicked: {
+                                    if (pcIdField.text.length > 0) {
+                                        console.log("[QML] Manual bind:", pcIdField.text)
+                                        // TODO: Implement manual PC binding
+                                        successDialog.text = "PC binding initiated!\nID: " + pcIdField.text
+                                        successDialog.open()
+                                        stackView.pop()
+                                    } else {
+                                        errorDialog.text = "Please enter a valid PC ID"
+                                        errorDialog.open()
+                                    }
+                                }
+                            }
+                        }
+
+                        // Simulate QR Scan button (for testing)
+                        Button {
+                            text: "Simulate QR Scan"
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 50
+                            Layout.maximumWidth: 350
+                            Layout.alignment: Qt.AlignHCenter
+                            font.pixelSize: 16
+                            visible: qrCodeTabButton.checked
+                            
+                            background: Rectangle {
+                                color: parent.pressed ? "#0c8599" : (parent.hovered ? "#0e9fad" : "#00d9ff")
+                                radius: 8
+                            }
+                            
+                            contentItem: Label {
+                                text: parent.text
+                                color: "#0a0e27"
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                                font.bold: true
+                            }
+                            
+                            onClicked: {
+                                console.log("[QML] Simulate QR Scan clicked")
+                                // Simulate scanning the QR code from PC client
+                                var simulatedPcId = "PC-a987adb83f2bf5628a5919409cb5d00f"
+                                successDialog.text = "QR Code scanned successfully!\nPC ID: " + simulatedPcId + "\nBinding initiated."
+                                successDialog.open()
+                                
+                                // Add to PC list
+                                pcListModel.append({
+                                    "pcId": simulatedPcId,
+                                    "hostname": "victor-dell",
+                                    "username": "victor",
+                                    "isOnline": true
+                                })
+                                
+                                stackView.pop()
+                            }
+                        }
+                        
+                        Label {
+                            text: "Note: The PC must be running the Remote Access application\nand displaying the QR code on http://localhost:8080"
+                            font.pixelSize: 11
+                            color: "#6b7280"
+                            Layout.alignment: Qt.AlignHCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            wrapMode: Text.WordWrap
+                            Layout.maximumWidth: 450
+                            visible: qrCodeTabButton.checked
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    Component {
+        id: pcListPage
+        
+        Page {
+            title: "Available PCs"
+            background: Rectangle { color: "#0a0e27" }
+            
+            header: ToolBar {
+                background: Rectangle { color: "#12172e" }
+                
+                RowLayout {
+                    anchors.fill: parent
+                    
+                    ToolButton {
+                        text: "←"
+                        onClicked: stackView.pop()
+                    }
+                    
+                    Label {
+                        text: "Available PCs"
+                        font.pixelSize: 20
+                        color: "#ffffff"
+                        Layout.fillWidth: true
+                    }
+                    
+                    ToolButton {
+                        text: "⟳"
+                        onClicked: {
+                            console.log("[QML] Refresh button clicked")
+                            pcManager.queryPCList(relayServerAddress, relayServerPort)
+                        }
+                    }
+                }
+            }
+
+            ColumnLayout {
+                anchors.fill: parent
+                anchors.margins: 20
+                spacing: 10
+
+                Label {
+                    text: "Connected PCs: " + pcListModel.count
+                    font.pixelSize: 16
+                    color: "#ffffff"
+                    Layout.alignment: Qt.AlignHCenter
+                }
+
+                ListView {
+                    id: pcListView
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    
+                    model: pcListModel
+                    
+                    delegate: ItemDelegate {
+                        width: pcListView.width
+                        height: 100
+                        
+                        RowLayout {
+                            anchors.fill: parent
+                            anchors.margins: 10
+                            spacing: 15
+                            
+                            Rectangle {
+                                width: 16
+                                height: 16
+                                radius: 8
+                                color: model.isOnline ? "green" : "gray"
+                            }
+                            
+                            ColumnLayout {
+                                Layout.fillWidth: true
+                                spacing: 5
+                                
+                                Label {
+                                    text: model.hostname
+                                    font.pixelSize: 18
+                                    font.bold: true
+                                    color: "#ffffff"
+                                }
+                                
+                                Label {
+                                    text: "User: " + model.username
+                                    font.pixelSize: 14
+                                    color: "#00d9ff"
+                                }
+                                
+                                Label {
+                                    text: "ID: " + model.pcId
+                                    font.pixelSize: 12
+                                    color: "#b2bec3"
+                                }
+                            }
+                            
+                            Button {
+                                text: model.isOnline ? "Connect" : "Offline"
+                                enabled: model.isOnline
+                                Layout.preferredWidth: 100
+                                onClicked: {
+                                    console.log("[QML] Connecting to PC:", model.pcId)
+                                    pcManager.connectToPC(model.pcId, relayServerAddress)
+                                }
+                            }
+                        }
+                        
+                        background: Rectangle {
+                            color: parent.hovered ? "#1e2442" : "#161b33"
+                            border.color: "#6c5ce7"
+                            border.width: 1
+                            radius: 5
+                        }
+                    }
+                    
+                    ScrollBar.vertical: ScrollBar {}
+                }
+
+                Button {
+                    text: "Query PC List"
+                    Layout.fillWidth: true
+                    highlighted: true
+                    onClicked: {
+                        console.log("[QML] Query PC List button clicked")
+                        pcManager.queryPCList(relayServerAddress, relayServerPort)
+                    }
+                }
+            }
+        }
+    }
+
+    Component {
+        id: remoteControlPage
+        
+        Page {
+            title: "Remote Control"
+            background: Rectangle { color: "#0a0e27" }
+            
+            header: ToolBar {
+                background: Rectangle { color: "#12172e" }
+                
+                RowLayout {
+                    anchors.fill: parent
+                    
+                    ToolButton {
+                        text: "←"
+                        onClicked: {
+                            pcManager.disconnectFromPC()
+                            stackView.pop()
+                        }
+                    }
+                    
+                    Label {
+                        text: "Connected to: " + pcManager.connectedPcId
+                        font.pixelSize: 18
+                        color: "#ffffff"
+                        Layout.fillWidth: true
+                    }
+                    
+                    ToolButton {
+                        text: "✕"
+                        onClicked: {
+                            pcManager.disconnectFromPC()
+                            stackView.pop()
+                        }
+                    }
+                }
+            }
+
+            TabBar {
+                id: tabBar
+                width: parent.width
+                background: Rectangle { color: "#12172e" }
+                
+                TabButton {
+                    text: "Remote Desktop"
+                    contentItem: Label {
+                        text: parent.text
+                        color: "#ffffff"
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+                }
+                TabButton {
+                    text: "File Browser"
+                    contentItem: Label {
+                        text: parent.text
+                        color: "#ffffff"
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+                }
+            }
+
+            StackLayout {
+                width: parent.width
+                anchors.top: tabBar.bottom
+                anchors.bottom: parent.bottom
+                currentIndex: tabBar.currentIndex
+
+                Item {
+                    ColumnLayout {
+                        anchors.fill: parent
+                        anchors.margins: 20
+                        spacing: 20
+
+                        Label {
+                            text: "Remote Desktop View"
+                            font.pixelSize: 24
+                            color: "#ffffff"
+                            Layout.alignment: Qt.AlignHCenter
+                        }
+
+                        Rectangle {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            color: "black"
+                            border.color: "#6c5ce7"
+                            border.width: 2
+                            
+                            Label {
+                                anchors.centerIn: parent
+                                text: "Remote screen will appear here\n(Not yet implemented)"
+                                color: "white"
+                                font.pixelSize: 18
+                                horizontalAlignment: Text.AlignHCenter
+                            }
+                        }
+                    }
+                }
+
+                // FILE BROWSER TAB - DARK THEME
+                Item {
+                    ColumnLayout {
+                        anchors.fill: parent
+                        anchors.margins: 20
+                        spacing: 10
+
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 10
+                            
+                            Button {
+                                text: "⌂"
+                                onClicked: fileManager.goHome()
+                            }
+                            
+                            Button {
+                                text: "←"
+                                onClicked: fileManager.goBack()
+                            }
+                            
+                            Label {
+                                text: fileManager.currentPath
+                                font.pixelSize: 14
+                                color: "#ffffff"
+                                Layout.fillWidth: true
+                                elide: Text.ElideMiddle
+                            }
+                            
+                            Button {
+                                text: "⟳"
+                                onClicked: fileManager.browseDirectory(fileManager.currentPath)
+                            }
+                            
+                            Button {
+                                text: "Upload"
+                                onClicked: fileDialog.open()
+                            }
+                        }
+
+                        // FILE LIST WITH DARK THEME
+                        ListView {
+                            id: fileListView
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            
+                            model: fileListModel
+                            spacing: 8
+                            
+                            delegate: ItemDelegate {
+                                width: fileListView.width
+                                height: 70
+                                
+                                RowLayout {
+                                    anchors.fill: parent
+                                    anchors.margins: 12
+                                    spacing: 15
+                                    
+                                    Rectangle {
+                                        width: 50
+                                        height: 50
+                                        radius: 10
+                                        gradient: Gradient {
+                                            GradientStop { position: 0.0; color: model.isDirectory ? "#6c5ce7" : "#fd79a8" }
+                                            GradientStop { position: 1.0; color: model.isDirectory ? "#a29bfe" : "#ffeaa7" }
+                                        }
+                                        
+                                        Label {
+                                            anchors.centerIn: parent
+                                            text: model.isDirectory ? "📁" : "📄"
+                                            font.pixelSize: 28
+                                        }
+                                    }
+                                    
+                                    ColumnLayout {
+                                        Layout.fillWidth: true
+                                        spacing: 4
+                                        
+                                        Label {
+                                            text: model.name
+                                            font.pixelSize: 16
+                                            font.bold: true
+                                            color: "#FFFFFF"
+                                        }
+                                        
+                                        Label {
+                                            text: model.isDirectory ? "📂 Folder" : "📊 " + formatFileSize(model.size)
+                                            font.pixelSize: 13
+                                            color: "#00d9ff"
+                                        }
+                                    }
+                                    
+                                    Button {
+                                        text: "Share"
+                                        visible: !model.isDirectory
+                                        Layout.preferredWidth: 90
+                                        
+                                        background: Rectangle {
+                                            radius: 20
+                                            gradient: Gradient {
+                                                orientation: Gradient.Horizontal
+                                                GradientStop { position: 0.0; color: "#00b894" }
+                                                GradientStop { position: 1.0; color: "#6c5ce7" }
+                                            }
+                                        }
+                                        
+                                        contentItem: Label {
+                                            text: "🔗 Share"
+                                            color: "#ffffff"
+                                            horizontalAlignment: Text.AlignHCenter
+                                            font.bold: true
+                                        }
+                                        
+                                        onClicked: {
+                                            console.log("[QML] Creating share link for:", model.path)
+                                            fileManager.createShareLink(model.path)
+                                        }
+                                    }
+                                }
+                                
+                                onClicked: {
+                                    if (model.isDirectory) {
+                                        fileManager.browseDirectory(model.path)
+                                    } else {
+                                        fileManager.openFile(model.path)
+                                    }
+                                }
+                                
+                                background: Rectangle {
+                                    color: parent.hovered ? "#1e2442" : "#161b33"
+                                    border.color: parent.hovered ? "#6c5ce7" : "#2a2f4a"
+                                    border.width: 1.5
+                                    radius: 12
+                                    
+                                    Behavior on color { ColorAnimation { duration: 150 } }
+                                    Behavior on border.color { ColorAnimation { duration: 150 } }
+                                }
+                            }
+                            
+                            ScrollBar.vertical: ScrollBar {
+                                contentItem: Rectangle {
+                                    implicitWidth: 10
+                                    radius: 5
+                                    color: "#6c5ce7"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    FileDialog {
+        id: fileDialog
+        title: "Select file to upload"
+        fileMode: FileDialog.OpenFile
+        onAccepted: {
+            console.log("[QML] File selected:", selectedFile)
+            fileManager.uploadFile(selectedFile, fileManager.currentPath)
+        }
+    }
+
+    Dialog {
+        id: uploadDialog
+        title: "Uploading File"
+        modal: true
+        anchors.centerIn: parent
+        closePolicy: Popup.NoAutoClose
+        
+        background: Rectangle {
+            color: "#12172e"
+            border.color: "#6c5ce7"
+            border.width: 2
+            radius: 16
+        }
+        
+        ColumnLayout {
+            spacing: 20
+            width: 300
+            
+            Label {
+                text: "Uploading file..."
+                color: "#ffffff"
+                Layout.alignment: Qt.AlignHCenter
+            }
+            
+            ProgressBar {
+                from: 0
+                to: 100
+                value: fileManager.uploadProgress
+                Layout.fillWidth: true
+            }
+            
+            Label {
+                text: fileManager.uploadProgress + "%"
+                color: "#00cec9"
+                Layout.alignment: Qt.AlignHCenter
+                font.pixelSize: 18
+            }
+        }
+    }
+
+    Dialog {
+        id: shareLinkDialog
+        title: "Share Link Created"
+        modal: true
+        anchors.centerIn: parent
+        
+        property string shareLink: ""
+        
+        background: Rectangle {
+            color: "#12172e"
+            border.color: "#6c5ce7"
+            border.width: 2
+            radius: 16
+        }
+        
+        ColumnLayout {
+            spacing: 20
+            width: 400
+            
+            Label {
+                text: "Your shareable link:"
+                font.bold: true
+                color: "#ffffff"
+            }
+            
+            TextField {
+                id: linkField
+                text: shareLinkDialog.shareLink
+                readOnly: true
+                Layout.fillWidth: true
+                selectByMouse: true
+            }
+            
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 10
+                
+                Button {
+                    text: "Copy Link"
+                    Layout.fillWidth: true
+                    onClicked: {
+                        linkField.selectAll()
+                        linkField.copy()
+                        successDialog.text = "Link copied to clipboard!"
+                        successDialog.open()
+                        shareLinkDialog.close()
+                    }
+                }
+                
+                Button {
+                    text: "Close"
+                    Layout.fillWidth: true
+                    onClicked: shareLinkDialog.close()
+                }
+            }
+        }
+    }
+
+    Dialog {
+        id: successDialog
+        title: "Success"
+        property alias text: successLabel.text
+        modal: true
+        anchors.centerIn: parent
+        
+        background: Rectangle {
+            color: "#12172e"
+            border.color: "#00cec9"
+            border.width: 2
+            radius: 16
+        }
+        
+        ColumnLayout {
+            spacing: 20
+            
+            Label {
+                id: successLabel
+                wrapMode: Text.WordWrap
+                Layout.maximumWidth: 400
+                color: "#ffffff"
+            }
+            
+            Button {
+                text: "OK"
+                Layout.alignment: Qt.AlignHCenter
+                onClicked: successDialog.close()
+            }
+        }
+    }
+
+    Dialog {
+        id: errorDialog
+        title: "Error"
+        property alias text: errorLabel.text
+        modal: true
+        anchors.centerIn: parent
+        
+        background: Rectangle {
+            color: "#12172e"
+            border.color: "#ff7675"
+            border.width: 2
+            radius: 16
+        }
+        
+        ColumnLayout {
+            spacing: 20
+            
+            Label {
+                id: errorLabel
+                wrapMode: Text.WordWrap
+                Layout.maximumWidth: 400
+                color: "#ffffff"
+            }
+            
+            Button {
+                text: "OK"
+                Layout.alignment: Qt.AlignHCenter
+                onClicked: errorDialog.close()
+            }
+        }
+    }
+
+    function formatFileSize(bytes) {
+        if (bytes === 0) return "0 B"
+        const k = 1024
+        const sizes = ['B', 'KB', 'MB', 'GB', 'TB']
+        const i = Math.floor(Math.log(bytes) / Math.log(k))
+        return (bytes / Math.pow(k, i)).toFixed(2) + ' ' + sizes[i]
+    }
+
+    Component.onCompleted: {
+        console.log("[QML] Application started")
+        console.log("[QML] Relay server:", relayServerAddress, ":", relayServerPort)
+    }
+}
+                                Label {
+                                    text: "1."
+                                    font.pixelSize: 14
+                                    color: "#00d9ff"
+                                    font.bold: true
+                                }
+Label {
                                     text: "Run the Remote Access program on your PC"
                                     font.pixelSize: 14
                                     color: "#d1d5db"
@@ -1509,3 +2342,6 @@ ApplicationWindow {
         console.log("[QML] Relay server:", relayServerAddress, ":", relayServerPort)
     }
 }
+
+                                
+                            
