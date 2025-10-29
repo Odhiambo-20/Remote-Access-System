@@ -85,51 +85,6 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles /home/victor/Videos/remote-access-system/pc-client/build//CMakeFiles/progress.marks
@@ -174,77 +129,125 @@ pc_client/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/build
 .PHONY : pc_client/fast
 
-file_handler.o: file_handler.cpp.o
-.PHONY : file_handler.o
+src/account_manager.o: src/account_manager.cpp.o
+.PHONY : src/account_manager.o
 
 # target to build an object file
-file_handler.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/file_handler.cpp.o
-.PHONY : file_handler.cpp.o
+src/account_manager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/account_manager.cpp.o
+.PHONY : src/account_manager.cpp.o
 
-file_handler.i: file_handler.cpp.i
-.PHONY : file_handler.i
+src/account_manager.i: src/account_manager.cpp.i
+.PHONY : src/account_manager.i
 
 # target to preprocess a source file
-file_handler.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/file_handler.cpp.i
-.PHONY : file_handler.cpp.i
+src/account_manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/account_manager.cpp.i
+.PHONY : src/account_manager.cpp.i
 
-file_handler.s: file_handler.cpp.s
-.PHONY : file_handler.s
+src/account_manager.s: src/account_manager.cpp.s
+.PHONY : src/account_manager.s
 
 # target to generate assembly for a file
-file_handler.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/file_handler.cpp.s
-.PHONY : file_handler.cpp.s
+src/account_manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/account_manager.cpp.s
+.PHONY : src/account_manager.cpp.s
 
-pc_client.o: pc_client.cpp.o
-.PHONY : pc_client.o
+src/connection_manager.o: src/connection_manager.cpp.o
+.PHONY : src/connection_manager.o
 
 # target to build an object file
-pc_client.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/pc_client.cpp.o
-.PHONY : pc_client.cpp.o
+src/connection_manager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/connection_manager.cpp.o
+.PHONY : src/connection_manager.cpp.o
 
-pc_client.i: pc_client.cpp.i
-.PHONY : pc_client.i
+src/connection_manager.i: src/connection_manager.cpp.i
+.PHONY : src/connection_manager.i
 
 # target to preprocess a source file
-pc_client.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/pc_client.cpp.i
-.PHONY : pc_client.cpp.i
+src/connection_manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/connection_manager.cpp.i
+.PHONY : src/connection_manager.cpp.i
 
-pc_client.s: pc_client.cpp.s
-.PHONY : pc_client.s
+src/connection_manager.s: src/connection_manager.cpp.s
+.PHONY : src/connection_manager.s
 
 # target to generate assembly for a file
-pc_client.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/pc_client.cpp.s
-.PHONY : pc_client.cpp.s
+src/connection_manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/connection_manager.cpp.s
+.PHONY : src/connection_manager.cpp.s
 
-pc_client_main.o: pc_client_main.cpp.o
-.PHONY : pc_client_main.o
+src/file_handler.o: src/file_handler.cpp.o
+.PHONY : src/file_handler.o
 
 # target to build an object file
-pc_client_main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/pc_client_main.cpp.o
-.PHONY : pc_client_main.cpp.o
+src/file_handler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/file_handler.cpp.o
+.PHONY : src/file_handler.cpp.o
 
-pc_client_main.i: pc_client_main.cpp.i
-.PHONY : pc_client_main.i
+src/file_handler.i: src/file_handler.cpp.i
+.PHONY : src/file_handler.i
 
 # target to preprocess a source file
-pc_client_main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/pc_client_main.cpp.i
-.PHONY : pc_client_main.cpp.i
+src/file_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/file_handler.cpp.i
+.PHONY : src/file_handler.cpp.i
 
-pc_client_main.s: pc_client_main.cpp.s
-.PHONY : pc_client_main.s
+src/file_handler.s: src/file_handler.cpp.s
+.PHONY : src/file_handler.s
 
 # target to generate assembly for a file
-pc_client_main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/pc_client_main.cpp.s
-.PHONY : pc_client_main.cpp.s
+src/file_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/file_handler.cpp.s
+.PHONY : src/file_handler.cpp.s
+
+src/file_manager.o: src/file_manager.cpp.o
+.PHONY : src/file_manager.o
+
+# target to build an object file
+src/file_manager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/file_manager.cpp.o
+.PHONY : src/file_manager.cpp.o
+
+src/file_manager.i: src/file_manager.cpp.i
+.PHONY : src/file_manager.i
+
+# target to preprocess a source file
+src/file_manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/file_manager.cpp.i
+.PHONY : src/file_manager.cpp.i
+
+src/file_manager.s: src/file_manager.cpp.s
+.PHONY : src/file_manager.s
+
+# target to generate assembly for a file
+src/file_manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/file_manager.cpp.s
+.PHONY : src/file_manager.cpp.s
+
+src/file_server.o: src/file_server.cpp.o
+.PHONY : src/file_server.o
+
+# target to build an object file
+src/file_server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/file_server.cpp.o
+.PHONY : src/file_server.cpp.o
+
+src/file_server.i: src/file_server.cpp.i
+.PHONY : src/file_server.i
+
+# target to preprocess a source file
+src/file_server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/file_server.cpp.i
+.PHONY : src/file_server.cpp.i
+
+src/file_server.s: src/file_server.cpp.s
+.PHONY : src/file_server.s
+
+# target to generate assembly for a file
+src/file_server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/file_server.cpp.s
+.PHONY : src/file_server.cpp.s
 
 src/http_server.o: src/http_server.cpp.o
 .PHONY : src/http_server.o
@@ -270,6 +273,126 @@ src/http_server.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/http_server.cpp.s
 .PHONY : src/http_server.cpp.s
 
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
+src/pc_identifier.o: src/pc_identifier.cpp.o
+.PHONY : src/pc_identifier.o
+
+# target to build an object file
+src/pc_identifier.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/pc_identifier.cpp.o
+.PHONY : src/pc_identifier.cpp.o
+
+src/pc_identifier.i: src/pc_identifier.cpp.i
+.PHONY : src/pc_identifier.i
+
+# target to preprocess a source file
+src/pc_identifier.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/pc_identifier.cpp.i
+.PHONY : src/pc_identifier.cpp.i
+
+src/pc_identifier.s: src/pc_identifier.cpp.s
+.PHONY : src/pc_identifier.s
+
+# target to generate assembly for a file
+src/pc_identifier.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/pc_identifier.cpp.s
+.PHONY : src/pc_identifier.cpp.s
+
+src/qr_generator.o: src/qr_generator.cpp.o
+.PHONY : src/qr_generator.o
+
+# target to build an object file
+src/qr_generator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/qr_generator.cpp.o
+.PHONY : src/qr_generator.cpp.o
+
+src/qr_generator.i: src/qr_generator.cpp.i
+.PHONY : src/qr_generator.i
+
+# target to preprocess a source file
+src/qr_generator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/qr_generator.cpp.i
+.PHONY : src/qr_generator.cpp.i
+
+src/qr_generator.s: src/qr_generator.cpp.s
+.PHONY : src/qr_generator.s
+
+# target to generate assembly for a file
+src/qr_generator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/qr_generator.cpp.s
+.PHONY : src/qr_generator.cpp.s
+
+src/relay_client.o: src/relay_client.cpp.o
+.PHONY : src/relay_client.o
+
+# target to build an object file
+src/relay_client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/relay_client.cpp.o
+.PHONY : src/relay_client.cpp.o
+
+src/relay_client.i: src/relay_client.cpp.i
+.PHONY : src/relay_client.i
+
+# target to preprocess a source file
+src/relay_client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/relay_client.cpp.i
+.PHONY : src/relay_client.cpp.i
+
+src/relay_client.s: src/relay_client.cpp.s
+.PHONY : src/relay_client.s
+
+# target to generate assembly for a file
+src/relay_client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/relay_client.cpp.s
+.PHONY : src/relay_client.cpp.s
+
+src/remote_control_server.o: src/remote_control_server.cpp.o
+.PHONY : src/remote_control_server.o
+
+# target to build an object file
+src/remote_control_server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/remote_control_server.cpp.o
+.PHONY : src/remote_control_server.cpp.o
+
+src/remote_control_server.i: src/remote_control_server.cpp.i
+.PHONY : src/remote_control_server.i
+
+# target to preprocess a source file
+src/remote_control_server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/remote_control_server.cpp.i
+.PHONY : src/remote_control_server.cpp.i
+
+src/remote_control_server.s: src/remote_control_server.cpp.s
+.PHONY : src/remote_control_server.s
+
+# target to generate assembly for a file
+src/remote_control_server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/src/remote_control_server.cpp.s
+.PHONY : src/remote_control_server.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -277,24 +400,41 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... install/strip"
-	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... pc_client"
-	@echo "... file_handler.o"
-	@echo "... file_handler.i"
-	@echo "... file_handler.s"
-	@echo "... pc_client.o"
-	@echo "... pc_client.i"
-	@echo "... pc_client.s"
-	@echo "... pc_client_main.o"
-	@echo "... pc_client_main.i"
-	@echo "... pc_client_main.s"
+	@echo "... src/account_manager.o"
+	@echo "... src/account_manager.i"
+	@echo "... src/account_manager.s"
+	@echo "... src/connection_manager.o"
+	@echo "... src/connection_manager.i"
+	@echo "... src/connection_manager.s"
+	@echo "... src/file_handler.o"
+	@echo "... src/file_handler.i"
+	@echo "... src/file_handler.s"
+	@echo "... src/file_manager.o"
+	@echo "... src/file_manager.i"
+	@echo "... src/file_manager.s"
+	@echo "... src/file_server.o"
+	@echo "... src/file_server.i"
+	@echo "... src/file_server.s"
 	@echo "... src/http_server.o"
 	@echo "... src/http_server.i"
 	@echo "... src/http_server.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/pc_identifier.o"
+	@echo "... src/pc_identifier.i"
+	@echo "... src/pc_identifier.s"
+	@echo "... src/qr_generator.o"
+	@echo "... src/qr_generator.i"
+	@echo "... src/qr_generator.s"
+	@echo "... src/relay_client.o"
+	@echo "... src/relay_client.i"
+	@echo "... src/relay_client.s"
+	@echo "... src/remote_control_server.o"
+	@echo "... src/remote_control_server.i"
+	@echo "... src/remote_control_server.s"
 .PHONY : help
 
 

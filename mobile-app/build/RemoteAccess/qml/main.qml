@@ -905,36 +905,6 @@ ApplicationWindow {
                                 }
                             }
                         }
-
-                        // Simulate QR Scan button
-                        Button {
-                            text: "Simulate QR Scan"
-                            Layout.fillWidth: true
-                            Layout.preferredHeight: 50
-                            Layout.maximumWidth: 350
-                            Layout.alignment: Qt.AlignHCenter
-                            font.pixelSize: 16
-                            visible: qrCodeTabButton.checked
-                            
-                            background: Rectangle {
-                                color: parent.pressed ? "#0c8599" : (parent.hovered ? "#0e9fad" : "#00d9ff")
-                                radius: 8
-                            }
-                            
-                            contentItem: Label {
-                                text: parent.text
-                                color: "#0a0e27"
-                                horizontalAlignment: Text.AlignHCenter
-                                verticalAlignment: Text.AlignVCenter
-                                font.bold: true
-                            }
-                            
-                            onClicked: {
-                                console.log("[QML] Simulate QR Scan clicked")
-                                successDialog.text = "QR Code scanned successfully!\nPC binding initiated."
-                                successDialog.open()
-                            }
-                        }
                     }
                 }
             }

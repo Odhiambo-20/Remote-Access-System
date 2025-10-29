@@ -69,52 +69,136 @@ include CMakeFiles/pc_client.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/pc_client.dir/flags.make
 
-CMakeFiles/pc_client.dir/pc_client_main.cpp.o: CMakeFiles/pc_client.dir/flags.make
-CMakeFiles/pc_client.dir/pc_client_main.cpp.o: /home/victor/Videos/remote-access-system/pc-client/pc_client_main.cpp
-CMakeFiles/pc_client.dir/pc_client_main.cpp.o: CMakeFiles/pc_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/pc_client.dir/pc_client_main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pc_client.dir/pc_client_main.cpp.o -MF CMakeFiles/pc_client.dir/pc_client_main.cpp.o.d -o CMakeFiles/pc_client.dir/pc_client_main.cpp.o -c /home/victor/Videos/remote-access-system/pc-client/pc_client_main.cpp
+CMakeFiles/pc_client.dir/src/main.cpp.o: CMakeFiles/pc_client.dir/flags.make
+CMakeFiles/pc_client.dir/src/main.cpp.o: /home/victor/Videos/remote-access-system/pc-client/src/main.cpp
+CMakeFiles/pc_client.dir/src/main.cpp.o: CMakeFiles/pc_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/pc_client.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pc_client.dir/src/main.cpp.o -MF CMakeFiles/pc_client.dir/src/main.cpp.o.d -o CMakeFiles/pc_client.dir/src/main.cpp.o -c /home/victor/Videos/remote-access-system/pc-client/src/main.cpp
 
-CMakeFiles/pc_client.dir/pc_client_main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pc_client.dir/pc_client_main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/pc-client/pc_client_main.cpp > CMakeFiles/pc_client.dir/pc_client_main.cpp.i
+CMakeFiles/pc_client.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pc_client.dir/src/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/pc-client/src/main.cpp > CMakeFiles/pc_client.dir/src/main.cpp.i
 
-CMakeFiles/pc_client.dir/pc_client_main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pc_client.dir/pc_client_main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/pc-client/pc_client_main.cpp -o CMakeFiles/pc_client.dir/pc_client_main.cpp.s
+CMakeFiles/pc_client.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pc_client.dir/src/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/pc-client/src/main.cpp -o CMakeFiles/pc_client.dir/src/main.cpp.s
 
-CMakeFiles/pc_client.dir/pc_client.cpp.o: CMakeFiles/pc_client.dir/flags.make
-CMakeFiles/pc_client.dir/pc_client.cpp.o: /home/victor/Videos/remote-access-system/pc-client/pc_client.cpp
-CMakeFiles/pc_client.dir/pc_client.cpp.o: CMakeFiles/pc_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/pc_client.dir/pc_client.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pc_client.dir/pc_client.cpp.o -MF CMakeFiles/pc_client.dir/pc_client.cpp.o.d -o CMakeFiles/pc_client.dir/pc_client.cpp.o -c /home/victor/Videos/remote-access-system/pc-client/pc_client.cpp
+CMakeFiles/pc_client.dir/src/relay_client.cpp.o: CMakeFiles/pc_client.dir/flags.make
+CMakeFiles/pc_client.dir/src/relay_client.cpp.o: /home/victor/Videos/remote-access-system/pc-client/src/relay_client.cpp
+CMakeFiles/pc_client.dir/src/relay_client.cpp.o: CMakeFiles/pc_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/pc_client.dir/src/relay_client.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pc_client.dir/src/relay_client.cpp.o -MF CMakeFiles/pc_client.dir/src/relay_client.cpp.o.d -o CMakeFiles/pc_client.dir/src/relay_client.cpp.o -c /home/victor/Videos/remote-access-system/pc-client/src/relay_client.cpp
 
-CMakeFiles/pc_client.dir/pc_client.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pc_client.dir/pc_client.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/pc-client/pc_client.cpp > CMakeFiles/pc_client.dir/pc_client.cpp.i
+CMakeFiles/pc_client.dir/src/relay_client.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pc_client.dir/src/relay_client.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/pc-client/src/relay_client.cpp > CMakeFiles/pc_client.dir/src/relay_client.cpp.i
 
-CMakeFiles/pc_client.dir/pc_client.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pc_client.dir/pc_client.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/pc-client/pc_client.cpp -o CMakeFiles/pc_client.dir/pc_client.cpp.s
+CMakeFiles/pc_client.dir/src/relay_client.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pc_client.dir/src/relay_client.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/pc-client/src/relay_client.cpp -o CMakeFiles/pc_client.dir/src/relay_client.cpp.s
 
-CMakeFiles/pc_client.dir/file_handler.cpp.o: CMakeFiles/pc_client.dir/flags.make
-CMakeFiles/pc_client.dir/file_handler.cpp.o: /home/victor/Videos/remote-access-system/pc-client/file_handler.cpp
-CMakeFiles/pc_client.dir/file_handler.cpp.o: CMakeFiles/pc_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/pc_client.dir/file_handler.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pc_client.dir/file_handler.cpp.o -MF CMakeFiles/pc_client.dir/file_handler.cpp.o.d -o CMakeFiles/pc_client.dir/file_handler.cpp.o -c /home/victor/Videos/remote-access-system/pc-client/file_handler.cpp
+CMakeFiles/pc_client.dir/src/connection_manager.cpp.o: CMakeFiles/pc_client.dir/flags.make
+CMakeFiles/pc_client.dir/src/connection_manager.cpp.o: /home/victor/Videos/remote-access-system/pc-client/src/connection_manager.cpp
+CMakeFiles/pc_client.dir/src/connection_manager.cpp.o: CMakeFiles/pc_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/pc_client.dir/src/connection_manager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pc_client.dir/src/connection_manager.cpp.o -MF CMakeFiles/pc_client.dir/src/connection_manager.cpp.o.d -o CMakeFiles/pc_client.dir/src/connection_manager.cpp.o -c /home/victor/Videos/remote-access-system/pc-client/src/connection_manager.cpp
 
-CMakeFiles/pc_client.dir/file_handler.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pc_client.dir/file_handler.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/pc-client/file_handler.cpp > CMakeFiles/pc_client.dir/file_handler.cpp.i
+CMakeFiles/pc_client.dir/src/connection_manager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pc_client.dir/src/connection_manager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/pc-client/src/connection_manager.cpp > CMakeFiles/pc_client.dir/src/connection_manager.cpp.i
 
-CMakeFiles/pc_client.dir/file_handler.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pc_client.dir/file_handler.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/pc-client/file_handler.cpp -o CMakeFiles/pc_client.dir/file_handler.cpp.s
+CMakeFiles/pc_client.dir/src/connection_manager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pc_client.dir/src/connection_manager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/pc-client/src/connection_manager.cpp -o CMakeFiles/pc_client.dir/src/connection_manager.cpp.s
+
+CMakeFiles/pc_client.dir/src/account_manager.cpp.o: CMakeFiles/pc_client.dir/flags.make
+CMakeFiles/pc_client.dir/src/account_manager.cpp.o: /home/victor/Videos/remote-access-system/pc-client/src/account_manager.cpp
+CMakeFiles/pc_client.dir/src/account_manager.cpp.o: CMakeFiles/pc_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pc_client.dir/src/account_manager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pc_client.dir/src/account_manager.cpp.o -MF CMakeFiles/pc_client.dir/src/account_manager.cpp.o.d -o CMakeFiles/pc_client.dir/src/account_manager.cpp.o -c /home/victor/Videos/remote-access-system/pc-client/src/account_manager.cpp
+
+CMakeFiles/pc_client.dir/src/account_manager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pc_client.dir/src/account_manager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/pc-client/src/account_manager.cpp > CMakeFiles/pc_client.dir/src/account_manager.cpp.i
+
+CMakeFiles/pc_client.dir/src/account_manager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pc_client.dir/src/account_manager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/pc-client/src/account_manager.cpp -o CMakeFiles/pc_client.dir/src/account_manager.cpp.s
+
+CMakeFiles/pc_client.dir/src/file_handler.cpp.o: CMakeFiles/pc_client.dir/flags.make
+CMakeFiles/pc_client.dir/src/file_handler.cpp.o: /home/victor/Videos/remote-access-system/pc-client/src/file_handler.cpp
+CMakeFiles/pc_client.dir/src/file_handler.cpp.o: CMakeFiles/pc_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/pc_client.dir/src/file_handler.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pc_client.dir/src/file_handler.cpp.o -MF CMakeFiles/pc_client.dir/src/file_handler.cpp.o.d -o CMakeFiles/pc_client.dir/src/file_handler.cpp.o -c /home/victor/Videos/remote-access-system/pc-client/src/file_handler.cpp
+
+CMakeFiles/pc_client.dir/src/file_handler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pc_client.dir/src/file_handler.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/pc-client/src/file_handler.cpp > CMakeFiles/pc_client.dir/src/file_handler.cpp.i
+
+CMakeFiles/pc_client.dir/src/file_handler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pc_client.dir/src/file_handler.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/pc-client/src/file_handler.cpp -o CMakeFiles/pc_client.dir/src/file_handler.cpp.s
+
+CMakeFiles/pc_client.dir/src/file_server.cpp.o: CMakeFiles/pc_client.dir/flags.make
+CMakeFiles/pc_client.dir/src/file_server.cpp.o: /home/victor/Videos/remote-access-system/pc-client/src/file_server.cpp
+CMakeFiles/pc_client.dir/src/file_server.cpp.o: CMakeFiles/pc_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/pc_client.dir/src/file_server.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pc_client.dir/src/file_server.cpp.o -MF CMakeFiles/pc_client.dir/src/file_server.cpp.o.d -o CMakeFiles/pc_client.dir/src/file_server.cpp.o -c /home/victor/Videos/remote-access-system/pc-client/src/file_server.cpp
+
+CMakeFiles/pc_client.dir/src/file_server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pc_client.dir/src/file_server.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/pc-client/src/file_server.cpp > CMakeFiles/pc_client.dir/src/file_server.cpp.i
+
+CMakeFiles/pc_client.dir/src/file_server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pc_client.dir/src/file_server.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/pc-client/src/file_server.cpp -o CMakeFiles/pc_client.dir/src/file_server.cpp.s
+
+CMakeFiles/pc_client.dir/src/file_manager.cpp.o: CMakeFiles/pc_client.dir/flags.make
+CMakeFiles/pc_client.dir/src/file_manager.cpp.o: /home/victor/Videos/remote-access-system/pc-client/src/file_manager.cpp
+CMakeFiles/pc_client.dir/src/file_manager.cpp.o: CMakeFiles/pc_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/pc_client.dir/src/file_manager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pc_client.dir/src/file_manager.cpp.o -MF CMakeFiles/pc_client.dir/src/file_manager.cpp.o.d -o CMakeFiles/pc_client.dir/src/file_manager.cpp.o -c /home/victor/Videos/remote-access-system/pc-client/src/file_manager.cpp
+
+CMakeFiles/pc_client.dir/src/file_manager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pc_client.dir/src/file_manager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/pc-client/src/file_manager.cpp > CMakeFiles/pc_client.dir/src/file_manager.cpp.i
+
+CMakeFiles/pc_client.dir/src/file_manager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pc_client.dir/src/file_manager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/pc-client/src/file_manager.cpp -o CMakeFiles/pc_client.dir/src/file_manager.cpp.s
+
+CMakeFiles/pc_client.dir/src/remote_control_server.cpp.o: CMakeFiles/pc_client.dir/flags.make
+CMakeFiles/pc_client.dir/src/remote_control_server.cpp.o: /home/victor/Videos/remote-access-system/pc-client/src/remote_control_server.cpp
+CMakeFiles/pc_client.dir/src/remote_control_server.cpp.o: CMakeFiles/pc_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/pc_client.dir/src/remote_control_server.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pc_client.dir/src/remote_control_server.cpp.o -MF CMakeFiles/pc_client.dir/src/remote_control_server.cpp.o.d -o CMakeFiles/pc_client.dir/src/remote_control_server.cpp.o -c /home/victor/Videos/remote-access-system/pc-client/src/remote_control_server.cpp
+
+CMakeFiles/pc_client.dir/src/remote_control_server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pc_client.dir/src/remote_control_server.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/pc-client/src/remote_control_server.cpp > CMakeFiles/pc_client.dir/src/remote_control_server.cpp.i
+
+CMakeFiles/pc_client.dir/src/remote_control_server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pc_client.dir/src/remote_control_server.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/pc-client/src/remote_control_server.cpp -o CMakeFiles/pc_client.dir/src/remote_control_server.cpp.s
+
+CMakeFiles/pc_client.dir/src/pc_identifier.cpp.o: CMakeFiles/pc_client.dir/flags.make
+CMakeFiles/pc_client.dir/src/pc_identifier.cpp.o: /home/victor/Videos/remote-access-system/pc-client/src/pc_identifier.cpp
+CMakeFiles/pc_client.dir/src/pc_identifier.cpp.o: CMakeFiles/pc_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/pc_client.dir/src/pc_identifier.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pc_client.dir/src/pc_identifier.cpp.o -MF CMakeFiles/pc_client.dir/src/pc_identifier.cpp.o.d -o CMakeFiles/pc_client.dir/src/pc_identifier.cpp.o -c /home/victor/Videos/remote-access-system/pc-client/src/pc_identifier.cpp
+
+CMakeFiles/pc_client.dir/src/pc_identifier.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pc_client.dir/src/pc_identifier.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/pc-client/src/pc_identifier.cpp > CMakeFiles/pc_client.dir/src/pc_identifier.cpp.i
+
+CMakeFiles/pc_client.dir/src/pc_identifier.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pc_client.dir/src/pc_identifier.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/pc-client/src/pc_identifier.cpp -o CMakeFiles/pc_client.dir/src/pc_identifier.cpp.s
 
 CMakeFiles/pc_client.dir/src/http_server.cpp.o: CMakeFiles/pc_client.dir/flags.make
 CMakeFiles/pc_client.dir/src/http_server.cpp.o: /home/victor/Videos/remote-access-system/pc-client/src/http_server.cpp
 CMakeFiles/pc_client.dir/src/http_server.cpp.o: CMakeFiles/pc_client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pc_client.dir/src/http_server.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/pc_client.dir/src/http_server.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pc_client.dir/src/http_server.cpp.o -MF CMakeFiles/pc_client.dir/src/http_server.cpp.o.d -o CMakeFiles/pc_client.dir/src/http_server.cpp.o -c /home/victor/Videos/remote-access-system/pc-client/src/http_server.cpp
 
 CMakeFiles/pc_client.dir/src/http_server.cpp.i: cmake_force
@@ -125,24 +209,53 @@ CMakeFiles/pc_client.dir/src/http_server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pc_client.dir/src/http_server.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/pc-client/src/http_server.cpp -o CMakeFiles/pc_client.dir/src/http_server.cpp.s
 
+CMakeFiles/pc_client.dir/src/qr_generator.cpp.o: CMakeFiles/pc_client.dir/flags.make
+CMakeFiles/pc_client.dir/src/qr_generator.cpp.o: /home/victor/Videos/remote-access-system/pc-client/src/qr_generator.cpp
+CMakeFiles/pc_client.dir/src/qr_generator.cpp.o: CMakeFiles/pc_client.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/pc_client.dir/src/qr_generator.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pc_client.dir/src/qr_generator.cpp.o -MF CMakeFiles/pc_client.dir/src/qr_generator.cpp.o.d -o CMakeFiles/pc_client.dir/src/qr_generator.cpp.o -c /home/victor/Videos/remote-access-system/pc-client/src/qr_generator.cpp
+
+CMakeFiles/pc_client.dir/src/qr_generator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pc_client.dir/src/qr_generator.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/pc-client/src/qr_generator.cpp > CMakeFiles/pc_client.dir/src/qr_generator.cpp.i
+
+CMakeFiles/pc_client.dir/src/qr_generator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pc_client.dir/src/qr_generator.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/pc-client/src/qr_generator.cpp -o CMakeFiles/pc_client.dir/src/qr_generator.cpp.s
+
 # Object files for target pc_client
 pc_client_OBJECTS = \
-"CMakeFiles/pc_client.dir/pc_client_main.cpp.o" \
-"CMakeFiles/pc_client.dir/pc_client.cpp.o" \
-"CMakeFiles/pc_client.dir/file_handler.cpp.o" \
-"CMakeFiles/pc_client.dir/src/http_server.cpp.o"
+"CMakeFiles/pc_client.dir/src/main.cpp.o" \
+"CMakeFiles/pc_client.dir/src/relay_client.cpp.o" \
+"CMakeFiles/pc_client.dir/src/connection_manager.cpp.o" \
+"CMakeFiles/pc_client.dir/src/account_manager.cpp.o" \
+"CMakeFiles/pc_client.dir/src/file_handler.cpp.o" \
+"CMakeFiles/pc_client.dir/src/file_server.cpp.o" \
+"CMakeFiles/pc_client.dir/src/file_manager.cpp.o" \
+"CMakeFiles/pc_client.dir/src/remote_control_server.cpp.o" \
+"CMakeFiles/pc_client.dir/src/pc_identifier.cpp.o" \
+"CMakeFiles/pc_client.dir/src/http_server.cpp.o" \
+"CMakeFiles/pc_client.dir/src/qr_generator.cpp.o"
 
 # External object files for target pc_client
 pc_client_EXTERNAL_OBJECTS =
 
-pc_client: CMakeFiles/pc_client.dir/pc_client_main.cpp.o
-pc_client: CMakeFiles/pc_client.dir/pc_client.cpp.o
-pc_client: CMakeFiles/pc_client.dir/file_handler.cpp.o
+pc_client: CMakeFiles/pc_client.dir/src/main.cpp.o
+pc_client: CMakeFiles/pc_client.dir/src/relay_client.cpp.o
+pc_client: CMakeFiles/pc_client.dir/src/connection_manager.cpp.o
+pc_client: CMakeFiles/pc_client.dir/src/account_manager.cpp.o
+pc_client: CMakeFiles/pc_client.dir/src/file_handler.cpp.o
+pc_client: CMakeFiles/pc_client.dir/src/file_server.cpp.o
+pc_client: CMakeFiles/pc_client.dir/src/file_manager.cpp.o
+pc_client: CMakeFiles/pc_client.dir/src/remote_control_server.cpp.o
+pc_client: CMakeFiles/pc_client.dir/src/pc_identifier.cpp.o
 pc_client: CMakeFiles/pc_client.dir/src/http_server.cpp.o
+pc_client: CMakeFiles/pc_client.dir/src/qr_generator.cpp.o
 pc_client: CMakeFiles/pc_client.dir/build.make
-pc_client: /usr/lib/x86_64-linux-gnu/libACE.so
+pc_client: /usr/lib/x86_64-linux-gnu/libssl.so
+pc_client: /usr/lib/x86_64-linux-gnu/libcrypto.so
 pc_client: CMakeFiles/pc_client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable pc_client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable pc_client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/pc_client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

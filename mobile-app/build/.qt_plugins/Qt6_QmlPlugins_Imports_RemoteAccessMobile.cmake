@@ -21,7 +21,7 @@ set(qml_import_scanner_import_18 "CLASSNAME;QtQuickControls2BasicStyleImplPlugin
 set(qml_import_scanner_import_19 "NAME;QtQuick.Shapes;TYPE;module;")
 set(qml_import_scanner_import_20 "CLASSNAME;QtQuickLayoutsPlugin;LINKTARGET;Qt6::qquicklayoutsplugin;NAME;QtQuick.Layouts;PATH;/usr/lib/x86_64-linux-gnu/qt6/qml/QtQuick/Layouts;PLUGIN;qquicklayoutsplugin;PLUGINISOPTIONAL;;PREFER;:/qt-project.org/imports/QtQuick/Layouts/;RELATIVEPATH;QtQuick/Layouts;TYPE;module;")
 set(qml_import_scanner_import_21 "CLASSNAME;QtQuickDialogsPlugin;LINKTARGET;Qt6::qtquickdialogsplugin;NAME;QtQuick.Dialogs;PATH;/usr/lib/x86_64-linux-gnu/qt6/qml/QtQuick/Dialogs;PLUGIN;qtquickdialogsplugin;PLUGINISOPTIONAL;;PREFER;:/qt-project.org/imports/QtQuick/Dialogs/;RELATIVEPATH;QtQuick/Dialogs;TYPE;module;")
-set(qml_import_scanner_import_22 "NAME;QtMultimedia;TYPE;module;")
+set(qml_import_scanner_import_22 "CLASSNAME;QMultimediaQuickModule;COMPONENTS;/usr/lib/x86_64-linux-gnu/qt6/qml/QtMultimedia/Video.qml;LINKTARGET;Qt6::quickmultimedia;NAME;QtMultimedia;PATH;/usr/lib/x86_64-linux-gnu/qt6/qml/QtMultimedia;PLUGIN;quickmultimediaplugin;PREFER;:/qt-project.org/imports/QtMultimedia/;RELATIVEPATH;QtMultimedia;TYPE;module;")
 set(qml_import_scanner_import_23 "NAME;RemoteAccess;PATH;/home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccess;PREFER;:/RemoteAccess/;RELATIVEPATH;RemoteAccess;TYPE;module;")
 set(qml_import_scanner_import_24 "NAME;QtQuick.Effects;TYPE;module;")
 

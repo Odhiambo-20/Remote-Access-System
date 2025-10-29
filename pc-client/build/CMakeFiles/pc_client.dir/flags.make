@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/victor/Videos/remote-access-system/pc-client/include
+CXX_INCLUDES = -I/home/victor/Videos/remote-access-system/pc-client/include -I/usr/include/libpng16
 
 CXX_FLAGS = -std=gnu++17
 

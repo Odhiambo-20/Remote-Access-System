@@ -2,9 +2,11 @@
 #include <QDebug>
 #include <QTcpSocket>
 #include <QTimer>
+#include <iostream>
 #include "pc_identifier.h"
 #include "remote_control_server.h"
 #include "file_server.h"
+#include "http_server.h"
 
 class RelayRegistration : public QObject {
     Q_OBJECT
@@ -60,66 +62,166 @@ private:
     QTcpSocket *m_socket;
 };
 
+// Function to get local IP address
+QString getLocalIPAddress() {
+    QTcpSocket socket;
+    socket.connectToHost("8.8.8.8", 53); // Connect to Google DNS
+    if (socket.waitForConnected(1000)) {
+        return socket.localAddress().toString();
+    }
+    return "127.0.0.1";
+}
+
+// Function to print colored banner
+void printBanner() {
+    std::cout << "\n";
+    std::cout << "╔════════════════════════════════════════════════════════════╗\n";
+    std::cout << "║                                                            ║\n";
+    std::cout << "║          🖥️  REMOTE ACCESS PC CLIENT v1.0 🖥️              ║\n";
+    std::cout << "║                                                            ║\n";
+    std::cout << "╚════════════════════════════════════════════════════════════╝\n";
+    std::cout << "\n";
+}
+
+// Function to print QR code instructions
+void printQRInstructions(const QString& httpUrl) {
+    std::cout << "\n";
+    std::cout << "╔════════════════════════════════════════════════════════════╗\n";
+    std::cout << "║                   📱 MOBILE APP SETUP 📱                   ║\n";
+    std::cout << "╚════════════════════════════════════════════════════════════╝\n";
+    std::cout << "\n";
+    std::cout << "To connect your mobile device:\n";
+    std::cout << "\n";
+    std::cout << "1️⃣  Open the Remote Access mobile app\n";
+    std::cout << "2️⃣  Tap 'Scan QR Code'\n";
+    std::cout << "3️⃣  Scan the QR code displayed below\n";
+    std::cout << "\n";
+    std::cout << "OR\n";
+    std::cout << "\n";
+    std::cout << "🌐 Open this URL in your mobile browser:\n";
+    std::cout << "   " << httpUrl.toStdString() << "\n";
+    std::cout << "\n";
+    std::cout << "════════════════════════════════════════════════════════════\n";
+    std::cout << "\n";
+}
+
 int main(int argc, char *argv[]) {
     QCoreApplication app(argc, argv);
     
-    qDebug() << "========================================";
-    qDebug() << "Remote Access PC Client Starting...";
-    qDebug() << "========================================";
+    // Print banner
+    printBanner();
+    
+    qDebug() << "🚀 Remote Access PC Client Starting...";
+    qDebug() << "";
     
     // Initialize PC identifier
     PCIdentifier identifier;
     QString pcId = identifier.getPCId();
     QString username = identifier.getUsername();
     QString hostname = identifier.getHostname();
+    QString localIP = getLocalIPAddress();
     
+    qDebug() << "📋 PC Information:";
+    qDebug() << "   ID:       " << pcId;
+    qDebug() << "   Username: " << username;
+    qDebug() << "   Hostname: " << hostname;
+    qDebug() << "   Local IP: " << localIP;
     qDebug() << "";
-    qDebug() << "PC Information:";
-    qDebug() << "  ID:" << pcId;
-    qDebug() << "  Username:" << username;
-    qDebug() << "  Hostname:" << hostname;
+    
+    // Configure relay server
+    QString relayServer = "127.0.0.1"; // Change to your relay server IP
+    uint16_t relayPort = 2810;
+    
+    // Set PC info for HTTP server and QR generation
+    RemoteAccessSystem::Common::SetPCInfo(
+        pcId.toStdString(),
+        username.toStdString(),
+        relayServer.toStdString(),
+        relayPort
+    );
+    
+    // Start HTTP server for QR code and file sharing
+    qDebug() << "🌐 Starting HTTP Server...";
+    RemoteAccessSystem::Common::HTTPServer httpServer;
+    if (!httpServer.Start("0.0.0.0", 8080)) {
+        qDebug() << "❌ Failed to start HTTP server";
+        return 1;
+    }
+    qDebug() << "✅ HTTP Server started on port 8080";
     qDebug() << "";
     
     // Start Remote Control Server
+    qDebug() << "🎮 Starting Remote Control Server...";
     RemoteControlServer remoteServer;
     if (!remoteServer.start(2812)) {
-        qDebug() << "Failed to start remote control server";
+        qDebug() << "❌ Failed to start remote control server";
         return 1;
     }
+    qDebug() << "✅ Remote Control Server started on port 2812";
+    qDebug() << "";
     
     // Start File Server
+    qDebug() << "📁 Starting File Server...";
     FileServer fileServer;
     if (!fileServer.start(2811, 8080)) {
-        qDebug() << "Failed to start file server";
+        qDebug() << "❌ Failed to start file server";
         return 1;
     }
+    qDebug() << "✅ File Server started on port 2811";
+    qDebug() << "";
     
     // Register with relay server
+    qDebug() << "🔗 Registering with Relay Server...";
     RelayRegistration *registration = new RelayRegistration(pcId, username, hostname);
     
     // Try to register immediately
-    QString relayServer = "127.0.0.1"; // Change to your relay server IP
-    registration->registerWithRelay(relayServer, 2810);
+    registration->registerWithRelay(relayServer, relayPort);
     
     // Re-register every 30 seconds to maintain presence
     QTimer *heartbeatTimer = new QTimer(&app);
-    QObject::connect(heartbeatTimer, &QTimer::timeout, [registration, relayServer]() {
-        registration->registerWithRelay(relayServer, 2810);
+    QObject::connect(heartbeatTimer, &QTimer::timeout, [registration, relayServer, relayPort]() {
+        registration->registerWithRelay(relayServer, relayPort);
     });
     heartbeatTimer->start(30000);
     
     qDebug() << "";
-    qDebug() << "========================================";
-    qDebug() << "✅ PC Client Ready!";
-    qDebug() << "========================================";
-    qDebug() << "Services:";
-    qDebug() << "  Remote Control: Port 2812";
-    qDebug() << "  File Transfer:  Port 2811";
-    qDebug() << "  HTTP Sharing:   Port 8080";
-    qDebug() << "  Relay Server:   " << relayServer << ":2810";
+    qDebug() << "════════════════════════════════════════════════════════════";
+    qDebug() << "✅ PC Client Ready and Running!";
+    qDebug() << "════════════════════════════════════════════════════════════";
     qDebug() << "";
-    qDebug() << "Waiting for connections...";
-    qDebug() << "========================================";
+    qDebug() << "📡 Services Active:";
+    qDebug() << "   • Remote Control: Port 2812";
+    qDebug() << "   • File Transfer:  Port 2811";
+    qDebug() << "   • HTTP Server:    Port 8080";
+    qDebug() << "   • Relay Server:   " << relayServer << ":" << relayPort;
+    qDebug() << "";
+    
+    // Display QR code instructions
+    QString httpUrl = QString("http://%1:8080/qr.png").arg(localIP);
+    printQRInstructions(httpUrl);
+    
+    // Display QR code in terminal
+    std::string qrData = httpServer.GetConnectionInfo();
+    std::cout << "🔲 Scan this QR Code with your mobile app:\n\n";
+    RemoteAccessSystem::Common::DisplayQRCodeInTerminal(qrData);
+    
+    std::cout << "\n";
+    std::cout << "🔐 Connection Data:\n";
+    std::cout << "   " << qrData << "\n";
+    std::cout << "\n";
+    std::cout << "════════════════════════════════════════════════════════════\n";
+    std::cout << "\n";
+    
+    qDebug() << "⏳ Waiting for mobile connections...";
+    qDebug() << "💡 Press Ctrl+C to stop the server";
+    qDebug() << "";
+    
+    // Setup signal handling for graceful shutdown
+    QObject::connect(&app, &QCoreApplication::aboutToQuit, [&]() {
+        qDebug() << "\n🛑 Shutting down PC Client...";
+        httpServer.Stop();
+        qDebug() << "✅ Cleanup complete. Goodbye!";
+    });
     
     return app.exec();
 }
