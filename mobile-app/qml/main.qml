@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
 import QtQuick.Dialogs
+import QtMultimedia
 import RemoteAccess 1.0
 
 ApplicationWindow {
@@ -689,12 +690,12 @@ ApplicationWindow {
         }
     }
 
-    // BIND PC PAGE (IMAGE 3)
+    // BIND PC PAGE WITH QR CODE SCANNER
     Component {
         id: bindPCPage
         
         Page {
-            title: "Bind PC"
+            title: "Bind New PC"
             background: Rectangle { color: "#0a0e27" }
             
             ColumnLayout {
@@ -723,163 +724,216 @@ ApplicationWindow {
                     onClicked: stackView.pop()
                 }
 
-                // Bind PC form centered
+                // Main content centered
                 Item {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
 
                     ColumnLayout {
                         anchors.centerIn: parent
-                        spacing: 20
-                        width: 400
+                        spacing: 30
+                        width: 500
 
                         Label {
-                            text: "Remote Access Login"
-                            font.pixelSize: 28
+                            text: "Bind New PC"
+                            font.pixelSize: 32
                             font.bold: true
                             color: "#ffffff"
                             Layout.alignment: Qt.AlignHCenter
                         }
 
-                        TextField {
-                            id: bindServerAddressField
-                            text: "127.0.0.1:8080"
-                            Layout.fillWidth: true
-                            Layout.preferredHeight: 50
-                            font.pixelSize: 14
-                            
-                            background: Rectangle {
-                                color: "#1e2842"
-                                radius: 8
-                                border.color: parent.activeFocus ? "#3d5a80" : "#2a3a52"
-                                border.width: 2
+                        // Tab buttons for QR Code / Manual Entry
+                        RowLayout {
+                            Layout.alignment: Qt.AlignHCenter
+                            spacing: 15
+
+                            Button {
+                                id: qrCodeTabButton
+                                text: "📱 Scan QR Code"
+                                font.pixelSize: 14
+                                Layout.preferredWidth: 160
+                                Layout.preferredHeight: 45
+                                checkable: true
+                                checked: true
+                                
+                                background: Rectangle {
+                                    color: parent.checked ? "#3d5a80" : "#1e2842"
+                                    radius: 22
+                                    border.color: parent.checked ? "#5a7ba6" : "#2a3a52"
+                                    border.width: 2
+                                }
+                                
+                                contentItem: Label {
+                                    text: parent.text
+                                    color: "#ffffff"
+                                    horizontalAlignment: Text.AlignHCenter
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                                
+                                onClicked: {
+                                    qrCodeTabButton.checked = true
+                                    manualEntryTabButton.checked = false
+                                }
                             }
-                            
-                            color: "#ffffff"
-                            placeholderTextColor: "#6b7280"
+
+                            Button {
+                                id: manualEntryTabButton
+                                text: "✏️ Manual Entry"
+                                font.pixelSize: 14
+                                Layout.preferredWidth: 160
+                                Layout.preferredHeight: 45
+                                checkable: true
+                                checked: false
+                                
+                                background: Rectangle {
+                                    color: parent.checked ? "#3d5a80" : "#1e2842"
+                                    radius: 22
+                                    border.color: parent.checked ? "#5a7ba6" : "#2a3a52"
+                                    border.width: 2
+                                }
+                                
+                                contentItem: Label {
+                                    text: parent.text
+                                    color: "#ffffff"
+                                    font: parent.font
+                                    horizontalAlignment: Text.AlignHCenter
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                                
+                                onClicked: {
+                                    manualEntryTabButton.checked = true
+                                    qrCodeTabButton.checked = false
+                                }
+                            }
                         }
 
-                        TextField {
-                            id: bindUsernameField
-                            text: "victor"
-                            Layout.fillWidth: true
-                            Layout.preferredHeight: 50
-                            font.pixelSize: 14
-                            
-                            background: Rectangle {
-                                color: "#1e2842"
-                                radius: 8
-                                border.color: parent.activeFocus ? "#3d5a80" : "#2a3a52"
-                                border.width: 2
-                            }
-                            
+                        // QR Code Scanner View (shown when qrCodeTabButton is checked)
+                        Rectangle {
+                            Layout.preferredWidth: 350
+                            Layout.preferredHeight: 350
+                            Layout.alignment: Qt.AlignHCenter
                             color: "#ffffff"
-                            placeholderTextColor: "#6b7280"
+                            radius: 12
+                            visible: qrCodeTabButton.checked
+                            
+                            ColumnLayout {
+                                anchors.centerIn: parent
+                                spacing: 20
+                                
+                                // QR Code Icon
+                                Label {
+                                    text: "⊞:⊟\n⊟:⊡"
+                                    font.pixelSize: 80
+                                    font.bold: true
+                                    color: "#000000"
+                                    Layout.alignment: Qt.AlignHCenter
+                                    lineHeight: 0.8
+                                }
+                                
+                                Label {
+                                    text: "QR Scanner View"
+                                    font.pixelSize: 14
+                                    color: "#6b7280"
+                                    Layout.alignment: Qt.AlignHCenter
+                                }
+                            }
+                        }
+                        
+                        Label {
+                            text: "Point your camera at the QR code displayed on\nthe PC"
+                            font.pixelSize: 13
+                            color: "#9ca3af"
+                            Layout.alignment: Qt.AlignHCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            visible: qrCodeTabButton.checked
                         }
 
-                        TextField {
-                            id: bindPasswordField
-                            text: "Password"
-                            echoMode: TextInput.Password
-                            Layout.fillWidth: true
-                            Layout.preferredHeight: 50
-                            font.pixelSize: 14
+                        // Instructions
+                        ColumnLayout {
+                            Layout.alignment: Qt.AlignHCenter
+                            spacing: 12
+                            visible: qrCodeTabButton.checked
                             
-                            background: Rectangle {
-                                color: "#1e2842"
-                                radius: 8
-                                border.color: parent.activeFocus ? "#3d5a80" : "#2a3a52"
-                                border.width: 2
+                            RowLayout {
+                                spacing: 12
+                                
+                                Label {
+                                    text: "1."
+                                    font.pixelSize: 14
+                                    color: "#00d9ff"
+                                    font.bold: true
+                                }
+                                
+                                Label {
+                                    text: "Run the Remote Access program on your PC"
+                                    font.pixelSize: 14
+                                    color: "#d1d5db"
+                                }
                             }
                             
-                            color: "#ffffff"
-                            placeholderTextColor: "#6b7280"
+                            RowLayout {
+                                spacing: 12
+                                
+                                Label {
+                                    text: "2."
+                                    font.pixelSize: 14
+                                    color: "#00d9ff"
+                                    font.bold: true
+                                }
+                                
+                                Label {
+                                    text: "The program will display a QR code"
+                                    font.pixelSize: 14
+                                    color: "#d1d5db"
+                                }
+                            }
+                            
+                            RowLayout {
+                                spacing: 12
+                                
+                                Label {
+                                    text: "3."
+                                    font.pixelSize: 14
+                                    color: "#00d9ff"
+                                    font.bold: true
+                                }
+                                
+                                Label {
+                                    text: "Scan the QR code with this device"
+                                    font.pixelSize: 14
+                                    color: "#d1d5db"
+                                }
+                            }
                         }
 
+                        // Simulate QR Scan button
                         Button {
-                            text: "Login"
+                            text: "Simulate QR Scan"
                             Layout.fillWidth: true
                             Layout.preferredHeight: 50
+                            Layout.maximumWidth: 350
+                            Layout.alignment: Qt.AlignHCenter
                             font.pixelSize: 16
+                            visible: qrCodeTabButton.checked
                             
                             background: Rectangle {
-                                color: parent.pressed ? "#4a5f82" : (parent.hovered ? "#5a6f92" : "#3d5a80")
+                                color: parent.pressed ? "#0c8599" : (parent.hovered ? "#0e9fad" : "#00d9ff")
                                 radius: 8
                             }
                             
                             contentItem: Label {
                                 text: parent.text
-                                color: "#ffffff"
-                                font: parent.font
+                                color: "#0a0e27"
                                 horizontalAlignment: Text.AlignHCenter
                                 verticalAlignment: Text.AlignVCenter
+                                font.bold: true
                             }
                             
                             onClicked: {
-                                console.log("[QML] Bind PC Login clicked")
-                                // Bind PC logic here
+                                console.log("[QML] Simulate QR Scan clicked")
+                                successDialog.text = "QR Code scanned successfully!\nPC binding initiated."
+                                successDialog.open()
                             }
-                        }
-
-                        Rectangle {
-                            Layout.fillWidth: true
-                            Layout.preferredHeight: 1
-                            color: "#2a3a52"
-                            Layout.topMargin: 10
-                            Layout.bottomMargin: 10
-                        }
-
-                        Label {
-                            text: "OR"
-                            font.pixelSize: 14
-                            color: "#6b7280"
-                            Layout.alignment: Qt.AlignHCenter
-                        }
-
-                        Button {
-                            Layout.fillWidth: true
-                            Layout.preferredHeight: 50
-                            font.pixelSize: 16
-                            
-                            background: Rectangle {
-                                color: parent.pressed ? "#0c8599" : (parent.hovered ? "#0e9fad" : "transparent")
-                                border.color: "#00d9ff"
-                                border.width: 2
-                                radius: 8
-                            }
-                            
-                            contentItem: RowLayout {
-                                spacing: 10
-                                
-                                Label {
-                                    text: "🔗"
-                                    font.pixelSize: 18
-                                    color: "#00d9ff"
-                                }
-                                
-                                Label {
-                                    text: "Bind a New PC"
-                                    font.pixelSize: 16
-                                    color: "#00d9ff"
-                                    Layout.fillWidth: true
-                                    horizontalAlignment: Text.AlignHCenter
-                                }
-                            }
-                            
-                            onClicked: {
-                                console.log("[QML] Bind a New PC action clicked")
-                                // Handle bind PC action
-                            }
-                        }
-
-                        Label {
-                            text: "You can bind PCs without logging in to the account server"
-                            font.pixelSize: 12
-                            color: "#6b7280"
-                            Layout.alignment: Qt.AlignHCenter
-                            wrapMode: Text.WordWrap
-                            Layout.maximumWidth: 400
-                            horizontalAlignment: Text.AlignHCenter
                         }
                     }
                 }
