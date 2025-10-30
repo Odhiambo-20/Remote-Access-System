@@ -1,5 +1,6 @@
 /home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/include/main.moc: /home/victor/Videos/remote-access-system/pc-client/src/main.cpp \
   /home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/moc_predefs.h \
+  /home/victor/Videos/remote-access-system/pc-client/include/file_handler.h \
   /home/victor/Videos/remote-access-system/pc-client/include/file_server.h \
   /home/victor/Videos/remote-access-system/pc-client/include/http_server.h \
   /home/victor/Videos/remote-access-system/pc-client/include/pc_identifier.h \
@@ -163,6 +164,7 @@
   /usr/include/c++/12/streambuf \
   /usr/include/c++/12/string \
   /usr/include/c++/12/string_view \
+  /usr/include/c++/12/thread \
   /usr/include/c++/12/tuple \
   /usr/include/c++/12/type_traits \
   /usr/include/c++/12/typeinfo \

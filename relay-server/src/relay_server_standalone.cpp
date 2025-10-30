@@ -135,7 +135,7 @@ void handleFileConnection(int client_fd, const std::string& pc_id) {
                     }
                 }
             }
-            // NEW: Handle ERROR messages for UPLOAD requests
+            // Handle ERROR messages
             else if (message.find("ERROR|") == 0) {
                 std::cout << "[RelayServer] Error received from PC: " << message << std::endl;
                 
@@ -231,7 +231,6 @@ void handleFileConnection(int client_fd, const std::string& pc_id) {
     std::cout << "[FileHandler] Handler thread exiting for PC: " << pc_id << std::endl;
 }
 
-// New function to handle upload requests with persistent connection
 void handleUploadRequest(int client_fd, const std::string& pc_id, const std::string& file_path, size_t file_size) {
     std::cout << "[RelayServer] Handling upload in dedicated thread for fd=" << client_fd << std::endl;
     
@@ -284,8 +283,6 @@ void handleUploadRequest(int client_fd, const std::string& pc_id, const std::str
     }
     
     std::cout << "[RelayServer] Forwarded UPLOAD command to PC FileHandler, keeping mobile socket open" << std::endl;
-    
-    // Socket stays open - will be handled by handleFileConnection when PC responds with UPLOAD_READY or ERROR
 }
 
 void handleClient(int client_fd) {
@@ -325,6 +322,38 @@ void handleClient(int client_fd) {
                 return;
             } else {
                 send(client_fd, "ERROR|Invalid REGISTER format\n", 33, 0);
+                close(client_fd);
+            }
+        }
+        else if (message.find("FILE_HANDLER_REGISTER|") == 0) {
+            // NEW: Handle FILE_HANDLER_REGISTER command
+            auto parts = split(message, '|');
+            if (parts.size() >= 2) {
+                std::string pc_id = parts[1];
+                
+                {
+                    std::lock_guard<std::mutex> lock(pc_mutex);
+                    auto it = connected_pcs.find(pc_id);
+                    if (it != connected_pcs.end()) {
+                        if (it->second.file_connection != -1) {
+                            close(it->second.file_connection);
+                        }
+                        it->second.file_connection = client_fd;
+                    } else {
+                        PCInfo info;
+                        info.pc_id = pc_id;
+                        info.main_connection = -1;
+                        info.file_connection = client_fd;
+                        info.last_heartbeat = time(nullptr);
+                        connected_pcs[pc_id] = info;
+                    }
+                }
+                
+                std::cout << "[RelayServer] FileHandler registered for PC: " << pc_id << std::endl;
+                std::thread(&handleFileConnection, client_fd, pc_id).detach();
+                return;
+            } else {
+                send(client_fd, "ERROR|Invalid FILE_HANDLER_REGISTER format\n", 45, 0);
                 close(client_fd);
             }
         }

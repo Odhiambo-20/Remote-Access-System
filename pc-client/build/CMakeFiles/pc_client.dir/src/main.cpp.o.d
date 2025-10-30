@@ -515,4 +515,7 @@ CMakeFiles/pc_client.dir/src/main.cpp.o: \
  /usr/local/include/ace/SOCK_IO.inl \
  /usr/local/include/ace/SOCK_Stream.inl \
  /usr/local/include/ace/SOCK_Acceptor.inl \
+ /home/victor/Videos/remote-access-system/pc-client/include/file_handler.h \
+ /usr/include/c++/12/thread /usr/include/c++/12/bits/std_thread.h \
+ /usr/include/c++/12/bits/this_thread_sleep.h \
  /home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/include/main.moc

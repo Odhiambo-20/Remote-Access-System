@@ -4386,6 +4386,10 @@ CMakeFiles/pc_client.dir/src/main.cpp.o: /home/victor/Videos/remote-access-syste
   /usr/local/include/ace/SOCK_IO.inl \
   /usr/local/include/ace/SOCK_Stream.inl \
   /usr/local/include/ace/SOCK_Acceptor.inl \
+  /home/victor/Videos/remote-access-system/pc-client/include/file_handler.h \
+  /usr/include/c++/12/thread \
+  /usr/include/c++/12/bits/std_thread.h \
+  /usr/include/c++/12/bits/this_thread_sleep.h \
   pc_client_autogen/include/main.moc
 
 CMakeFiles/pc_client.dir/src/pc_identifier.cpp.o: /home/victor/Videos/remote-access-system/pc-client/src/pc_identifier.cpp \
