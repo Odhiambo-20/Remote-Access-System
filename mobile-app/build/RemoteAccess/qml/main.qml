@@ -711,7 +711,8 @@ ApplicationWindow {
                     loadQRCode()
                 }
             }
-            
+
+
             function loadQRCode() {
                 console.log("[QML] Loading QR code from PC...")
                 var xhr = new XMLHttpRequest()
@@ -723,6 +724,9 @@ ApplicationWindow {
                             pcQrCodeUrl = "http://localhost:8080/qr?" + Date.now()
                             qrCodeLoaded = true
                             errorMessage = ""
+                            
+                            // Fetch the connection info and auto-connect
+                            fetchConnectionInfoAndConnect()
                         } else {
                             console.log("[QML] Failed to load QR code:", xhr.status)
                             qrCodeLoaded = false
@@ -732,7 +736,48 @@ ApplicationWindow {
                 }
                 xhr.send()
             }
-            
+
+            function fetchConnectionInfoAndConnect() {
+                console.log("[QML] Fetching connection info...")
+                var xhr = new XMLHttpRequest()
+                xhr.open("GET", "http://localhost:8080/info", true)
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            try {
+                                var info = JSON.parse(xhr.responseText)
+                                console.log("[QML] Connection info received:", info.pc_id)
+                                
+                                // Connect to PC using the info
+                                connectToPCFromQR(info.pc_id, info.username, info.relay_server, info.relay_port, info.auth_token)
+                            } catch (e) {
+                                console.log("[QML] Failed to parse connection info:", e)
+                                errorMessage = "Failed to parse connection data"
+                            }
+                        } else {
+                            console.log("[QML] Failed to fetch connection info:", xhr.status)
+                        }
+                    }
+                }
+                xhr.send()
+            }
+
+            function connectToPCFromQR(pcId, username, relayServer, relayPort, authToken) {
+                console.log("[QML] Auto-connecting to PC:", pcId)
+                
+                // Store PC info
+                pcManager.connectToPC(pcId, relayServer)
+                
+                // Connect file manager
+                fileManager.connectToPC(pcId, relayServer)
+                
+                // Navigate directly to file browser
+                stackView.push(remoteControlPage)
+                
+                // Switch to file browser tab automatically
+                tabBar.currentIndex = 1
+            }     
+                        
             Component.onCompleted: {
                 if (qrCodeTabButton.checked) {
                     loadQRCode()

@@ -130,9 +130,30 @@ int FileHandler::connect_to_relay(const std::string& host, int port)
 
     std::cout << "[FileHandler] Connected to relay server" << std::endl;
     
-    // Send registration
-    std::string registration = "PC_FILE|" + pcId + "\n";
+    // FIXED: Send correct registration command that matches relay_server.cpp
+    std::string registration = "FILE_HANDLER_REGISTER|" + pcId + "\n";
     send(relaySocket, registration.c_str(), registration.length(), 0);
+    std::cout << "[FileHandler] Sent registration: " << registration << std::endl;
+    
+    // Wait for registration confirmation
+    char response[256];
+    memset(response, 0, sizeof(response));
+    int bytesRead = recv(relaySocket, response, sizeof(response) - 1, 0);
+    if (bytesRead > 0) {
+        std::string resp(response, bytesRead);
+        std::cout << "[FileHandler] Registration response: " << resp << std::endl;
+        
+        if (resp.find("OK|FILE_HANDLER_REGISTERED") != std::string::npos) {
+            std::cout << "[FileHandler] ✅ File handler registered successfully!" << std::endl;
+        } else if (resp.find("ERROR") != std::string::npos) {
+            std::cerr << "[FileHandler] ❌ Registration failed: " << resp << std::endl;
+            close(relaySocket);
+            relaySocket = -1;
+            return -1;
+        }
+    } else {
+        std::cerr << "[FileHandler] No response from relay server" << std::endl;
+    }
     
     // Start handler thread
     running = true;
@@ -143,7 +164,7 @@ int FileHandler::connect_to_relay(const std::string& host, int port)
         while (running && relaySocket >= 0) {
             std::this_thread::sleep_for(std::chrono::seconds(30));
             if (relaySocket >= 0) {
-                std::string heartbeat = "HEARTBEAT\n";
+                std::string heartbeat = "HEARTBEAT|" + pcId + "\n";
                 send(relaySocket, heartbeat.c_str(), heartbeat.length(), 0);
                 std::cout << "[FileHandler] Heartbeat sent" << std::endl;
             }
@@ -206,24 +227,41 @@ void FileHandler::processRequest(const std::string& request)
     }
     else if (command == "OK") {
         // Acknowledgment
+        std::cout << "[FileHandler] Received OK acknowledgment" << std::endl;
     }
     else if (command == "LIST_DIR") {
         std::string id, path;
         std::getline(iss, id, '|');
         std::getline(iss, path);
+        std::cout << "[FileHandler] Processing LIST_DIR for path: " << path << std::endl;
         handleListDir(path);
     }
     else if (command == "GENERATE_URL") {
         std::string id, filePath;
         std::getline(iss, id, '|');
         std::getline(iss, filePath);
+        std::cout << "[FileHandler] Processing GENERATE_URL for: " << filePath << std::endl;
         handleGenerateUrl(filePath);
     }
     else if (command == "DOWNLOAD") {
         std::string id, filePath;
         std::getline(iss, id, '|');
         std::getline(iss, filePath);
+        std::cout << "[FileHandler] Processing DOWNLOAD for: " << filePath << std::endl;
         handleDownload(filePath);
+    }
+    else if (command == "UPLOAD") {
+        std::string id, remotePath, sizeStr;
+        std::getline(iss, id, '|');
+        std::getline(iss, remotePath, '|');
+        std::getline(iss, sizeStr);
+        long long fileSize = std::stoll(sizeStr);
+        std::cout << "[FileHandler] Processing UPLOAD to: " << remotePath 
+                  << " size: " << fileSize << " bytes" << std::endl;
+        handleUpload(remotePath, fileSize);
+    }
+    else {
+        std::cout << "[FileHandler] Unknown command: " << command << std::endl;
     }
 }
 
@@ -233,12 +271,15 @@ void FileHandler::handleListDir(const std::string& path)
     
     DIR* dir = opendir(path.c_str());
     if (!dir) {
-        sendResponse("ERROR|Directory not found\n");
+        std::string errorMsg = "ERROR|Directory not found: " + path + "\n";
+        sendResponse(errorMsg);
+        std::cerr << "[FileHandler] " << errorMsg;
         return;
     }
 
     std::string response = "DIR_LIST|";
     struct dirent* entry;
+    int count = 0;
     
     while ((entry = readdir(dir)) != nullptr) {
         std::string name = entry->d_name;
@@ -252,6 +293,7 @@ void FileHandler::handleListDir(const std::string& path)
             long size = S_ISREG(st.st_mode) ? st.st_size : 0;
             
             response += name + "|" + type + "|" + std::to_string(size) + ";";
+            count++;
         }
     }
     
@@ -259,7 +301,7 @@ void FileHandler::handleListDir(const std::string& path)
     response += "\n";
     
     sendResponse(response);
-    std::cout << "[FileHandler] Sent directory listing" << std::endl;
+    std::cout << "[FileHandler] Sent directory listing with " << count << " entries" << std::endl;
 }
 
 void FileHandler::handleGenerateUrl(const std::string& filePath)
@@ -270,13 +312,14 @@ void FileHandler::handleGenerateUrl(const std::string& filePath)
     struct stat st;
     if (stat(filePath.c_str(), &st) != 0) {
         sendResponse("ERROR|File not found\n");
+        std::cerr << "[FileHandler] File not found: " << filePath << std::endl;
         return;
     }
 
     // Generate random token
     std::string token = generateToken(32);
     
-    // CRITICAL FIX: Add token to HTTPServer instead of local map
+    // Add token to HTTPServer
     if (httpServer_) {
         RemoteAccessSystem::Common::AddShareToken(token, filePath);
         std::cout << "[FileHandler] Token added to HTTPServer: " << token << " -> " << filePath << std::endl;
@@ -291,7 +334,7 @@ void FileHandler::handleGenerateUrl(const std::string& filePath)
 
     // Get local IP address instead of localhost
     std::string localIP = getLocalIPAddress();
-    std::string shareUrl = "http://" + localIP + ":8080/share/" + token;
+    std::string shareUrl = "http://" + localIP + ":8082/share/" + token;
     
     std::string response = "SHARE_URL|" + shareUrl + "\n";
     sendResponse(response);
@@ -306,6 +349,7 @@ void FileHandler::handleDownload(const std::string& filePath)
     std::ifstream file(filePath, std::ios::binary);
     if (!file.is_open()) {
         sendResponse("ERROR|File not found\n");
+        std::cerr << "[FileHandler] Cannot open file: " << filePath << std::endl;
         return;
     }
 
@@ -315,20 +359,77 @@ void FileHandler::handleDownload(const std::string& filePath)
 
     std::string response = "DOWNLOAD_START|" + std::to_string(fileSize) + "\n";
     sendResponse(response);
+    std::cout << "[FileHandler] Sending file, size: " << fileSize << " bytes" << std::endl;
 
     char buffer[8192];
+    size_t totalSent = 0;
     while (file.read(buffer, sizeof(buffer)) || file.gcount() > 0) {
-        send(relaySocket, buffer, file.gcount(), 0);
+        ssize_t sent = send(relaySocket, buffer, file.gcount(), 0);
+        if (sent <= 0) {
+            std::cerr << "[FileHandler] Send failed during download" << std::endl;
+            break;
+        }
+        totalSent += sent;
     }
 
     file.close();
-    std::cout << "[FileHandler] File download complete" << std::endl;
+    std::cout << "[FileHandler] File download complete, sent " << totalSent << " bytes" << std::endl;
+}
+
+void FileHandler::handleUpload(const std::string& remotePath, long long fileSize)
+{
+    std::cout << "[FileHandler] Receiving upload to: " << remotePath 
+              << " size: " << fileSize << " bytes" << std::endl;
+    
+    // Send ready signal
+    std::string response = "UPLOAD_READY\n";
+    sendResponse(response);
+    
+    // Open file for writing
+    std::ofstream outFile(remotePath, std::ios::binary);
+    if (!outFile.is_open()) {
+        sendResponse("ERROR|Cannot create file\n");
+        std::cerr << "[FileHandler] Cannot create file: " << remotePath << std::endl;
+        return;
+    }
+    
+    // Receive file data
+    char buffer[8192];
+    long long received = 0;
+    
+    while (received < fileSize) {
+        size_t toRead = std::min((long long)sizeof(buffer), fileSize - received);
+        ssize_t bytesRead = recv(relaySocket, buffer, toRead, 0);
+        
+        if (bytesRead <= 0) {
+            std::cerr << "[FileHandler] Connection lost during upload" << std::endl;
+            outFile.close();
+            sendResponse("ERROR|Upload interrupted\n");
+            return;
+        }
+        
+        outFile.write(buffer, bytesRead);
+        received += bytesRead;
+        
+        if (received % 1048576 == 0) { // Log every 1MB
+            std::cout << "[FileHandler] Upload progress: " << received << "/" << fileSize << " bytes" << std::endl;
+        }
+    }
+    
+    outFile.close();
+    std::cout << "[FileHandler] Upload complete: " << received << " bytes received" << std::endl;
+    sendResponse("UPLOAD_COMPLETE\n");
 }
 
 void FileHandler::sendResponse(const std::string& response)
 {
     if (relaySocket >= 0) {
-        send(relaySocket, response.c_str(), response.length(), 0);
+        ssize_t sent = send(relaySocket, response.c_str(), response.length(), 0);
+        if (sent < 0) {
+            std::cerr << "[FileHandler] Failed to send response" << std::endl;
+        }
+    } else {
+        std::cerr << "[FileHandler] Cannot send response: socket is closed" << std::endl;
     }
 }
 
