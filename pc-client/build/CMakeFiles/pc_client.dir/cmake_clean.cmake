@@ -1,4 +1,13 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/pc_client_autogen.dir/AutogenUsed.txt"
+  "CMakeFiles/pc_client_autogen.dir/ParseCache.txt"
+  "pc_client_autogen"
+  "CMakeFiles/pc_client.dir/home/victor/Videos/remote-access-system/common/src/crypto.cpp.o"
+  "CMakeFiles/pc_client.dir/home/victor/Videos/remote-access-system/common/src/crypto.cpp.o.d"
+  "CMakeFiles/pc_client.dir/home/victor/Videos/remote-access-system/common/src/utils.cpp.o"
+  "CMakeFiles/pc_client.dir/home/victor/Videos/remote-access-system/common/src/utils.cpp.o.d"
+  "CMakeFiles/pc_client.dir/pc_client_autogen/mocs_compilation.cpp.o"
+  "CMakeFiles/pc_client.dir/pc_client_autogen/mocs_compilation.cpp.o.d"
   "CMakeFiles/pc_client.dir/src/account_manager.cpp.o"
   "CMakeFiles/pc_client.dir/src/account_manager.cpp.o.d"
   "CMakeFiles/pc_client.dir/src/connection_manager.cpp.o"

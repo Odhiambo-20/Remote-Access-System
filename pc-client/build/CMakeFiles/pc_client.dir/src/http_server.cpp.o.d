@@ -396,10 +396,10 @@ CMakeFiles/pc_client.dir/src/http_server.cpp.o: \
  /usr/local/include/ace/Log_Msg.h /usr/local/include/ace/Log_Priority.h \
  /usr/local/include/ace/Synch_Traits.h /usr/local/include/ace/Lock.h \
  /usr/local/include/ace/Lock.inl /usr/local/include/ace/Log_Msg.inl \
- /usr/include/qrencode.h /usr/include/libpng16/png.h \
- /usr/include/libpng16/pnglibconf.h /usr/include/libpng16/pngconf.h \
- /usr/include/setjmp.h /usr/include/c++/12/fstream \
- /usr/include/c++/12/istream /usr/include/c++/12/bits/istream.tcc \
+ /usr/include/qrencode.h /usr/include/png.h /usr/include/pnglibconf.h \
+ /usr/include/pngconf.h /usr/include/setjmp.h \
+ /usr/include/c++/12/iostream /usr/include/c++/12/istream \
+ /usr/include/c++/12/bits/istream.tcc /usr/include/c++/12/fstream \
  /usr/include/c++/12/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++io.h \

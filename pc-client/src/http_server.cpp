@@ -3,6 +3,7 @@
 #include <ace/OS_NS_sys_stat.h>
 #include <qrencode.h>
 #include <png.h>
+#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <map>
@@ -41,7 +42,7 @@ void SetPCInfo(const std::string& pc_id, const std::string& username,
         g_auth_token = GenerateAuthToken();
     }
     
-    ACE_DEBUG((LM_INFO, "[HTTPServer] PC info set: %s@%s:%d (token: %s)\n",
+    ACE_DEBUG((LM_INFO, ACE_TEXT("[HTTPServer] PC info set: %s@%s:%d (token: %s)\n"),
               username.c_str(), relay_server.c_str(), relay_port, g_auth_token.c_str()));
 }
 
@@ -62,7 +63,7 @@ std::string GenerateAuthToken() {
 void AddShareToken(const std::string& token, const std::string& file_path) {
     std::lock_guard<std::mutex> lock(token_mutex);
     share_tokens[token] = file_path;
-    ACE_DEBUG((LM_INFO, "[HTTPServer] Token added: %s -> %s\n", 
+    ACE_DEBUG((LM_INFO, ACE_TEXT("[HTTPServer] Token added: %s -> %s\n"), 
               token.c_str(), file_path.c_str()));
 }
 
@@ -85,12 +86,12 @@ std::string HTTPServer::GenerateQRData() const {
 bool HTTPServer::Start(const std::string& address, uint16_t port) {
     ACE_INET_Addr server_addr(port, address.c_str());
     if (acceptor_.open(server_addr, 1) == -1) {
-        ACE_ERROR_RETURN((LM_ERROR, "[HTTPServer] Failed to open %s:%d\n",
+        ACE_ERROR_RETURN((LM_ERROR, ACE_TEXT("[HTTPServer] Failed to open %s:%d\n"),
                          address.c_str(), port), false);
     }
     
     running_ = true;
-    ACE_DEBUG((LM_INFO, "[HTTPServer] Started on %s:%d\n", address.c_str(), port));
+    ACE_DEBUG((LM_INFO, ACE_TEXT("[HTTPServer] Started on %s:%d\n"), address.c_str(), port));
     
     // Start accepting connections in a separate thread
     std::thread([this]() {
@@ -112,7 +113,7 @@ bool HTTPServer::Start(const std::string& address, uint16_t port) {
 void HTTPServer::Stop() {
     running_ = false;
     acceptor_.close();
-    ACE_DEBUG((LM_INFO, "[HTTPServer] Stopped\n"));
+    ACE_DEBUG((LM_INFO, ACE_TEXT("[HTTPServer] Stopped\n")));
 }
 
 // Generate QR code as PNG image
@@ -120,7 +121,7 @@ std::vector<uint8_t> HTTPServer::GenerateQRCodePNG(const std::string& data, int 
     // Generate QR code using libqrencode
     QRcode* qr = QRcode_encodeString(data.c_str(), 0, QR_ECLEVEL_M, QR_MODE_8, 1);
     if (!qr) {
-        ACE_ERROR((LM_ERROR, "[HTTPServer] QR code generation failed\n"));
+        ACE_ERROR((LM_ERROR, ACE_TEXT("[HTTPServer] QR code generation failed\n")));
         return {};
     }
     
@@ -131,7 +132,6 @@ std::vector<uint8_t> HTTPServer::GenerateQRCodePNG(const std::string& data, int 
     
     // Create PNG in memory
     std::vector<uint8_t> png_data;
-    FILE* fp = nullptr;
     
     // Use memory buffer instead of file
     png_structp png = png_create_write_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
@@ -191,7 +191,7 @@ std::vector<uint8_t> HTTPServer::GenerateQRCodePNG(const std::string& data, int 
     png_destroy_write_struct(&png, &info);
     QRcode_free(qr);
     
-    ACE_DEBUG((LM_DEBUG, "[HTTPServer] Generated QR PNG: %zu bytes\n", png_data.size()));
+    ACE_DEBUG((LM_DEBUG, ACE_TEXT("[HTTPServer] Generated QR PNG: %zu bytes\n"), png_data.size()));
     return png_data;
 }
 
@@ -250,7 +250,7 @@ void HTTPServer::SendFileResponse(ACE_SOCK_Stream& client, const std::string& fi
         client.send(buffer, file.gcount());
     }
     
-    ACE_DEBUG((LM_INFO, "[HTTPServer] File sent: %s (%zu bytes)\n", 
+    ACE_DEBUG((LM_INFO, ACE_TEXT("[HTTPServer] File sent: %s (%zu bytes)\n"), 
               filename.c_str(), size));
 }
 
@@ -273,13 +273,21 @@ void HTTPServer::HandleRequest(ACE_SOCK_Stream& client) {
     std::string method, path, version;
     iss >> method >> path >> version;
     
-    ACE_DEBUG((LM_INFO, "[HTTPServer] %s %s from %s\n", 
-              method.c_str(), path.c_str(), client.get_remote_addr().get_host_name()));
+    // Get remote address for logging
+    ACE_INET_Addr remote_addr;
+    std::string remote_host = "unknown";
+    if (client.get_remote_addr(remote_addr) == 0) {
+        remote_host = remote_addr.get_host_addr();
+    }
     
-    // Handle QR code endpoint
-    if (path == "/qr" || path == "/qr.png") {
+    ACE_DEBUG((LM_INFO, ACE_TEXT("[HTTPServer] %s %s from %s\n"), 
+              method.c_str(), path.c_str(), remote_host.c_str()));
+    
+    // Check if path starts with /qr (handles /qr, /qr.png, /qr?anything)
+    if (path.find("/qr") == 0) {
+        ACE_DEBUG((LM_INFO, ACE_TEXT("[HTTPServer] Matched QR endpoint!\n")));
         std::string qr_data = GenerateQRData();
-        ACE_DEBUG((LM_INFO, "[HTTPServer] Generating QR code: %s\n", qr_data.c_str()));
+        ACE_DEBUG((LM_INFO, ACE_TEXT("[HTTPServer] Generating QR code: %s\n"), qr_data.c_str()));
         
         auto png = GenerateQRCodePNG(qr_data, 400);
         if (png.empty()) {
@@ -299,15 +307,16 @@ void HTTPServer::HandleRequest(ACE_SOCK_Stream& client) {
         client.send(h.c_str(), h.length());
         client.send(png.data(), png.size());
         
-        ACE_DEBUG((LM_INFO, "[HTTPServer] QR code sent: %zu bytes\n", png.size()));
+        ACE_DEBUG((LM_INFO, ACE_TEXT("[HTTPServer] QR code sent: %zu bytes\n"), png.size()));
         return;
     }
     
     // Handle file sharing endpoint
     if (path.find("/share/") == 0 && path.length() > 7) {
-        std::string token = path.substr(7);
-        size_t q = token.find('?');
-        if (q != std::string::npos) token = token.substr(0, q);
+        // Extract token (strip query params if any)
+        std::string token_part = path.substr(7);
+        size_t q = token_part.find('?');
+        std::string token = (q != std::string::npos) ? token_part.substr(0, q) : token_part;
         
         std::string file_path;
         {
@@ -328,7 +337,7 @@ void HTTPServer::HandleRequest(ACE_SOCK_Stream& client) {
     }
     
     // Handle connection info endpoint (JSON)
-    if (path == "/info") {
+    if (path.find("/info") == 0) {
         std::ostringstream json;
         json << "{\n"
              << "  \"pc_id\": \"" << g_pc_id << "\",\n"
@@ -360,7 +369,7 @@ void HTTPServer::HandleRequest(ACE_SOCK_Stream& client) {
 void DisplayQRCodeInTerminal(const std::string& data) {
     QRcode* qr = QRcode_encodeString(data.c_str(), 0, QR_ECLEVEL_M, QR_MODE_8, 1);
     if (!qr) {
-        ACE_ERROR((LM_ERROR, "[HTTPServer] Failed to generate QR code for terminal\n"));
+        ACE_ERROR((LM_ERROR, ACE_TEXT("[HTTPServer] Failed to generate QR code for terminal\n")));
         return;
     }
     

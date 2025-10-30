@@ -160,14 +160,26 @@ int main(int argc, char *argv[]) {
     qDebug() << "✅ Remote Control Server started on port 2812";
     qDebug() << "";
     
-    // Start File Server
+    // Start File Server (try different HTTP ports until one works)
     qDebug() << "📁 Starting File Server...";
     FileServer fileServer;
-    if (!fileServer.start(2811, 8080)) {
-        qDebug() << "❌ Failed to start file server";
+    int fileHttpPort = 8081;
+    bool fileServerStarted = false;
+
+    for (int port = 8082; port <= 8099; port++) {
+        if (fileServer.start(2811, port)) {
+            fileHttpPort = port;
+            fileServerStarted = true;
+            qDebug() << "✅ File Server started on port 2811";
+            qDebug() << "✅ File Server HTTP on port" << port;
+            break;
+        }
+    }
+
+    if (!fileServerStarted) {
+        qDebug() << "❌ Failed to start file server - no available HTTP ports";
         return 1;
     }
-    qDebug() << "✅ File Server started on port 2811";
     qDebug() << "";
     
     // Register with relay server
@@ -192,7 +204,8 @@ int main(int argc, char *argv[]) {
     qDebug() << "📡 Services Active:";
     qDebug() << "   • Remote Control: Port 2812";
     qDebug() << "   • File Transfer:  Port 2811";
-    qDebug() << "   • HTTP Server:    Port 8080";
+    qDebug() << "   • HTTP Server:    Port 8080 (QR Code)";
+    qDebug() << "   • File HTTP:      Port" << fileHttpPort << "(File Sharing)";
     qDebug() << "   • Relay Server:   " << relayServer << ":" << relayPort;
     qDebug() << "";
     
@@ -226,3 +239,4 @@ int main(int argc, char *argv[]) {
     return app.exec();
 }
 
+#include "main.moc"

@@ -28,9 +28,6 @@ default_target: all
 
 .SUFFIXES: .hpux_make_needs_suffix_list
 
-# Produce verbose output by default.
-VERBOSE = 1
-
 # Command-line flag to silence nested $(MAKE).
 $(VERBOSE)MAKESILENT = -s
 
@@ -75,21 +72,22 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/pc_client.dir/clean
+clean: CMakeFiles/pc_client_autogen.dir/clean
 .PHONY : clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/pc_client.dir
 
 # All Build rule for target.
-CMakeFiles/pc_client.dir/all:
+CMakeFiles/pc_client.dir/all: CMakeFiles/pc_client_autogen.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12 "Built target pc_client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 "Built target pc_client"
 .PHONY : CMakeFiles/pc_client.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/pc_client.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/pc_client.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles 0
 .PHONY : CMakeFiles/pc_client.dir/rule
@@ -102,6 +100,32 @@ pc_client: CMakeFiles/pc_client.dir/rule
 CMakeFiles/pc_client.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/clean
 .PHONY : CMakeFiles/pc_client.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/pc_client_autogen.dir
+
+# All Build rule for target.
+CMakeFiles/pc_client_autogen.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client_autogen.dir/build.make CMakeFiles/pc_client_autogen.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client_autogen.dir/build.make CMakeFiles/pc_client_autogen.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=16 "Built target pc_client_autogen"
+.PHONY : CMakeFiles/pc_client_autogen.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/pc_client_autogen.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles 1
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/pc_client_autogen.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles 0
+.PHONY : CMakeFiles/pc_client_autogen.dir/rule
+
+# Convenience name for target.
+pc_client_autogen: CMakeFiles/pc_client_autogen.dir/rule
+.PHONY : pc_client_autogen
+
+# clean rule for target.
+CMakeFiles/pc_client_autogen.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client_autogen.dir/build.make CMakeFiles/pc_client_autogen.dir/clean
+.PHONY : CMakeFiles/pc_client_autogen.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

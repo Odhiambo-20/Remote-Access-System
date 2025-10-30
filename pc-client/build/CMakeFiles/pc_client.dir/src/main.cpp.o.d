@@ -514,4 +514,5 @@ CMakeFiles/pc_client.dir/src/main.cpp.o: \
  /usr/local/include/ace/OS_NS_ctype.inl \
  /usr/local/include/ace/SOCK_IO.inl \
  /usr/local/include/ace/SOCK_Stream.inl \
- /usr/local/include/ace/SOCK_Acceptor.inl
+ /usr/local/include/ace/SOCK_Acceptor.inl \
+ /home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/include/main.moc

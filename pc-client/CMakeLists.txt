@@ -1,40 +1,57 @@
-cmake_minimum_required(VERSION 3.10)
-project(PCClient)
+cmake_minimum_required(VERSION 3.16)
+project(pc_client)
 
+# Set C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Enable verbose output for debugging
-set(CMAKE_VERBOSE_MAKEFILE ON)
-
 # Find required packages
-find_package(Threads REQUIRED)
+find_package(Qt5 REQUIRED COMPONENTS Core Network)
 find_package(OpenSSL REQUIRED)
-find_package(PkgConfig REQUIRED)
 
-# Check for ACE
-pkg_check_modules(ACE REQUIRED ACE)
+# Set Qt auto-generation
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 
-# Check for QR code and PNG libraries
-pkg_check_modules(QRENCODE REQUIRED libqrencode)
-pkg_check_modules(PNG REQUIRED libpng)
+# ACE library
+find_library(ACE_LIBRARY ACE PATHS /usr/local/lib /usr/lib)
+find_path(ACE_INCLUDE_DIR ace/ACE.h PATHS /usr/local/include /usr/include)
 
-# Find Qt5 (since you're using Qt)
-find_package(Qt5 COMPONENTS Core Network REQUIRED)
+# QREncode library
+find_library(QRENCODE_LIBRARY qrencode)
 
-# Include directories
+# PNG library
+find_package(PNG REQUIRED)
+
 # Include directories
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/../common/include    # Add this line
-    ${ACE_INCLUDE_DIRS}
+    ${CMAKE_CURRENT_SOURCE_DIR}/../common/include
+    ${ACE_INCLUDE_DIR}
     ${OPENSSL_INCLUDE_DIR}
-    ${QRENCODE_INCLUDE_DIRS}
     ${PNG_INCLUDE_DIRS}
 )
 
-# Source files
-set(SOURCES
+# Compiler flags
+add_compile_options(-Wall -Wextra -Wpedantic -Wno-unused-parameter -fPIC)
+
+# Header files for PC client
+set(PC_CLIENT_HEADERS
+    include/pc_identifier.h
+    include/remote_control_server.h
+    include/file_server.h
+    include/relay_client.h
+    include/connection_manager.h
+    include/account_manager.h
+    include/file_handler.h
+    include/file_manager.h
+    include/http_server.h
+    include/qr_generator.h
+)
+
+# Source files for PC client
+set(PC_CLIENT_SOURCES
     src/main.cpp
     src/relay_client.cpp
     src/connection_manager.cpp
@@ -48,42 +65,26 @@ set(SOURCES
     src/qr_generator.cpp
 )
 
-# Header files (for IDE support)
-set(HEADERS
-    include/relay_client.h
-    include/connection_manager.h
-    include/account_manager.h
-    include/file_handler.h
-    include/file_server.h
-    include/file_manager.h
-    include/remote_control_server.h
-    include/pc_identifier.h
-    include/http_server.h
-    include/qr_generator.h
+# Common source files (utils and crypto)
+set(COMMON_SOURCES
+    ../common/src/utils.cpp
+    ../common/src/crypto.cpp
 )
 
-# Create executable
-add_executable(pc_client ${SOURCES} ${HEADERS})
-
-# Enable Qt MOC (Meta-Object Compiler) for main.cpp
-set_property(SOURCE src/main.cpp PROPERTY SKIP_AUTOMOC OFF)
-set(CMAKE_AUTOMOC ON)
-
-# Link directories
-link_directories(
-    ${ACE_LIBRARY_DIRS}
-    ${QRENCODE_LIBRARY_DIRS}
-    ${PNG_LIBRARY_DIRS}
+# Create executable - INCLUDE HEADERS HERE
+add_executable(pc_client 
+    ${PC_CLIENT_HEADERS}
+    ${PC_CLIENT_SOURCES}
+    ${COMMON_SOURCES}
 )
 
 # Link libraries
 target_link_libraries(pc_client
     Qt5::Core
     Qt5::Network
-    ${ACE_LIBRARIES}
-    ${CMAKE_THREAD_LIBS_INIT}
+    ${ACE_LIBRARY}
     ${OPENSSL_LIBRARIES}
-    ${QRENCODE_LIBRARIES}
+    ${QRENCODE_LIBRARY}
     ${PNG_LIBRARIES}
     ssl
     crypto
@@ -91,32 +92,16 @@ target_link_libraries(pc_client
     pthread
 )
 
-# Compiler flags
-target_compile_options(pc_client PRIVATE
-    -Wall
-    -Wextra
-    -Wpedantic
-    -Wno-unused-parameter
-)
-
-# Add definitions
-target_compile_definitions(pc_client PRIVATE
-    QT_NO_DEBUG_OUTPUT
-)
-
-# Installation
-install(TARGETS pc_client DESTINATION bin)
-
 # Print configuration summary
 message(STATUS "===========================================")
 message(STATUS "PC Client Configuration Summary")
 message(STATUS "===========================================")
 message(STATUS "C++ Standard: ${CMAKE_CXX_STANDARD}")
 message(STATUS "Build Type: ${CMAKE_BUILD_TYPE}")
-message(STATUS "ACE Include: ${ACE_INCLUDE_DIRS}")
-message(STATUS "ACE Libraries: ${ACE_LIBRARIES}")
-message(STATUS "QREncode Include: ${QRENCODE_INCLUDE_DIRS}")
-message(STATUS "QREncode Libraries: ${QRENCODE_LIBRARIES}")
+message(STATUS "ACE Include: ${ACE_INCLUDE_DIR}")
+message(STATUS "ACE Libraries: ${ACE_LIBRARY}")
+message(STATUS "QREncode Include: ${QRENCODE_INCLUDE_DIR}")
+message(STATUS "QREncode Libraries: ${QRENCODE_LIBRARY}")
 message(STATUS "PNG Include: ${PNG_INCLUDE_DIRS}")
 message(STATUS "PNG Libraries: ${PNG_LIBRARIES}")
 message(STATUS "OpenSSL Include: ${OPENSSL_INCLUDE_DIR}")

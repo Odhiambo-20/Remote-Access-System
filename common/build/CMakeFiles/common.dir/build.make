@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/victor/Documents/Desktop/remote-access-system/common
+CMAKE_SOURCE_DIR = /home/victor/Videos/remote-access-system/common
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/victor/Documents/Desktop/remote-access-system/common/build
+CMAKE_BINARY_DIR = /home/victor/Videos/remote-access-system/common/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/common.dir/depend.make
@@ -70,60 +70,60 @@ include CMakeFiles/common.dir/progress.make
 include CMakeFiles/common.dir/flags.make
 
 CMakeFiles/common.dir/src/utils.cpp.o: CMakeFiles/common.dir/flags.make
-CMakeFiles/common.dir/src/utils.cpp.o: /home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp
+CMakeFiles/common.dir/src/utils.cpp.o: /home/victor/Videos/remote-access-system/common/src/utils.cpp
 CMakeFiles/common.dir/src/utils.cpp.o: CMakeFiles/common.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/common.dir/src/utils.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common.dir/src/utils.cpp.o -MF CMakeFiles/common.dir/src/utils.cpp.o.d -o CMakeFiles/common.dir/src/utils.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/common.dir/src/utils.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common.dir/src/utils.cpp.o -MF CMakeFiles/common.dir/src/utils.cpp.o.d -o CMakeFiles/common.dir/src/utils.cpp.o -c /home/victor/Videos/remote-access-system/common/src/utils.cpp
 
 CMakeFiles/common.dir/src/utils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common.dir/src/utils.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp > CMakeFiles/common.dir/src/utils.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/common/src/utils.cpp > CMakeFiles/common.dir/src/utils.cpp.i
 
 CMakeFiles/common.dir/src/utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common.dir/src/utils.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp -o CMakeFiles/common.dir/src/utils.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/common/src/utils.cpp -o CMakeFiles/common.dir/src/utils.cpp.s
 
 CMakeFiles/common.dir/src/protocol.cpp.o: CMakeFiles/common.dir/flags.make
-CMakeFiles/common.dir/src/protocol.cpp.o: /home/victor/Documents/Desktop/remote-access-system/common/src/protocol.cpp
+CMakeFiles/common.dir/src/protocol.cpp.o: /home/victor/Videos/remote-access-system/common/src/protocol.cpp
 CMakeFiles/common.dir/src/protocol.cpp.o: CMakeFiles/common.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/common.dir/src/protocol.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common.dir/src/protocol.cpp.o -MF CMakeFiles/common.dir/src/protocol.cpp.o.d -o CMakeFiles/common.dir/src/protocol.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/common/src/protocol.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/common.dir/src/protocol.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common.dir/src/protocol.cpp.o -MF CMakeFiles/common.dir/src/protocol.cpp.o.d -o CMakeFiles/common.dir/src/protocol.cpp.o -c /home/victor/Videos/remote-access-system/common/src/protocol.cpp
 
 CMakeFiles/common.dir/src/protocol.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common.dir/src/protocol.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/common/src/protocol.cpp > CMakeFiles/common.dir/src/protocol.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/common/src/protocol.cpp > CMakeFiles/common.dir/src/protocol.cpp.i
 
 CMakeFiles/common.dir/src/protocol.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common.dir/src/protocol.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/common/src/protocol.cpp -o CMakeFiles/common.dir/src/protocol.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/common/src/protocol.cpp -o CMakeFiles/common.dir/src/protocol.cpp.s
 
 CMakeFiles/common.dir/src/crypto.cpp.o: CMakeFiles/common.dir/flags.make
-CMakeFiles/common.dir/src/crypto.cpp.o: /home/victor/Documents/Desktop/remote-access-system/common/src/crypto.cpp
+CMakeFiles/common.dir/src/crypto.cpp.o: /home/victor/Videos/remote-access-system/common/src/crypto.cpp
 CMakeFiles/common.dir/src/crypto.cpp.o: CMakeFiles/common.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/common.dir/src/crypto.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common.dir/src/crypto.cpp.o -MF CMakeFiles/common.dir/src/crypto.cpp.o.d -o CMakeFiles/common.dir/src/crypto.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/common/src/crypto.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/common.dir/src/crypto.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common.dir/src/crypto.cpp.o -MF CMakeFiles/common.dir/src/crypto.cpp.o.d -o CMakeFiles/common.dir/src/crypto.cpp.o -c /home/victor/Videos/remote-access-system/common/src/crypto.cpp
 
 CMakeFiles/common.dir/src/crypto.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common.dir/src/crypto.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/common/src/crypto.cpp > CMakeFiles/common.dir/src/crypto.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/common/src/crypto.cpp > CMakeFiles/common.dir/src/crypto.cpp.i
 
 CMakeFiles/common.dir/src/crypto.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common.dir/src/crypto.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/common/src/crypto.cpp -o CMakeFiles/common.dir/src/crypto.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/common/src/crypto.cpp -o CMakeFiles/common.dir/src/crypto.cpp.s
 
 CMakeFiles/common.dir/src/hardware_id.cpp.o: CMakeFiles/common.dir/flags.make
-CMakeFiles/common.dir/src/hardware_id.cpp.o: /home/victor/Documents/Desktop/remote-access-system/common/src/hardware_id.cpp
+CMakeFiles/common.dir/src/hardware_id.cpp.o: /home/victor/Videos/remote-access-system/common/src/hardware_id.cpp
 CMakeFiles/common.dir/src/hardware_id.cpp.o: CMakeFiles/common.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/common.dir/src/hardware_id.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common.dir/src/hardware_id.cpp.o -MF CMakeFiles/common.dir/src/hardware_id.cpp.o.d -o CMakeFiles/common.dir/src/hardware_id.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/common/src/hardware_id.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/common.dir/src/hardware_id.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common.dir/src/hardware_id.cpp.o -MF CMakeFiles/common.dir/src/hardware_id.cpp.o.d -o CMakeFiles/common.dir/src/hardware_id.cpp.o -c /home/victor/Videos/remote-access-system/common/src/hardware_id.cpp
 
 CMakeFiles/common.dir/src/hardware_id.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common.dir/src/hardware_id.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/common/src/hardware_id.cpp > CMakeFiles/common.dir/src/hardware_id.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/common/src/hardware_id.cpp > CMakeFiles/common.dir/src/hardware_id.cpp.i
 
 CMakeFiles/common.dir/src/hardware_id.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common.dir/src/hardware_id.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/common/src/hardware_id.cpp -o CMakeFiles/common.dir/src/hardware_id.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/common/src/hardware_id.cpp -o CMakeFiles/common.dir/src/hardware_id.cpp.s
 
 # Object files for target common
 common_OBJECTS = \
@@ -141,7 +141,7 @@ libcommon.a: CMakeFiles/common.dir/src/crypto.cpp.o
 libcommon.a: CMakeFiles/common.dir/src/hardware_id.cpp.o
 libcommon.a: CMakeFiles/common.dir/build.make
 libcommon.a: CMakeFiles/common.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libcommon.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/victor/Videos/remote-access-system/common/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libcommon.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/common.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/common.dir/link.txt --verbose=$(VERBOSE)
 
@@ -154,6 +154,6 @@ CMakeFiles/common.dir/clean:
 .PHONY : CMakeFiles/common.dir/clean
 
 CMakeFiles/common.dir/depend:
-	cd /home/victor/Documents/Desktop/remote-access-system/common/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Documents/Desktop/remote-access-system/common /home/victor/Documents/Desktop/remote-access-system/common /home/victor/Documents/Desktop/remote-access-system/common/build /home/victor/Documents/Desktop/remote-access-system/common/build /home/victor/Documents/Desktop/remote-access-system/common/build/CMakeFiles/common.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/victor/Videos/remote-access-system/common/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Videos/remote-access-system/common /home/victor/Videos/remote-access-system/common /home/victor/Videos/remote-access-system/common/build /home/victor/Videos/remote-access-system/common/build /home/victor/Videos/remote-access-system/common/build/CMakeFiles/common.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/common.dir/depend
 

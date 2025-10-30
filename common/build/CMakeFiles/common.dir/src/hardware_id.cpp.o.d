@@ -1,7 +1,7 @@
 CMakeFiles/common.dir/src/hardware_id.cpp.o: \
- /home/victor/Documents/Desktop/remote-access-system/common/src/hardware_id.cpp \
+ /home/victor/Videos/remote-access-system/common/src/hardware_id.cpp \
  /usr/include/stdc-predef.h \
- /home/victor/Documents/Desktop/remote-access-system/common/src/../include/hardware_id.h \
+ /home/victor/Videos/remote-access-system/common/src/../include/hardware_id.h \
  /usr/include/c++/12/string \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \

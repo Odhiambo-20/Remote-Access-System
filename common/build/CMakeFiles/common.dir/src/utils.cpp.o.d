@@ -1,7 +1,7 @@
 CMakeFiles/common.dir/src/utils.cpp.o: \
- /home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp \
+ /home/victor/Videos/remote-access-system/common/src/utils.cpp \
  /usr/include/stdc-predef.h \
- /home/victor/Documents/Desktop/remote-access-system/common/src/../include/utils.h \
+ /home/victor/Videos/remote-access-system/common/include/utils.h \
  /usr/include/c++/12/string \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -115,9 +115,13 @@ CMakeFiles/common.dir/src/utils.cpp.o: \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/12/bits/charconv.h \
- /usr/include/c++/12/bits/basic_string.tcc \
- /usr/local/include/ace/Log_Msg.h /usr/local/include/ace/pre.h \
- /usr/local/include/ace/config-all.h /usr/local/include/ace/config-lite.h \
+ /usr/include/c++/12/bits/basic_string.tcc /usr/include/c++/12/vector \
+ /usr/include/c++/12/bits/stl_uninitialized.h \
+ /usr/include/c++/12/bits/stl_vector.h \
+ /usr/include/c++/12/bits/stl_bvector.h \
+ /usr/include/c++/12/bits/vector.tcc \
+ /usr/local/include/ace/Log_Priority.h /usr/local/include/ace/pre.h \
+ /usr/local/include/ace/config-lite.h \
  /usr/local/include/ace/config-macros.h /usr/local/include/ace/config.h \
  /usr/local/include/ace/config-linux.h \
  /usr/local/include/ace/config-linux-common.h \
@@ -136,8 +140,85 @@ CMakeFiles/common.dir/src/utils.cpp.o: \
  /usr/local/include/ace/ace_wchar.h /usr/include/c++/12/cwctype \
  /usr/include/wctype.h /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
  /usr/local/include/ace/ace_wchar.inl /usr/include/string.h \
- /usr/include/strings.h /usr/local/include/ace/OS_main.h \
- /usr/local/include/ace/ACE_export.h \
+ /usr/include/strings.h /usr/include/c++/12/chrono \
+ /usr/include/c++/12/bits/chrono.h /usr/include/c++/12/ratio \
+ /usr/include/c++/12/limits /usr/include/c++/12/ctime /usr/include/time.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/timex.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+ /usr/include/c++/12/bits/parse_numbers.h /usr/include/c++/12/random \
+ /usr/include/c++/12/cmath /usr/include/math.h \
+ /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+ /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+ /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+ /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
+ /usr/include/c++/12/bits/specfun.h /usr/include/c++/12/tr1/gamma.tcc \
+ /usr/include/c++/12/tr1/special_function_util.h \
+ /usr/include/c++/12/tr1/bessel_function.tcc \
+ /usr/include/c++/12/tr1/beta_function.tcc \
+ /usr/include/c++/12/tr1/ell_integral.tcc \
+ /usr/include/c++/12/tr1/exp_integral.tcc \
+ /usr/include/c++/12/tr1/hypergeometric.tcc \
+ /usr/include/c++/12/tr1/legendre_function.tcc \
+ /usr/include/c++/12/tr1/modified_bessel_func.tcc \
+ /usr/include/c++/12/tr1/poly_hermite.tcc \
+ /usr/include/c++/12/tr1/poly_laguerre.tcc \
+ /usr/include/c++/12/tr1/riemann_zeta.tcc \
+ /usr/include/c++/12/bits/random.h \
+ /usr/include/c++/12/bits/uniform_int_dist.h \
+ /usr/include/x86_64-linux-gnu/c++/12/bits/opt_random.h \
+ /usr/include/c++/12/bits/random.tcc /usr/include/c++/12/numeric \
+ /usr/include/c++/12/bits/stl_numeric.h /usr/include/c++/12/bit \
+ /usr/include/c++/12/pstl/glue_numeric_defs.h \
+ /usr/include/c++/12/pstl/execution_defs.h /usr/include/c++/12/sstream \
+ /usr/include/c++/12/istream /usr/include/c++/12/ios \
+ /usr/include/c++/12/exception /usr/include/c++/12/bits/exception_ptr.h \
+ /usr/include/c++/12/bits/cxxabi_init_exception.h \
+ /usr/include/c++/12/typeinfo /usr/include/c++/12/bits/nested_exception.h \
+ /usr/include/c++/12/bits/ios_base.h /usr/include/c++/12/ext/atomicity.h \
+ /usr/include/x86_64-linux-gnu/c++/12/bits/gthr.h \
+ /usr/include/x86_64-linux-gnu/c++/12/bits/gthr-default.h \
+ /usr/include/pthread.h /usr/include/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+ /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+ /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+ /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+ /usr/include/x86_64-linux-gnu/c++/12/bits/atomic_word.h \
+ /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
+ /usr/include/c++/12/bits/locale_classes.h \
+ /usr/include/c++/12/bits/locale_classes.tcc \
+ /usr/include/c++/12/system_error \
+ /usr/include/x86_64-linux-gnu/c++/12/bits/error_constants.h \
+ /usr/include/c++/12/stdexcept /usr/include/c++/12/streambuf \
+ /usr/include/c++/12/bits/streambuf.tcc \
+ /usr/include/c++/12/bits/basic_ios.h \
+ /usr/include/c++/12/bits/locale_facets.h \
+ /usr/include/x86_64-linux-gnu/c++/12/bits/ctype_base.h \
+ /usr/include/c++/12/bits/streambuf_iterator.h \
+ /usr/include/x86_64-linux-gnu/c++/12/bits/ctype_inline.h \
+ /usr/include/c++/12/bits/locale_facets.tcc \
+ /usr/include/c++/12/bits/basic_ios.tcc /usr/include/c++/12/ostream \
+ /usr/include/c++/12/bits/ostream.tcc \
+ /usr/include/c++/12/bits/istream.tcc \
+ /usr/include/c++/12/bits/sstream.tcc /usr/include/c++/12/iomanip \
+ /usr/include/c++/12/locale \
+ /usr/include/c++/12/bits/locale_facets_nonio.h \
+ /usr/include/x86_64-linux-gnu/c++/12/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/12/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/12/bits/codecvt.h \
+ /usr/include/c++/12/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/12/bits/locale_conv.h \
+ /usr/include/c++/12/bits/quoted_string.h \
+ /usr/local/include/ace/Log_Msg.h /usr/local/include/ace/config-all.h \
+ /usr/local/include/ace/OS_main.h /usr/local/include/ace/ACE_export.h \
  /usr/local/include/ace/Global_Macros.h /usr/local/include/ace/Assert.h \
  /usr/local/include/ace/OS_Errno.h /usr/local/include/ace/OS_NS_errno.h \
  /usr/local/include/ace/os_include/os_errno.h \
@@ -157,7 +238,6 @@ CMakeFiles/common.dir/src/utils.cpp.o: \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
  /usr/include/linux/limits.h \
- /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
@@ -185,9 +265,9 @@ CMakeFiles/common.dir/src/utils.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
  /usr/include/x86_64-linux-gnu/bits/param.h /usr/include/linux/param.h \
  /usr/include/x86_64-linux-gnu/asm/param.h \
- /usr/include/asm-generic/param.h /usr/local/include/ace/Log_Priority.h \
- /usr/local/include/ace/Synch_Traits.h /usr/local/include/ace/Lock.h \
- /usr/local/include/ace/Lock.inl /usr/local/include/ace/Basic_Types.h \
+ /usr/include/asm-generic/param.h /usr/local/include/ace/Synch_Traits.h \
+ /usr/local/include/ace/Lock.h /usr/local/include/ace/Lock.inl \
+ /usr/local/include/ace/Basic_Types.h \
  /usr/local/include/ace/os_include/os_float.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/float.h \
  /usr/local/include/ace/os_include/os_stdlib.h \
@@ -242,50 +322,14 @@ CMakeFiles/common.dir/src/utils.cpp.o: \
  /usr/local/include/ace/OS_NS_string.inl \
  /usr/local/include/ace/OS_NS_wchar.h \
  /usr/local/include/ace/os_include/os_wchar.h \
- /usr/local/include/ace/os_include/os_time.h /usr/include/time.h \
- /usr/include/x86_64-linux-gnu/bits/time.h \
- /usr/include/x86_64-linux-gnu/bits/timex.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+ /usr/local/include/ace/os_include/os_time.h \
  /usr/local/include/ace/os_include/os_string.h \
  /usr/local/include/ace/os_include/os_ctype.h \
  /usr/local/include/ace/OS_NS_wchar.inl \
  /usr/local/include/ace/OS_NS_unistd.h \
  /usr/local/include/ace/Time_Value.h /usr/local/include/ace/Truncate.h \
  /usr/local/include/ace/If_Then_Else.h \
- /usr/local/include/ace/Numeric_Limits.h /usr/include/c++/12/limits \
- /usr/include/c++/12/chrono /usr/include/c++/12/bits/chrono.h \
- /usr/include/c++/12/ratio /usr/include/c++/12/ctime \
- /usr/include/c++/12/bits/parse_numbers.h /usr/include/c++/12/ostream \
- /usr/include/c++/12/ios /usr/include/c++/12/exception \
- /usr/include/c++/12/bits/exception_ptr.h \
- /usr/include/c++/12/bits/cxxabi_init_exception.h \
- /usr/include/c++/12/typeinfo /usr/include/c++/12/bits/nested_exception.h \
- /usr/include/c++/12/bits/ios_base.h /usr/include/c++/12/ext/atomicity.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/gthr.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/gthr-default.h \
- /usr/include/pthread.h /usr/include/sched.h \
- /usr/include/x86_64-linux-gnu/bits/sched.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
- /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
- /usr/include/x86_64-linux-gnu/bits/setjmp.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/atomic_word.h \
- /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
- /usr/include/c++/12/bits/locale_classes.h \
- /usr/include/c++/12/bits/locale_classes.tcc \
- /usr/include/c++/12/system_error \
- /usr/include/x86_64-linux-gnu/c++/12/bits/error_constants.h \
- /usr/include/c++/12/stdexcept /usr/include/c++/12/streambuf \
- /usr/include/c++/12/bits/streambuf.tcc \
- /usr/include/c++/12/bits/basic_ios.h \
- /usr/include/c++/12/bits/locale_facets.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/ctype_base.h \
- /usr/include/c++/12/bits/streambuf_iterator.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/ctype_inline.h \
- /usr/include/c++/12/bits/locale_facets.tcc \
- /usr/include/c++/12/bits/basic_ios.tcc \
- /usr/include/c++/12/bits/ostream.tcc \
+ /usr/local/include/ace/Numeric_Limits.h \
  /usr/local/include/ace/Time_Value.inl \
  /usr/local/include/ace/OS_NS_unistd.inl \
  /usr/local/include/ace/OS_NS_sys_utsname.h \
@@ -315,25 +359,10 @@ CMakeFiles/common.dir/src/utils.cpp.o: \
  /usr/include/c++/12/bits/algorithmfwd.h \
  /usr/include/c++/12/bits/stl_heap.h \
  /usr/include/c++/12/bits/stl_tempbuf.h \
- /usr/include/c++/12/bits/uniform_int_dist.h \
  /usr/include/c++/12/pstl/glue_algorithm_defs.h \
- /usr/include/c++/12/pstl/execution_defs.h \
  /usr/local/include/ace/Intrusive_List.cpp \
  /usr/local/include/ace/Intrusive_List_Node.h \
  /usr/local/include/ace/Intrusive_List_Node.inl \
  /usr/local/include/ace/Intrusive_List_Node.cpp \
  /usr/local/include/ace/Cleanup.inl \
- /usr/local/include/ace/os_include/os_search.h /usr/include/search.h \
- /usr/include/c++/12/fstream /usr/include/c++/12/istream \
- /usr/include/c++/12/bits/istream.tcc /usr/include/c++/12/bits/codecvt.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/basic_file.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/c++io.h \
- /usr/include/c++/12/bits/fstream.tcc /usr/include/c++/12/sstream \
- /usr/include/c++/12/bits/sstream.tcc /usr/include/c++/12/iomanip \
- /usr/include/c++/12/locale \
- /usr/include/c++/12/bits/locale_facets_nonio.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/time_members.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/messages_members.h \
- /usr/include/libintl.h /usr/include/c++/12/bits/locale_facets_nonio.tcc \
- /usr/include/c++/12/bits/locale_conv.h \
- /usr/include/c++/12/bits/quoted_string.h
+ /usr/local/include/ace/os_include/os_search.h /usr/include/search.h

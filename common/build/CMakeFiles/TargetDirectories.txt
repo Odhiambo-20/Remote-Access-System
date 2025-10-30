@@ -1,3 +1,3 @@
-/home/victor/Documents/Desktop/remote-access-system/common/build/CMakeFiles/common.dir
-/home/victor/Documents/Desktop/remote-access-system/common/build/CMakeFiles/edit_cache.dir
-/home/victor/Documents/Desktop/remote-access-system/common/build/CMakeFiles/rebuild_cache.dir
+/home/victor/Videos/remote-access-system/common/build/CMakeFiles/common.dir
+/home/victor/Videos/remote-access-system/common/build/CMakeFiles/edit_cache.dir
+/home/victor/Videos/remote-access-system/common/build/CMakeFiles/rebuild_cache.dir

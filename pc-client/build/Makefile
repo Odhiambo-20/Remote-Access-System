@@ -31,9 +31,6 @@ default_target: all
 
 .SUFFIXES: .hpux_make_needs_suffix_list
 
-# Produce verbose output by default.
-VERBOSE = 1
-
 # Command-line flag to silence nested $(MAKE).
 $(VERBOSE)MAKESILENT = -s
 
@@ -88,51 +85,6 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles /home/victor/Videos/remote-access-system/pc-client/build//CMakeFiles/progress.marks
@@ -176,6 +128,91 @@ pc_client: cmake_check_build_system
 pc_client/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/build
 .PHONY : pc_client/fast
+
+#=============================================================================
+# Target rules for targets named pc_client_autogen
+
+# Build rule for target.
+pc_client_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pc_client_autogen
+.PHONY : pc_client_autogen
+
+# fast build rule for target.
+pc_client_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client_autogen.dir/build.make CMakeFiles/pc_client_autogen.dir/build
+.PHONY : pc_client_autogen/fast
+
+home/victor/Videos/remote-access-system/common/src/crypto.o: home/victor/Videos/remote-access-system/common/src/crypto.cpp.o
+.PHONY : home/victor/Videos/remote-access-system/common/src/crypto.o
+
+# target to build an object file
+home/victor/Videos/remote-access-system/common/src/crypto.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Videos/remote-access-system/common/src/crypto.cpp.o
+.PHONY : home/victor/Videos/remote-access-system/common/src/crypto.cpp.o
+
+home/victor/Videos/remote-access-system/common/src/crypto.i: home/victor/Videos/remote-access-system/common/src/crypto.cpp.i
+.PHONY : home/victor/Videos/remote-access-system/common/src/crypto.i
+
+# target to preprocess a source file
+home/victor/Videos/remote-access-system/common/src/crypto.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Videos/remote-access-system/common/src/crypto.cpp.i
+.PHONY : home/victor/Videos/remote-access-system/common/src/crypto.cpp.i
+
+home/victor/Videos/remote-access-system/common/src/crypto.s: home/victor/Videos/remote-access-system/common/src/crypto.cpp.s
+.PHONY : home/victor/Videos/remote-access-system/common/src/crypto.s
+
+# target to generate assembly for a file
+home/victor/Videos/remote-access-system/common/src/crypto.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Videos/remote-access-system/common/src/crypto.cpp.s
+.PHONY : home/victor/Videos/remote-access-system/common/src/crypto.cpp.s
+
+home/victor/Videos/remote-access-system/common/src/utils.o: home/victor/Videos/remote-access-system/common/src/utils.cpp.o
+.PHONY : home/victor/Videos/remote-access-system/common/src/utils.o
+
+# target to build an object file
+home/victor/Videos/remote-access-system/common/src/utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Videos/remote-access-system/common/src/utils.cpp.o
+.PHONY : home/victor/Videos/remote-access-system/common/src/utils.cpp.o
+
+home/victor/Videos/remote-access-system/common/src/utils.i: home/victor/Videos/remote-access-system/common/src/utils.cpp.i
+.PHONY : home/victor/Videos/remote-access-system/common/src/utils.i
+
+# target to preprocess a source file
+home/victor/Videos/remote-access-system/common/src/utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Videos/remote-access-system/common/src/utils.cpp.i
+.PHONY : home/victor/Videos/remote-access-system/common/src/utils.cpp.i
+
+home/victor/Videos/remote-access-system/common/src/utils.s: home/victor/Videos/remote-access-system/common/src/utils.cpp.s
+.PHONY : home/victor/Videos/remote-access-system/common/src/utils.s
+
+# target to generate assembly for a file
+home/victor/Videos/remote-access-system/common/src/utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Videos/remote-access-system/common/src/utils.cpp.s
+.PHONY : home/victor/Videos/remote-access-system/common/src/utils.cpp.s
+
+pc_client_autogen/mocs_compilation.o: pc_client_autogen/mocs_compilation.cpp.o
+.PHONY : pc_client_autogen/mocs_compilation.o
+
+# target to build an object file
+pc_client_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/pc_client_autogen/mocs_compilation.cpp.o
+.PHONY : pc_client_autogen/mocs_compilation.cpp.o
+
+pc_client_autogen/mocs_compilation.i: pc_client_autogen/mocs_compilation.cpp.i
+.PHONY : pc_client_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+pc_client_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/pc_client_autogen/mocs_compilation.cpp.i
+.PHONY : pc_client_autogen/mocs_compilation.cpp.i
+
+pc_client_autogen/mocs_compilation.s: pc_client_autogen/mocs_compilation.cpp.s
+.PHONY : pc_client_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+pc_client_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/pc_client_autogen/mocs_compilation.cpp.s
+.PHONY : pc_client_autogen/mocs_compilation.cpp.s
 
 src/account_manager.o: src/account_manager.cpp.o
 .PHONY : src/account_manager.o
@@ -448,12 +485,18 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... install/strip"
-	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... pc_client_autogen"
 	@echo "... pc_client"
+	@echo "... home/victor/Videos/remote-access-system/common/src/crypto.o"
+	@echo "... home/victor/Videos/remote-access-system/common/src/crypto.i"
+	@echo "... home/victor/Videos/remote-access-system/common/src/crypto.s"
+	@echo "... home/victor/Videos/remote-access-system/common/src/utils.o"
+	@echo "... home/victor/Videos/remote-access-system/common/src/utils.i"
+	@echo "... home/victor/Videos/remote-access-system/common/src/utils.s"
+	@echo "... pc_client_autogen/mocs_compilation.o"
+	@echo "... pc_client_autogen/mocs_compilation.i"
+	@echo "... pc_client_autogen/mocs_compilation.s"
 	@echo "... src/account_manager.o"
 	@echo "... src/account_manager.i"
 	@echo "... src/account_manager.s"

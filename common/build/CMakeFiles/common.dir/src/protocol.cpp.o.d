@@ -1,7 +1,7 @@
 CMakeFiles/common.dir/src/protocol.cpp.o: \
- /home/victor/Documents/Desktop/remote-access-system/common/src/protocol.cpp \
+ /home/victor/Videos/remote-access-system/common/src/protocol.cpp \
  /usr/include/stdc-predef.h \
- /home/victor/Documents/Desktop/remote-access-system/common/include/protocol.h \
+ /home/victor/Videos/remote-access-system/common/include/protocol.h \
  /usr/include/c++/12/string \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \

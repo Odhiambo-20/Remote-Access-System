@@ -120,8 +120,7 @@ CMakeFiles/pc_client.dir/src/qr_generator.cpp.o: \
  /usr/include/c++/12/bits/stl_vector.h \
  /usr/include/c++/12/bits/stl_bvector.h \
  /usr/include/c++/12/bits/vector.tcc /usr/include/qrencode.h \
- /usr/include/libpng16/png.h /usr/include/libpng16/pnglibconf.h \
- /usr/include/libpng16/pngconf.h \
+ /usr/include/png.h /usr/include/pnglibconf.h /usr/include/pngconf.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \

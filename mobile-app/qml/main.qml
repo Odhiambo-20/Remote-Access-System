@@ -706,7 +706,7 @@ ApplicationWindow {
                 id: qrCodeRefreshTimer
                 interval: 2000
                 repeat: true
-                running: qrCodeTabButton.checked
+                running: qrCodeTabButton.checked && !qrCodeLoaded
                 onTriggered: {
                     loadQRCode()
                 }

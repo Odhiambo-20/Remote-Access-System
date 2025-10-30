@@ -1,12 +1,9 @@
-#include "protocol.h"
 #ifndef ACCOUNT_MANAGER_H
 #define ACCOUNT_MANAGER_H
 
 #include <string>
 #include <ace/ACE.h>
 #include <ace/SOCK_Stream.h>
-#include "../../common/include/protocol.h"
-#include "../../common/include/crypto.h"
 
 namespace RemoteAccessSystem {
 namespace Common {
@@ -25,7 +22,6 @@ public:
     std::string GetCurrentUser() const { return current_user_; }
 
 private:
-    Protocol protocol_;
     ACE_SOCK_Stream socket_;
     std::string config_file_;
     bool authenticated_;

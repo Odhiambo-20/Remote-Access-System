@@ -54,6 +54,15 @@ make
 ./relay_server
 ```
 
+# 1. Kill existing process with sudo
+sudo pkill -9 relay_server
+
+# 2. Confirm port is free
+sudo netstat -tlnp | grep :2810
+
+# 3. Start relay server (without sudo)
+./relay_server
+
 #### PC Client:
 ```bash
 cd pc-client/build

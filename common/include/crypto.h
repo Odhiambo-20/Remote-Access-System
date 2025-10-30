@@ -1,33 +1,42 @@
-#ifndef CRYPTO_H
-#define CRYPTO_H
+#ifndef REMOTE_ACCESS_SYSTEM_CRYPTO_H
+#define REMOTE_ACCESS_SYSTEM_CRYPTO_H
 
 #include <vector>
 #include <string>
-#include <cstdint>
 
 namespace RemoteAccessSystem {
 namespace Common {
 
 class Crypto {
 public:
-    // Generate a random 256-bit AES key
-    static std::vector<uint8_t> GenerateKey();
+    Crypto();
+    ~Crypto();
+
+    // Generate encryption key (256-bit)
+    static std::vector<unsigned char> GenerateKey();
     
-    // Generate a random 128-bit IV
-    static std::vector<uint8_t> GenerateIV();
+    // Generate initialization vector (128-bit)
+    static std::vector<unsigned char> GenerateIV();
     
     // Encrypt data using AES-256-CBC
-    std::vector<uint8_t> Encrypt(const std::vector<uint8_t>& plaintext,
-                                 const std::vector<uint8_t>& key,
-                                 const std::vector<uint8_t>& iv) const;
+    std::vector<unsigned char> Encrypt(
+        const std::vector<unsigned char>& plaintext,
+        const std::vector<unsigned char>& key,
+        const std::vector<unsigned char>& iv) const;
     
     // Decrypt data using AES-256-CBC
-    std::vector<uint8_t> Decrypt(const std::vector<uint8_t>& ciphertext,
-                                 const std::vector<uint8_t>& key,
-                                 const std::vector<uint8_t>& iv) const;
+    std::vector<unsigned char> Decrypt(
+        const std::vector<unsigned char>& ciphertext,
+        const std::vector<unsigned char>& key,
+        const std::vector<unsigned char>& iv) const;
+
+private:
+    // Disable copy constructor and assignment operator
+    Crypto(const Crypto&) = delete;
+    Crypto& operator=(const Crypto&) = delete;
 };
 
 } // namespace Common
 } // namespace RemoteAccessSystem
 
-#endif // CRYPTO_H
+#endif // REMOTE_ACCESS_SYSTEM_CRYPTO_H

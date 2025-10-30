@@ -1,20 +1,33 @@
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef REMOTE_ACCESS_SYSTEM_UTILS_H
+#define REMOTE_ACCESS_SYSTEM_UTILS_H
 
 #include <string>
-#include <ace/Log_Msg.h>
+#include <vector>
+#include <cstdint>
+#include <ace/Log_Priority.h>
 
 namespace RemoteAccessSystem {
 namespace Common {
 
 class Utils {
 public:
-    static bool ReadConfig(const std::string& config_file, std::string& content);
+    // Get current timestamp in milliseconds
+    static uint64_t GetTimestamp();
+    
+    // Convert string to byte vector
+    static std::vector<unsigned char> StringToBytes(const std::string& str);
+    
+    // Convert byte vector to string
+    static std::string BytesToString(const std::vector<unsigned char>& bytes);
+    
+    // Generate a random token of specified length
+    static std::string GenerateRandomToken(size_t length);
+    
+    // Logging utility function
     static void Log(ACE_Log_Priority priority, const std::string& message);
-     static std::string GetTimestampString();
 };
 
 } // namespace Common
 } // namespace RemoteAccessSystem
 
-#endif // UTILS_H
+#endif // REMOTE_ACCESS_SYSTEM_UTILS_H

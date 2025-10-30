@@ -33,24 +33,22 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.25/Modules/CMakeParseArguments.cmake"
   "/usr/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake"
   "/usr/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake"
-  "/usr/share/cmake-3.25/Modules/CheckCSourceCompiles.cmake"
-  "/usr/share/cmake-3.25/Modules/CheckIncludeFile.cmake"
-  "/usr/share/cmake-3.25/Modules/CheckLibraryExists.cmake"
   "/usr/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
   "/usr/share/cmake-3.25/Modules/Compiler/GNU-C.cmake"
   "/usr/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake"
   "/usr/share/cmake-3.25/Modules/Compiler/GNU.cmake"
   "/usr/share/cmake-3.25/Modules/FindOpenSSL.cmake"
+  "/usr/share/cmake-3.25/Modules/FindPNG.cmake"
   "/usr/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake"
   "/usr/share/cmake-3.25/Modules/FindPackageMessage.cmake"
   "/usr/share/cmake-3.25/Modules/FindPkgConfig.cmake"
-  "/usr/share/cmake-3.25/Modules/FindThreads.cmake"
-  "/usr/share/cmake-3.25/Modules/Internal/CheckSourceCompiles.cmake"
+  "/usr/share/cmake-3.25/Modules/FindZLIB.cmake"
   "/usr/share/cmake-3.25/Modules/Platform/Linux-GNU-C.cmake"
   "/usr/share/cmake-3.25/Modules/Platform/Linux-GNU-CXX.cmake"
   "/usr/share/cmake-3.25/Modules/Platform/Linux-GNU.cmake"
   "/usr/share/cmake-3.25/Modules/Platform/Linux.cmake"
   "/usr/share/cmake-3.25/Modules/Platform/UnixPaths.cmake"
+  "/usr/share/cmake-3.25/Modules/SelectLibraryConfigurations.cmake"
   )
 
 # The corresponding makefile is:
@@ -61,10 +59,12 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
+  "CMakeFiles/pc_client_autogen.dir/AutogenInfo.json"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/pc_client.dir/DependInfo.cmake"
+  "CMakeFiles/pc_client_autogen.dir/DependInfo.cmake"
   )

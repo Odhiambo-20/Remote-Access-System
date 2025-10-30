@@ -2,7 +2,6 @@ CMakeFiles/pc_client.dir/src/account_manager.cpp.o: \
  /home/victor/Videos/remote-access-system/pc-client/src/account_manager.cpp \
  /usr/include/stdc-predef.h \
  /home/victor/Videos/remote-access-system/pc-client/include/account_manager.h \
- /home/victor/Videos/remote-access-system/pc-client/../common/include/protocol.h \
  /usr/include/c++/12/string \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -116,11 +115,7 @@ CMakeFiles/pc_client.dir/src/account_manager.cpp.o: \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
  /usr/include/c++/12/bits/charconv.h \
- /usr/include/c++/12/bits/basic_string.tcc /usr/include/c++/12/vector \
- /usr/include/c++/12/bits/stl_uninitialized.h \
- /usr/include/c++/12/bits/stl_vector.h \
- /usr/include/c++/12/bits/stl_bvector.h \
- /usr/include/c++/12/bits/vector.tcc /usr/local/include/ace/ACE.h \
+ /usr/include/c++/12/bits/basic_string.tcc /usr/local/include/ace/ACE.h \
  /usr/local/include/ace/pre.h /usr/local/include/ace/config-lite.h \
  /usr/local/include/ace/config-macros.h /usr/local/include/ace/config.h \
  /usr/local/include/ace/config-linux.h \
@@ -392,13 +387,14 @@ CMakeFiles/pc_client.dir/src/account_manager.cpp.o: \
  /usr/local/include/ace/Flag_Manip.inl /usr/local/include/ace/IPC_SAP.inl \
  /usr/local/include/ace/SOCK.inl /usr/local/include/ace/SOCK_IO.inl \
  /usr/local/include/ace/INET_Addr.h /usr/local/include/ace/Sock_Connect.h \
- /usr/local/include/ace/INET_Addr.inl \
+ /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_uninitialized.h \
+ /usr/include/c++/12/bits/stl_vector.h \
+ /usr/include/c++/12/bits/stl_bvector.h \
+ /usr/include/c++/12/bits/vector.tcc /usr/local/include/ace/INET_Addr.inl \
  /usr/local/include/ace/OS_NS_arpa_inet.h \
  /usr/local/include/ace/OS_NS_arpa_inet.inl \
  /usr/local/include/ace/SOCK_Stream.inl \
- /home/victor/Videos/remote-access-system/pc-client/include/../../common/include/protocol.h \
- /home/victor/Videos/remote-access-system/pc-client/include/../../common/include/crypto.h \
  /home/victor/Videos/remote-access-system/pc-client/src/../../common/include/utils.h \
- /usr/local/include/ace/Log_Msg.h /usr/local/include/ace/Log_Priority.h \
+ /usr/local/include/ace/Log_Priority.h /usr/local/include/ace/Log_Msg.h \
  /usr/local/include/ace/Synch_Traits.h /usr/local/include/ace/Lock.h \
  /usr/local/include/ace/Lock.inl /usr/local/include/ace/Log_Msg.inl
