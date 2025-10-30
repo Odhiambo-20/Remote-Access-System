@@ -2,9 +2,9 @@
 #define FILE_HANDLER_H
 
 #include <string>
+#include <map>
 #include <thread>
 #include <atomic>
-#include <map>
 
 // Forward declaration
 namespace RemoteAccessSystem {
@@ -23,17 +23,6 @@ public:
     std::string getFilePath(const std::string& token);
 
 private:
-    void run();
-    void processRequest(const std::string& request);
-    
-    void handleListDir(const std::string& path);
-    void handleGenerateUrl(const std::string& filePath);
-    void handleDownload(const std::string& filePath);
-    
-    void sendResponse(const std::string& response);
-    std::string generateToken(size_t length);
-    std::string getLocalIPAddress();
-
     std::string pcId;
     std::string relayHost;
     int relayPort;
@@ -42,7 +31,17 @@ private:
     std::thread handlerThread;
     std::thread heartbeatThread;
     std::map<std::string, std::string> shareTokens;
-    RemoteAccessSystem::Common::HTTPServer* httpServer_;  // Add HTTPServer pointer
+    RemoteAccessSystem::Common::HTTPServer* httpServer_;
+
+    void run();
+    void processRequest(const std::string& request);
+    void handleListDir(const std::string& path);
+    void handleGenerateUrl(const std::string& filePath);
+    void handleDownload(const std::string& filePath);
+    void handleUpload(const std::string& remotePath, long long fileSize);  // ADD THIS LINE
+    void sendResponse(const std::string& response);
+    std::string generateToken(size_t length);
+    std::string getLocalIPAddress();
 };
 
 #endif // FILE_HANDLER_H
