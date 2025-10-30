@@ -10,8 +10,9 @@ namespace Common {
 std::vector<std::string> FileManager::ListDirectory(const std::string& path) {
     std::vector<std::string> files;
     if (!IsValidPath(path)) {
-        ACE_ERROR((LM_ERROR, ACE_TEXT( "Invalid directory path: " + path);
-        return files;
+        ACE_ERROR((LM_ERROR, ACE_TEXT("Invalid directory path: %s\n"), path.c_str()));
+        return std::vector<std::string>();
+        
     }
 
     for (const auto& entry : std::filesystem::directory_iterator(path)) {

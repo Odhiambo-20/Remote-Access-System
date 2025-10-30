@@ -23,8 +23,10 @@ pkg_check_modules(PNG REQUIRED libpng)
 find_package(Qt5 COMPONENTS Core Network REQUIRED)
 
 # Include directories
+# Include directories
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../common/include    # Add this line
     ${ACE_INCLUDE_DIRS}
     ${OPENSSL_INCLUDE_DIR}
     ${QRENCODE_INCLUDE_DIRS}

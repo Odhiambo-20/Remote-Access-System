@@ -1,3 +1,7 @@
 /home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles/pc_client.dir
 /home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles/edit_cache.dir
 /home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles/rebuild_cache.dir
+/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles/list_install_components.dir
+/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles/install.dir
+/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles/install/local.dir
+/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles/install/strip.dir

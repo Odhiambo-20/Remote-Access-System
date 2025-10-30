@@ -316,6 +316,11 @@ CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cp
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qstring.h \
  /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/moc_connection_manager.cpp \
  /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/../../../src/connection_manager.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QMap \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qmap.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QTimer \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qtimer.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qbasictimer.h \
  /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/moc_filemanager.cpp \
  /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/../../../src/filemanager.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QFile \

@@ -1,357 +1,347 @@
 #include "file_handler.h"
-#include <QTcpSocket>
-#include <QFile>
-#include <QDir>
-#include <QFileInfo>
-#include <QDebug>
-#include <QThread>
-#include <QNetworkInterface>
-#include <QHostAddress>
+#include "http_server.h"
+#include <iostream>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <unistd.h>
+#include <dirent.h>
+#include <sys/stat.h>
+#include <fstream>
+#include <sstream>
+#include <cstring>
+#include <random>
+#include <iomanip>
+#include <thread>
+#include <chrono>
+#include <ifaddrs.h>
+#include <net/if.h>
 
-FileHandler::FileHandler(QObject *parent)
-    : QObject(parent), relaySocket(nullptr), isConnected(false)
+FileHandler::FileHandler(const std::string& pcId, RemoteAccessSystem::Common::HTTPServer* httpServer)
+    : pcId(pcId), relaySocket(-1), running(false), httpServer_(httpServer)
 {
-    qDebug() << "[FileHandler] Initialized";
 }
 
 FileHandler::~FileHandler()
 {
-    cleanup();
+    shutdown();
 }
 
-QString FileHandler::getLocalIPAddress()
+std::string FileHandler::getFilePath(const std::string& token)
 {
-    // Get all network interfaces
-    QList<QHostAddress> addresses = QNetworkInterface::allAddresses();
+    auto it = shareTokens.find(token);
+    if (it != shareTokens.end()) {
+        return it->second;
+    }
+    return "";
+}
+
+std::string FileHandler::getLocalIPAddress()
+{
+    struct ifaddrs *ifaddr, *ifa;
+    char host[NI_MAXHOST];
+    std::string result = "localhost";
+    
+    if (getifaddrs(&ifaddr) == -1) {
+        std::cerr << "[FileHandler] getifaddrs failed" << std::endl;
+        return result;
+    }
     
     // Look for IPv4 address that's not localhost
-    for (const QHostAddress &address : addresses) {
-        // Check if it's IPv4 and not localhost
-        if (address.protocol() == QAbstractSocket::IPv4Protocol && 
-            !address.isLoopback()) {
-            QString ip = address.toString();
-            // Prefer 192.168.x.x or 10.x.x.x addresses (common local network ranges)
-            if (ip.startsWith("192.168.") || ip.startsWith("10.") || ip.startsWith("172.")) {
-                qDebug() << "[FileHandler] Using local IP:" << ip;
-                return ip;
+    for (ifa = ifaddr; ifa != nullptr; ifa = ifa->ifa_next) {
+        if (ifa->ifa_addr == nullptr)
+            continue;
+        
+        int family = ifa->ifa_addr->sa_family;
+        
+        // Check for IPv4
+        if (family == AF_INET) {
+            int s = getnameinfo(ifa->ifa_addr, sizeof(struct sockaddr_in),
+                              host, NI_MAXHOST, nullptr, 0, NI_NUMERICHOST);
+            
+            if (s != 0) {
+                continue;
+            }
+            
+            std::string ip(host);
+            
+            // Skip loopback
+            if (ip == "127.0.0.1") {
+                continue;
+            }
+            
+            // Prefer common local network ranges
+            if (ip.substr(0, 8) == "192.168." || 
+                ip.substr(0, 3) == "10." || 
+                ip.substr(0, 4) == "172.") {
+                result = ip;
+                std::cout << "[FileHandler] Using local IP: " << ip << std::endl;
+                freeifaddrs(ifaddr);
+                return result;
+            }
+            
+            // Store any non-loopback IPv4 as fallback
+            if (result == "localhost") {
+                result = ip;
             }
         }
     }
     
-    // Fallback: return first non-loopback IPv4 address
-    for (const QHostAddress &address : addresses) {
-        if (address.protocol() == QAbstractSocket::IPv4Protocol && 
-            !address.isLoopback()) {
-            QString ip = address.toString();
-            qDebug() << "[FileHandler] Using fallback IP:" << ip;
-            return ip;
-        }
+    freeifaddrs(ifaddr);
+    
+    if (result != "localhost") {
+        std::cout << "[FileHandler] Using fallback IP: " << result << std::endl;
+    } else {
+        std::cout << "[FileHandler] WARNING: Could not find local IP, using localhost" << std::endl;
     }
     
-    // Last resort: return localhost (will only work on same machine)
-    qDebug() << "[FileHandler] WARNING: Could not find local IP, using localhost";
-    return "localhost";
+    return result;
 }
 
-void FileHandler::connectToRelay(const QString &host, quint16 port, const QString &id)
+int FileHandler::connect_to_relay(const std::string& host, int port)
 {
-    pcId = id;
+    relayHost = host;
+    relayPort = port;
     
-    if (relaySocket) {
-        delete relaySocket;
+    relaySocket = socket(AF_INET, SOCK_STREAM, 0);
+    if (relaySocket < 0) {
+        std::cerr << "[FileHandler] Failed to create socket" << std::endl;
+        return -1;
     }
 
-    relaySocket = new QTcpSocket(this);
-    connect(relaySocket, &QTcpSocket::connected, this, &FileHandler::onRelayConnected);
-    connect(relaySocket, &QTcpSocket::disconnected, this, &FileHandler::onRelayDisconnected);
-    connect(relaySocket, QOverload<QAbstractSocket::SocketError>::of(&QTcpSocket::error),
-            this, &FileHandler::onRelayError);
-    connect(relaySocket, &QTcpSocket::readyRead, this, &FileHandler::onRelayDataReceived);
+    struct sockaddr_in serverAddr;
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_port = htons(port);
+    
+    if (inet_pton(AF_INET, host.c_str(), &serverAddr.sin_addr) <= 0) {
+        std::cerr << "[FileHandler] Invalid address" << std::endl;
+        close(relaySocket);
+        relaySocket = -1;
+        return -1;
+    }
 
-    qDebug() << "[FileHandler] Connecting to relay server at" << host << ":" << port;
-    relaySocket->connectToHost(host, port);
-}
+    if (connect(relaySocket, (struct sockaddr*)&serverAddr, sizeof(serverAddr)) < 0) {
+        std::cerr << "[FileHandler] Connection failed" << std::endl;
+        close(relaySocket);
+        relaySocket = -1;
+        return -1;
+    }
 
-void FileHandler::onRelayConnected()
-{
-    qDebug() << "[FileHandler] Connected to relay server";
-    isConnected = true;
+    std::cout << "[FileHandler] Connected to relay server" << std::endl;
     
-    QString message = "PC_FILE|" + pcId + "\n";
-    relaySocket->write(message.toUtf8());
-    relaySocket->flush();
+    // Send registration
+    std::string registration = "PC_FILE|" + pcId + "\n";
+    send(relaySocket, registration.c_str(), registration.length(), 0);
     
-    qDebug() << "[FileHandler] Sent PC_FILE identification";
+    // Start handler thread
+    running = true;
+    handlerThread = std::thread(&FileHandler::run, this);
     
-    // Start heartbeat timer
-    QTimer *heartbeatTimer = new QTimer(this);
-    connect(heartbeatTimer, &QTimer::timeout, this, [this]() {
-        if (relaySocket && relaySocket->isOpen()) {
-            relaySocket->write("HEARTBEAT\n");
-            relaySocket->flush();
-            qDebug() << "[FileHandler] Heartbeat sent";
+    // Start heartbeat thread
+    heartbeatThread = std::thread([this]() {
+        while (running && relaySocket >= 0) {
+            std::this_thread::sleep_for(std::chrono::seconds(30));
+            if (relaySocket >= 0) {
+                std::string heartbeat = "HEARTBEAT\n";
+                send(relaySocket, heartbeat.c_str(), heartbeat.length(), 0);
+                std::cout << "[FileHandler] Heartbeat sent" << std::endl;
+            }
         }
     });
-    heartbeatTimer->start(30000); // Every 30 seconds
-}
-
-void FileHandler::onRelayDisconnected()
-{
-    qDebug() << "[FileHandler] Disconnected from relay server";
-    isConnected = false;
-    QTimer::singleShot(5000, this, &FileHandler::reconnect);
-}
-
-void FileHandler::onRelayError(QAbstractSocket::SocketError error)
-{
-    qDebug() << "[FileHandler] Socket error:" << error << relaySocket->errorString();
-}
-
-void FileHandler::onRelayDataReceived()
-{
-    if (!relaySocket) return;
-
-    QByteArray data = relaySocket->readAll();
-    QString command = QString::fromUtf8(data).trimmed();
     
-    qDebug() << "[FileHandler] Received request:" << command;
+    return 0;
+}
 
-    QStringList parts = command.split('|');
-    
-    if (parts.isEmpty()) return;
-
-    QString action = parts[0];
-
-    if (action == "PONG") {
-        qDebug() << "[FileHandler] Received PONG from server";
-        return;
+void FileHandler::shutdown()
+{
+    running = false;
+    if (relaySocket >= 0) {
+        close(relaySocket);
+        relaySocket = -1;
     }
-    else if (action == "LIST_DIR" && parts.size() >= 3) {
-        QString id = parts[1];
-        QString path = parts[2];
+    if (handlerThread.joinable()) {
+        handlerThread.join();
+    }
+    if (heartbeatThread.joinable()) {
+        heartbeatThread.join();
+    }
+}
+
+void FileHandler::run()
+{
+    char buffer[4096];
+    std::string accumulated;
+
+    while (running && relaySocket >= 0) {
+        memset(buffer, 0, sizeof(buffer));
+        int bytesRead = recv(relaySocket, buffer, sizeof(buffer) - 1, 0);
+        
+        if (bytesRead <= 0) {
+            std::cout << "[FileHandler] Connection closed" << std::endl;
+            break;
+        }
+
+        accumulated += std::string(buffer, bytesRead);
+        
+        size_t pos;
+        while ((pos = accumulated.find('\n')) != std::string::npos) {
+            std::string request = accumulated.substr(0, pos);
+            accumulated = accumulated.substr(pos + 1);
+            
+            std::cout << "[FileHandler] Received request: " << request << std::endl;
+            processRequest(request);
+        }
+    }
+}
+
+void FileHandler::processRequest(const std::string& request)
+{
+    std::istringstream iss(request);
+    std::string command;
+    std::getline(iss, command, '|');
+
+    if (command == "PONG") {
+        std::cout << "[FileHandler] Received PONG from server" << std::endl;
+    }
+    else if (command == "OK") {
+        // Acknowledgment
+    }
+    else if (command == "LIST_DIR") {
+        std::string id, path;
+        std::getline(iss, id, '|');
+        std::getline(iss, path);
         handleListDir(path);
     }
-    else if (action == "DOWNLOAD" && parts.size() >= 3) {
-        QString id = parts[1];
-        QString filePath = parts[2];
-        handleDownload(filePath);
-    }
-    else if (action == "UPLOAD" && parts.size() >= 4) {
-        QString id = parts[1];
-        QString remotePath = parts[2];
-        qint64 fileSize = parts[3].toLongLong();
-        handleUpload(remotePath, fileSize);
-    }
-    else if (action == "GENERATE_URL" && parts.size() >= 3) {
-        QString id = parts[1];
-        QString filePath = parts[2];
+    else if (command == "GENERATE_URL") {
+        std::string id, filePath;
+        std::getline(iss, id, '|');
+        std::getline(iss, filePath);
         handleGenerateUrl(filePath);
+    }
+    else if (command == "DOWNLOAD") {
+        std::string id, filePath;
+        std::getline(iss, id, '|');
+        std::getline(iss, filePath);
+        handleDownload(filePath);
     }
 }
 
-void FileHandler::handleListDir(const QString &path)
+void FileHandler::handleListDir(const std::string& path)
 {
-    qDebug() << "[FileHandler] Listing directory:" << path;
+    std::cout << "[FileHandler] Listing directory: " << path << std::endl;
     
-    QDir dir(path);
-    if (!dir.exists()) {
-        qDebug() << "[FileHandler] Directory does not exist:" << path;
+    DIR* dir = opendir(path.c_str());
+    if (!dir) {
         sendResponse("ERROR|Directory not found\n");
         return;
     }
 
-    QFileInfoList entries = dir.entryInfoList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
+    std::string response = "DIR_LIST|";
+    struct dirent* entry;
     
-    QString response = "DIR_LIST|";
-    for (const QFileInfo &entry : entries) {
-        QString type = entry.isDir() ? "dir" : "file";
-        qint64 size = entry.size();
-        response += entry.fileName() + "|" + type + "|" + QString::number(size) + ";";
+    while ((entry = readdir(dir)) != nullptr) {
+        std::string name = entry->d_name;
+        if (name == "." || name == "..") continue;
+
+        std::string fullPath = path + "/" + name;
+        struct stat st;
+        
+        if (stat(fullPath.c_str(), &st) == 0) {
+            std::string type = S_ISDIR(st.st_mode) ? "dir" : "file";
+            long size = S_ISREG(st.st_mode) ? st.st_size : 0;
+            
+            response += name + "|" + type + "|" + std::to_string(size) + ";";
+        }
     }
+    
+    closedir(dir);
     response += "\n";
     
     sendResponse(response);
-    qDebug() << "[FileHandler] Sent directory listing";
+    std::cout << "[FileHandler] Sent directory listing" << std::endl;
 }
 
-void FileHandler::handleDownload(const QString &filePath)
+void FileHandler::handleGenerateUrl(const std::string& filePath)
 {
-    qDebug() << "[FileHandler] Downloading file:" << filePath;
+    std::cout << "[FileHandler] Generating share URL for: " << filePath << std::endl;
     
-    QFile file(filePath);
-    if (!file.exists()) {
-        qDebug() << "[FileHandler] File not found:" << filePath;
-        sendResponse("ERROR|File not found\n");
-        return;
-    }
-
-    if (!file.open(QIODevice::ReadOnly)) {
-        qDebug() << "[FileHandler] Cannot open file for reading:" << filePath;
-        sendResponse("ERROR|Cannot open file\n");
-        return;
-    }
-
-    qint64 fileSize = file.size();
-    
-    QString response = "DOWNLOAD_START|" + QString::number(fileSize) + "\n";
-    sendResponse(response);
-
-    const int CHUNK_SIZE = 8192;
-    QByteArray buffer;
-    
-    while (!file.atEnd()) {
-        buffer = file.read(CHUNK_SIZE);
-        if (relaySocket && relaySocket->isOpen()) {
-            relaySocket->write(buffer);
-            relaySocket->flush();
-        }
-    }
-
-    file.close();
-    qDebug() << "[FileHandler] File download complete:" << filePath;
-}
-
-void FileHandler::handleUpload(const QString &remotePath, qint64 fileSize)
-{
-    qDebug() << "[FileHandler] Preparing to receive file at:" << remotePath << "Size:" << fileSize << "bytes";
-    
-    // Ensure directory exists
-    QFileInfo fileInfo(remotePath);
-    QDir dir = fileInfo.dir();
-    if (!dir.exists()) {
-        if (!dir.mkpath(".")) {
-            qDebug() << "[FileHandler] Cannot create directory:" << dir.path();
-            sendResponse("ERROR|Cannot create directory\n");
-            return;
-        }
-    }
-    
-    QFile file(remotePath);
-    if (!file.open(QIODevice::WriteOnly)) {
-        qDebug() << "[FileHandler] Cannot open file for writing:" << remotePath;
-        sendResponse("ERROR|Cannot create file\n");
-        return;
-    }
-
-    // Send ready signal to relay server
-    qDebug() << "[FileHandler] Sending UPLOAD_READY signal";
-    sendResponse("UPLOAD_READY\n");
-    
-    // Now receive the file data
-    const qint64 CHUNK_SIZE = 8192;
-    qint64 bytesReceived = 0;
-    qint64 lastProgress = 0;
-
-    qDebug() << "[FileHandler] Starting to receive file data...";
-    
-    // Set a timeout for receiving data
-    QTime timeout;
-    timeout.start();
-    
-    while (bytesReceived < fileSize && relaySocket && relaySocket->isOpen()) {
-        // Wait for data to be available
-        if (relaySocket->bytesAvailable() > 0 || relaySocket->waitForReadyRead(1000)) {
-            QByteArray buffer = relaySocket->read(qMin(CHUNK_SIZE, fileSize - bytesReceived));
-            
-            if (buffer.isEmpty()) {
-                qDebug() << "[FileHandler] Empty buffer received";
-                QThread::msleep(10);
-                continue;
-            }
-            
-            qint64 written = file.write(buffer);
-            if (written == -1) {
-                qDebug() << "[FileHandler] Write error:" << file.errorString();
-                break;
-            }
-            
-            bytesReceived += written;
-            timeout.restart();
-            
-            // Log progress every 10%
-            qint64 progress = (bytesReceived * 100) / fileSize;
-            if (progress >= lastProgress + 10 || bytesReceived == fileSize) {
-                qDebug() << "[FileHandler] Received:" << bytesReceived << "/" << fileSize 
-                         << "bytes (" << progress << "%)";
-                lastProgress = progress;
-            }
-        }
-        else if (timeout.elapsed() > 30000) { // 30 second timeout
-            qDebug() << "[FileHandler] Timeout waiting for data";
-            break;
-        }
-    }
-
-    file.close();
-    
-    if (bytesReceived == fileSize) {
-        sendResponse("UPLOAD_SUCCESS\n");
-        qDebug() << "[FileHandler] File upload complete:" << remotePath << "(" << bytesReceived << "bytes)";
-    }
-    else {
-        qDebug() << "[FileHandler] Upload incomplete: received" << bytesReceived << "of" << fileSize;
-        sendResponse("ERROR|Upload incomplete\n");
-        // Delete incomplete file
-        QFile::remove(remotePath);
-    }
-}
-
-void FileHandler::handleGenerateUrl(const QString &filePath)
-{
-    qDebug() << "[FileHandler] Generating share URL for:" << filePath;
-    
-    QFile file(filePath);
-    if (!file.exists()) {
-        qDebug() << "[FileHandler] File not found for sharing:" << filePath;
+    // Check if file exists
+    struct stat st;
+    if (stat(filePath.c_str(), &st) != 0) {
         sendResponse("ERROR|File not found\n");
         return;
     }
 
     // Generate random token
-    QString token;
-    const QString charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    for (int i = 0; i < 32; ++i) {
-        int index = qrand() % charset.length();
-        token += charset[index];
+    std::string token = generateToken(32);
+    
+    // CRITICAL FIX: Add token to HTTPServer instead of local map
+    if (httpServer_) {
+        RemoteAccessSystem::Common::AddShareToken(token, filePath);
+        std::cout << "[FileHandler] Token added to HTTPServer: " << token << " -> " << filePath << std::endl;
+    } else {
+        std::cerr << "[FileHandler] ERROR: HTTPServer is null!" << std::endl;
+        sendResponse("ERROR|HTTP server not available\n");
+        return;
     }
-
+    
+    // Also keep local copy for reference
     shareTokens[token] = filePath;
 
-    // Get the actual local IP address instead of localhost
-    QString localIP = getLocalIPAddress();
-    QString response = "SHARE_URL|http://" + localIP + ":8080/share/" + token + "\n";
+    // Get local IP address instead of localhost
+    std::string localIP = getLocalIPAddress();
+    std::string shareUrl = "http://" + localIP + ":8080/share/" + token;
+    
+    std::string response = "SHARE_URL|" + shareUrl + "\n";
     sendResponse(response);
     
-    qDebug() << "[FileHandler] Generated share URL:" << "http://" + localIP + ":8080/share/" + token;
+    std::cout << "[FileHandler] Generated share URL: " << shareUrl << std::endl;
 }
 
-void FileHandler::sendResponse(const QString &response)
+void FileHandler::handleDownload(const std::string& filePath)
 {
-    if (relaySocket && relaySocket->isOpen()) {
-        relaySocket->write(response.toUtf8());
-        relaySocket->flush();
+    std::cout << "[FileHandler] Downloading file: " << filePath << std::endl;
+    
+    std::ifstream file(filePath, std::ios::binary);
+    if (!file.is_open()) {
+        sendResponse("ERROR|File not found\n");
+        return;
+    }
+
+    file.seekg(0, std::ios::end);
+    size_t fileSize = file.tellg();
+    file.seekg(0, std::ios::beg);
+
+    std::string response = "DOWNLOAD_START|" + std::to_string(fileSize) + "\n";
+    sendResponse(response);
+
+    char buffer[8192];
+    while (file.read(buffer, sizeof(buffer)) || file.gcount() > 0) {
+        send(relaySocket, buffer, file.gcount(), 0);
+    }
+
+    file.close();
+    std::cout << "[FileHandler] File download complete" << std::endl;
+}
+
+void FileHandler::sendResponse(const std::string& response)
+{
+    if (relaySocket >= 0) {
+        send(relaySocket, response.c_str(), response.length(), 0);
     }
 }
 
-void FileHandler::reconnect()
+std::string FileHandler::generateToken(size_t length)
 {
-    if (!isConnected) {
-        qDebug() << "[FileHandler] Attempting to reconnect...";
-        connectToRelay("127.0.0.1", 2810, pcId);
-    }
-}
+    const std::string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, chars.length() - 1);
 
-void FileHandler::cleanup()
-{
-    if (relaySocket) {
-        relaySocket->close();
-        delete relaySocket;
-        relaySocket = nullptr;
+    std::string token;
+    for (size_t i = 0; i < length; ++i) {
+        token += chars[dis(gen)];
     }
-    isConnected = false;
-}
-
-QString FileHandler::getShareUrl(const QString &token)
-{
-    return shareTokens.value(token, "");
+    return token;
 }

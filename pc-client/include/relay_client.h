@@ -1,3 +1,4 @@
+#include "protocol.h"
 #ifndef RELAY_CLIENT_H
 #define RELAY_CLIENT_H
 

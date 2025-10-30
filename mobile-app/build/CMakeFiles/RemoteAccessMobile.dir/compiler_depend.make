@@ -370,6 +370,11 @@ CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cp
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qstring.h \
   RemoteAccessMobile_autogen/UVLADIE3JM/moc_connection_manager.cpp \
   /home/victor/Videos/remote-access-system/mobile-app/src/connection_manager.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/QMap \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qmap.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/QTimer \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qtimer.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qbasictimer.h \
   RemoteAccessMobile_autogen/UVLADIE3JM/moc_filemanager.cpp \
   /home/victor/Videos/remote-access-system/mobile-app/src/filemanager.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/QFile \
@@ -1922,7 +1927,14 @@ CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.o: /home/victor/Vid
   /usr/include/c++/12/ctime \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/QString \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qstring.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtCore/QDebug \
+  /usr/include/x86_64-linux-gnu/qt6/QtNetwork/QTcpSocket \
+  /usr/include/x86_64-linux-gnu/qt6/QtNetwork/qtcpsocket.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtNetwork/qtnetworkglobal.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtNetwork/qtnetwork-config.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtNetwork/qtnetworkexports.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtNetwork/qabstractsocket.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qiodevice.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qobject.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qdebug.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qtextstream.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qstringconverter_base.h \
@@ -1943,7 +1955,22 @@ CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.o: /home/victor/Vid
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qshareddata_impl.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qset.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qhash.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtCore/qvarlengtharray.h
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qvarlengtharray.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtNetwork/qhostaddress.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/QMap \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qmap.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/QTimer \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qtimer.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qbasictimer.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/QDebug \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qdebug.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/QStringList \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qstringlist.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/QSettings \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qsettings.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/QCryptographicHash \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qcryptographichash.h
 
 CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.o: /home/victor/Videos/remote-access-system/mobile-app/src/filemanager.cpp \
   /usr/include/stdc-predef.h \
@@ -2760,12 +2787,17 @@ CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.o: /home/victor/Videos/remote-acc
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qobject.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/QString \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qstring.h \
-  /home/victor/Videos/remote-access-system/mobile-app/src/pcmanager.h \
   /usr/include/x86_64-linux-gnu/qt6/QtNetwork/QTcpSocket \
   /usr/include/x86_64-linux-gnu/qt6/QtNetwork/qtcpsocket.h \
   /usr/include/x86_64-linux-gnu/qt6/QtNetwork/qabstractsocket.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qiodevice.h \
   /usr/include/x86_64-linux-gnu/qt6/QtNetwork/qhostaddress.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/QMap \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qmap.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/QTimer \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qtimer.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qbasictimer.h \
+  /home/victor/Videos/remote-access-system/mobile-app/src/pcmanager.h \
   /home/victor/Videos/remote-access-system/mobile-app/src/filemanager.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/QFile \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qfile.h \
@@ -4263,6 +4295,8 @@ CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.o: /home/victor/Video
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/QFileInfo:
 
+/usr/include/x86_64-linux-gnu/qt6/QtCore/QCryptographicHash:
+
 /home/victor/Videos/remote-access-system/mobile-app/src/connection_manager.cpp:
 
 remoteaccessmobile_qmltyperegistrations.cpp:
@@ -4364,6 +4398,10 @@ RemoteAccessMobile_autogen/UVLADIE3JM/moc_pcmanager.cpp:
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qlocale.h:
 
 /home/victor/Videos/remote-access-system/mobile-app/src/filemanager.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qbasictimer.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qtimer.h:
 
 /home/victor/Videos/remote-access-system/mobile-app/src/connection_manager.h:
 
@@ -4482,6 +4520,8 @@ RemoteAccessMobile_autogen/UVLADIE3JM/moc_pc_list_model.cpp:
 /usr/include/c++/12/map:
 
 /usr/include/c++/12/bits/charconv.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qsettings.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/error_t.h:
 
@@ -4927,6 +4967,8 @@ RemoteAccessMobile_autogen/6YEA5652QU/moc_remote_control_client.cpp:
 
 /usr/include/c++/12/pstl/execution_defs.h:
 
+/usr/include/x86_64-linux-gnu/qt6/QtCore/QTimer:
+
 /usr/include/c++/12/bits/invoke.h:
 
 /usr/include/c++/12/bits/utility.h:
@@ -4997,6 +5039,8 @@ RemoteAccessMobile_autogen/6YEA5652QU/moc_remote_control_client.cpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qsystemdetection.h:
 
+/usr/include/x86_64-linux-gnu/qt6/QtCore/QSettings:
+
 /usr/include/wctype.h:
 
 /usr/include/sched.h:
@@ -5045,6 +5089,8 @@ RemoteAccessMobile_autogen/6YEA5652QU/moc_remote_control_client.cpp:
 
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
+/usr/include/x86_64-linux-gnu/qt6/QtCore/QMap:
+
 /usr/include/x86_64-linux-gnu/sys/types.h:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
@@ -5054,6 +5100,8 @@ RemoteAccessMobile_autogen/6YEA5652QU/moc_remote_control_client.cpp:
 /usr/include/c++/12/cstdlib:
 
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qcryptographichash.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 

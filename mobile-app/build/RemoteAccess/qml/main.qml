@@ -690,13 +690,54 @@ ApplicationWindow {
         }
     }
 
-    // BIND PC PAGE WITH QR CODE SCANNER
+    // BIND PC PAGE - DISPLAYS QR CODE FROM PC
     Component {
         id: bindPCPage
         
         Page {
             title: "Bind New PC"
             background: Rectangle { color: "#0a0e27" }
+            
+            property string pcQrCodeUrl: ""
+            property bool qrCodeLoaded: false
+            property string errorMessage: ""
+            
+            Timer {
+                id: qrCodeRefreshTimer
+                interval: 2000
+                repeat: true
+                running: qrCodeTabButton.checked
+                onTriggered: {
+                    loadQRCode()
+                }
+            }
+            
+            function loadQRCode() {
+                console.log("[QML] Loading QR code from PC...")
+                var xhr = new XMLHttpRequest()
+                xhr.open("GET", "http://localhost:8080/qr", true)
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            console.log("[QML] QR code loaded successfully")
+                            pcQrCodeUrl = "http://localhost:8080/qr?" + Date.now()
+                            qrCodeLoaded = true
+                            errorMessage = ""
+                        } else {
+                            console.log("[QML] Failed to load QR code:", xhr.status)
+                            qrCodeLoaded = false
+                            errorMessage = "Cannot connect to PC\nMake sure the PC client is running"
+                        }
+                    }
+                }
+                xhr.send()
+            }
+            
+            Component.onCompleted: {
+                if (qrCodeTabButton.checked) {
+                    loadQRCode()
+                }
+            }
             
             ColumnLayout {
                 anchors.fill: parent
@@ -773,6 +814,7 @@ ApplicationWindow {
                                 onClicked: {
                                     qrCodeTabButton.checked = true
                                     manualEntryTabButton.checked = false
+                                    loadQRCode()
                                 }
                             }
 
@@ -807,40 +849,83 @@ ApplicationWindow {
                             }
                         }
 
-                        // QR Code Scanner View (shown when qrCodeTabButton is checked)
+                        // QR Code Display View
                         Rectangle {
-                            Layout.preferredWidth: 350
-                            Layout.preferredHeight: 350
+                            Layout.preferredWidth: 400
+                            Layout.preferredHeight: 400
                             Layout.alignment: Qt.AlignHCenter
                             color: "#ffffff"
                             radius: 12
                             visible: qrCodeTabButton.checked
                             
+                            Image {
+                                id: qrCodeImage
+                                anchors.fill: parent
+                                anchors.margins: 20
+                                source: pcQrCodeUrl
+                                fillMode: Image.PreserveAspectFit
+                                visible: qrCodeLoaded
+                                cache: false
+                                
+                                onStatusChanged: {
+                                    if (status === Image.Error) {
+                                        console.log("[QML] QR code image failed to load")
+                                        qrCodeLoaded = false
+                                        errorMessage = "Failed to load QR code"
+                                    } else if (status === Image.Ready) {
+                                        console.log("[QML] QR code image loaded")
+                                        qrCodeLoaded = true
+                                        errorMessage = ""
+                                    }
+                                }
+                            }
+                            
                             ColumnLayout {
                                 anchors.centerIn: parent
                                 spacing: 20
+                                visible: !qrCodeLoaded
                                 
-                                // QR Code Icon
                                 Label {
-                                    text: "⊞:⊟\n⊟:⊡"
+                                    text: errorMessage !== "" ? "❌" : "⏳"
                                     font.pixelSize: 80
-                                    font.bold: true
-                                    color: "#000000"
+                                    color: errorMessage !== "" ? "#ef4444" : "#6b7280"
                                     Layout.alignment: Qt.AlignHCenter
-                                    lineHeight: 0.8
                                 }
                                 
                                 Label {
-                                    text: "QR Scanner View"
+                                    text: errorMessage !== "" ? errorMessage : "Waiting for PC..."
                                     font.pixelSize: 14
                                     color: "#6b7280"
                                     Layout.alignment: Qt.AlignHCenter
+                                    horizontalAlignment: Text.AlignHCenter
+                                    wrapMode: Text.WordWrap
+                                    Layout.maximumWidth: 300
+                                }
+                                
+                                Button {
+                                    text: "Retry"
+                                    Layout.alignment: Qt.AlignHCenter
+                                    visible: errorMessage !== ""
+                                    
+                                    background: Rectangle {
+                                        color: parent.pressed ? "#4a5f82" : (parent.hovered ? "#5a6f92" : "#3d5a80")
+                                        radius: 8
+                                    }
+                                    
+                                    contentItem: Label {
+                                        text: parent.text
+                                        color: "#ffffff"
+                                        horizontalAlignment: Text.AlignHCenter
+                                        verticalAlignment: Text.AlignVCenter
+                                    }
+                                    
+                                    onClicked: loadQRCode()
                                 }
                             }
                         }
                         
                         Label {
-                            text: "Point your camera at the QR code displayed on\nthe PC"
+                            text: "Use your phone camera or QR scanner app to\nscan the QR code displayed above"
                             font.pixelSize: 13
                             color: "#9ca3af"
                             Layout.alignment: Qt.AlignHCenter
@@ -882,7 +967,7 @@ ApplicationWindow {
                                 }
                                 
                                 Label {
-                                    text: "The program will display a QR code"
+                                    text: "The QR code will appear above automatically"
                                     font.pixelSize: 14
                                     color: "#d1d5db"
                                 }
@@ -899,9 +984,87 @@ ApplicationWindow {
                                 }
                                 
                                 Label {
-                                    text: "Scan the QR code with this device"
+                                    text: "Scan with your phone camera"
                                     font.pixelSize: 14
                                     color: "#d1d5db"
+                                }
+                            }
+                        }
+
+                        // Manual Entry Form
+                        ColumnLayout {
+                            Layout.alignment: Qt.AlignHCenter
+                            spacing: 15
+                            width: 400
+                            visible: manualEntryTabButton.checked
+                            
+                            Label {
+                                text: "Enter PC Connection Details"
+                                font.pixelSize: 16
+                                font.bold: true
+                                color: "#ffffff"
+                                Layout.alignment: Qt.AlignHCenter
+                            }
+                            
+                            TextField {
+                                id: pcIdField
+                                placeholderText: "PC ID"
+                                Layout.fillWidth: true
+                                Layout.preferredHeight: 50
+                                font.pixelSize: 14
+                                
+                                background: Rectangle {
+                                    color: "#1e2842"
+                                    radius: 8
+                                    border.color: parent.activeFocus ? "#3d5a80" : "#2a3a52"
+                                    border.width: 2
+                                }
+                                
+                                color: "#ffffff"
+                                placeholderTextColor: "#6b7280"
+                            }
+                            
+                            TextField {
+                                id: pcAddressField
+                                placeholderText: "PC Address (e.g., 192.168.1.100)"
+                                Layout.fillWidth: true
+                                Layout.preferredHeight: 50
+                                font.pixelSize: 14
+                                
+                                background: Rectangle {
+                                    color: "#1e2842"
+                                    radius: 8
+                                    border.color: parent.activeFocus ? "#3d5a80" : "#2a3a52"
+                                    border.width: 2
+                                }
+                                
+                                color: "#ffffff"
+                                placeholderTextColor: "#6b7280"
+                            }
+                            
+                            Button {
+                                text: "Connect"
+                                Layout.fillWidth: true
+                                Layout.preferredHeight: 50
+                                font.pixelSize: 16
+                                
+                                background: Rectangle {
+                                    color: parent.pressed ? "#4a5f82" : (parent.hovered ? "#5a6f92" : "#3d5a80")
+                                    radius: 8
+                                }
+                                
+                                contentItem: Label {
+                                    text: parent.text
+                                    color: "#ffffff"
+                                    font: parent.font
+                                    horizontalAlignment: Text.AlignHCenter
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                                
+                                onClicked: {
+                                    console.log("[QML] Manual connect to PC:", pcIdField.text, pcAddressField.text)
+                                    // TODO: Implement manual connection
+                                    pcManager.connectToPC(pcIdField.text, pcAddressField.text)
                                 }
                             }
                         }

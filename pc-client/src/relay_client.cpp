@@ -16,7 +16,8 @@ RelayClient::~RelayClient() {
 }
 
 bool RelayClient::Connect(const std::string& relay_address) {
-    ACE_INET_Addr addr(relay_address.c_str();
+    ACE_INET_Addr addr(relay_address.c_str());
+    //ACE_INET_Addr addr(relay_address.c_str();
     return protocol_.Connect(addr, socket_);
 }
 

@@ -27,6 +27,9 @@
 
 .SUFFIXES: .hpux_make_needs_suffix_list
 
+# Produce verbose output by default.
+VERBOSE = 1
+
 # Command-line flag to silence nested $(MAKE).
 $(VERBOSE)MAKESILENT = -s
 
@@ -252,8 +255,10 @@ pc_client: CMakeFiles/pc_client.dir/src/pc_identifier.cpp.o
 pc_client: CMakeFiles/pc_client.dir/src/http_server.cpp.o
 pc_client: CMakeFiles/pc_client.dir/src/qr_generator.cpp.o
 pc_client: CMakeFiles/pc_client.dir/build.make
+pc_client: /usr/lib/x86_64-linux-gnu/libQt5Network.so.5.15.8
 pc_client: /usr/lib/x86_64-linux-gnu/libssl.so
 pc_client: /usr/lib/x86_64-linux-gnu/libcrypto.so
+pc_client: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.8
 pc_client: CMakeFiles/pc_client.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable pc_client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/pc_client.dir/link.txt --verbose=$(VERBOSE)

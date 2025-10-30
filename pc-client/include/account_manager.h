@@ -1,3 +1,4 @@
+#include "protocol.h"
 #ifndef ACCOUNT_MANAGER_H
 #define ACCOUNT_MANAGER_H
 
