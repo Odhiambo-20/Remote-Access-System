@@ -7,6 +7,7 @@
 #include "remote_control_server.h"
 #include "file_server.h"
 #include "http_server.h"
+#include "file_handler.h"  // ADD THIS
 
 class RelayRegistration : public QObject {
     Q_OBJECT
@@ -182,6 +183,21 @@ int main(int argc, char *argv[]) {
     }
     qDebug() << "";
     
+    // ============================================================
+    // CRITICAL FIX: Initialize FileHandler for relay communication
+    // ============================================================
+    qDebug() << "📂 Starting File Handler...";
+    FileHandler* fileHandler = new FileHandler(pcId.toStdString(), &httpServer);
+    
+    if (fileHandler->connect_to_relay(relayServer.toStdString(), relayPort) == 0) {
+        qDebug() << "✅ File Handler connected to relay server";
+    } else {
+        qDebug() << "❌ Failed to connect File Handler to relay server";
+        qDebug() << "⚠️  File operations will not work!";
+    }
+    qDebug() << "";
+    // ============================================================
+    
     // Register with relay server
     qDebug() << "🔗 Registering with Relay Server...";
     RelayRegistration *registration = new RelayRegistration(pcId, username, hostname);
@@ -206,6 +222,7 @@ int main(int argc, char *argv[]) {
     qDebug() << "   • File Transfer:  Port 2811";
     qDebug() << "   • HTTP Server:    Port 8080 (QR Code)";
     qDebug() << "   • File HTTP:      Port" << fileHttpPort << "(File Sharing)";
+    qDebug() << "   • File Handler:   Connected to Relay";
     qDebug() << "   • Relay Server:   " << relayServer << ":" << relayPort;
     qDebug() << "";
     
@@ -232,6 +249,8 @@ int main(int argc, char *argv[]) {
     // Setup signal handling for graceful shutdown
     QObject::connect(&app, &QCoreApplication::aboutToQuit, [&]() {
         qDebug() << "\n🛑 Shutting down PC Client...";
+        fileHandler->shutdown();
+        delete fileHandler;
         httpServer.Stop();
         qDebug() << "✅ Cleanup complete. Goodbye!";
     });
