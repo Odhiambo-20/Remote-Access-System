@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/victor/Videos/remote-access-system/mobile-app
+CMAKE_SOURCE_DIR = /home/victor/Documents/Desktop/remote-access-system/mobile-app
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/victor/Videos/remote-access-system/mobile-app/build
+CMAKE_BINARY_DIR = /home/victor/Documents/Desktop/remote-access-system/mobile-app/build
 
 # Utility rule file for RemoteAccessMobile_autogen.
 
@@ -67,15 +67,15 @@ include CMakeFiles/RemoteAccessMobile_autogen.dir/compiler_depend.make
 include CMakeFiles/RemoteAccessMobile_autogen.dir/progress.make
 
 CMakeFiles/RemoteAccessMobile_autogen: .rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC for target RemoteAccessMobile"
-	/usr/bin/cmake -E cmake_autogen /home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_autogen.dir/AutogenInfo.json ""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC for target RemoteAccessMobile"
+	/usr/bin/cmake -E cmake_autogen /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_autogen.dir/AutogenInfo.json ""
 
 .rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp: /usr/lib/qt6/libexec/qmlcachegen
 .rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp: .rcc/qmlcache/RemoteAccessMobile_qml_loader_file_list.rsp
 .rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp: .rcc/qmake_RemoteAccess.qrc
 .rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp: .rcc/RemoteAccessMobile_raw_qml_0.qrc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating .rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp"
-	/usr/lib/qt6/libexec/qmlcachegen --resource-name qmlcache_RemoteAccessMobile --resource /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmake_RemoteAccess.qrc --resource /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/RemoteAccessMobile_raw_qml_0.qrc -o /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp @/home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml_loader_file_list.rsp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating .rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp"
+	/usr/lib/qt6/libexec/qmlcachegen --resource-name qmlcache_RemoteAccessMobile --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmake_RemoteAccess.qrc --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/RemoteAccessMobile_raw_qml_0.qrc -o /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp @/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml_loader_file_list.rsp
 
 RemoteAccessMobile_autogen: .rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp
 RemoteAccessMobile_autogen: CMakeFiles/RemoteAccessMobile_autogen
@@ -91,6 +91,6 @@ CMakeFiles/RemoteAccessMobile_autogen.dir/clean:
 .PHONY : CMakeFiles/RemoteAccessMobile_autogen.dir/clean
 
 CMakeFiles/RemoteAccessMobile_autogen.dir/depend:
-	cd /home/victor/Videos/remote-access-system/mobile-app/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Videos/remote-access-system/mobile-app /home/victor/Videos/remote-access-system/mobile-app /home/victor/Videos/remote-access-system/mobile-app/build /home/victor/Videos/remote-access-system/mobile-app/build /home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_autogen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/victor/Documents/Desktop/remote-access-system/mobile-app/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Documents/Desktop/remote-access-system/mobile-app /home/victor/Documents/Desktop/remote-access-system/mobile-app /home/victor/Documents/Desktop/remote-access-system/mobile-app/build /home/victor/Documents/Desktop/remote-access-system/mobile-app/build /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_autogen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/RemoteAccessMobile_autogen.dir/depend
 

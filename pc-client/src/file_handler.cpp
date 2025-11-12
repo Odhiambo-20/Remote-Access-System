@@ -1,5 +1,6 @@
 #include "file_handler.h"
 #include "http_server.h"
+#include "file_server.h"
 #include <iostream>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -17,9 +18,13 @@
 #include <chrono>
 #include <ifaddrs.h>
 #include <net/if.h>
+#include <sys/types.h>
 
-FileHandler::FileHandler(const std::string& pcId, RemoteAccessSystem::Common::HTTPServer* httpServer)
-    : pcId(pcId), relaySocket(-1), running(false), httpServer_(httpServer)
+FileHandler::FileHandler(const std::string& pcId, 
+                         RemoteAccessSystem::Common::HTTPServer* httpServer,
+                         FileServer* fileServer)
+    : pcId(pcId), relaySocket(-1), running(false), 
+      httpServer_(httpServer), fileServer_(fileServer)
 {
 }
 
@@ -110,6 +115,16 @@ int FileHandler::connect_to_relay(const std::string& host, int port)
         return -1;
     }
 
+    // Set socket options to prevent premature closure
+    int keepalive = 1;
+    setsockopt(relaySocket, SOL_SOCKET, SO_KEEPALIVE, &keepalive, sizeof(keepalive));
+    
+    struct timeval timeout;
+    timeout.tv_sec = 30;
+    timeout.tv_usec = 0;
+    setsockopt(relaySocket, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
+    setsockopt(relaySocket, SOL_SOCKET, SO_SNDTIMEO, &timeout, sizeof(timeout));
+
     struct sockaddr_in serverAddr;
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_port = htons(port);
@@ -130,7 +145,7 @@ int FileHandler::connect_to_relay(const std::string& host, int port)
 
     std::cout << "[FileHandler] Connected to relay server" << std::endl;
     
-    // FIXED: Send correct registration command that matches relay_server.cpp
+    // Send correct registration command that matches relay_server.cpp
     std::string registration = "FILE_HANDLER_REGISTER|" + pcId + "\n";
     send(relaySocket, registration.c_str(), registration.length(), 0);
     std::cout << "[FileHandler] Sent registration: " << registration << std::endl;
@@ -189,6 +204,44 @@ void FileHandler::shutdown()
     }
 }
 
+void FileHandler::sendResponse(const std::string& response)
+{
+    if (relaySocket < 0) {
+        std::cerr << "[FileHandler] Cannot send response: socket not connected" << std::endl;
+        return;
+    }
+    
+    ssize_t bytesSent = send(relaySocket, response.c_str(), response.length(), 0);
+    if (bytesSent < 0) {
+        std::cerr << "[FileHandler] Failed to send response: " << strerror(errno) << std::endl;
+    } else if (static_cast<size_t>(bytesSent) < response.length()) {
+        std::cerr << "[FileHandler] Partial send: " << bytesSent << "/" << response.length() << " bytes" << std::endl;
+    } else {
+        std::cout << "[FileHandler] Sent response: " << response.substr(0, 50) 
+                  << (response.length() > 50 ? "..." : "") << std::endl;
+    }
+}
+
+std::string FileHandler::generateToken(unsigned long length)
+{
+    const char charset[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    const size_t charsetSize = sizeof(charset) - 1;
+    
+    std::string token;
+    token.reserve(length);
+    
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, charsetSize - 1);
+    
+    for (unsigned long i = 0; i < length; ++i) {
+        token += charset[dis(gen)];
+    }
+    
+    std::cout << "[FileHandler] Generated token: " << token << std::endl;
+    return token;
+}
+
 void FileHandler::run()
 {
     char buffer[4096];
@@ -199,7 +252,11 @@ void FileHandler::run()
         int bytesRead = recv(relaySocket, buffer, sizeof(buffer) - 1, 0);
         
         if (bytesRead <= 0) {
-            std::cout << "[FileHandler] Connection closed" << std::endl;
+            if (bytesRead == 0) {
+                std::cout << "[FileHandler] Connection closed by relay server" << std::endl;
+            } else {
+                std::cerr << "[FileHandler] recv error: " << strerror(errno) << std::endl;
+            }
             break;
         }
 
@@ -211,7 +268,13 @@ void FileHandler::run()
             accumulated = accumulated.substr(pos + 1);
             
             std::cout << "[FileHandler] Received request: " << request << std::endl;
-            processRequest(request);
+            
+            try {
+                processRequest(request);
+            } catch (const std::exception& e) {
+                std::cerr << "[FileHandler] Exception processing request: " << e.what() << std::endl;
+                sendResponse("ERROR|Internal error processing request\n");
+            }
         }
     }
 }
@@ -260,8 +323,39 @@ void FileHandler::processRequest(const std::string& request)
                   << " size: " << fileSize << " bytes" << std::endl;
         handleUpload(remotePath, fileSize);
     }
+    else if (command == "DELETE") {
+        std::string id, filePath;
+        std::getline(iss, id, '|');
+        std::getline(iss, filePath);
+        std::cout << "[FileHandler] Processing DELETE for: " << filePath << std::endl;
+        handleDelete(filePath);
+    }
+    else if (command == "RENAME") {
+        std::string id, oldPath, newPath;
+        std::getline(iss, id, '|');
+        std::getline(iss, oldPath, '|');
+        std::getline(iss, newPath);
+        std::cout << "[FileHandler] Processing RENAME from: " << oldPath << " to: " << newPath << std::endl;
+        handleRename(oldPath, newPath);
+    }
+    else if (command == "COPY") {
+        std::string id, srcPath, destPath;
+        std::getline(iss, id, '|');
+        std::getline(iss, srcPath, '|');
+        std::getline(iss, destPath);
+        std::cout << "[FileHandler] Processing COPY from: " << srcPath << " to: " << destPath << std::endl;
+        handleCopy(srcPath, destPath);
+    }
+    else if (command == "CREATE_FOLDER") {
+        std::string id, folderPath;
+        std::getline(iss, id, '|');
+        std::getline(iss, folderPath);
+        std::cout << "[FileHandler] Processing CREATE_FOLDER at: " << folderPath << std::endl;
+        handleCreateFolder(folderPath);
+    }
     else {
-        std::cout << "[FileHandler] Unknown command: " << command << std::endl;
+        std::cout << "[FileHandler] ⚠️  Unknown command: " << command << std::endl;
+        sendResponse("ERROR|Unknown command: " + command + "\n");
     }
 }
 
@@ -301,7 +395,7 @@ void FileHandler::handleListDir(const std::string& path)
     response += "\n";
     
     sendResponse(response);
-    std::cout << "[FileHandler] Sent directory listing with " << count << " entries" << std::endl;
+    std::cout << "[FileHandler] ✅ Sent directory listing with " << count << " entries" << std::endl;
 }
 
 void FileHandler::handleGenerateUrl(const std::string& filePath)
@@ -319,27 +413,31 @@ void FileHandler::handleGenerateUrl(const std::string& filePath)
     // Generate random token
     std::string token = generateToken(32);
     
-    // Add token to HTTPServer
-    if (httpServer_) {
-        RemoteAccessSystem::Common::AddShareToken(token, filePath);
-        std::cout << "[FileHandler] Token added to HTTPServer: " << token << " -> " << filePath << std::endl;
+    // Add token to FileServer (not HTTPServer!)
+    if (fileServer_) {
+        fileServer_->addShareToken(QString::fromStdString(token), 
+                                   QString::fromStdString(filePath));
+        std::cout << "[FileHandler] ✅ Token added to FileServer: " << token 
+                  << " -> " << filePath << std::endl;
     } else {
-        std::cerr << "[FileHandler] ERROR: HTTPServer is null!" << std::endl;
-        sendResponse("ERROR|HTTP server not available\n");
+        std::cerr << "[FileHandler] ERROR: FileServer is null!" << std::endl;
+        sendResponse("ERROR|File server not available\n");
         return;
     }
     
     // Also keep local copy for reference
     shareTokens[token] = filePath;
 
-    // Get local IP address instead of localhost
+    // Get local IP address and FileServer port
     std::string localIP = getLocalIPAddress();
-    std::string shareUrl = "http://" + localIP + ":8082/share/" + token;
+    int fileServerPort = fileServer_ ? fileServer_->getHttpPort() : 8082;
+    std::string shareUrl = "http://" + localIP + ":" + 
+                          std::to_string(fileServerPort) + "/share/" + token;
     
     std::string response = "SHARE_URL|" + shareUrl + "\n";
     sendResponse(response);
     
-    std::cout << "[FileHandler] Generated share URL: " << shareUrl << std::endl;
+    std::cout << "[FileHandler] ✅ Generated share URL: " << shareUrl << std::endl;
 }
 
 void FileHandler::handleDownload(const std::string& filePath)
@@ -373,7 +471,7 @@ void FileHandler::handleDownload(const std::string& filePath)
     }
 
     file.close();
-    std::cout << "[FileHandler] File download complete, sent " << totalSent << " bytes" << std::endl;
+    std::cout << "[FileHandler] ✅ File download complete, sent " << totalSent << " bytes" << std::endl;
 }
 
 void FileHandler::handleUpload(const std::string& remotePath, long long fileSize)
@@ -417,32 +515,270 @@ void FileHandler::handleUpload(const std::string& remotePath, long long fileSize
     }
     
     outFile.close();
-    std::cout << "[FileHandler] Upload complete: " << received << " bytes received" << std::endl;
+    std::cout << "[FileHandler] ✅ Upload complete: " << received << " bytes received" << std::endl;
     sendResponse("UPLOAD_COMPLETE\n");
 }
 
-void FileHandler::sendResponse(const std::string& response)
+void FileHandler::handleDelete(const std::string& filePath)
 {
-    if (relaySocket >= 0) {
-        ssize_t sent = send(relaySocket, response.c_str(), response.length(), 0);
-        if (sent < 0) {
-            std::cerr << "[FileHandler] Failed to send response" << std::endl;
+    std::cout << "[FileHandler] Deleting: " << filePath << std::endl;
+    
+    struct stat st;
+    if (stat(filePath.c_str(), &st) != 0) {
+        std::string errorMsg = "ERROR|File not found: " + filePath + "\n";
+        sendResponse(errorMsg);
+        std::cerr << "[FileHandler] File not found: " << filePath << std::endl;
+        return;
+    }
+    
+    // Check if it's a directory
+    if (S_ISDIR(st.st_mode)) {
+        // Delete directory recursively
+        if (removeDirectory(filePath)) {
+            sendResponse("DELETE_OK\n");
+            std::cout << "[FileHandler] ✅ Directory deleted successfully: " << filePath << std::endl;
+        } else {
+            std::string errorMsg = "ERROR|Failed to delete directory: " + std::string(strerror(errno)) + "\n";
+            sendResponse(errorMsg);
+            std::cerr << "[FileHandler] Failed to delete directory: " << filePath << std::endl;
         }
     } else {
-        std::cerr << "[FileHandler] Cannot send response: socket is closed" << std::endl;
+        // Delete file
+        if (remove(filePath.c_str()) == 0) {
+            sendResponse("DELETE_OK\n");
+            std::cout << "[FileHandler] ✅ File deleted successfully: " << filePath << std::endl;
+        } else {
+            std::string errorMsg = "ERROR|Failed to delete file: " + std::string(strerror(errno)) + "\n";
+            sendResponse(errorMsg);
+            std::cerr << "[FileHandler] Failed to delete file: " << filePath << " - " << strerror(errno) << std::endl;
+        }
     }
 }
 
-std::string FileHandler::generateToken(size_t length)
+void FileHandler::handleRename(const std::string& oldPath, const std::string& newPath)
 {
-    const std::string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(0, chars.length() - 1);
-
-    std::string token;
-    for (size_t i = 0; i < length; ++i) {
-        token += chars[dis(gen)];
+    std::cout << "[FileHandler] Renaming: " << oldPath << " to " << newPath << std::endl;
+    
+    struct stat st;
+    if (stat(oldPath.c_str(), &st) != 0) {
+        std::string errorMsg = "ERROR|Source file not found: " + oldPath + "\n";
+        sendResponse(errorMsg);
+        std::cerr << "[FileHandler] Source file not found: " << oldPath << std::endl;
+        return;
     }
-    return token;
+    
+    if (rename(oldPath.c_str(), newPath.c_str()) == 0) {
+        sendResponse("RENAME_OK\n");
+        std::cout << "[FileHandler] ✅ Renamed successfully: " << oldPath << " -> " << newPath << std::endl;
+    } else {
+        std::string errorMsg = "ERROR|Failed to rename: " + std::string(strerror(errno)) + "\n";
+        sendResponse(errorMsg);
+        std::cerr << "[FileHandler] Failed to rename: " << strerror(errno) << std::endl;
+    }
+}
+
+void FileHandler::handleCopy(const std::string& srcPath, const std::string& destPath)
+{
+    std::cout << "[FileHandler] Copying: " << srcPath << " to " << destPath << std::endl;
+    
+    struct stat st;
+    if (stat(srcPath.c_str(), &st) != 0) {
+        std::string errorMsg = "ERROR|Source file not found: " + srcPath + "\n";
+        sendResponse(errorMsg);
+        std::cerr << "[FileHandler] Source file not found: " << srcPath << std::endl;
+        return;
+    }
+    
+    // Determine destination path
+    std::string finalDestPath = destPath;
+    struct stat destSt;
+    if (stat(destPath.c_str(), &destSt) == 0 && S_ISDIR(destSt.st_mode)) {
+        // destPath is a directory, append source filename
+        size_t lastSlash = srcPath.find_last_of('/');
+        std::string filename = (lastSlash != std::string::npos) ? srcPath.substr(lastSlash + 1) : srcPath;
+        finalDestPath = destPath + "/" + filename;
+    }
+    
+    if (S_ISDIR(st.st_mode)) {
+        // Copy directory recursively
+        if (copyDirectory(srcPath, finalDestPath)) {
+            sendResponse("COPY_OK\n");
+            std::cout << "[FileHandler] ✅ Directory copied successfully" << std::endl;
+        } else {
+            std::string errorMsg = "ERROR|Failed to copy directory: " + std::string(strerror(errno)) + "\n";
+            sendResponse(errorMsg);
+            std::cerr << "[FileHandler] Failed to copy directory" << std::endl;
+        }
+    } else {
+        // Copy file
+        if (copyFile(srcPath, finalDestPath)) {
+            sendResponse("COPY_OK\n");
+            std::cout << "[FileHandler] ✅ File copied successfully" << std::endl;
+        } else {
+            std::string errorMsg = "ERROR|Failed to copy file: " + std::string(strerror(errno)) + "\n";
+            sendResponse(errorMsg);
+            std::cerr << "[FileHandler] Failed to copy file" << std::endl;
+        }
+    }
+}
+
+void FileHandler::handleCreateFolder(const std::string& folderPath)
+{
+    std::cout << "[FileHandler] Creating folder: " << folderPath << std::endl;
+    
+    // Check if path already exists
+    struct stat st;
+    if (stat(folderPath.c_str(), &st) == 0) {
+        if (S_ISDIR(st.st_mode)) {
+            std::string errorMsg = "ERROR|Folder already exists: " + folderPath + "\n";
+            sendResponse(errorMsg);
+            std::cerr << "[FileHandler] Folder already exists: " << folderPath << std::endl;
+        } else {
+            std::string errorMsg = "ERROR|Path exists but is not a directory: " + folderPath + "\n";
+            sendResponse(errorMsg);
+            std::cerr << "[FileHandler] Path exists but is not a directory: " << folderPath << std::endl;
+        }
+        return;
+    }
+    
+    // Create the directory with permissions 0755 (rwxr-xr-x)
+    if (mkdir(folderPath.c_str(), 0755) == 0) {
+        sendResponse("CREATE_FOLDER_OK\n");
+        std::cout << "[FileHandler] ✅ Folder created successfully: " << folderPath << std::endl;
+    } else {
+        std::string errorMsg = "ERROR|Failed to create folder: " + std::string(strerror(errno)) + "\n";
+        sendResponse(errorMsg);
+        std::cerr << "[FileHandler] Failed to create folder: " << folderPath 
+                  << " - " << strerror(errno) << std::endl;
+    }
+}
+
+bool FileHandler::copyFile(const std::string& src, const std::string& dest)
+{
+    std::ifstream srcFile(src, std::ios::binary);
+    if (!srcFile.is_open()) {
+        std::cerr << "[FileHandler] Cannot open source file: " << src << std::endl;
+        return false;
+    }
+    
+    std::ofstream destFile(dest, std::ios::binary);
+    if (!destFile.is_open()) {
+        std::cerr << "[FileHandler] Cannot create destination file: " << dest << std::endl;
+        return false;
+    }
+    
+    char buffer[8192];
+    while (srcFile.read(buffer, sizeof(buffer)) || srcFile.gcount() > 0) {
+        destFile.write(buffer, srcFile.gcount());
+        if (!destFile) {
+            std::cerr << "[FileHandler] Write error during copy" << std::endl;
+            srcFile.close();
+            destFile.close();
+            return false;
+        }
+    }
+    
+    srcFile.close();
+    destFile.close();
+    
+    // Copy permissions
+    struct stat st;
+    if (stat(src.c_str(), &st) == 0) {
+        chmod(dest.c_str(), st.st_mode);
+    }
+    
+    return true;
+}
+
+bool FileHandler::copyDirectory(const std::string& src, const std::string& dest)
+{
+    // Create destination directory
+    if (mkdir(dest.c_str(), 0755) != 0 && errno != EEXIST) {
+        std::cerr << "[FileHandler] Cannot create directory: " << dest 
+                  << " - " << strerror(errno) << std::endl;
+        return false;
+    }
+    
+    DIR* dir = opendir(src.c_str());
+    if (!dir) {
+        std::cerr << "[FileHandler] Cannot open source directory: " << src << std::endl;
+        return false;
+    }
+    
+    struct dirent* entry;
+    bool success = true;
+    
+    while ((entry = readdir(dir)) != nullptr) {
+        std::string name = entry->d_name;
+        if (name == "." || name == "..") continue;
+        
+        std::string srcPath = src + "/" + name;
+        std::string destPath = dest + "/" + name;
+        
+        struct stat st;
+        if (stat(srcPath.c_str(), &st) == 0) {
+            if (S_ISDIR(st.st_mode)) {
+                if (!copyDirectory(srcPath, destPath)) {
+                    success = false;
+                    std::cerr << "[FileHandler] Failed to copy subdirectory: " << srcPath << std::endl;
+                }
+            } else {
+                if (!copyFile(srcPath, destPath)) {
+                    success = false;
+                    std::cerr << "[FileHandler] Failed to copy file: " << srcPath << std::endl;
+                }
+            }
+        }
+    }
+    
+    closedir(dir);
+    return success;
+}
+
+bool FileHandler::removeDirectory(const std::string& path)
+{
+    DIR* dir = opendir(path.c_str());
+    if (!dir) {
+        std::cerr << "[FileHandler] Cannot open directory for deletion: " << path << std::endl;
+        return false;
+    }
+    
+    struct dirent* entry;
+    bool success = true;
+    
+    while ((entry = readdir(dir)) != nullptr) {
+        std::string name = entry->d_name;
+        if (name == "." || name == "..") continue;
+        
+        std::string fullPath = path + "/" + name;
+        struct stat st;
+        
+        if (stat(fullPath.c_str(), &st) == 0) {
+            if (S_ISDIR(st.st_mode)) {
+                if (!removeDirectory(fullPath)) {
+                    success = false;
+                }
+            } else {
+                if (remove(fullPath.c_str()) != 0) {
+                    std::cerr << "[FileHandler] Failed to delete file: " << fullPath 
+                              << " - " << strerror(errno) << std::endl;
+                    success = false;
+                }
+            }
+        }
+    }
+    
+    closedir(dir);
+    
+    if (success) {
+        if (rmdir(path.c_str()) == 0) {
+            return true;
+        } else {
+            std::cerr << "[FileHandler] Failed to remove directory: " << path 
+                      << " - " << strerror(errno) << std::endl;
+            return false;
+        }
+    }
+    
+    return false;
 }

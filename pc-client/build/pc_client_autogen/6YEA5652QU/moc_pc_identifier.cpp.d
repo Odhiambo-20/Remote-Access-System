@@ -1,5 +1,5 @@
-/home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/6YEA5652QU/moc_pc_identifier.cpp: /home/victor/Videos/remote-access-system/pc-client/include/pc_identifier.h \
-  /home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/moc_predefs.h \
+/home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/6YEA5652QU/moc_pc_identifier.cpp: /home/victor/Documents/Desktop/remote-access-system/pc-client/include/pc_identifier.h \
+  /home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/moc_predefs.h \
   /usr/include/alloca.h \
   /usr/include/assert.h \
   /usr/include/c++/12/algorithm \

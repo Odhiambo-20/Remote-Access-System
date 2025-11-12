@@ -1,7 +1,7 @@
 CMakeFiles/pc_client.dir/src/file_manager.cpp.o: \
- /home/victor/Videos/remote-access-system/pc-client/src/file_manager.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/src/file_manager.cpp \
  /usr/include/stdc-predef.h \
- /home/victor/Videos/remote-access-system/pc-client/include/file_manager.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/include/file_manager.h \
  /usr/include/c++/12/string \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -120,7 +120,7 @@ CMakeFiles/pc_client.dir/src/file_manager.cpp.o: \
  /usr/include/c++/12/bits/stl_vector.h \
  /usr/include/c++/12/bits/stl_bvector.h \
  /usr/include/c++/12/bits/vector.tcc \
- /home/victor/Videos/remote-access-system/pc-client/src/../../common/include/utils.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/src/../../common/include/utils.h \
  /usr/local/include/ace/Log_Priority.h /usr/local/include/ace/pre.h \
  /usr/local/include/ace/config-lite.h \
  /usr/local/include/ace/config-macros.h /usr/local/include/ace/config.h \

@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/victor/Videos/remote-access-system/relay-server/src/relay_server_standalone.cpp" "CMakeFiles/relay_server.dir/src/relay_server_standalone.cpp.o" "gcc" "CMakeFiles/relay_server.dir/src/relay_server_standalone.cpp.o.d"
+  "/home/victor/Documents/Desktop/remote-access-system/relay-server/src/relay_server_standalone.cpp" "CMakeFiles/relay_server.dir/src/relay_server_standalone.cpp.o" "gcc" "CMakeFiles/relay_server.dir/src/relay_server_standalone.cpp.o.d"
   )
 
 # Targets to which this target links.

@@ -1,7 +1,7 @@
 CMakeFiles/pc_client.dir/pc_client_autogen/mocs_compilation.cpp.o: \
- /home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/mocs_compilation.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/mocs_compilation.cpp \
  /usr/include/stdc-predef.h \
- /home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/6YEA5652QU/moc_file_server.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/6YEA5652QU/moc_file_server.cpp \
  /usr/include/c++/12/memory /usr/include/c++/12/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -114,7 +114,7 @@ CMakeFiles/pc_client.dir/pc_client_autogen/mocs_compilation.cpp.o: \
  /usr/include/c++/12/backward/auto_ptr.h \
  /usr/include/c++/12/pstl/glue_memory_defs.h \
  /usr/include/c++/12/pstl/execution_defs.h \
- /home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/6YEA5652QU/../../../include/file_server.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/6YEA5652QU/../../../include/file_server.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qobject.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qobjectdefs.h \
@@ -268,9 +268,9 @@ CMakeFiles/pc_client.dir/pc_client_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmap.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QDateTime \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qdatetime.h \
- /home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/6YEA5652QU/moc_pc_identifier.cpp \
- /home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/6YEA5652QU/../../../include/pc_identifier.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/6YEA5652QU/moc_pc_identifier.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/6YEA5652QU/../../../include/pc_identifier.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QString \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstring.h \
- /home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/6YEA5652QU/moc_remote_control_server.cpp \
- /home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/6YEA5652QU/../../../include/remote_control_server.h
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/6YEA5652QU/moc_remote_control_server.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/6YEA5652QU/../../../include/remote_control_server.h

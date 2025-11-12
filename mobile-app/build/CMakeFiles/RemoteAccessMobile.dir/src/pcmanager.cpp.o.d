@@ -1,7 +1,7 @@
 CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.o: \
- /home/victor/Videos/remote-access-system/mobile-app/src/pcmanager.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/pcmanager.cpp \
  /usr/include/stdc-predef.h \
- /home/victor/Videos/remote-access-system/mobile-app/src/pcmanager.h \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/pcmanager.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QObject \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qobject.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qobjectdefs.h \

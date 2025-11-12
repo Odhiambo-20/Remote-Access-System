@@ -1,5 +1,5 @@
 CMakeFiles/pc_client.dir/src/main.cpp.o: \
- /home/victor/Videos/remote-access-system/pc-client/src/main.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/src/main.cpp \
  /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QCoreApplication \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreapplication.h \
@@ -278,21 +278,21 @@ CMakeFiles/pc_client.dir/src/main.cpp.o: \
  /usr/include/c++/12/bits/basic_ios.tcc \
  /usr/include/c++/12/bits/ostream.tcc /usr/include/c++/12/istream \
  /usr/include/c++/12/bits/istream.tcc \
- /home/victor/Videos/remote-access-system/pc-client/include/pc_identifier.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/include/pc_identifier.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qobject.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QString \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qstring.h \
- /home/victor/Videos/remote-access-system/pc-client/include/remote_control_server.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/include/remote_control_server.h \
  /usr/include/x86_64-linux-gnu/qt5/QtNetwork/QTcpServer \
  /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtcpserver.h \
  /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qhostaddress.h \
- /home/victor/Videos/remote-access-system/pc-client/include/file_server.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/include/file_server.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QMap \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qmap.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QDateTime \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qdatetime.h \
- /home/victor/Videos/remote-access-system/pc-client/include/http_server.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/include/http_server.h \
  /usr/local/include/ace/INET_Addr.h /usr/local/include/ace/pre.h \
  /usr/local/include/ace/Sock_Connect.h \
  /usr/local/include/ace/ACE_export.h /usr/local/include/ace/config-lite.h \
@@ -515,7 +515,7 @@ CMakeFiles/pc_client.dir/src/main.cpp.o: \
  /usr/local/include/ace/SOCK_IO.inl \
  /usr/local/include/ace/SOCK_Stream.inl \
  /usr/local/include/ace/SOCK_Acceptor.inl \
- /home/victor/Videos/remote-access-system/pc-client/include/file_handler.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/include/file_handler.h \
  /usr/include/c++/12/thread /usr/include/c++/12/bits/std_thread.h \
  /usr/include/c++/12/bits/this_thread_sleep.h \
- /home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/include/main.moc
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/include/main.moc

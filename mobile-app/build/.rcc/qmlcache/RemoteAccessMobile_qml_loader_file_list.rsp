@@ -1,1 +1,8 @@
 /RemoteAccess/qml/main.qml
+/RemoteAccess/qml/FileExplorerView.qml
+/RemoteAccess/qml/PCListView.qml
+/RemoteAccess/qml/AddPCView.qml
+/RemoteAccess/qml/SettingsView.qml
+/RemoteAccess/qml/components/FileItem.qml
+/RemoteAccess/qml/components/PCCard.qml
+/RemoteAccess/qml/components/ProgressBar.qml

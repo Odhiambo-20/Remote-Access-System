@@ -1,7 +1,7 @@
 CMakeFiles/pc_client.dir/src/connection_manager.cpp.o: \
- /home/victor/Videos/remote-access-system/pc-client/src/connection_manager.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/src/connection_manager.cpp \
  /usr/include/stdc-predef.h \
- /home/victor/Videos/remote-access-system/pc-client/include/connection_manager.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/include/connection_manager.h \
  /usr/include/c++/12/string \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -380,7 +380,7 @@ CMakeFiles/pc_client.dir/src/connection_manager.cpp.o: \
  /usr/local/include/ace/OS_NS_sys_socket.inl \
  /usr/local/include/ace/OS_NS_sys_uio.h \
  /usr/local/include/ace/OS_NS_sys_uio.inl \
- /home/victor/Videos/remote-access-system/pc-client/src/../../common/include/utils.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/src/../../common/include/utils.h \
  /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_uninitialized.h \
  /usr/include/c++/12/bits/stl_vector.h \
  /usr/include/c++/12/bits/stl_bvector.h \

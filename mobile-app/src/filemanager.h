@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QTcpSocket>
 #include <QFile>
+#include <QVariantList>
 
 class FileManager : public QObject {
     Q_OBJECT
@@ -25,7 +26,6 @@ public:
     Q_INVOKABLE void browseDirectory(const QString &path);
     Q_INVOKABLE void listDirectory(const QString &path);
     Q_INVOKABLE void uploadFile(const QString &localPath, const QString &remotePath);
-    Q_INVOKABLE void downloadFile(const QString &remotePath, const QString &localPath);
     Q_INVOKABLE void deleteFile(const QString &remotePath);
     Q_INVOKABLE void generateShareLink(const QString &remotePath, int expiryHours);
     Q_INVOKABLE void generateShareUrl(const QString &remotePath);
@@ -34,6 +34,14 @@ public:
     Q_INVOKABLE void goBack();
     Q_INVOKABLE void goHome();
     Q_INVOKABLE void disconnect();
+    
+    // New functions that were missing
+    Q_INVOKABLE void downloadFile(const QString &remotePath, const QString &localPath = "");
+    Q_INVOKABLE void downloadMultipleFiles(const QVariantList &files);
+    Q_INVOKABLE void copyFile(const QString &sourcePath, const QString &destinationPath);
+    Q_INVOKABLE void moveFile(const QString &sourcePath, const QString &destinationPath);
+    Q_INVOKABLE void renameFile(const QString &oldPath, const QString &newName);
+    Q_INVOKABLE void createFolder(const QString &folderPath);
 
 signals:
     void connected();

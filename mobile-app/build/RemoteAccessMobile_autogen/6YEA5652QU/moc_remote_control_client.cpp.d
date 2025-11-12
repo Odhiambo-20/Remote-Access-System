@@ -1,5 +1,5 @@
-/home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/6YEA5652QU/moc_remote_control_client.cpp: /home/victor/Videos/remote-access-system/mobile-app/include/remote_control_client.h \
-  /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/moc_predefs.h \
+/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/6YEA5652QU/moc_remote_control_client.cpp: /home/victor/Documents/Desktop/remote-access-system/mobile-app/include/remote_control_client.h \
+  /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/moc_predefs.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \

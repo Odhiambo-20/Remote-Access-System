@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/victor/Videos/remote-access-system/mobile-app
+CMAKE_SOURCE_DIR = /home/victor/Documents/Desktop/remote-access-system/mobile-app
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/victor/Videos/remote-access-system/mobile-app/build
+CMAKE_BINARY_DIR = /home/victor/Documents/Desktop/remote-access-system/mobile-app/build
 
 # Utility rule file for RemoteAccessMobile_qmltyperegistration.
 
@@ -79,19 +79,19 @@ remoteaccessmobile_qmltyperegistrations.cpp: /usr/lib/x86_64-linux-gnu/metatypes
 remoteaccessmobile_qmltyperegistrations.cpp: /usr/lib/x86_64-linux-gnu/metatypes/qt6quick_none_metatypes.json
 remoteaccessmobile_qmltyperegistrations.cpp: /usr/lib/x86_64-linux-gnu/metatypes/qt6qmlmodels_none_metatypes.json
 remoteaccessmobile_qmltyperegistrations.cpp: /usr/lib/x86_64-linux-gnu/metatypes/qt6opengl_none_metatypes.json
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic QML type registration for target RemoteAccessMobile"
-	/usr/lib/qt6/libexec/qmltyperegistrar --generate-qmltypes=/home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccess/RemoteAccessMobile.qmltypes --import-name=RemoteAccess --major-version=1 --minor-version=0 @/home/victor/Videos/remote-access-system/mobile-app/build/qmltypes/RemoteAccessMobile_foreign_types.txt -o /home/victor/Videos/remote-access-system/mobile-app/build/remoteaccessmobile_qmltyperegistrations.cpp /home/victor/Videos/remote-access-system/mobile-app/build/meta_types/qt6remoteaccessmobile_metatypes.json
-	/usr/bin/cmake -E make_directory /home/victor/Videos/remote-access-system/mobile-app/build/.generated
-	/usr/bin/cmake -E touch /home/victor/Videos/remote-access-system/mobile-app/build/.generated/RemoteAccessMobile.qmltypes
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic QML type registration for target RemoteAccessMobile"
+	/usr/lib/qt6/libexec/qmltyperegistrar --generate-qmltypes=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/RemoteAccessMobile.qmltypes --import-name=RemoteAccess --major-version=1 --minor-version=0 @/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/qmltypes/RemoteAccessMobile_foreign_types.txt -o /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/remoteaccessmobile_qmltyperegistrations.cpp /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/meta_types/qt6remoteaccessmobile_metatypes.json
+	/usr/bin/cmake -E make_directory /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.generated
+	/usr/bin/cmake -E touch /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.generated/RemoteAccessMobile.qmltypes
 
 RemoteAccess/RemoteAccessMobile.qmltypes: remoteaccessmobile_qmltyperegistrations.cpp
 	@$(CMAKE_COMMAND) -E touch_nocreate RemoteAccess/RemoteAccessMobile.qmltypes
 
 meta_types/qt6remoteaccessmobile_metatypes.json.gen: /usr/lib/qt6/libexec/moc
 meta_types/qt6remoteaccessmobile_metatypes.json.gen: meta_types/RemoteAccessMobile_json_file_list.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Running moc --collect-json for target RemoteAccessMobile"
-	/usr/lib/qt6/libexec/moc -o /home/victor/Videos/remote-access-system/mobile-app/build/meta_types/qt6remoteaccessmobile_metatypes.json.gen --collect-json @/home/victor/Videos/remote-access-system/mobile-app/build/meta_types/RemoteAccessMobile_json_file_list.txt
-	/usr/bin/cmake -E copy_if_different /home/victor/Videos/remote-access-system/mobile-app/build/meta_types/qt6remoteaccessmobile_metatypes.json.gen /home/victor/Videos/remote-access-system/mobile-app/build/meta_types/qt6remoteaccessmobile_metatypes.json
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Running moc --collect-json for target RemoteAccessMobile"
+	/usr/lib/qt6/libexec/moc -o /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/meta_types/qt6remoteaccessmobile_metatypes.json.gen --collect-json @/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/meta_types/RemoteAccessMobile_json_file_list.txt
+	/usr/bin/cmake -E copy_if_different /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/meta_types/qt6remoteaccessmobile_metatypes.json.gen /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/meta_types/qt6remoteaccessmobile_metatypes.json
 
 meta_types/qt6remoteaccessmobile_metatypes.json: meta_types/qt6remoteaccessmobile_metatypes.json.gen
 	@$(CMAKE_COMMAND) -E touch_nocreate meta_types/qt6remoteaccessmobile_metatypes.json
@@ -113,6 +113,6 @@ CMakeFiles/RemoteAccessMobile_qmltyperegistration.dir/clean:
 .PHONY : CMakeFiles/RemoteAccessMobile_qmltyperegistration.dir/clean
 
 CMakeFiles/RemoteAccessMobile_qmltyperegistration.dir/depend:
-	cd /home/victor/Videos/remote-access-system/mobile-app/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Videos/remote-access-system/mobile-app /home/victor/Videos/remote-access-system/mobile-app /home/victor/Videos/remote-access-system/mobile-app/build /home/victor/Videos/remote-access-system/mobile-app/build /home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_qmltyperegistration.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/victor/Documents/Desktop/remote-access-system/mobile-app/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Documents/Desktop/remote-access-system/mobile-app /home/victor/Documents/Desktop/remote-access-system/mobile-app /home/victor/Documents/Desktop/remote-access-system/mobile-app/build /home/victor/Documents/Desktop/remote-access-system/mobile-app/build /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_qmltyperegistration.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/RemoteAccessMobile_qmltyperegistration.dir/depend
 

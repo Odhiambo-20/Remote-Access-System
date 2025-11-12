@@ -1,7 +1,7 @@
 CMakeFiles/pc_client.dir/src/relay_client.cpp.o: \
- /home/victor/Videos/remote-access-system/pc-client/src/relay_client.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/src/relay_client.cpp \
  /usr/include/stdc-predef.h \
- /home/victor/Videos/remote-access-system/pc-client/include/relay_client.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/include/relay_client.h \
  /usr/local/include/ace/SOCK_Stream.h /usr/local/include/ace/pre.h \
  /usr/local/include/ace/SOCK_IO.h /usr/local/include/ace/SOCK.h \
  /usr/local/include/ace/ACE_export.h /usr/local/include/ace/config-lite.h \
@@ -393,15 +393,35 @@ CMakeFiles/pc_client.dir/src/relay_client.cpp.o: \
  /usr/local/include/ace/SOCK_Stream.inl \
  /usr/local/include/ace/SOCK_Connector.h \
  /usr/local/include/ace/SOCK_Connector.inl \
- /home/victor/Videos/remote-access-system/pc-client/include/../../common/include/crypto.h \
- /home/victor/Videos/remote-access-system/pc-client/src/../../common/include/utils.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/include/../../common/include/crypto.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/src/../../common/include/utils.h \
  /usr/local/include/ace/Log_Priority.h \
- /home/victor/Videos/remote-access-system/pc-client/src/../../common/include/crypto.h \
- /home/victor/Videos/remote-access-system/pc-client/include/file_manager.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/src/../../common/include/crypto.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/include/file_manager.h \
  /usr/local/include/ace/Log_Msg.h /usr/local/include/ace/Synch_Traits.h \
  /usr/local/include/ace/Lock.h /usr/local/include/ace/Lock.inl \
  /usr/local/include/ace/Log_Msg.inl /usr/include/c++/12/numeric \
  /usr/include/c++/12/bits/stl_numeric.h /usr/include/c++/12/bit \
  /usr/include/c++/12/pstl/glue_numeric_defs.h /usr/include/c++/12/sstream \
  /usr/include/c++/12/istream /usr/include/c++/12/bits/istream.tcc \
- /usr/include/c++/12/bits/sstream.tcc
+ /usr/include/c++/12/bits/sstream.tcc /usr/include/c++/12/fstream \
+ /usr/include/c++/12/bits/codecvt.h \
+ /usr/include/x86_64-linux-gnu/c++/12/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/12/bits/c++io.h \
+ /usr/include/c++/12/bits/fstream.tcc /usr/include/c++/12/filesystem \
+ /usr/include/c++/12/bits/fs_fwd.h /usr/include/c++/12/bits/fs_path.h \
+ /usr/include/c++/12/locale \
+ /usr/include/c++/12/bits/locale_facets_nonio.h \
+ /usr/include/x86_64-linux-gnu/c++/12/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/12/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/12/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/12/bits/locale_conv.h /usr/include/c++/12/iomanip \
+ /usr/include/c++/12/bits/quoted_string.h /usr/include/c++/12/codecvt \
+ /usr/include/c++/12/ext/concurrence.h \
+ /usr/include/c++/12/bits/shared_ptr.h \
+ /usr/include/c++/12/bits/shared_ptr_base.h \
+ /usr/include/c++/12/bits/allocated_ptr.h \
+ /usr/include/c++/12/bits/unique_ptr.h /usr/include/c++/12/tuple \
+ /usr/include/c++/12/bits/uses_allocator.h \
+ /usr/include/c++/12/ext/aligned_buffer.h \
+ /usr/include/c++/12/bits/fs_dir.h /usr/include/c++/12/bits/fs_ops.h

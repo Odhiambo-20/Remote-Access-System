@@ -5,6 +5,10 @@
 #include <ace/Log_Msg.h>
 #include <numeric>
 #include <sstream>
+#include <fstream>
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 namespace RemoteAccessSystem {
 namespace Common {
@@ -104,12 +108,12 @@ bool RelayClient::HandleMessage(const Message& message, Message& response) {
             response.payload = Utils::StringToBytes(fileList);
             break;
         }
+        
         case MessageType::FILE_DOWNLOAD: {
             auto path = Utils::BytesToString(message.payload);
-            response.type = MessageType::FILE_DOWNLOAD;
-            response.payload = fm.ReadFile(path);
-            break;
+            return HandleDownload(path, response);
         }
+        
         case MessageType::FILE_UPLOAD: {
             std::string data = Utils::BytesToString(message.payload);
             size_t pos = data.find(':');
@@ -119,13 +123,251 @@ bool RelayClient::HandleMessage(const Message& message, Message& response) {
                 fm.WriteFile(path, Utils::StringToBytes(content));
                 response.type = MessageType::FILE_UPLOAD;
                 response.payload = Utils::StringToBytes("SUCCESS");
+            } else {
+                response.type = MessageType::FILE_UPLOAD;
+                response.payload = Utils::StringToBytes("ERROR|Invalid upload format");
             }
             break;
         }
+        
+        case MessageType::FILE_COPY: {
+            std::string data = Utils::BytesToString(message.payload);
+            size_t pos = data.find('|');
+            if (pos != std::string::npos) {
+                std::string source = data.substr(0, pos);
+                std::string dest = data.substr(pos + 1);
+                return HandleCopy(source, dest, response);
+            } else {
+                response.type = MessageType::FILE_COPY;
+                response.payload = Utils::StringToBytes("ERROR|Invalid copy parameters");
+            }
+            break;
+        }
+        
+        case MessageType::FILE_MOVE: {
+            std::string data = Utils::BytesToString(message.payload);
+            size_t pos = data.find('|');
+            if (pos != std::string::npos) {
+                std::string source = data.substr(0, pos);
+                std::string dest = data.substr(pos + 1);
+                return HandleMove(source, dest, response);
+            } else {
+                response.type = MessageType::FILE_MOVE;
+                response.payload = Utils::StringToBytes("ERROR|Invalid move parameters");
+            }
+            break;
+        }
+        
+        case MessageType::FILE_RENAME: {
+            std::string data = Utils::BytesToString(message.payload);
+            size_t pos = data.find('|');
+            if (pos != std::string::npos) {
+                std::string old_path = data.substr(0, pos);
+                std::string new_path = data.substr(pos + 1);
+                return HandleRename(old_path, new_path, response);
+            } else {
+                response.type = MessageType::FILE_RENAME;
+                response.payload = Utils::StringToBytes("ERROR|Invalid rename parameters");
+            }
+            break;
+        }
+        
+        case MessageType::FILE_DELETE: {
+            auto path = Utils::BytesToString(message.payload);
+            return HandleDelete(path, response);
+        }
+        
+        case MessageType::CREATE_FOLDER: {
+            auto path = Utils::BytesToString(message.payload);
+            return HandleCreateFolder(path, response);
+        }
+        
         default:
+            ACE_ERROR((LM_ERROR, ACE_TEXT("Unknown message type: %d\n"), static_cast<int>(message.type)));
             return false;
     }
     return true;
+}
+
+bool RelayClient::HandleDownload(const std::string& file_path, Message& response) {
+    try {
+        if (!fs::exists(file_path)) {
+            response.type = MessageType::FILE_DOWNLOAD;
+            response.payload = Utils::StringToBytes("ERROR|File not found");
+            return false;
+        }
+        
+        if (!fs::is_regular_file(file_path)) {
+            response.type = MessageType::FILE_DOWNLOAD;
+            response.payload = Utils::StringToBytes("ERROR|Path is not a file");
+            return false;
+        }
+        
+        FileManager fm;
+        response.type = MessageType::FILE_DOWNLOAD;
+        response.payload = fm.ReadFile(file_path);
+        
+        ACE_DEBUG((LM_INFO, ACE_TEXT("Download completed: %s\n"), file_path.c_str()));
+        return true;
+        
+    } catch (const std::exception& e) {
+        response.type = MessageType::FILE_DOWNLOAD;
+        response.payload = Utils::StringToBytes(std::string("ERROR|") + e.what());
+        ACE_ERROR((LM_ERROR, ACE_TEXT("Download error: %s\n"), e.what()));
+        return false;
+    }
+}
+
+bool RelayClient::HandleCopy(const std::string& source_path, const std::string& dest_path, Message& response) {
+    try {
+        if (!fs::exists(source_path)) {
+            response.type = MessageType::FILE_COPY;
+            response.payload = Utils::StringToBytes("ERROR|Source file not found");
+            return false;
+        }
+        
+        fs::path dest(dest_path);
+        
+        // If destination is a directory, preserve filename
+        if (fs::is_directory(dest)) {
+            dest = dest / fs::path(source_path).filename();
+        }
+        
+        // Copy file or directory
+        if (fs::is_regular_file(source_path)) {
+            fs::copy_file(source_path, dest, fs::copy_options::overwrite_existing);
+        } else if (fs::is_directory(source_path)) {
+            fs::copy(source_path, dest, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
+        }
+        
+        response.type = MessageType::FILE_COPY;
+        response.payload = Utils::StringToBytes("COPY_SUCCESS");
+        
+        ACE_DEBUG((LM_INFO, ACE_TEXT("Copy completed: %s -> %s\n"), 
+                   source_path.c_str(), dest.string().c_str()));
+        return true;
+        
+    } catch (const std::exception& e) {
+        response.type = MessageType::FILE_COPY;
+        response.payload = Utils::StringToBytes(std::string("ERROR|Copy failed: ") + e.what());
+        ACE_ERROR((LM_ERROR, ACE_TEXT("Copy error: %s\n"), e.what()));
+        return false;
+    }
+}
+
+bool RelayClient::HandleMove(const std::string& source_path, const std::string& dest_path, Message& response) {
+    try {
+        if (!fs::exists(source_path)) {
+            response.type = MessageType::FILE_MOVE;
+            response.payload = Utils::StringToBytes("ERROR|Source file not found");
+            return false;
+        }
+        
+        fs::path dest(dest_path);
+        
+        // If destination is a directory, preserve filename
+        if (fs::is_directory(dest)) {
+            dest = dest / fs::path(source_path).filename();
+        }
+        
+        fs::rename(source_path, dest);
+        
+        response.type = MessageType::FILE_MOVE;
+        response.payload = Utils::StringToBytes("MOVE_SUCCESS");
+        
+        ACE_DEBUG((LM_INFO, ACE_TEXT("Move completed: %s -> %s\n"), 
+                   source_path.c_str(), dest.string().c_str()));
+        return true;
+        
+    } catch (const std::exception& e) {
+        response.type = MessageType::FILE_MOVE;
+        response.payload = Utils::StringToBytes(std::string("ERROR|Move failed: ") + e.what());
+        ACE_ERROR((LM_ERROR, ACE_TEXT("Move error: %s\n"), e.what()));
+        return false;
+    }
+}
+
+bool RelayClient::HandleRename(const std::string& old_path, const std::string& new_path, Message& response) {
+    try {
+        if (!fs::exists(old_path)) {
+            response.type = MessageType::FILE_RENAME;
+            response.payload = Utils::StringToBytes("ERROR|File not found");
+            return false;
+        }
+        
+        if (fs::exists(new_path)) {
+            response.type = MessageType::FILE_RENAME;
+            response.payload = Utils::StringToBytes("ERROR|Destination already exists");
+            return false;
+        }
+        
+        fs::rename(old_path, new_path);
+        
+        response.type = MessageType::FILE_RENAME;
+        response.payload = Utils::StringToBytes("RENAME_SUCCESS");
+        
+        ACE_DEBUG((LM_INFO, ACE_TEXT("Rename completed: %s -> %s\n"), 
+                   old_path.c_str(), new_path.c_str()));
+        return true;
+        
+    } catch (const std::exception& e) {
+        response.type = MessageType::FILE_RENAME;
+        response.payload = Utils::StringToBytes(std::string("ERROR|Rename failed: ") + e.what());
+        ACE_ERROR((LM_ERROR, ACE_TEXT("Rename error: %s\n"), e.what()));
+        return false;
+    }
+}
+
+bool RelayClient::HandleDelete(const std::string& file_path, Message& response) {
+    try {
+        if (!fs::exists(file_path)) {
+            response.type = MessageType::FILE_DELETE;
+            response.payload = Utils::StringToBytes("ERROR|File not found");
+            return false;
+        }
+        
+        if (fs::is_regular_file(file_path)) {
+            fs::remove(file_path);
+        } else if (fs::is_directory(file_path)) {
+            fs::remove_all(file_path);
+        }
+        
+        response.type = MessageType::FILE_DELETE;
+        response.payload = Utils::StringToBytes("DELETE_SUCCESS");
+        
+        ACE_DEBUG((LM_INFO, ACE_TEXT("Delete completed: %s\n"), file_path.c_str()));
+        return true;
+        
+    } catch (const std::exception& e) {
+        response.type = MessageType::FILE_DELETE;
+        response.payload = Utils::StringToBytes(std::string("ERROR|Delete failed: ") + e.what());
+        ACE_ERROR((LM_ERROR, ACE_TEXT("Delete error: %s\n"), e.what()));
+        return false;
+    }
+}
+
+bool RelayClient::HandleCreateFolder(const std::string& folder_path, Message& response) {
+    try {
+        if (fs::exists(folder_path)) {
+            response.type = MessageType::CREATE_FOLDER;
+            response.payload = Utils::StringToBytes("ERROR|Folder already exists");
+            return false;
+        }
+        
+        fs::create_directories(folder_path);
+        
+        response.type = MessageType::CREATE_FOLDER;
+        response.payload = Utils::StringToBytes("CREATE_FOLDER_SUCCESS");
+        
+        ACE_DEBUG((LM_INFO, ACE_TEXT("Folder created: %s\n"), folder_path.c_str()));
+        return true;
+        
+    } catch (const std::exception& e) {
+        response.type = MessageType::CREATE_FOLDER;
+        response.payload = Utils::StringToBytes(std::string("ERROR|Create folder failed: ") + e.what());
+        ACE_ERROR((LM_ERROR, ACE_TEXT("Create folder error: %s\n"), e.what()));
+        return false;
+    }
 }
 
 std::vector<unsigned char> RelayClient::SerializeMessage(const Message& msg) {

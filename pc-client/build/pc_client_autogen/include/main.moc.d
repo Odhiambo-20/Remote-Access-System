@@ -1,10 +1,10 @@
-/home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/include/main.moc: /home/victor/Videos/remote-access-system/pc-client/src/main.cpp \
-  /home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/moc_predefs.h \
-  /home/victor/Videos/remote-access-system/pc-client/include/file_handler.h \
-  /home/victor/Videos/remote-access-system/pc-client/include/file_server.h \
-  /home/victor/Videos/remote-access-system/pc-client/include/http_server.h \
-  /home/victor/Videos/remote-access-system/pc-client/include/pc_identifier.h \
-  /home/victor/Videos/remote-access-system/pc-client/include/remote_control_server.h \
+/home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/include/main.moc: /home/victor/Documents/Desktop/remote-access-system/pc-client/src/main.cpp \
+  /home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/moc_predefs.h \
+  /home/victor/Documents/Desktop/remote-access-system/pc-client/include/file_handler.h \
+  /home/victor/Documents/Desktop/remote-access-system/pc-client/include/file_server.h \
+  /home/victor/Documents/Desktop/remote-access-system/pc-client/include/http_server.h \
+  /home/victor/Documents/Desktop/remote-access-system/pc-client/include/pc_identifier.h \
+  /home/victor/Documents/Desktop/remote-access-system/pc-client/include/remote_control_server.h \
   /usr/include/alloca.h \
   /usr/include/arpa/inet.h \
   /usr/include/asm-generic/bitsperlong.h \

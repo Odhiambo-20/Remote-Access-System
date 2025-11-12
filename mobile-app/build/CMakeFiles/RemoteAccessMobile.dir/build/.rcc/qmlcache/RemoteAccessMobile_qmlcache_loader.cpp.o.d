@@ -1,5 +1,5 @@
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.o: \
- /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp \
  /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/qt6/QtQml/qqmlprivate.h \
  /usr/include/x86_64-linux-gnu/qt6/QtQml/qtqmlglobal.h \

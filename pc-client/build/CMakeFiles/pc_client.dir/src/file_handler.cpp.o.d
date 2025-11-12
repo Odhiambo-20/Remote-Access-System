@@ -1,7 +1,7 @@
 CMakeFiles/pc_client.dir/src/file_handler.cpp.o: \
- /home/victor/Videos/remote-access-system/pc-client/src/file_handler.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/src/file_handler.cpp \
  /usr/include/stdc-predef.h \
- /home/victor/Videos/remote-access-system/pc-client/include/file_handler.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/include/file_handler.h \
  /usr/include/c++/12/string \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -144,7 +144,7 @@ CMakeFiles/pc_client.dir/src/file_handler.cpp.o: \
  /usr/include/c++/12/bits/parse_numbers.h /usr/include/c++/12/atomic \
  /usr/include/c++/12/bits/atomic_base.h \
  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
- /home/victor/Videos/remote-access-system/pc-client/include/http_server.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/include/http_server.h \
  /usr/local/include/ace/INET_Addr.h /usr/local/include/ace/pre.h \
  /usr/local/include/ace/Sock_Connect.h \
  /usr/local/include/ace/ACE_export.h /usr/local/include/ace/config-lite.h \
@@ -409,11 +409,106 @@ CMakeFiles/pc_client.dir/src/file_handler.cpp.o: \
  /usr/local/include/ace/OS_NS_ctype.inl \
  /usr/local/include/ace/SOCK_IO.inl \
  /usr/local/include/ace/SOCK_Stream.inl \
- /usr/local/include/ace/SOCK_Acceptor.inl /usr/include/c++/12/iostream \
- /usr/include/c++/12/istream /usr/include/c++/12/bits/istream.tcc \
- /usr/include/netdb.h /usr/include/rpc/netdb.h \
- /usr/include/x86_64-linux-gnu/bits/netdb.h /usr/include/dirent.h \
- /usr/include/x86_64-linux-gnu/bits/dirent.h \
+ /usr/local/include/ace/SOCK_Acceptor.inl \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/include/file_server.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qobject.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qobjectdefs.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qnamespace.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qglobal.h \
+ /usr/include/c++/12/cstddef /usr/include/c++/12/utility \
+ /usr/include/c++/12/bits/stl_relops.h /usr/include/assert.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qconfig.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qtcore-config.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qsystemdetection.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qprocessordetection.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qcompilerdetection.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qtypeinfo.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qsysinfo.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qlogging.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qflags.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qbasicatomic.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qatomic_cxx11.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qgenericatomic.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qglobalstatic.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qnumeric.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qversiontagging.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qobjectdefs_impl.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstring.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qchar.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qbytearray.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qrefcount.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qarraydata.h \
+ /usr/include/c++/12/iterator /usr/include/c++/12/bits/stream_iterator.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringliteral.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringalgorithms.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringview.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qlist.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qalgorithms.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qiterator.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qhashfunctions.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qpair.h \
+ /usr/include/c++/12/numeric /usr/include/c++/12/bits/stl_numeric.h \
+ /usr/include/c++/12/bit /usr/include/c++/12/pstl/glue_numeric_defs.h \
+ /usr/include/c++/12/functional /usr/include/c++/12/bits/std_function.h \
+ /usr/include/c++/12/unordered_map /usr/include/c++/12/bits/hashtable.h \
+ /usr/include/c++/12/bits/hashtable_policy.h \
+ /usr/include/c++/12/bits/enable_special_members.h \
+ /usr/include/c++/12/bits/unordered_map.h /usr/include/c++/12/array \
+ /usr/include/c++/12/compare \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qvector.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontainertools_impl.h \
+ /usr/include/c++/12/list /usr/include/c++/12/bits/stl_list.h \
+ /usr/include/c++/12/bits/allocated_ptr.h \
+ /usr/include/c++/12/bits/list.tcc \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qbytearraylist.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringlist.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qregexp.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qstringmatcher.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qscopedpointer.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qmetatype.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qvarlengtharray.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontainerfwd.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qobject_impl.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/QTcpServer \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtcpserver.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetworkglobal.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtnetwork-config.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qobject.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qabstractsocket.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qiodevice.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qdebug.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qhash.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qmap.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qtextstream.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qlocale.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qvariant.h \
+ /usr/include/c++/12/variant \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qshareddata.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qset.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qcontiguouscache.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer_impl.h \
+ /usr/include/c++/12/memory \
+ /usr/include/c++/12/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/12/bits/align.h /usr/include/c++/12/bits/shared_ptr.h \
+ /usr/include/c++/12/bits/shared_ptr_base.h \
+ /usr/include/c++/12/ext/concurrence.h \
+ /usr/include/c++/12/bits/shared_ptr_atomic.h \
+ /usr/include/c++/12/backward/auto_ptr.h \
+ /usr/include/c++/12/pstl/glue_memory_defs.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qhostaddress.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/QTcpSocket \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qtcpsocket.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QMap \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qmap.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QDateTime \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qdatetime.h \
+ /usr/include/c++/12/iostream /usr/include/c++/12/istream \
+ /usr/include/c++/12/bits/istream.tcc /usr/include/netdb.h \
+ /usr/include/rpc/netdb.h /usr/include/x86_64-linux-gnu/bits/netdb.h \
+ /usr/include/dirent.h /usr/include/x86_64-linux-gnu/bits/dirent.h \
  /usr/include/x86_64-linux-gnu/bits/dirent_ext.h \
  /usr/include/c++/12/fstream /usr/include/c++/12/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/basic_file.h \
@@ -444,9 +539,7 @@ CMakeFiles/pc_client.dir/src/file_handler.cpp.o: \
  /usr/include/c++/12/tr1/riemann_zeta.tcc \
  /usr/include/c++/12/bits/random.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/opt_random.h \
- /usr/include/c++/12/bits/random.tcc /usr/include/c++/12/numeric \
- /usr/include/c++/12/bits/stl_numeric.h /usr/include/c++/12/bit \
- /usr/include/c++/12/pstl/glue_numeric_defs.h /usr/include/c++/12/iomanip \
+ /usr/include/c++/12/bits/random.tcc /usr/include/c++/12/iomanip \
  /usr/include/c++/12/locale \
  /usr/include/c++/12/bits/locale_facets_nonio.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/time_members.h \

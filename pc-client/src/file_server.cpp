@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QCryptographicHash>
 #include <QDateTime>
+#include <QNetworkInterface>
 
 FileServer::FileServer(QObject *parent)
     : QObject(parent), m_server(new QTcpServer(this)), m_httpServer(new QTcpServer(this)) {
@@ -29,6 +30,18 @@ bool FileServer::start(int port, int httpPort) {
     return true;
 }
 
+// ADD THIS NEW METHOD IMPLEMENTATION
+void FileServer::addShareToken(const QString& token, const QString& filePath, int expiryHours) {
+    qDebug() << "[FileServer] Adding share token:" << token << "for file:" << filePath;
+    
+    ShareInfo info;
+    info.filePath = filePath;
+    info.expiryTime = QDateTime::currentDateTime().addSecs(expiryHours * 3600);
+    m_shareLinks[token] = info;
+    
+    qDebug() << "[FileServer] Token added, expires:" << info.expiryTime.toString();
+}
+
 void FileServer::handleNewConnection() {
     QTcpSocket *client = m_server->nextPendingConnection();
     qDebug() << "[FileServer] New client connected:" << client->peerAddress();
@@ -44,37 +57,69 @@ void FileServer::handleClientData(QTcpSocket *client) {
     QByteArray data = client->readAll();
     QString command = QString::fromUtf8(data).trimmed();
     
-    qDebug() << "[FileServer] Command:" << command;
+    qDebug() << "[FileServer] Command received:" << command;
     
     QStringList parts = command.split('|');
-    if (parts.isEmpty()) return;
+    if (parts.isEmpty()) {
+        qDebug() << "[FileServer] Empty command received";
+        return;
+    }
     
     QString cmd = parts[0];
     
-    if (cmd == "LIST_DIR" && parts.size() >= 2) {
+    // Handle LIST command (mobile app sends this)
+    if (cmd == "LIST" && parts.size() >= 2) {
+        qDebug() << "[FileServer] Processing LIST command for path:" << parts[1];
+        listDirectory(client, parts[1]);
+        
+    // Also support LIST_DIR for backward compatibility
+    } else if (cmd == "LIST_DIR" && parts.size() >= 2) {
+        qDebug() << "[FileServer] Processing LIST_DIR command for path:" << parts[1];
         listDirectory(client, parts[1]);
         
     } else if (cmd == "DOWNLOAD" && parts.size() >= 2) {
+        qDebug() << "[FileServer] Processing DOWNLOAD command for:" << parts[1];
+        downloadFile(client, parts[1]);
+        
+    } else if (cmd == "GET" && parts.size() >= 2) {
+        qDebug() << "[FileServer] Processing GET command for:" << parts[1];
         downloadFile(client, parts[1]);
         
     } else if (cmd == "UPLOAD" && parts.size() >= 3) {
+        qDebug() << "[FileServer] Processing UPLOAD command";
+        uploadFile(client, parts[1], parts[2].toLongLong());
+        
+    } else if (cmd == "PUT" && parts.size() >= 3) {
+        qDebug() << "[FileServer] Processing PUT command";
         uploadFile(client, parts[1], parts[2].toLongLong());
         
     } else if (cmd == "DELETE" && parts.size() >= 2) {
+        qDebug() << "[FileServer] Processing DELETE command";
         deleteFile(client, parts[1]);
         
+    } else if (cmd == "MKDIR" && parts.size() >= 2) {
+        qDebug() << "[FileServer] Processing MKDIR command";
+        createDirectory(client, parts[1]);
+        
     } else if (cmd == "GENERATE_LINK" && parts.size() >= 3) {
+        qDebug() << "[FileServer] Processing GENERATE_LINK command";
         generateShareLink(client, parts[1], parts[2].toInt());
         
     } else {
+        qDebug() << "[FileServer] Unknown command:" << cmd << "with" << parts.size() << "parts";
         client->write("ERROR|Unknown command\n");
+        client->flush();
     }
 }
 
 void FileServer::listDirectory(QTcpSocket *client, const QString &path) {
+    qDebug() << "[FileServer] Listing directory:" << path;
+    
     QDir dir(path);
     if (!dir.exists()) {
+        qDebug() << "[FileServer] Directory does not exist:" << path;
         client->write("ERROR|Directory not found\n");
+        client->flush();
         return;
     }
     
@@ -83,90 +128,148 @@ void FileServer::listDirectory(QTcpSocket *client, const QString &path) {
     
     for (const QFileInfo &info : entries) {
         QString type = info.isDir() ? "DIR" : "FILE";
-        QString size = info.isDir() ? "-" : QString::number(info.size()) + " bytes";
-        result << QString("%1|%2|%3").arg(info.fileName()).arg(size).arg(type);
+        QString size = info.isDir() ? "0" : QString::number(info.size());
+        
+        // Format: filename,type,size
+        QString entry = QString("%1,%2,%3").arg(info.fileName()).arg(type).arg(size);
+        result << entry;
+        
+        qDebug() << "[FileServer]   -" << entry;
     }
     
-    QString response = "DIR_LIST|" + result.join(';') + "\n";
+    // Response format: FILE_LIST|path|file1,type,size;file2,type,size;...
+    QString response = QString("FILE_LIST|%1|%2\n").arg(path).arg(result.join(';'));
     client->write(response.toUtf8());
     client->flush();
     
-    qDebug() << "[FileServer] Listed" << entries.size() << "entries in" << path;
+    qDebug() << "[FileServer] Sent" << entries.size() << "entries for" << path;
 }
 
 void FileServer::downloadFile(QTcpSocket *client, const QString &path) {
+    qDebug() << "[FileServer] Download requested:" << path;
+    
     QFile file(path);
     if (!file.open(QIODevice::ReadOnly)) {
+        qDebug() << "[FileServer] Failed to open file:" << path;
         client->write("ERROR|Failed to open file\n");
+        client->flush();
         return;
     }
     
     qint64 fileSize = file.size();
-    QString header = QString("DOWNLOAD_SIZE|%1\n").arg(fileSize);
+    QString header = QString("FILE_DATA|%1\n").arg(fileSize);
     client->write(header.toUtf8());
     client->flush();
     
-    qDebug() << "[FileServer] Downloading" << path << "(" << fileSize << "bytes)";
+    qDebug() << "[FileServer] Sending file:" << path << "(" << fileSize << "bytes)";
     
     // Send file in chunks
     qint64 totalSent = 0;
     while (!file.atEnd()) {
         QByteArray chunk = file.read(8192);
-        client->write(chunk);
-        totalSent += chunk.size();
+        qint64 sent = client->write(chunk);
+        totalSent += sent;
+        client->flush();
     }
     
-    client->flush();
     file.close();
     
-    qDebug() << "[FileServer] Download complete:" << totalSent << "bytes";
+    qDebug() << "[FileServer] Download complete:" << totalSent << "of" << fileSize << "bytes sent";
 }
 
 void FileServer::uploadFile(QTcpSocket *client, const QString &path, qint64 size) {
+    qDebug() << "[FileServer] Upload requested:" << path << "(" << size << "bytes)";
+    
     QFile file(path);
     if (!file.open(QIODevice::WriteOnly)) {
+        qDebug() << "[FileServer] Failed to create file:" << path;
         client->write("ERROR|Failed to create file\n");
+        client->flush();
         return;
     }
     
-    qDebug() << "[FileServer] Receiving upload:" << path << "(" << size << "bytes)";
+    // Acknowledge ready to receive
+    client->write("READY\n");
+    client->flush();
     
     // Read file data
     qint64 received = 0;
     while (received < size) {
-        if (!client->waitForReadyRead(30000)) break;
+        if (!client->waitForReadyRead(30000)) {
+            qDebug() << "[FileServer] Timeout waiting for data";
+            break;
+        }
         
-        QByteArray data = client->read(size - received);
+        QByteArray data = client->read(qMin(8192LL, size - received));
         file.write(data);
         received += data.size();
+        
+        if (received % (1024 * 1024) == 0) {
+            qDebug() << "[FileServer] Upload progress:" << received << "/" << size;
+        }
     }
     
     file.close();
     
     if (received == size) {
-        client->write("SUCCESS|Upload complete\n");
+        client->write("OK|Upload complete\n");
+        client->flush();
         qDebug() << "[FileServer] Upload complete:" << received << "bytes";
     } else {
         client->write("ERROR|Upload incomplete\n");
+        client->flush();
         qDebug() << "[FileServer] Upload failed, received" << received << "of" << size;
     }
 }
 
 void FileServer::deleteFile(QTcpSocket *client, const QString &path) {
-    QFile file(path);
-    if (file.remove()) {
-        client->write("SUCCESS|File deleted\n");
+    qDebug() << "[FileServer] Delete requested:" << path;
+    
+    QFileInfo info(path);
+    
+    bool success = false;
+    if (info.isDir()) {
+        QDir dir(path);
+        success = dir.removeRecursively();
+    } else {
+        QFile file(path);
+        success = file.remove();
+    }
+    
+    if (success) {
+        client->write("OK|File deleted\n");
+        client->flush();
         qDebug() << "[FileServer] Deleted:" << path;
     } else {
         client->write("ERROR|Failed to delete file\n");
+        client->flush();
         qDebug() << "[FileServer] Failed to delete:" << path;
     }
 }
 
+void FileServer::createDirectory(QTcpSocket *client, const QString &path) {
+    qDebug() << "[FileServer] Create directory requested:" << path;
+    
+    QDir dir;
+    if (dir.mkpath(path)) {
+        client->write("OK|Directory created\n");
+        client->flush();
+        qDebug() << "[FileServer] Created directory:" << path;
+    } else {
+        client->write("ERROR|Failed to create directory\n");
+        client->flush();
+        qDebug() << "[FileServer] Failed to create directory:" << path;
+    }
+}
+
 void FileServer::generateShareLink(QTcpSocket *client, const QString &path, int expiryHours) {
+    qDebug() << "[FileServer] Generate share link:" << path << "expiry:" << expiryHours << "hours";
+    
     QFile file(path);
     if (!file.exists()) {
+        qDebug() << "[FileServer] File not found for share link:" << path;
         client->write("ERROR|File not found\n");
+        client->flush();
         return;
     }
     
@@ -238,7 +341,10 @@ void FileServer::handleHttpConnection() {
 }
 
 void FileServer::serveSharedFile(QTcpSocket *client, const QString &token) {
+    qDebug() << "[FileServer] Serving shared file, token:" << token;
+    
     if (!m_shareLinks.contains(token)) {
+        qDebug() << "[FileServer] Share link not found:" << token;
         QString response = "HTTP/1.1 404 Not Found\r\n\r\nShare link not found or expired";
         client->write(response.toUtf8());
         client->flush();
@@ -250,6 +356,7 @@ void FileServer::serveSharedFile(QTcpSocket *client, const QString &token) {
     
     // Check expiry
     if (QDateTime::currentDateTime() > info.expiryTime) {
+        qDebug() << "[FileServer] Share link expired:" << token;
         m_shareLinks.remove(token);
         QString response = "HTTP/1.1 410 Gone\r\n\r\nShare link has expired";
         client->write(response.toUtf8());
@@ -261,6 +368,7 @@ void FileServer::serveSharedFile(QTcpSocket *client, const QString &token) {
     // Serve file
     QFile file(info.filePath);
     if (!file.open(QIODevice::ReadOnly)) {
+        qDebug() << "[FileServer] Failed to open shared file:" << info.filePath;
         QString response = "HTTP/1.1 500 Internal Server Error\r\n\r\nFailed to open file";
         client->write(response.toUtf8());
         client->flush();
@@ -298,6 +406,15 @@ void FileServer::serveSharedFile(QTcpSocket *client, const QString &token) {
 }
 
 QString FileServer::getLocalIP() {
-    // Return local IP address (simplified)
-    return "192.168.1.100"; // TODO: Implement actual IP detection
+    // Get the first non-localhost IPv4 address
+    QList<QHostAddress> addresses = QNetworkInterface::allAddresses();
+    
+    for (const QHostAddress &address : addresses) {
+        if (address.protocol() == QAbstractSocket::IPv4Protocol && 
+            address != QHostAddress::LocalHost) {
+            return address.toString();
+        }
+    }
+    
+    return "127.0.0.1";
 }

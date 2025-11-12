@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/victor/Videos/remote-access-system/mobile-app
+CMAKE_SOURCE_DIR = /home/victor/Documents/Desktop/remote-access-system/mobile-app
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/victor/Videos/remote-access-system/mobile-app/build
+CMAKE_BINARY_DIR = /home/victor/Documents/Desktop/remote-access-system/mobile-app/build
 
 # Utility rule file for RemoteAccessMobile_qmllint_json.
 
@@ -67,8 +67,15 @@ include CMakeFiles/RemoteAccessMobile_qmllint_json.dir/compiler_depend.make
 include CMakeFiles/RemoteAccessMobile_qmllint_json.dir/progress.make
 
 CMakeFiles/RemoteAccessMobile_qmllint_json: /usr/lib/qt6/bin/qmllint
-CMakeFiles/RemoteAccessMobile_qmllint_json: /home/victor/Videos/remote-access-system/mobile-app/qml/main.qml
-	cd /home/victor/Videos/remote-access-system/mobile-app && /usr/lib/qt6/bin/qmllint --bare -I /home/victor/Videos/remote-access-system/mobile-app/build -I /usr/lib/x86_64-linux-gnu/qt6/qml --resource /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmake_RemoteAccess.qrc --resource /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/RemoteAccessMobile_raw_qml_0.qrc /home/victor/Videos/remote-access-system/mobile-app/qml/main.qml --json /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_qmllint.json
+CMakeFiles/RemoteAccessMobile_qmllint_json: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/main.qml
+CMakeFiles/RemoteAccessMobile_qmllint_json: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/FileExplorerView.qml
+CMakeFiles/RemoteAccessMobile_qmllint_json: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/PCListView.qml
+CMakeFiles/RemoteAccessMobile_qmllint_json: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/AddPCView.qml
+CMakeFiles/RemoteAccessMobile_qmllint_json: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/SettingsView.qml
+CMakeFiles/RemoteAccessMobile_qmllint_json: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/FileItem.qml
+CMakeFiles/RemoteAccessMobile_qmllint_json: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/PCCard.qml
+CMakeFiles/RemoteAccessMobile_qmllint_json: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/ProgressBar.qml
+	cd /home/victor/Documents/Desktop/remote-access-system/mobile-app && /usr/lib/qt6/bin/qmllint --bare -I /home/victor/Documents/Desktop/remote-access-system/mobile-app/build -I /usr/lib/x86_64-linux-gnu/qt6/qml --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmake_RemoteAccess.qrc --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/RemoteAccessMobile_raw_qml_0.qrc /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/main.qml /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/FileExplorerView.qml /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/PCListView.qml /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/AddPCView.qml /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/SettingsView.qml /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/FileItem.qml /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/PCCard.qml /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/ProgressBar.qml --json /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_qmllint.json
 
 RemoteAccessMobile_qmllint_json: CMakeFiles/RemoteAccessMobile_qmllint_json
 RemoteAccessMobile_qmllint_json: CMakeFiles/RemoteAccessMobile_qmllint_json.dir/build.make
@@ -83,6 +90,6 @@ CMakeFiles/RemoteAccessMobile_qmllint_json.dir/clean:
 .PHONY : CMakeFiles/RemoteAccessMobile_qmllint_json.dir/clean
 
 CMakeFiles/RemoteAccessMobile_qmllint_json.dir/depend:
-	cd /home/victor/Videos/remote-access-system/mobile-app/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Videos/remote-access-system/mobile-app /home/victor/Videos/remote-access-system/mobile-app /home/victor/Videos/remote-access-system/mobile-app/build /home/victor/Videos/remote-access-system/mobile-app/build /home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_qmllint_json.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/victor/Documents/Desktop/remote-access-system/mobile-app/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Documents/Desktop/remote-access-system/mobile-app /home/victor/Documents/Desktop/remote-access-system/mobile-app /home/victor/Documents/Desktop/remote-access-system/mobile-app/build /home/victor/Documents/Desktop/remote-access-system/mobile-app/build /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_qmllint_json.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/RemoteAccessMobile_qmllint_json.dir/depend
 

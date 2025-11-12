@@ -1,5 +1,5 @@
-/home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/6YEA5652QU/moc_remote_control_server.cpp: /home/victor/Videos/remote-access-system/pc-client/include/remote_control_server.h \
-  /home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/moc_predefs.h \
+/home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/6YEA5652QU/moc_remote_control_server.cpp: /home/victor/Documents/Desktop/remote-access-system/pc-client/include/remote_control_server.h \
+  /home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/moc_predefs.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \

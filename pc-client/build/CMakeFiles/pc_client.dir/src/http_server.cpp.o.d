@@ -1,7 +1,7 @@
 CMakeFiles/pc_client.dir/src/http_server.cpp.o: \
- /home/victor/Videos/remote-access-system/pc-client/src/http_server.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/src/http_server.cpp \
  /usr/include/stdc-predef.h \
- /home/victor/Videos/remote-access-system/pc-client/src/../include/http_server.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/src/../include/http_server.h \
  /usr/local/include/ace/INET_Addr.h /usr/local/include/ace/pre.h \
  /usr/local/include/ace/Sock_Connect.h \
  /usr/local/include/ace/ACE_export.h /usr/local/include/ace/config-lite.h \

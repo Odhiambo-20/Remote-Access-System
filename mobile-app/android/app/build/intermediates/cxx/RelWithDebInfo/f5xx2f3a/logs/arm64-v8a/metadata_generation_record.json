@@ -1,0 +1,106 @@
+[
+  {
+    "level_": 0,
+    "message_": "Start JSON generation. Platform version: 21 min SDK version: arm64-v8a",
+    "file_": "/home/victor/Videos/remote-access-system/mobile-app/CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "rebuilding JSON /home/victor/Videos/remote-access-system/mobile-app/android/app/.cxx/RelWithDebInfo/f5xx2f3a/arm64-v8a/android_gradle_build.json due to:",
+    "file_": "/home/victor/Videos/remote-access-system/mobile-app/CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "- no fingerprint file, will remove stale configuration folder",
+    "file_": "/home/victor/Videos/remote-access-system/mobile-app/CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "removing stale contents from \u0027/home/victor/Videos/remote-access-system/mobile-app/android/app/.cxx/RelWithDebInfo/f5xx2f3a/arm64-v8a\u0027",
+    "file_": "/home/victor/Videos/remote-access-system/mobile-app/CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "created folder \u0027/home/victor/Videos/remote-access-system/mobile-app/android/app/.cxx/RelWithDebInfo/f5xx2f3a/arm64-v8a\u0027",
+    "file_": "/home/victor/Videos/remote-access-system/mobile-app/CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "executing cmake /home/victor/Android/Sdk/cmake/3.22.1/bin/cmake \\\n  -H/home/victor/Videos/remote-access-system/mobile-app \\\n  -DCMAKE_SYSTEM_NAME\u003dAndroid \\\n  -DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON \\\n  -DCMAKE_SYSTEM_VERSION\u003d21 \\\n  -DANDROID_PLATFORM\u003dandroid-21 \\\n  -DANDROID_ABI\u003darm64-v8a \\\n  -DCMAKE_ANDROID_ARCH_ABI\u003darm64-v8a \\\n  -DANDROID_NDK\u003d/home/victor/Android/Sdk/ndk/25.1.8937393 \\\n  -DCMAKE_ANDROID_NDK\u003d/home/victor/Android/Sdk/ndk/25.1.8937393 \\\n  -DCMAKE_TOOLCHAIN_FILE\u003d/home/victor/Android/Sdk/ndk/25.1.8937393/build/cmake/android.toolchain.cmake \\\n  -DCMAKE_MAKE_PROGRAM\u003d/home/victor/Android/Sdk/cmake/3.22.1/bin/ninja \\\n  -DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003d/home/victor/Videos/remote-access-system/mobile-app/android/app/build/intermediates/cxx/RelWithDebInfo/f5xx2f3a/obj/arm64-v8a \\\n  -DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003d/home/victor/Videos/remote-access-system/mobile-app/android/app/build/intermediates/cxx/RelWithDebInfo/f5xx2f3a/obj/arm64-v8a \\\n  -DCMAKE_BUILD_TYPE\u003dRelWithDebInfo \\\n  -B/home/victor/Videos/remote-access-system/mobile-app/android/app/.cxx/RelWithDebInfo/f5xx2f3a/arm64-v8a \\\n  -GNinja\n",
+    "file_": "/home/victor/Videos/remote-access-system/mobile-app/CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "/home/victor/Android/Sdk/cmake/3.22.1/bin/cmake \\\n  -H/home/victor/Videos/remote-access-system/mobile-app \\\n  -DCMAKE_SYSTEM_NAME\u003dAndroid \\\n  -DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON \\\n  -DCMAKE_SYSTEM_VERSION\u003d21 \\\n  -DANDROID_PLATFORM\u003dandroid-21 \\\n  -DANDROID_ABI\u003darm64-v8a \\\n  -DCMAKE_ANDROID_ARCH_ABI\u003darm64-v8a \\\n  -DANDROID_NDK\u003d/home/victor/Android/Sdk/ndk/25.1.8937393 \\\n  -DCMAKE_ANDROID_NDK\u003d/home/victor/Android/Sdk/ndk/25.1.8937393 \\\n  -DCMAKE_TOOLCHAIN_FILE\u003d/home/victor/Android/Sdk/ndk/25.1.8937393/build/cmake/android.toolchain.cmake \\\n  -DCMAKE_MAKE_PROGRAM\u003d/home/victor/Android/Sdk/cmake/3.22.1/bin/ninja \\\n  -DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003d/home/victor/Videos/remote-access-system/mobile-app/android/app/build/intermediates/cxx/RelWithDebInfo/f5xx2f3a/obj/arm64-v8a \\\n  -DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003d/home/victor/Videos/remote-access-system/mobile-app/android/app/build/intermediates/cxx/RelWithDebInfo/f5xx2f3a/obj/arm64-v8a \\\n  -DCMAKE_BUILD_TYPE\u003dRelWithDebInfo \\\n  -B/home/victor/Videos/remote-access-system/mobile-app/android/app/.cxx/RelWithDebInfo/f5xx2f3a/arm64-v8a \\\n  -GNinja\n",
+    "file_": "/home/victor/Videos/remote-access-system/mobile-app/CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  },
+  {
+    "level_": 0,
+    "message_": "JSON generation completed with problem. Exception: com.android.ide.common.process.ProcessException: -- The CXX compiler identification is Clang 14.0.6\n-- Detecting CXX compiler ABI info\n-- Detecting CXX compiler ABI info - done\n-- Check for working CXX compiler: /home/victor/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ - skipped\n-- Detecting CXX compile features\n-- Detecting CXX compile features - done\n-- Configuring incomplete, errors occurred!\nSee also \"/home/victor/Videos/remote-access-system/mobile-app/android/app/.cxx/RelWithDebInfo/f5xx2f3a/arm64-v8a/CMakeFiles/CMakeOutput.log\".\n\nC++ build system [configure] failed while executing:\n    /home/victor/Android/Sdk/cmake/3.22.1/bin/cmake \\\n      -H/home/victor/Videos/remote-access-system/mobile-app \\\n      -DCMAKE_SYSTEM_NAME\u003dAndroid \\\n      -DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON \\\n      -DCMAKE_SYSTEM_VERSION\u003d21 \\\n      -DANDROID_PLATFORM\u003dandroid-21 \\\n      -DANDROID_ABI\u003darm64-v8a \\\n      -DCMAKE_ANDROID_ARCH_ABI\u003darm64-v8a \\\n      -DANDROID_NDK\u003d/home/victor/Android/Sdk/ndk/25.1.8937393 \\\n      -DCMAKE_ANDROID_NDK\u003d/home/victor/Android/Sdk/ndk/25.1.8937393 \\\n      -DCMAKE_TOOLCHAIN_FILE\u003d/home/victor/Android/Sdk/ndk/25.1.8937393/build/cmake/android.toolchain.cmake \\\n      -DCMAKE_MAKE_PROGRAM\u003d/home/victor/Android/Sdk/cmake/3.22.1/bin/ninja \\\n      -DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003d/home/victor/Videos/remote-access-system/mobile-app/android/app/build/intermediates/cxx/RelWithDebInfo/f5xx2f3a/obj/arm64-v8a \\\n      -DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003d/home/victor/Videos/remote-access-system/mobile-app/android/app/build/intermediates/cxx/RelWithDebInfo/f5xx2f3a/obj/arm64-v8a \\\n      -DCMAKE_BUILD_TYPE\u003dRelWithDebInfo \\\n      -B/home/victor/Videos/remote-access-system/mobile-app/android/app/.cxx/RelWithDebInfo/f5xx2f3a/arm64-v8a \\\n      -GNinja\n  from /home/victor/Videos/remote-access-system/mobile-app/android/app\nCMake Error at CMakeLists.txt:9 (find_package):\n  By not providing \"FindQt6.cmake\" in CMAKE_MODULE_PATH this project has\n  asked CMake to find a package configuration file provided by \"Qt6\", but\n  CMake did not find one.\n\n  Could not find a package configuration file provided by \"Qt6\" with any of\n  the following names:\n\n    Qt6Config.cmake\n    qt6-config.cmake\n\n  Add the installation prefix of \"Qt6\" to CMAKE_PREFIX_PATH or set \"Qt6_DIR\"\n  to a directory containing one of the above files.  If \"Qt6\" provides a\n  separate development package or SDK, be sure it has been installed.",
+    "file_": "/home/victor/Videos/remote-access-system/mobile-app/CMakeLists.txt",
+    "tag_": "release|arm64-v8a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 0
+  }
+]

@@ -1,7 +1,7 @@
 CMakeFiles/pc_client.dir/src/account_manager.cpp.o: \
- /home/victor/Videos/remote-access-system/pc-client/src/account_manager.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/src/account_manager.cpp \
  /usr/include/stdc-predef.h \
- /home/victor/Videos/remote-access-system/pc-client/include/account_manager.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/include/account_manager.h \
  /usr/include/c++/12/string \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -394,7 +394,7 @@ CMakeFiles/pc_client.dir/src/account_manager.cpp.o: \
  /usr/local/include/ace/OS_NS_arpa_inet.h \
  /usr/local/include/ace/OS_NS_arpa_inet.inl \
  /usr/local/include/ace/SOCK_Stream.inl \
- /home/victor/Videos/remote-access-system/pc-client/src/../../common/include/utils.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/src/../../common/include/utils.h \
  /usr/local/include/ace/Log_Priority.h /usr/local/include/ace/Log_Msg.h \
  /usr/local/include/ace/Synch_Traits.h /usr/local/include/ace/Lock.h \
  /usr/local/include/ace/Lock.inl /usr/local/include/ace/Log_Msg.inl

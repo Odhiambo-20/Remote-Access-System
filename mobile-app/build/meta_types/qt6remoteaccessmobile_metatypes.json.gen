@@ -625,21 +625,6 @@
                             {
                                 "name": "remotePath",
                                 "type": "QString"
-                            },
-                            {
-                                "name": "localPath",
-                                "type": "QString"
-                            }
-                        ],
-                        "name": "downloadFile",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "remotePath",
-                                "type": "QString"
                             }
                         ],
                         "name": "deleteFile",
@@ -706,6 +691,99 @@
                     {
                         "access": "public",
                         "name": "disconnect",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "remotePath",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "localPath",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "downloadFile",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "remotePath",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "downloadFile",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "files",
+                                "type": "QVariantList"
+                            }
+                        ],
+                        "name": "downloadMultipleFiles",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "sourcePath",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "destinationPath",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "copyFile",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "sourcePath",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "destinationPath",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "moveFile",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "oldPath",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "newName",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "renameFile",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "folderPath",
+                                "type": "QString"
+                            }
+                        ],
+                        "name": "createFolder",
                         "returnType": "void"
                     }
                 ],

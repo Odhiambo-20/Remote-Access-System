@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <QDir>
+#include <QStandardPaths>
 
 FileManager::FileManager(QObject *parent)
     : QObject(parent)
@@ -285,8 +286,15 @@ void FileManager::downloadFile(const QString &remotePath, const QString &localPa
     
     setBusy(true);
     
-    // Remove file:// prefix if present
+    // If no local path specified, use Downloads folder
     QString cleanPath = localPath;
+    if (cleanPath.isEmpty()) {
+        QFileInfo fileInfo(remotePath);
+        QString downloadPath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
+        cleanPath = downloadPath + "/" + fileInfo.fileName();
+    }
+    
+    // Remove file:// prefix if present
     if (cleanPath.startsWith("file://")) {
         cleanPath = cleanPath.mid(7);
     }
@@ -353,6 +361,7 @@ void FileManager::downloadFile(const QString &remotePath, const QString &localPa
                 m_downloadFile.close();
                 qDebug() << "[FileManager] Download completed";
                 emit downloadCompleted(m_downloadPath);
+                emit errorOccurred("Download completed: " + m_downloadPath);
                 setBusy(false);
                 requestSocket->disconnectFromHost();
                 requestSocket->deleteLater();
@@ -366,6 +375,227 @@ void FileManager::downloadFile(const QString &remotePath, const QString &localPa
         if (m_downloadFile.isOpen()) {
             m_downloadFile.close();
         }
+        setBusy(false);
+        requestSocket->deleteLater();
+    });
+    
+    requestSocket->connectToHost(m_relayHost, m_relayPort);
+}
+
+void FileManager::downloadMultipleFiles(const QVariantList &files) {
+    qDebug() << "[FileManager] Downloading" << files.size() << "files";
+    
+    for (const QVariant &fileVar : files) {
+        QVariantMap fileMap = fileVar.toMap();
+        QString filePath = fileMap["path"].toString();
+        
+        if (!filePath.isEmpty()) {
+            downloadFile(filePath, "");
+        }
+    }
+}
+
+void FileManager::copyFile(const QString &sourcePath, const QString &destinationPath) {
+    qDebug() << "[FileManager] Copying file from" << sourcePath << "to" << destinationPath;
+    
+    if (m_isBusy) {
+        qDebug() << "[FileManager] Busy, ignoring request";
+        emit errorOccurred("Another operation is in progress");
+        return;
+    }
+    
+    setBusy(true);
+    
+    // Create new socket for copy request
+    QTcpSocket *requestSocket = new QTcpSocket(this);
+    
+    connect(requestSocket, &QTcpSocket::connected, this, [this, requestSocket, sourcePath, destinationPath]() {
+        qDebug() << "[FileManager] Connected to relay for COPY request";
+        
+        QString command = QString("COPY|%1|%2|%3\n").arg(m_pcId, sourcePath, destinationPath);
+        qDebug() << "[FileManager] Sending:" << command.trimmed();
+        requestSocket->write(command.toUtf8());
+        requestSocket->flush();
+    });
+    
+    connect(requestSocket, &QTcpSocket::readyRead, this, [this, requestSocket]() {
+        QByteArray data = requestSocket->readAll();
+        QString response = QString::fromUtf8(data).trimmed();
+        qDebug() << "[FileManager] Copy response:" << response;
+        
+        if (response.startsWith("COPY_SUCCESS")) {
+            emit completed();
+            emit errorOccurred("File copied successfully");
+        } else if (response.startsWith("ERROR|")) {
+            QString error = response.mid(6);
+            emit errorOccurred("Failed to copy file: " + error);
+        }
+        
+        setBusy(false);
+        requestSocket->disconnectFromHost();
+        requestSocket->deleteLater();
+    });
+    
+    connect(requestSocket, &QTcpSocket::errorOccurred, this, [this, requestSocket](QAbstractSocket::SocketError error) {
+        qDebug() << "[FileManager] Socket error:" << requestSocket->errorString();
+        emit errorOccurred("Failed to copy file: " + requestSocket->errorString());
+        setBusy(false);
+        requestSocket->deleteLater();
+    });
+    
+    requestSocket->connectToHost(m_relayHost, m_relayPort);
+}
+
+void FileManager::moveFile(const QString &sourcePath, const QString &destinationPath) {
+    qDebug() << "[FileManager] Moving file from" << sourcePath << "to" << destinationPath;
+    
+    if (m_isBusy) {
+        qDebug() << "[FileManager] Busy, ignoring request";
+        emit errorOccurred("Another operation is in progress");
+        return;
+    }
+    
+    setBusy(true);
+    
+    // Create new socket for move request
+    QTcpSocket *requestSocket = new QTcpSocket(this);
+    
+    connect(requestSocket, &QTcpSocket::connected, this, [this, requestSocket, sourcePath, destinationPath]() {
+        qDebug() << "[FileManager] Connected to relay for MOVE request";
+        
+        QString command = QString("MOVE|%1|%2|%3\n").arg(m_pcId, sourcePath, destinationPath);
+        qDebug() << "[FileManager] Sending:" << command.trimmed();
+        requestSocket->write(command.toUtf8());
+        requestSocket->flush();
+    });
+    
+    connect(requestSocket, &QTcpSocket::readyRead, this, [this, requestSocket]() {
+        QByteArray data = requestSocket->readAll();
+        QString response = QString::fromUtf8(data).trimmed();
+        qDebug() << "[FileManager] Move response:" << response;
+        
+        if (response.startsWith("MOVE_SUCCESS")) {
+            emit completed();
+            emit errorOccurred("File moved successfully");
+        } else if (response.startsWith("ERROR|")) {
+            QString error = response.mid(6);
+            emit errorOccurred("Failed to move file: " + error);
+        }
+        
+        setBusy(false);
+        requestSocket->disconnectFromHost();
+        requestSocket->deleteLater();
+    });
+    
+    connect(requestSocket, &QTcpSocket::errorOccurred, this, [this, requestSocket](QAbstractSocket::SocketError error) {
+        qDebug() << "[FileManager] Socket error:" << requestSocket->errorString();
+        emit errorOccurred("Failed to move file: " + requestSocket->errorString());
+        setBusy(false);
+        requestSocket->deleteLater();
+    });
+    
+    requestSocket->connectToHost(m_relayHost, m_relayPort);
+}
+
+void FileManager::renameFile(const QString &oldPath, const QString &newName) {
+    qDebug() << "[FileManager] Renaming file" << oldPath << "to" << newName;
+    
+    if (m_isBusy) {
+        qDebug() << "[FileManager] Busy, ignoring request";
+        emit errorOccurred("Another operation is in progress");
+        return;
+    }
+    
+    setBusy(true);
+    
+    // Extract directory path
+    QString dirPath = oldPath.left(oldPath.lastIndexOf('/'));
+    QString newPath = dirPath + "/" + newName;
+    
+    // Create new socket for rename request
+    QTcpSocket *requestSocket = new QTcpSocket(this);
+    
+    connect(requestSocket, &QTcpSocket::connected, this, [this, requestSocket, oldPath, newPath]() {
+        qDebug() << "[FileManager] Connected to relay for RENAME request";
+        
+        QString command = QString("RENAME|%1|%2|%3\n").arg(m_pcId, oldPath, newPath);
+        qDebug() << "[FileManager] Sending:" << command.trimmed();
+        requestSocket->write(command.toUtf8());
+        requestSocket->flush();
+    });
+    
+    connect(requestSocket, &QTcpSocket::readyRead, this, [this, requestSocket]() {
+        QByteArray data = requestSocket->readAll();
+        QString response = QString::fromUtf8(data).trimmed();
+        qDebug() << "[FileManager] Rename response:" << response;
+        
+        if (response.startsWith("RENAME_SUCCESS")) {
+            emit completed();
+            emit errorOccurred("File renamed successfully");
+        } else if (response.startsWith("ERROR|")) {
+            QString error = response.mid(6);
+            emit errorOccurred("Failed to rename file: " + error);
+        }
+        
+        setBusy(false);
+        requestSocket->disconnectFromHost();
+        requestSocket->deleteLater();
+    });
+    
+    connect(requestSocket, &QTcpSocket::errorOccurred, this, [this, requestSocket](QAbstractSocket::SocketError error) {
+        qDebug() << "[FileManager] Socket error:" << requestSocket->errorString();
+        emit errorOccurred("Failed to rename file: " + requestSocket->errorString());
+        setBusy(false);
+        requestSocket->deleteLater();
+    });
+    
+    requestSocket->connectToHost(m_relayHost, m_relayPort);
+}
+
+void FileManager::createFolder(const QString &folderPath) {
+    qDebug() << "[FileManager] Creating folder:" << folderPath;
+    
+    if (m_isBusy) {
+        qDebug() << "[FileManager] Busy, ignoring request";
+        emit errorOccurred("Another operation is in progress");
+        return;
+    }
+    
+    setBusy(true);
+    
+    // Create new socket for create folder request
+    QTcpSocket *requestSocket = new QTcpSocket(this);
+    
+    connect(requestSocket, &QTcpSocket::connected, this, [this, requestSocket, folderPath]() {
+        qDebug() << "[FileManager] Connected to relay for CREATE_FOLDER request";
+        
+        QString command = QString("CREATE_FOLDER|%1|%2\n").arg(m_pcId, folderPath);
+        qDebug() << "[FileManager] Sending:" << command.trimmed();
+        requestSocket->write(command.toUtf8());
+        requestSocket->flush();
+    });
+    
+    connect(requestSocket, &QTcpSocket::readyRead, this, [this, requestSocket]() {
+        QByteArray data = requestSocket->readAll();
+        QString response = QString::fromUtf8(data).trimmed();
+        qDebug() << "[FileManager] Create folder response:" << response;
+        
+        if (response.startsWith("CREATE_FOLDER_SUCCESS")) {
+            emit completed();
+            emit errorOccurred("Folder created successfully");
+        } else if (response.startsWith("ERROR|")) {
+            QString error = response.mid(6);
+            emit errorOccurred("Failed to create folder: " + error);
+        }
+        
+        setBusy(false);
+        requestSocket->disconnectFromHost();
+        requestSocket->deleteLater();
+    });
+    
+    connect(requestSocket, &QTcpSocket::errorOccurred, this, [this, requestSocket](QAbstractSocket::SocketError error) {
+        qDebug() << "[FileManager] Socket error:" << requestSocket->errorString();
+        emit errorOccurred("Failed to create folder: " + requestSocket->errorString());
         setBusy(false);
         requestSocket->deleteLater();
     });
@@ -402,6 +632,7 @@ void FileManager::deleteFile(const QString &remotePath) {
         
         if (response.startsWith("DELETE_SUCCESS")) {
             emit completed();
+            emit errorOccurred("File deleted successfully");
         } else if (response.startsWith("ERROR|")) {
             QString error = response.mid(6);
             emit errorOccurred("Failed to delete file: " + error);

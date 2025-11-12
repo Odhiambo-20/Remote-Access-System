@@ -1,7 +1,7 @@
 CMakeFiles/pc_client.dir/src/file_server.cpp.o: \
- /home/victor/Videos/remote-access-system/pc-client/src/file_server.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/src/file_server.cpp \
  /usr/include/stdc-predef.h \
- /home/victor/Videos/remote-access-system/pc-client/include/file_server.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/include/file_server.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qobject.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qobjectdefs.h \
@@ -281,4 +281,6 @@ CMakeFiles/pc_client.dir/src/file_server.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qdir.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qfileinfo.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QCryptographicHash \
- /usr/include/x86_64-linux-gnu/qt5/QtCore/qcryptographichash.h
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qcryptographichash.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/QNetworkInterface \
+ /usr/include/x86_64-linux-gnu/qt5/QtNetwork/qnetworkinterface.h

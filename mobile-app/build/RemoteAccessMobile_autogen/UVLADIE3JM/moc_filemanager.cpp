@@ -26,7 +26,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_FileManager_t {
-    uint offsetsAndSizes[126];
+    uint offsetsAndSizes[146];
     char stringdata0[12];
     char stringdata1[10];
     char stringdata2[1];
@@ -77,19 +77,29 @@ struct qt_meta_stringdata_FileManager_t {
     char stringdata47[14];
     char stringdata48[11];
     char stringdata49[11];
-    char stringdata50[13];
-    char stringdata51[11];
-    char stringdata52[18];
-    char stringdata53[12];
-    char stringdata54[17];
-    char stringdata55[16];
-    char stringdata56[9];
+    char stringdata50[11];
+    char stringdata51[18];
+    char stringdata52[12];
+    char stringdata53[17];
+    char stringdata54[16];
+    char stringdata55[9];
+    char stringdata56[7];
     char stringdata57[7];
-    char stringdata58[7];
-    char stringdata59[11];
-    char stringdata60[7];
-    char stringdata61[12];
-    char stringdata62[12];
+    char stringdata58[11];
+    char stringdata59[13];
+    char stringdata60[22];
+    char stringdata61[9];
+    char stringdata62[11];
+    char stringdata63[16];
+    char stringdata64[9];
+    char stringdata65[11];
+    char stringdata66[8];
+    char stringdata67[8];
+    char stringdata68[13];
+    char stringdata69[11];
+    char stringdata70[7];
+    char stringdata71[12];
+    char stringdata72[12];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_FileManager_t::offsetsAndSizes) + ofs), len 
@@ -145,19 +155,29 @@ Q_CONSTINIT static const qt_meta_stringdata_FileManager_t qt_meta_stringdata_Fil
         QT_MOC_LITERAL(573, 13),  // "listDirectory"
         QT_MOC_LITERAL(587, 10),  // "uploadFile"
         QT_MOC_LITERAL(598, 10),  // "remotePath"
-        QT_MOC_LITERAL(609, 12),  // "downloadFile"
-        QT_MOC_LITERAL(622, 10),  // "deleteFile"
-        QT_MOC_LITERAL(633, 17),  // "generateShareLink"
-        QT_MOC_LITERAL(651, 11),  // "expiryHours"
-        QT_MOC_LITERAL(663, 16),  // "generateShareUrl"
-        QT_MOC_LITERAL(680, 15),  // "createShareLink"
-        QT_MOC_LITERAL(696, 8),  // "openFile"
-        QT_MOC_LITERAL(705, 6),  // "goBack"
-        QT_MOC_LITERAL(712, 6),  // "goHome"
-        QT_MOC_LITERAL(719, 10),  // "disconnect"
-        QT_MOC_LITERAL(730, 6),  // "isBusy"
-        QT_MOC_LITERAL(737, 11),  // "isUploading"
-        QT_MOC_LITERAL(749, 11)   // "currentPath"
+        QT_MOC_LITERAL(609, 10),  // "deleteFile"
+        QT_MOC_LITERAL(620, 17),  // "generateShareLink"
+        QT_MOC_LITERAL(638, 11),  // "expiryHours"
+        QT_MOC_LITERAL(650, 16),  // "generateShareUrl"
+        QT_MOC_LITERAL(667, 15),  // "createShareLink"
+        QT_MOC_LITERAL(683, 8),  // "openFile"
+        QT_MOC_LITERAL(692, 6),  // "goBack"
+        QT_MOC_LITERAL(699, 6),  // "goHome"
+        QT_MOC_LITERAL(706, 10),  // "disconnect"
+        QT_MOC_LITERAL(717, 12),  // "downloadFile"
+        QT_MOC_LITERAL(730, 21),  // "downloadMultipleFiles"
+        QT_MOC_LITERAL(752, 8),  // "copyFile"
+        QT_MOC_LITERAL(761, 10),  // "sourcePath"
+        QT_MOC_LITERAL(772, 15),  // "destinationPath"
+        QT_MOC_LITERAL(788, 8),  // "moveFile"
+        QT_MOC_LITERAL(797, 10),  // "renameFile"
+        QT_MOC_LITERAL(808, 7),  // "oldPath"
+        QT_MOC_LITERAL(816, 7),  // "newName"
+        QT_MOC_LITERAL(824, 12),  // "createFolder"
+        QT_MOC_LITERAL(837, 10),  // "folderPath"
+        QT_MOC_LITERAL(848, 6),  // "isBusy"
+        QT_MOC_LITERAL(855, 11),  // "isUploading"
+        QT_MOC_LITERAL(867, 11)   // "currentPath"
     },
     "FileManager",
     "connected",
@@ -209,7 +229,6 @@ Q_CONSTINIT static const qt_meta_stringdata_FileManager_t qt_meta_stringdata_Fil
     "listDirectory",
     "uploadFile",
     "remotePath",
-    "downloadFile",
     "deleteFile",
     "generateShareLink",
     "expiryHours",
@@ -219,6 +238,17 @@ Q_CONSTINIT static const qt_meta_stringdata_FileManager_t qt_meta_stringdata_Fil
     "goBack",
     "goHome",
     "disconnect",
+    "downloadFile",
+    "downloadMultipleFiles",
+    "copyFile",
+    "sourcePath",
+    "destinationPath",
+    "moveFile",
+    "renameFile",
+    "oldPath",
+    "newName",
+    "createFolder",
+    "folderPath",
     "isBusy",
     "isUploading",
     "currentPath"
@@ -232,58 +262,64 @@ Q_CONSTINIT static const uint qt_meta_data_FileManager[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-      40,   14, // methods
-       4,  362, // properties
+      46,   14, // methods
+       4,  422, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
       23,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  254,    2, 0x06,    5 /* Public */,
-       3,    0,  255,    2, 0x06,    6 /* Public */,
-       4,    1,  256,    2, 0x06,    7 /* Public */,
-       6,    1,  259,    2, 0x06,    9 /* Public */,
-       8,    1,  262,    2, 0x06,   11 /* Public */,
-      10,    0,  265,    2, 0x06,   13 /* Public */,
-      11,    5,  266,    2, 0x06,   14 /* Public */,
-      17,    0,  277,    2, 0x06,   20 /* Public */,
-      18,    2,  278,    2, 0x06,   21 /* Public */,
-      21,    1,  283,    2, 0x06,   24 /* Public */,
-      23,    0,  286,    2, 0x06,   26 /* Public */,
-      24,    0,  287,    2, 0x06,   27 /* Public */,
-      25,    1,  288,    2, 0x06,   28 /* Public */,
-      26,    1,  291,    2, 0x06,   30 /* Public */,
-      28,    1,  294,    2, 0x06,   32 /* Public */,
-      30,    1,  297,    2, 0x06,   34 /* Public */,
-      31,    1,  300,    2, 0x06,   36 /* Public */,
-      32,    1,  303,    2, 0x06,   38 /* Public */,
-      34,    0,  306,    2, 0x06,   40 /* Public */,
-       5,    1,  307,    2, 0x06,   41 /* Public */,
-      35,    1,  310,    2, 0x06,   43 /* Public */,
-      36,    0,  313,    2, 0x06,   45 /* Public */,
-      37,    0,  314,    2, 0x06,   46 /* Public */,
+       1,    0,  290,    2, 0x06,    5 /* Public */,
+       3,    0,  291,    2, 0x06,    6 /* Public */,
+       4,    1,  292,    2, 0x06,    7 /* Public */,
+       6,    1,  295,    2, 0x06,    9 /* Public */,
+       8,    1,  298,    2, 0x06,   11 /* Public */,
+      10,    0,  301,    2, 0x06,   13 /* Public */,
+      11,    5,  302,    2, 0x06,   14 /* Public */,
+      17,    0,  313,    2, 0x06,   20 /* Public */,
+      18,    2,  314,    2, 0x06,   21 /* Public */,
+      21,    1,  319,    2, 0x06,   24 /* Public */,
+      23,    0,  322,    2, 0x06,   26 /* Public */,
+      24,    0,  323,    2, 0x06,   27 /* Public */,
+      25,    1,  324,    2, 0x06,   28 /* Public */,
+      26,    1,  327,    2, 0x06,   30 /* Public */,
+      28,    1,  330,    2, 0x06,   32 /* Public */,
+      30,    1,  333,    2, 0x06,   34 /* Public */,
+      31,    1,  336,    2, 0x06,   36 /* Public */,
+      32,    1,  339,    2, 0x06,   38 /* Public */,
+      34,    0,  342,    2, 0x06,   40 /* Public */,
+       5,    1,  343,    2, 0x06,   41 /* Public */,
+      35,    1,  346,    2, 0x06,   43 /* Public */,
+      36,    0,  349,    2, 0x06,   45 /* Public */,
+      37,    0,  350,    2, 0x06,   46 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      38,    0,  315,    2, 0x08,   47 /* Private */,
-      39,    0,  316,    2, 0x08,   48 /* Private */,
-      40,    0,  317,    2, 0x08,   49 /* Private */,
-      41,    1,  318,    2, 0x08,   50 /* Private */,
+      38,    0,  351,    2, 0x08,   47 /* Private */,
+      39,    0,  352,    2, 0x08,   48 /* Private */,
+      40,    0,  353,    2, 0x08,   49 /* Private */,
+      41,    1,  354,    2, 0x08,   50 /* Private */,
 
  // methods: name, argc, parameters, tag, flags, initial metatype offsets
-      43,    2,  321,    2, 0x02,   52 /* Public */,
-      46,    1,  326,    2, 0x02,   55 /* Public */,
-      47,    1,  329,    2, 0x02,   57 /* Public */,
-      48,    2,  332,    2, 0x02,   59 /* Public */,
-      50,    2,  337,    2, 0x02,   62 /* Public */,
-      51,    1,  342,    2, 0x02,   65 /* Public */,
-      52,    2,  345,    2, 0x02,   67 /* Public */,
-      54,    1,  350,    2, 0x02,   70 /* Public */,
-      55,    1,  353,    2, 0x02,   72 /* Public */,
-      56,    1,  356,    2, 0x02,   74 /* Public */,
-      57,    0,  359,    2, 0x02,   76 /* Public */,
-      58,    0,  360,    2, 0x02,   77 /* Public */,
-      59,    0,  361,    2, 0x02,   78 /* Public */,
+      43,    2,  357,    2, 0x02,   52 /* Public */,
+      46,    1,  362,    2, 0x02,   55 /* Public */,
+      47,    1,  365,    2, 0x02,   57 /* Public */,
+      48,    2,  368,    2, 0x02,   59 /* Public */,
+      50,    1,  373,    2, 0x02,   62 /* Public */,
+      51,    2,  376,    2, 0x02,   64 /* Public */,
+      53,    1,  381,    2, 0x02,   67 /* Public */,
+      54,    1,  384,    2, 0x02,   69 /* Public */,
+      55,    1,  387,    2, 0x02,   71 /* Public */,
+      56,    0,  390,    2, 0x02,   73 /* Public */,
+      57,    0,  391,    2, 0x02,   74 /* Public */,
+      58,    0,  392,    2, 0x02,   75 /* Public */,
+      59,    2,  393,    2, 0x02,   76 /* Public */,
+      59,    1,  398,    2, 0x22,   79 /* Public | MethodCloned */,
+      60,    1,  401,    2, 0x02,   81 /* Public */,
+      61,    2,  404,    2, 0x02,   83 /* Public */,
+      64,    2,  409,    2, 0x02,   86 /* Public */,
+      65,    2,  414,    2, 0x02,   89 /* Public */,
+      68,    1,  419,    2, 0x02,   92 /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -321,21 +357,27 @@ Q_CONSTINIT static const uint qt_meta_data_FileManager[] = {
     QMetaType::Void, QMetaType::QString,   13,
     QMetaType::Void, QMetaType::QString,   13,
     QMetaType::Void, QMetaType::QString, QMetaType::QString,   27,   49,
+    QMetaType::Void, QMetaType::QString,   49,
+    QMetaType::Void, QMetaType::QString, QMetaType::Int,   49,   52,
+    QMetaType::Void, QMetaType::QString,   49,
+    QMetaType::Void, QMetaType::QString,   33,
+    QMetaType::Void, QMetaType::QString,   33,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void, QMetaType::QString, QMetaType::QString,   49,   27,
     QMetaType::Void, QMetaType::QString,   49,
-    QMetaType::Void, QMetaType::QString, QMetaType::Int,   49,   53,
-    QMetaType::Void, QMetaType::QString,   49,
-    QMetaType::Void, QMetaType::QString,   33,
-    QMetaType::Void, QMetaType::QString,   33,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::QVariantList,    9,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   62,   63,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   62,   63,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   66,   67,
+    QMetaType::Void, QMetaType::QString,   69,
 
  // properties: name, type, flags
-      60, QMetaType::Bool, 0x00015001, uint(21), 0,
-      61, QMetaType::Bool, 0x00015001, uint(11), 0,
+      70, QMetaType::Bool, 0x00015001, uint(21), 0,
+      71, QMetaType::Bool, 0x00015001, uint(11), 0,
       21, QMetaType::Int, 0x00015001, uint(10), 0,
-      62, QMetaType::QString, 0x00015001, uint(22), 0,
+      72, QMetaType::QString, 0x00015001, uint(22), 0,
 
        0        // eod
 };
@@ -445,10 +487,6 @@ Q_CONSTINIT const QMetaObject FileManager::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
-        // method 'downloadFile'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'deleteFile'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
@@ -470,7 +508,32 @@ Q_CONSTINIT const QMetaObject FileManager::staticMetaObject = { {
         // method 'goHome'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'disconnect'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'downloadFile'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'downloadFile'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'downloadMultipleFiles'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QVariantList &, std::false_type>,
+        // method 'copyFile'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'moveFile'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'renameFile'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'createFolder'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
     >,
     nullptr
 } };
@@ -512,15 +575,21 @@ void FileManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 28: _t->browseDirectory((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 29: _t->listDirectory((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 30: _t->uploadFile((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 31: _t->downloadFile((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 32: _t->deleteFile((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 33: _t->generateShareLink((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
-        case 34: _t->generateShareUrl((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 35: _t->createShareLink((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 36: _t->openFile((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 37: _t->goBack(); break;
-        case 38: _t->goHome(); break;
-        case 39: _t->disconnect(); break;
+        case 31: _t->deleteFile((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 32: _t->generateShareLink((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 33: _t->generateShareUrl((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 34: _t->createShareLink((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 35: _t->openFile((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 36: _t->goBack(); break;
+        case 37: _t->goHome(); break;
+        case 38: _t->disconnect(); break;
+        case 39: _t->downloadFile((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 40: _t->downloadFile((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 41: _t->downloadMultipleFiles((*reinterpret_cast< std::add_pointer_t<QVariantList>>(_a[1]))); break;
+        case 42: _t->copyFile((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 43: _t->moveFile((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 44: _t->renameFile((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 45: _t->createFolder((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -733,13 +802,13 @@ int FileManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 40)
+        if (_id < 46)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 40;
+        _id -= 46;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 40)
+        if (_id < 46)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 40;
+        _id -= 46;
     }else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
             || _c == QMetaObject::RegisterPropertyMetaType) {

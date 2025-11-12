@@ -54,7 +54,9 @@ void handleClient(int client_fd, RelayManager* manager) {
                 std::string usb_id = parts[2];
                 std::string username = parts[3];
                 
-                manager->registerPC(pc_id, username, usb_id);
+                // Fixed: registerPC now expects 5 parameters
+                // (pc_id, pc_name, username, relay_address, relay_port)
+                manager->registerPC(pc_id, username, usb_id, "127.0.0.1", 2810);
                 
                 std::string response = "OK|REGISTERED\n";
                 send(client_fd, response.c_str(), response.length(), 0);

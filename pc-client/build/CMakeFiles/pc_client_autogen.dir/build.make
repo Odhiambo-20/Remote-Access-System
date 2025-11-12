@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/victor/Videos/remote-access-system/pc-client
+CMAKE_SOURCE_DIR = /home/victor/Documents/Desktop/remote-access-system/pc-client
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/victor/Videos/remote-access-system/pc-client/build
+CMAKE_BINARY_DIR = /home/victor/Documents/Desktop/remote-access-system/pc-client/build
 
 # Utility rule file for pc_client_autogen.
 
@@ -67,8 +67,8 @@ include CMakeFiles/pc_client_autogen.dir/compiler_depend.make
 include CMakeFiles/pc_client_autogen.dir/progress.make
 
 CMakeFiles/pc_client_autogen:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target pc_client"
-	/usr/bin/cmake -E cmake_autogen /home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles/pc_client_autogen.dir/AutogenInfo.json ""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/pc-client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target pc_client"
+	/usr/bin/cmake -E cmake_autogen /home/victor/Documents/Desktop/remote-access-system/pc-client/build/CMakeFiles/pc_client_autogen.dir/AutogenInfo.json ""
 
 pc_client_autogen: CMakeFiles/pc_client_autogen
 pc_client_autogen: CMakeFiles/pc_client_autogen.dir/build.make
@@ -83,6 +83,6 @@ CMakeFiles/pc_client_autogen.dir/clean:
 .PHONY : CMakeFiles/pc_client_autogen.dir/clean
 
 CMakeFiles/pc_client_autogen.dir/depend:
-	cd /home/victor/Videos/remote-access-system/pc-client/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Videos/remote-access-system/pc-client /home/victor/Videos/remote-access-system/pc-client /home/victor/Videos/remote-access-system/pc-client/build /home/victor/Videos/remote-access-system/pc-client/build /home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles/pc_client_autogen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/victor/Documents/Desktop/remote-access-system/pc-client/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Documents/Desktop/remote-access-system/pc-client /home/victor/Documents/Desktop/remote-access-system/pc-client /home/victor/Documents/Desktop/remote-access-system/pc-client/build /home/victor/Documents/Desktop/remote-access-system/pc-client/build /home/victor/Documents/Desktop/remote-access-system/pc-client/build/CMakeFiles/pc_client_autogen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/pc_client_autogen.dir/depend
 

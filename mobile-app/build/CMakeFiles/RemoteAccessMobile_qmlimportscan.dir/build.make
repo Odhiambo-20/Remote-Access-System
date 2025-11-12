@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/victor/Videos/remote-access-system/mobile-app
+CMAKE_SOURCE_DIR = /home/victor/Documents/Desktop/remote-access-system/mobile-app
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/victor/Videos/remote-access-system/mobile-app/build
+CMAKE_BINARY_DIR = /home/victor/Documents/Desktop/remote-access-system/mobile-app/build
 
 # Utility rule file for RemoteAccessMobile_qmlimportscan.
 
@@ -71,9 +71,16 @@ CMakeFiles/RemoteAccessMobile_qmlimportscan: .qt_plugins/Qt6_QmlPlugins_Imports_
 .qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.cmake: /usr/lib/qt6/libexec/qmlimportscanner
 .qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.cmake: .rcc/qmake_RemoteAccess.qrc
 .qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.cmake: .rcc/RemoteAccessMobile_raw_qml_0.qrc
-.qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.cmake: /home/victor/Videos/remote-access-system/mobile-app/qml/main.qml
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running qmlimportscanner for RemoteAccessMobile"
-	cd /home/victor/Videos/remote-access-system/mobile-app && /usr/lib/qt6/libexec/qmlimportscanner @/home/victor/Videos/remote-access-system/mobile-app/build/.qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.rsp
+.qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.cmake: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/main.qml
+.qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.cmake: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/FileExplorerView.qml
+.qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.cmake: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/PCListView.qml
+.qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.cmake: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/AddPCView.qml
+.qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.cmake: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/SettingsView.qml
+.qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.cmake: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/FileItem.qml
+.qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.cmake: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/PCCard.qml
+.qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.cmake: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/ProgressBar.qml
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running qmlimportscanner for RemoteAccessMobile"
+	cd /home/victor/Documents/Desktop/remote-access-system/mobile-app && /usr/lib/qt6/libexec/qmlimportscanner @/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.rsp
 
 RemoteAccessMobile_qmlimportscan: .qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.cmake
 RemoteAccessMobile_qmlimportscan: CMakeFiles/RemoteAccessMobile_qmlimportscan
@@ -89,6 +96,6 @@ CMakeFiles/RemoteAccessMobile_qmlimportscan.dir/clean:
 .PHONY : CMakeFiles/RemoteAccessMobile_qmlimportscan.dir/clean
 
 CMakeFiles/RemoteAccessMobile_qmlimportscan.dir/depend:
-	cd /home/victor/Videos/remote-access-system/mobile-app/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Videos/remote-access-system/mobile-app /home/victor/Videos/remote-access-system/mobile-app /home/victor/Videos/remote-access-system/mobile-app/build /home/victor/Videos/remote-access-system/mobile-app/build /home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_qmlimportscan.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/victor/Documents/Desktop/remote-access-system/mobile-app/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Documents/Desktop/remote-access-system/mobile-app /home/victor/Documents/Desktop/remote-access-system/mobile-app /home/victor/Documents/Desktop/remote-access-system/mobile-app/build /home/victor/Documents/Desktop/remote-access-system/mobile-app/build /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_qmlimportscan.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/RemoteAccessMobile_qmlimportscan.dir/depend
 

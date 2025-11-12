@@ -7,7 +7,7 @@
 #include "remote_control_server.h"
 #include "file_server.h"
 #include "http_server.h"
-#include "file_handler.h"  // ADD THIS
+#include "file_handler.h"
 
 class RelayRegistration : public QObject {
     Q_OBJECT
@@ -184,10 +184,10 @@ int main(int argc, char *argv[]) {
     qDebug() << "";
     
     // ============================================================
-    // CRITICAL FIX: Initialize FileHandler for relay communication
+    // CRITICAL FIX: Initialize FileHandler with FileServer pointer
     // ============================================================
     qDebug() << "📂 Starting File Handler...";
-    FileHandler* fileHandler = new FileHandler(pcId.toStdString(), &httpServer);
+    FileHandler* fileHandler = new FileHandler(pcId.toStdString(), &httpServer, &fileServer);
     
     if (fileHandler->connect_to_relay(relayServer.toStdString(), relayPort) == 0) {
         qDebug() << "✅ File Handler connected to relay server";

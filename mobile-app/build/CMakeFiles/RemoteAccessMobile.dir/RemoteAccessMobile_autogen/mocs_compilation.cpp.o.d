@@ -1,7 +1,7 @@
 CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.o: \
- /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/mocs_compilation.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/mocs_compilation.cpp \
  /usr/include/stdc-predef.h \
- /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/6YEA5652QU/moc_remote_control_client.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/6YEA5652QU/moc_remote_control_client.cpp \
  /usr/include/c++/12/memory /usr/include/c++/12/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -114,7 +114,7 @@ CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cp
  /usr/include/c++/12/backward/auto_ptr.h \
  /usr/include/c++/12/pstl/glue_memory_defs.h \
  /usr/include/c++/12/pstl/execution_defs.h \
- /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/6YEA5652QU/../../../include/remote_control_client.h \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/6YEA5652QU/../../../include/remote_control_client.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QObject \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qobject.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qobjectdefs.h \
@@ -310,19 +310,19 @@ CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cp
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qvarlengtharray.h \
  /usr/include/x86_64-linux-gnu/qt6/QtNetwork/qhostaddress.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h \
- /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/6YEA5652QU/moc_settings_manager.cpp \
- /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/6YEA5652QU/../../../include/settings_manager.h \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/6YEA5652QU/moc_settings_manager.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/6YEA5652QU/../../../include/settings_manager.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QString \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qstring.h \
- /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/moc_connection_manager.cpp \
- /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/../../../src/connection_manager.h \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/moc_connection_manager.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/../../../src/connection_manager.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QMap \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qmap.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QTimer \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qtimer.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qbasictimer.h \
- /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/moc_filemanager.cpp \
- /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/../../../src/filemanager.h \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/moc_filemanager.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/../../../src/filemanager.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QFile \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qfile.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qfiledevice.h \
@@ -347,11 +347,22 @@ CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cp
  /usr/include/c++/12/bits/istream.tcc \
  /usr/include/c++/12/bits/sstream.tcc /usr/include/c++/12/codecvt \
  /usr/include/c++/12/bits/fs_dir.h /usr/include/c++/12/bits/fs_ops.h \
- /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/moc_pc_list_model.cpp \
- /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/../../../src/pc_list_model.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QVariantList \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qjsonarray.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qjsonvalue.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qcborvalue.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qdatetime.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qcalendar.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qlocale.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qcborcommon.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qregularexpression.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qurl.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/quuid.h \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/moc_pc_list_model.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/../../../src/pc_list_model.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QAbstractListModel \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QList \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qlist.h \
- /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/moc_pcmanager.cpp \
- /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/../../../src/pcmanager.h
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/moc_pcmanager.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/UVLADIE3JM/../../../src/pcmanager.h

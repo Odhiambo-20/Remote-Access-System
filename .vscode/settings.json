@@ -64,5 +64,6 @@
         "cinttypes": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp"
-    }
+    },
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

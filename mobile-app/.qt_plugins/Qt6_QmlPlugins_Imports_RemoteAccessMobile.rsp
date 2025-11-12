@@ -1,0 +1,14 @@
+-rootPath
+/home/victor/Documents/Desktop/remote-access-system/mobile-app
+-cmake-output
+-output-file
+/home/victor/Documents/Desktop/remote-access-system/mobile-app/.qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.cmake
+-importPath
+/home/victor/Documents/Desktop/remote-access-system/mobile-app/RemoteAccess
+-importPath
+/home/victor/Documents/Desktop/remote-access-system/mobile-app
+-importPath
+/usr/lib/x86_64-linux-gnu/qt6/qml
+-qrcFiles
+/home/victor/Documents/Desktop/remote-access-system/mobile-app/.rcc/qmake_RemoteAccess.qrc
+/home/victor/Documents/Desktop/remote-access-system/mobile-app/.rcc/RemoteAccessMobile_raw_qml_0.qrc

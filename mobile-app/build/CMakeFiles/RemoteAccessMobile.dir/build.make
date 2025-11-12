@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/victor/Videos/remote-access-system/mobile-app
+CMAKE_SOURCE_DIR = /home/victor/Documents/Desktop/remote-access-system/mobile-app
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/victor/Videos/remote-access-system/mobile-app/build
+CMAKE_BINARY_DIR = /home/victor/Documents/Desktop/remote-access-system/mobile-app/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/RemoteAccessMobile.dir/depend.make
@@ -71,9 +71,9 @@ include CMakeFiles/RemoteAccessMobile.dir/flags.make
 
 meta_types/qt6remoteaccessmobile_metatypes.json.gen: /usr/lib/qt6/libexec/moc
 meta_types/qt6remoteaccessmobile_metatypes.json.gen: meta_types/RemoteAccessMobile_json_file_list.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running moc --collect-json for target RemoteAccessMobile"
-	/usr/lib/qt6/libexec/moc -o /home/victor/Videos/remote-access-system/mobile-app/build/meta_types/qt6remoteaccessmobile_metatypes.json.gen --collect-json @/home/victor/Videos/remote-access-system/mobile-app/build/meta_types/RemoteAccessMobile_json_file_list.txt
-	/usr/bin/cmake -E copy_if_different /home/victor/Videos/remote-access-system/mobile-app/build/meta_types/qt6remoteaccessmobile_metatypes.json.gen /home/victor/Videos/remote-access-system/mobile-app/build/meta_types/qt6remoteaccessmobile_metatypes.json
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running moc --collect-json for target RemoteAccessMobile"
+	/usr/lib/qt6/libexec/moc -o /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/meta_types/qt6remoteaccessmobile_metatypes.json.gen --collect-json @/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/meta_types/RemoteAccessMobile_json_file_list.txt
+	/usr/bin/cmake -E copy_if_different /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/meta_types/qt6remoteaccessmobile_metatypes.json.gen /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/meta_types/qt6remoteaccessmobile_metatypes.json
 
 meta_types/qt6remoteaccessmobile_metatypes.json: meta_types/qt6remoteaccessmobile_metatypes.json.gen
 	@$(CMAKE_COMMAND) -E touch_nocreate meta_types/qt6remoteaccessmobile_metatypes.json
@@ -88,10 +88,10 @@ remoteaccessmobile_qmltyperegistrations.cpp: /usr/lib/x86_64-linux-gnu/metatypes
 remoteaccessmobile_qmltyperegistrations.cpp: /usr/lib/x86_64-linux-gnu/metatypes/qt6quick_none_metatypes.json
 remoteaccessmobile_qmltyperegistrations.cpp: /usr/lib/x86_64-linux-gnu/metatypes/qt6qmlmodels_none_metatypes.json
 remoteaccessmobile_qmltyperegistrations.cpp: /usr/lib/x86_64-linux-gnu/metatypes/qt6opengl_none_metatypes.json
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Automatic QML type registration for target RemoteAccessMobile"
-	/usr/lib/qt6/libexec/qmltyperegistrar --generate-qmltypes=/home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccess/RemoteAccessMobile.qmltypes --import-name=RemoteAccess --major-version=1 --minor-version=0 @/home/victor/Videos/remote-access-system/mobile-app/build/qmltypes/RemoteAccessMobile_foreign_types.txt -o /home/victor/Videos/remote-access-system/mobile-app/build/remoteaccessmobile_qmltyperegistrations.cpp /home/victor/Videos/remote-access-system/mobile-app/build/meta_types/qt6remoteaccessmobile_metatypes.json
-	/usr/bin/cmake -E make_directory /home/victor/Videos/remote-access-system/mobile-app/build/.generated
-	/usr/bin/cmake -E touch /home/victor/Videos/remote-access-system/mobile-app/build/.generated/RemoteAccessMobile.qmltypes
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Automatic QML type registration for target RemoteAccessMobile"
+	/usr/lib/qt6/libexec/qmltyperegistrar --generate-qmltypes=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/RemoteAccessMobile.qmltypes --import-name=RemoteAccess --major-version=1 --minor-version=0 @/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/qmltypes/RemoteAccessMobile_foreign_types.txt -o /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/remoteaccessmobile_qmltyperegistrations.cpp /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/meta_types/qt6remoteaccessmobile_metatypes.json
+	/usr/bin/cmake -E make_directory /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.generated
+	/usr/bin/cmake -E touch /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.generated/RemoteAccessMobile.qmltypes
 
 RemoteAccess/RemoteAccessMobile.qmltypes: remoteaccessmobile_qmltyperegistrations.cpp
 	@$(CMAKE_COMMAND) -E touch_nocreate RemoteAccess/RemoteAccessMobile.qmltypes
@@ -99,213 +99,388 @@ RemoteAccess/RemoteAccessMobile.qmltypes: remoteaccessmobile_qmltyperegistration
 .rcc/qrc_qmake_RemoteAccess.cpp: RemoteAccess/qmldir
 .rcc/qrc_qmake_RemoteAccess.cpp: .rcc/qmake_RemoteAccess.qrc
 .rcc/qrc_qmake_RemoteAccess.cpp: /usr/lib/qt6/libexec/rcc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Running rcc for resource qmake_RemoteAccess"
-	/usr/lib/qt6/libexec/rcc --output /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qrc_qmake_RemoteAccess.cpp --name qmake_RemoteAccess /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmake_RemoteAccess.qrc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Running rcc for resource qmake_RemoteAccess"
+	/usr/lib/qt6/libexec/rcc --output /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qrc_qmake_RemoteAccess.cpp --name qmake_RemoteAccess /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmake_RemoteAccess.qrc
 
 .rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp: /usr/lib/qt6/libexec/qmlcachegen
 .rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp: .rcc/qmlcache/RemoteAccessMobile_qml_loader_file_list.rsp
 .rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp: .rcc/qmake_RemoteAccess.qrc
 .rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp: .rcc/RemoteAccessMobile_raw_qml_0.qrc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating .rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp"
-	/usr/lib/qt6/libexec/qmlcachegen --resource-name qmlcache_RemoteAccessMobile --resource /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmake_RemoteAccess.qrc --resource /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/RemoteAccessMobile_raw_qml_0.qrc -o /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp @/home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml_loader_file_list.rsp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating .rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp"
+	/usr/lib/qt6/libexec/qmlcachegen --resource-name qmlcache_RemoteAccessMobile --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmake_RemoteAccess.qrc --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/RemoteAccessMobile_raw_qml_0.qrc -o /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp @/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml_loader_file_list.rsp
 
 .rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp: /usr/lib/qt6/libexec/qmlcachegen
-.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp: /home/victor/Videos/remote-access-system/mobile-app/qml/main.qml
+.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/main.qml
 .rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp: .rcc/qmake_RemoteAccess.qrc
 .rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp: .rcc/RemoteAccessMobile_raw_qml_0.qrc
 .rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp: RemoteAccess/RemoteAccessMobile.qmltypes
 .rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp: RemoteAccess/qmldir
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating .rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp"
-	/usr/bin/cmake -E make_directory /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml
-	/usr/lib/qt6/libexec/qmlcachegen --bare --resource-path /RemoteAccess/qml/main.qml -I /home/victor/Videos/remote-access-system/mobile-app/build -I /usr/lib/x86_64-linux-gnu/qt6/qml -i /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccess/qmldir --resource /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmake_RemoteAccess.qrc --resource /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/RemoteAccessMobile_raw_qml_0.qrc -o /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp /home/victor/Videos/remote-access-system/mobile-app/qml/main.qml
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating .rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp"
+	/usr/bin/cmake -E make_directory /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml
+	/usr/lib/qt6/libexec/qmlcachegen --bare --resource-path /RemoteAccess/qml/main.qml -I /home/victor/Documents/Desktop/remote-access-system/mobile-app/build -I /usr/lib/x86_64-linux-gnu/qt6/qml -i /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/qmldir --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmake_RemoteAccess.qrc --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/RemoteAccessMobile_raw_qml_0.qrc -o /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/main.qml
 
-.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp: /home/victor/Videos/remote-access-system/mobile-app/qml/main.qml
+.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp: /usr/lib/qt6/libexec/qmlcachegen
+.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/FileExplorerView.qml
+.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp: .rcc/qmake_RemoteAccess.qrc
+.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp: .rcc/RemoteAccessMobile_raw_qml_0.qrc
+.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp: RemoteAccess/RemoteAccessMobile.qmltypes
+.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp: RemoteAccess/qmldir
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating .rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp"
+	/usr/bin/cmake -E make_directory /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml
+	/usr/lib/qt6/libexec/qmlcachegen --bare --resource-path /RemoteAccess/qml/FileExplorerView.qml -I /home/victor/Documents/Desktop/remote-access-system/mobile-app/build -I /usr/lib/x86_64-linux-gnu/qt6/qml -i /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/qmldir --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmake_RemoteAccess.qrc --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/RemoteAccessMobile_raw_qml_0.qrc -o /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/FileExplorerView.qml
+
+.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp: /usr/lib/qt6/libexec/qmlcachegen
+.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/PCListView.qml
+.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp: .rcc/qmake_RemoteAccess.qrc
+.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp: .rcc/RemoteAccessMobile_raw_qml_0.qrc
+.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp: RemoteAccess/RemoteAccessMobile.qmltypes
+.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp: RemoteAccess/qmldir
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Generating .rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp"
+	/usr/bin/cmake -E make_directory /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml
+	/usr/lib/qt6/libexec/qmlcachegen --bare --resource-path /RemoteAccess/qml/PCListView.qml -I /home/victor/Documents/Desktop/remote-access-system/mobile-app/build -I /usr/lib/x86_64-linux-gnu/qt6/qml -i /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/qmldir --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmake_RemoteAccess.qrc --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/RemoteAccessMobile_raw_qml_0.qrc -o /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/PCListView.qml
+
+.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp: /usr/lib/qt6/libexec/qmlcachegen
+.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/AddPCView.qml
+.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp: .rcc/qmake_RemoteAccess.qrc
+.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp: .rcc/RemoteAccessMobile_raw_qml_0.qrc
+.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp: RemoteAccess/RemoteAccessMobile.qmltypes
+.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp: RemoteAccess/qmldir
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Generating .rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp"
+	/usr/bin/cmake -E make_directory /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml
+	/usr/lib/qt6/libexec/qmlcachegen --bare --resource-path /RemoteAccess/qml/AddPCView.qml -I /home/victor/Documents/Desktop/remote-access-system/mobile-app/build -I /usr/lib/x86_64-linux-gnu/qt6/qml -i /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/qmldir --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmake_RemoteAccess.qrc --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/RemoteAccessMobile_raw_qml_0.qrc -o /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/AddPCView.qml
+
+.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp: /usr/lib/qt6/libexec/qmlcachegen
+.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/SettingsView.qml
+.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp: .rcc/qmake_RemoteAccess.qrc
+.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp: .rcc/RemoteAccessMobile_raw_qml_0.qrc
+.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp: RemoteAccess/RemoteAccessMobile.qmltypes
+.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp: RemoteAccess/qmldir
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Generating .rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp"
+	/usr/bin/cmake -E make_directory /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml
+	/usr/lib/qt6/libexec/qmlcachegen --bare --resource-path /RemoteAccess/qml/SettingsView.qml -I /home/victor/Documents/Desktop/remote-access-system/mobile-app/build -I /usr/lib/x86_64-linux-gnu/qt6/qml -i /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/qmldir --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmake_RemoteAccess.qrc --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/RemoteAccessMobile_raw_qml_0.qrc -o /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/SettingsView.qml
+
+.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp: /usr/lib/qt6/libexec/qmlcachegen
+.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/FileItem.qml
+.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp: .rcc/qmake_RemoteAccess.qrc
+.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp: .rcc/RemoteAccessMobile_raw_qml_0.qrc
+.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp: RemoteAccess/RemoteAccessMobile.qmltypes
+.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp: RemoteAccess/qmldir
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Generating .rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp"
+	/usr/bin/cmake -E make_directory /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components
+	/usr/lib/qt6/libexec/qmlcachegen --bare --resource-path /RemoteAccess/qml/components/FileItem.qml -I /home/victor/Documents/Desktop/remote-access-system/mobile-app/build -I /usr/lib/x86_64-linux-gnu/qt6/qml -i /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/qmldir --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmake_RemoteAccess.qrc --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/RemoteAccessMobile_raw_qml_0.qrc -o /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/FileItem.qml
+
+.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp: /usr/lib/qt6/libexec/qmlcachegen
+.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/PCCard.qml
+.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp: .rcc/qmake_RemoteAccess.qrc
+.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp: .rcc/RemoteAccessMobile_raw_qml_0.qrc
+.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp: RemoteAccess/RemoteAccessMobile.qmltypes
+.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp: RemoteAccess/qmldir
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Generating .rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp"
+	/usr/bin/cmake -E make_directory /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components
+	/usr/lib/qt6/libexec/qmlcachegen --bare --resource-path /RemoteAccess/qml/components/PCCard.qml -I /home/victor/Documents/Desktop/remote-access-system/mobile-app/build -I /usr/lib/x86_64-linux-gnu/qt6/qml -i /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/qmldir --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmake_RemoteAccess.qrc --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/RemoteAccessMobile_raw_qml_0.qrc -o /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/PCCard.qml
+
+.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp: /usr/lib/qt6/libexec/qmlcachegen
+.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/ProgressBar.qml
+.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp: .rcc/qmake_RemoteAccess.qrc
+.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp: .rcc/RemoteAccessMobile_raw_qml_0.qrc
+.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp: RemoteAccess/RemoteAccessMobile.qmltypes
+.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp: RemoteAccess/qmldir
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Generating .rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp"
+	/usr/bin/cmake -E make_directory /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components
+	/usr/lib/qt6/libexec/qmlcachegen --bare --resource-path /RemoteAccess/qml/components/ProgressBar.qml -I /home/victor/Documents/Desktop/remote-access-system/mobile-app/build -I /usr/lib/x86_64-linux-gnu/qt6/qml -i /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/qmldir --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmake_RemoteAccess.qrc --resource /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/RemoteAccessMobile_raw_qml_0.qrc -o /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/ProgressBar.qml
+
+.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/main.qml
+.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/FileExplorerView.qml
+.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/PCListView.qml
+.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/AddPCView.qml
+.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/SettingsView.qml
+.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/FileItem.qml
+.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/PCCard.qml
+.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/ProgressBar.qml
 .rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp: .rcc/RemoteAccessMobile_raw_qml_0.qrc
 .rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp: /usr/lib/qt6/libexec/rcc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Running rcc for resource RemoteAccessMobile_raw_qml_0"
-	/usr/lib/qt6/libexec/rcc --output /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp --name RemoteAccessMobile_raw_qml_0 /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/RemoteAccessMobile_raw_qml_0.qrc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Running rcc for resource RemoteAccessMobile_raw_qml_0"
+	/usr/lib/qt6/libexec/rcc --output /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp --name RemoteAccessMobile_raw_qml_0 /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/RemoteAccessMobile_raw_qml_0.qrc
 
 CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
 CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.o: RemoteAccessMobile_autogen/mocs_compilation.cpp
 CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.o -c /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/mocs_compilation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/mocs_compilation.cpp
 
 CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/mocs_compilation.cpp > CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/mocs_compilation.cpp > CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.i
 
 CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/mocs_compilation.cpp -o CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/mocs_compilation.cpp -o CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.s
 
 CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
-CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.o: /home/victor/Videos/remote-access-system/mobile-app/src/main.cpp
+CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.o: /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/main.cpp
 CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.o -c /home/victor/Videos/remote-access-system/mobile-app/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/main.cpp
 
 CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/mobile-app/src/main.cpp > CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/main.cpp > CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.i
 
 CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/mobile-app/src/main.cpp -o CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/main.cpp -o CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.s
 
 CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
-CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.o: /home/victor/Videos/remote-access-system/mobile-app/src/connection_manager.cpp
+CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.o: /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/connection_manager.cpp
 CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.o -c /home/victor/Videos/remote-access-system/mobile-app/src/connection_manager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/connection_manager.cpp
 
 CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/mobile-app/src/connection_manager.cpp > CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/connection_manager.cpp > CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.i
 
 CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/mobile-app/src/connection_manager.cpp -o CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/connection_manager.cpp -o CMakeFiles/RemoteAccessMobile.dir/src/connection_manager.cpp.s
 
 CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
-CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.o: /home/victor/Videos/remote-access-system/mobile-app/src/pcmanager.cpp
+CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.o: /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/pcmanager.cpp
 CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.o -c /home/victor/Videos/remote-access-system/mobile-app/src/pcmanager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/pcmanager.cpp
 
 CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/mobile-app/src/pcmanager.cpp > CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/pcmanager.cpp > CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.i
 
 CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/mobile-app/src/pcmanager.cpp -o CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/pcmanager.cpp -o CMakeFiles/RemoteAccessMobile.dir/src/pcmanager.cpp.s
 
 CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
-CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.o: /home/victor/Videos/remote-access-system/mobile-app/src/filemanager.cpp
+CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.o: /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/filemanager.cpp
 CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.o -c /home/victor/Videos/remote-access-system/mobile-app/src/filemanager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/filemanager.cpp
 
 CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/mobile-app/src/filemanager.cpp > CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/filemanager.cpp > CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.i
 
 CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/mobile-app/src/filemanager.cpp -o CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/filemanager.cpp -o CMakeFiles/RemoteAccessMobile.dir/src/filemanager.cpp.s
 
 CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
-CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.o: /home/victor/Videos/remote-access-system/mobile-app/src/settings_manager.cpp
+CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.o: /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/settings_manager.cpp
 CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.o -c /home/victor/Videos/remote-access-system/mobile-app/src/settings_manager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/settings_manager.cpp
 
 CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/mobile-app/src/settings_manager.cpp > CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/settings_manager.cpp > CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.i
 
 CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/mobile-app/src/settings_manager.cpp -o CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/settings_manager.cpp -o CMakeFiles/RemoteAccessMobile.dir/src/settings_manager.cpp.s
 
 CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
-CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.o: /home/victor/Videos/remote-access-system/mobile-app/src/remote_control_client.cpp
+CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.o: /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/remote_control_client.cpp
 CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.o -c /home/victor/Videos/remote-access-system/mobile-app/src/remote_control_client.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/remote_control_client.cpp
 
 CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/mobile-app/src/remote_control_client.cpp > CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/remote_control_client.cpp > CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.i
 
 CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/mobile-app/src/remote_control_client.cpp -o CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/remote_control_client.cpp -o CMakeFiles/RemoteAccessMobile.dir/src/remote_control_client.cpp.s
 
 CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
-CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.o: /home/victor/Videos/remote-access-system/mobile-app/src/pc_list_model.cpp
+CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.o: /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/pc_list_model.cpp
 CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.o -c /home/victor/Videos/remote-access-system/mobile-app/src/pc_list_model.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/pc_list_model.cpp
 
 CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/mobile-app/src/pc_list_model.cpp > CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/pc_list_model.cpp > CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.i
 
 CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/mobile-app/src/pc_list_model.cpp -o CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/pc_list_model.cpp -o CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.s
 
 CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
 CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.o: remoteaccessmobile_qmltyperegistrations.cpp
 CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.o -c /home/victor/Videos/remote-access-system/mobile-app/build/remoteaccessmobile_qmltyperegistrations.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/remoteaccessmobile_qmltyperegistrations.cpp
 
 CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/mobile-app/build/remoteaccessmobile_qmltyperegistrations.cpp > CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/remoteaccessmobile_qmltyperegistrations.cpp > CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.i
 
 CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/mobile-app/build/remoteaccessmobile_qmltyperegistrations.cpp -o CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/remoteaccessmobile_qmltyperegistrations.cpp -o CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.s
 
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.o: .rcc/qrc_qmake_RemoteAccess.cpp
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.o -c /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qrc_qmake_RemoteAccess.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qrc_qmake_RemoteAccess.cpp
 
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qrc_qmake_RemoteAccess.cpp > CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qrc_qmake_RemoteAccess.cpp > CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.i
 
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qrc_qmake_RemoteAccess.cpp -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qrc_qmake_RemoteAccess.cpp -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.s
 
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.o: .rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.o -c /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp
 
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp > CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp > CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.i
 
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.s
 
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.o: .rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.o -c /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp
 
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp > CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp > CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.i
 
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.s
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.o: .rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp > CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.i
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.s
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.o: .rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp > CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.i
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.s
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.o: .rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp > CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.i
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.s
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.o: .rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp > CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.i
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.s
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.o: .rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp > CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.i
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.s
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.o: .rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp > CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.i
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.s
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.o: .rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp > CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.i
+
+CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.s
 
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.o: CMakeFiles/RemoteAccessMobile.dir/flags.make
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.o: .rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.o: CMakeFiles/RemoteAccessMobile.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.o -c /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.o -MF CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.o.d -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.o -c /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp
 
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp > CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp > CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.i
 
 CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp -o CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.s
 
 # Object files for target RemoteAccessMobile
 RemoteAccessMobile_OBJECTS = \
@@ -321,6 +496,13 @@ RemoteAccessMobile_OBJECTS = \
 "CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.o" \
 "CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.o" \
 "CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.o" \
+"CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.o" \
+"CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.o" \
+"CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.o" \
+"CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.o" \
+"CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.o" \
+"CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.o" \
+"CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.o" \
 "CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.o"
 
 # External object files for target RemoteAccessMobile
@@ -338,6 +520,13 @@ RemoteAccessMobile: CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltype
 RemoteAccessMobile: CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_qmake_RemoteAccess.cpp.o
 RemoteAccessMobile: CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp.o
 RemoteAccessMobile: CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.o
+RemoteAccessMobile: CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.o
+RemoteAccessMobile: CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.o
+RemoteAccessMobile: CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.o
+RemoteAccessMobile: CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.o
+RemoteAccessMobile: CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.o
+RemoteAccessMobile: CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.o
+RemoteAccessMobile: CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.o
 RemoteAccessMobile: CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp.o
 RemoteAccessMobile: CMakeFiles/RemoteAccessMobile.dir/build.make
 RemoteAccessMobile: /usr/lib/x86_64-linux-gnu/libQt6Quick.so.6.4.2
@@ -350,7 +539,7 @@ RemoteAccessMobile: /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2
 RemoteAccessMobile: /usr/lib/x86_64-linux-gnu/libGLX.so
 RemoteAccessMobile: /usr/lib/x86_64-linux-gnu/libOpenGL.so
 RemoteAccessMobile: CMakeFiles/RemoteAccessMobile.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable RemoteAccessMobile"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Linking CXX executable RemoteAccessMobile"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/RemoteAccessMobile.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -361,6 +550,13 @@ CMakeFiles/RemoteAccessMobile.dir/clean:
 	$(CMAKE_COMMAND) -P CMakeFiles/RemoteAccessMobile.dir/cmake_clean.cmake
 .PHONY : CMakeFiles/RemoteAccessMobile.dir/clean
 
+CMakeFiles/RemoteAccessMobile.dir/depend: .rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp
+CMakeFiles/RemoteAccessMobile.dir/depend: .rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp
+CMakeFiles/RemoteAccessMobile.dir/depend: .rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp
+CMakeFiles/RemoteAccessMobile.dir/depend: .rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp
+CMakeFiles/RemoteAccessMobile.dir/depend: .rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp
+CMakeFiles/RemoteAccessMobile.dir/depend: .rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp
+CMakeFiles/RemoteAccessMobile.dir/depend: .rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp
 CMakeFiles/RemoteAccessMobile.dir/depend: .rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp
 CMakeFiles/RemoteAccessMobile.dir/depend: .rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp
 CMakeFiles/RemoteAccessMobile.dir/depend: .rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp
@@ -369,6 +565,6 @@ CMakeFiles/RemoteAccessMobile.dir/depend: RemoteAccess/RemoteAccessMobile.qmltyp
 CMakeFiles/RemoteAccessMobile.dir/depend: meta_types/qt6remoteaccessmobile_metatypes.json
 CMakeFiles/RemoteAccessMobile.dir/depend: meta_types/qt6remoteaccessmobile_metatypes.json.gen
 CMakeFiles/RemoteAccessMobile.dir/depend: remoteaccessmobile_qmltyperegistrations.cpp
-	cd /home/victor/Videos/remote-access-system/mobile-app/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Videos/remote-access-system/mobile-app /home/victor/Videos/remote-access-system/mobile-app /home/victor/Videos/remote-access-system/mobile-app/build /home/victor/Videos/remote-access-system/mobile-app/build /home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/victor/Documents/Desktop/remote-access-system/mobile-app/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Documents/Desktop/remote-access-system/mobile-app /home/victor/Documents/Desktop/remote-access-system/mobile-app /home/victor/Documents/Desktop/remote-access-system/mobile-app/build /home/victor/Documents/Desktop/remote-access-system/mobile-app/build /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/RemoteAccessMobile.dir/depend
 

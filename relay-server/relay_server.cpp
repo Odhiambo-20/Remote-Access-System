@@ -106,6 +106,9 @@ void RelayServer::handle_request(ACE_SOCK_Stream* client_stream, const std::stri
     if (request.find("REGISTER_PC|") == 0) {
         handle_pc_registration(client_stream, request.substr(12));
     }
+    else if (request.find("FILE_HANDLER_REGISTER|") == 0) {
+        handle_file_handler_registration(client_stream, request.substr(22));
+    }
     else if (request.find("PC_FILE|") == 0) {
         handle_file_handler_registration(client_stream, request.substr(8));
     }
@@ -119,6 +122,24 @@ void RelayServer::handle_request(ACE_SOCK_Stream* client_stream, const std::stri
     else if (request.find("DOWNLOAD_FILE|") == 0) {
         handle_download_request(client_stream, request.substr(14));
     }
+    else if (request.find("DOWNLOAD|") == 0) {
+        handle_download_request(client_stream, request.substr(9));
+    }
+    else if (request.find("GENERATE_URL|") == 0) {
+        handle_generate_url_request(client_stream, request.substr(13));
+    }
+    else if (request.find("DELETE|") == 0) {
+        handle_delete_request(client_stream, request.substr(7));
+    }
+    else if (request.find("RENAME|") == 0) {
+        handle_rename_request(client_stream, request.substr(7));
+    }
+    else if (request.find("COPY|") == 0) {
+        handle_copy_request(client_stream, request.substr(5));
+    }
+    else if (request.find("UPLOAD|") == 0) {
+        handle_upload_request(client_stream, request.substr(7));
+    }
     else if (request.find("DIR_LISTING|") == 0 || request.find("FILE_DATA|") == 0) {
         handle_pc_response(client_stream, request);
     }
@@ -128,8 +149,15 @@ void RelayServer::handle_request(ACE_SOCK_Stream* client_stream, const std::stri
         ACE_DEBUG((LM_DEBUG, "[RelayServer] Heartbeat acknowledged\n"));
         // Don't close - keep connection alive for heartbeats
     }
-    else if (request.find("DIR_LIST|") == 0 || request.find("DOWNLOAD_START|") == 0 || 
-             request.find("ERROR|") == 0 || request.find("UPLOAD_COMPLETE") == 0) {
+    else if (request.find("DIR_LIST|") == 0 || 
+             request.find("DOWNLOAD_START|") == 0 || 
+             request.find("ERROR|") == 0 || 
+             request.find("UPLOAD_COMPLETE") == 0 ||
+             request.find("UPLOAD_READY") == 0 ||
+             request.find("DELETE_OK") == 0 ||
+             request.find("RENAME_OK") == 0 ||
+             request.find("COPY_OK") == 0 ||
+             request.find("SHARE_URL|") == 0) {
         // Response from file handler - forward to waiting client
         handle_file_handler_response(client_stream, request);
     }
@@ -194,8 +222,78 @@ void RelayServer::handle_file_handler_registration(ACE_SOCK_Stream* client, cons
 void RelayServer::handle_file_handler_response(ACE_SOCK_Stream* file_handler, const std::string& response) {
     ACE_DEBUG((LM_INFO, "[RelayServer] FileHandler response: %s\n", response.c_str()));
     
-    // For now, just acknowledge - implement full forwarding later if needed
-    // This prevents the "Unknown command" error
+    // Extract response type
+    std::string response_type;
+    size_t pipe_pos = response.find('|');
+    if (pipe_pos != std::string::npos) {
+        response_type = response.substr(0, pipe_pos);
+    } else {
+        response_type = response;
+        if (!response_type.empty() && response_type.back() == '\n') {
+            response_type.pop_back();
+        }
+    }
+    
+    // Find the most recent pending request that matches this response type
+    ACE_Guard<ACE_Thread_Mutex> guard(mutex_);
+    
+    PendingRequest* matching_request = nullptr;
+    std::string matching_id;
+    time_t newest_timestamp = 0;
+    
+    for (auto& pair : pending_requests_) {
+        // Match response to request type
+        bool matches = false;
+        if (response_type == "DIR_LIST" && pair.second.request_type == "LIST_DIR") {
+            matches = true;
+        } else if (response_type == "DOWNLOAD_START" && pair.second.request_type == "DOWNLOAD_FILE") {
+            matches = true;
+        } else if (response_type == "SHARE_URL" && pair.second.request_type == "GENERATE_URL") {
+            matches = true;
+        } else if (response_type == "DELETE_OK" && pair.second.request_type == "DELETE") {
+            matches = true;
+        } else if (response_type == "RENAME_OK" && pair.second.request_type == "RENAME") {
+            matches = true;
+        } else if (response_type == "COPY_OK" && pair.second.request_type == "COPY") {
+            matches = true;
+        } else if (response_type == "UPLOAD_READY" && pair.second.request_type == "UPLOAD") {
+            matches = true;
+        } else if (response_type == "UPLOAD_COMPLETE" && pair.second.request_type == "UPLOAD") {
+            matches = true;
+        } else if (response_type == "ERROR") {
+            matches = true; // Error responses match any request
+        }
+        
+        if (matches && pair.second.timestamp > newest_timestamp) {
+            matching_request = &pair.second;
+            matching_id = pair.first;
+            newest_timestamp = pair.second.timestamp;
+        }
+    }
+    
+    if (matching_request) {
+        ACE_SOCK_Stream* mobile_client = matching_request->mobile_client;
+        mobile_client->send(response.c_str(), response.length());
+        
+        // Only close and delete for final responses
+        if (response_type == "DIR_LIST" || 
+            response_type == "DELETE_OK" || 
+            response_type == "RENAME_OK" || 
+            response_type == "COPY_OK" ||
+            response_type == "SHARE_URL" ||
+            response_type == "UPLOAD_COMPLETE" ||
+            response_type == "ERROR") {
+            mobile_client->close();
+            delete mobile_client;
+            pending_requests_.erase(matching_id);
+            ACE_DEBUG((LM_INFO, "[RelayServer] Response forwarded and request completed\n"));
+        } else {
+            ACE_DEBUG((LM_INFO, "[RelayServer] Intermediate response forwarded\n"));
+        }
+    } else {
+        ACE_DEBUG((LM_WARNING, "[RelayServer] No matching pending request for response: %s\n", 
+                  response_type.c_str()));
+    }
 }
 
 void RelayServer::handle_pc_registration(ACE_SOCK_Stream* client, const std::string& data) {
@@ -387,6 +485,264 @@ void RelayServer::handle_download_request(ACE_SOCK_Stream* client, const std::st
     it->second.file_connection->send(request.c_str(), request.length());
     
     ACE_DEBUG((LM_INFO, "[RelayServer] Forwarded DOWNLOAD to FileHandler\n"));
+}
+
+void RelayServer::handle_generate_url_request(ACE_SOCK_Stream* client, const std::string& data) {
+    size_t pos = data.find('|');
+    if (pos == std::string::npos) {
+        std::string error = "ERROR|Invalid GENERATE_URL format\n";
+        client->send(error.c_str(), error.length());
+        client->close();
+        delete client;
+        return;
+    }
+    
+    std::string pc_id = data.substr(0, pos);
+    std::string filepath = data.substr(pos + 1);
+    
+    if (!filepath.empty() && filepath.back() == '\n') {
+        filepath.pop_back();
+    }
+    
+    ACE_DEBUG((LM_INFO, "[RelayServer] GENERATE_URL: PC=%s, file=%s\n", 
+              pc_id.c_str(), filepath.c_str()));
+    
+    ACE_Guard<ACE_Thread_Mutex> guard(mutex_);
+    auto it = registered_pcs_.find(pc_id);
+    if (it == registered_pcs_.end() || it->second.file_connection == nullptr) {
+        std::string error = "ERROR|PC file handler not found\n";
+        client->send(error.c_str(), error.length());
+        client->close();
+        delete client;
+        return;
+    }
+    
+    std::string request_id = pc_id + "_" + std::to_string(time(nullptr));
+    PendingRequest pending;
+    pending.mobile_client = client;
+    pending.request_type = "GENERATE_URL";
+    pending.request_data = filepath;
+    pending.timestamp = time(nullptr);
+    pending_requests_[request_id] = pending;
+    
+    // Send to file handler connection
+    std::string request = "GENERATE_URL|" + pc_id + "|" + filepath + "\n";
+    it->second.file_connection->send(request.c_str(), request.length());
+    
+    ACE_DEBUG((LM_INFO, "[RelayServer] Forwarded GENERATE_URL to FileHandler\n"));
+}
+
+void RelayServer::handle_delete_request(ACE_SOCK_Stream* client, const std::string& data) {
+    size_t pos = data.find('|');
+    if (pos == std::string::npos) {
+        std::string error = "ERROR|Invalid DELETE format\n";
+        client->send(error.c_str(), error.length());
+        client->close();
+        delete client;
+        return;
+    }
+    
+    std::string pc_id = data.substr(0, pos);
+    std::string filepath = data.substr(pos + 1);
+    
+    if (!filepath.empty() && filepath.back() == '\n') {
+        filepath.pop_back();
+    }
+    
+    ACE_DEBUG((LM_INFO, "[RelayServer] DELETE: PC=%s, file=%s\n", 
+              pc_id.c_str(), filepath.c_str()));
+    
+    ACE_Guard<ACE_Thread_Mutex> guard(mutex_);
+    auto it = registered_pcs_.find(pc_id);
+    if (it == registered_pcs_.end() || it->second.file_connection == nullptr) {
+        std::string error = "ERROR|PC file handler not found\n";
+        client->send(error.c_str(), error.length());
+        client->close();
+        delete client;
+        return;
+    }
+    
+    std::string request_id = pc_id + "_" + std::to_string(time(nullptr));
+    PendingRequest pending;
+    pending.mobile_client = client;
+    pending.request_type = "DELETE";
+    pending.request_data = filepath;
+    pending.timestamp = time(nullptr);
+    pending_requests_[request_id] = pending;
+    
+    // Send to file handler connection
+    std::string request = "DELETE|" + pc_id + "|" + filepath + "\n";
+    it->second.file_connection->send(request.c_str(), request.length());
+    
+    ACE_DEBUG((LM_INFO, "[RelayServer] Forwarded DELETE to FileHandler\n"));
+}
+
+void RelayServer::handle_rename_request(ACE_SOCK_Stream* client, const std::string& data) {
+    // Format: PC-xxx|oldpath|newpath
+    size_t pos1 = data.find('|');
+    if (pos1 == std::string::npos) {
+        std::string error = "ERROR|Invalid RENAME format\n";
+        client->send(error.c_str(), error.length());
+        client->close();
+        delete client;
+        return;
+    }
+    
+    std::string pc_id = data.substr(0, pos1);
+    size_t pos2 = data.find('|', pos1 + 1);
+    if (pos2 == std::string::npos) {
+        std::string error = "ERROR|Invalid RENAME format\n";
+        client->send(error.c_str(), error.length());
+        client->close();
+        delete client;
+        return;
+    }
+    
+    std::string old_path = data.substr(pos1 + 1, pos2 - pos1 - 1);
+    std::string new_path = data.substr(pos2 + 1);
+    
+    if (!new_path.empty() && new_path.back() == '\n') {
+        new_path.pop_back();
+    }
+    
+    ACE_DEBUG((LM_INFO, "[RelayServer] RENAME: PC=%s, old=%s, new=%s\n", 
+              pc_id.c_str(), old_path.c_str(), new_path.c_str()));
+    
+    ACE_Guard<ACE_Thread_Mutex> guard(mutex_);
+    auto it = registered_pcs_.find(pc_id);
+    if (it == registered_pcs_.end() || it->second.file_connection == nullptr) {
+        std::string error = "ERROR|PC file handler not found\n";
+        client->send(error.c_str(), error.length());
+        client->close();
+        delete client;
+        return;
+    }
+    
+    std::string request_id = pc_id + "_" + std::to_string(time(nullptr));
+    PendingRequest pending;
+    pending.mobile_client = client;
+    pending.request_type = "RENAME";
+    pending.request_data = old_path + "|" + new_path;
+    pending.timestamp = time(nullptr);
+    pending_requests_[request_id] = pending;
+    
+    // Send to file handler connection
+    std::string request = "RENAME|" + pc_id + "|" + old_path + "|" + new_path + "\n";
+    it->second.file_connection->send(request.c_str(), request.length());
+    
+    ACE_DEBUG((LM_INFO, "[RelayServer] Forwarded RENAME to FileHandler\n"));
+}
+
+void RelayServer::handle_copy_request(ACE_SOCK_Stream* client, const std::string& data) {
+    // Format: PC-xxx|srcpath|destpath
+    size_t pos1 = data.find('|');
+    if (pos1 == std::string::npos) {
+        std::string error = "ERROR|Invalid COPY format\n";
+        client->send(error.c_str(), error.length());
+        client->close();
+        delete client;
+        return;
+    }
+    
+    std::string pc_id = data.substr(0, pos1);
+    size_t pos2 = data.find('|', pos1 + 1);
+    if (pos2 == std::string::npos) {
+        std::string error = "ERROR|Invalid COPY format\n";
+        client->send(error.c_str(), error.length());
+        client->close();
+        delete client;
+        return;
+    }
+    
+    std::string src_path = data.substr(pos1 + 1, pos2 - pos1 - 1);
+    std::string dest_path = data.substr(pos2 + 1);
+    
+    if (!dest_path.empty() && dest_path.back() == '\n') {
+        dest_path.pop_back();
+    }
+    
+    ACE_DEBUG((LM_INFO, "[RelayServer] COPY: PC=%s, src=%s, dest=%s\n", 
+              pc_id.c_str(), src_path.c_str(), dest_path.c_str()));
+    
+    ACE_Guard<ACE_Thread_Mutex> guard(mutex_);
+    auto it = registered_pcs_.find(pc_id);
+    if (it == registered_pcs_.end() || it->second.file_connection == nullptr) {
+        std::string error = "ERROR|PC file handler not found\n";
+        client->send(error.c_str(), error.length());
+        client->close();
+        delete client;
+        return;
+    }
+    
+    std::string request_id = pc_id + "_" + std::to_string(time(nullptr));
+    PendingRequest pending;
+    pending.mobile_client = client;
+    pending.request_type = "COPY";
+    pending.request_data = src_path + "|" + dest_path;
+    pending.timestamp = time(nullptr);
+    pending_requests_[request_id] = pending;
+    
+    // Send to file handler connection
+    std::string request = "COPY|" + pc_id + "|" + src_path + "|" + dest_path + "\n";
+    it->second.file_connection->send(request.c_str(), request.length());
+    
+    ACE_DEBUG((LM_INFO, "[RelayServer] Forwarded COPY to FileHandler\n"));
+}
+
+void RelayServer::handle_upload_request(ACE_SOCK_Stream* client, const std::string& data) {
+    // Format: PC-xxx|remotepath|filesize
+    size_t pos1 = data.find('|');
+    if (pos1 == std::string::npos) {
+        std::string error = "ERROR|Invalid UPLOAD format\n";
+        client->send(error.c_str(), error.length());
+        client->close();
+        delete client;
+        return;
+    }
+    
+    std::string pc_id = data.substr(0, pos1);
+    size_t pos2 = data.find('|', pos1 + 1);
+    if (pos2 == std::string::npos) {
+        std::string error = "ERROR|Invalid UPLOAD format\n";
+        client->send(error.c_str(), error.length());
+        client->close();
+        delete client;
+        return;
+    }
+    
+    std::string remote_path = data.substr(pos1 + 1, pos2 - pos1 - 1);
+    std::string size_str = data.substr(pos2 + 1);
+    
+    if (!size_str.empty() && size_str.back() == '\n') {
+        size_str.pop_back();
+    }
+    
+    ACE_DEBUG((LM_INFO, "[RelayServer] UPLOAD: PC=%s, path=%s, size=%s\n", 
+              pc_id.c_str(), remote_path.c_str(), size_str.c_str()));
+    
+    ACE_Guard<ACE_Thread_Mutex> guard(mutex_);
+    auto it = registered_pcs_.find(pc_id);
+    if (it == registered_pcs_.end() || it->second.file_connection == nullptr) {
+        std::string error = "ERROR|PC file handler not found\n";
+        client->send(error.c_str(), error.length());
+        client->close();
+        delete client;
+        return;
+    }
+    
+    std::string request_id = pc_id + "_" + std::to_string(time(nullptr));
+    PendingRequest pending;
+    pending.mobile_client = client;
+    pending.request_type = "UPLOAD";
+    pending.request_data = remote_path + "|" + size_str;
+    pending.timestamp = time(nullptr);
+    pending_requests_[request_id] = pending;
+    
+    // Send to file handler connection
+    std::string request = "UPLOAD|" + pc_id + "|" + remote_path + "|" + size_str + "\n";
+    it->second.file_connection->send(request.c_str(), request.length());
+    
+    ACE_DEBUG((LM_INFO, "[RelayServer] Forwarded UPLOAD to FileHandler\n"));
 }
 
 void RelayServer::handle_pc_response(ACE_SOCK_Stream* pc_client, const std::string& response) {

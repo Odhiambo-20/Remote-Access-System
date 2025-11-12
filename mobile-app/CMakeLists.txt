@@ -32,6 +32,13 @@ qt_add_qml_module(RemoteAccessMobile
     VERSION 1.0
     QML_FILES
         qml/main.qml
+        qml/FileExplorerView.qml
+        qml/PCListView.qml
+        qml/AddPCView.qml
+        qml/SettingsView.qml
+        qml/components/FileItem.qml
+        qml/components/PCCard.qml
+        qml/components/ProgressBar.qml
 )
 
 target_link_libraries(RemoteAccessMobile PRIVATE
@@ -47,13 +54,18 @@ set_target_properties(RemoteAccessMobile PROPERTIES
     MACOSX_BUNDLE TRUE
 )
 
+# Android-specific settings
+if(ANDROID)
+    set_target_properties(RemoteAccessMobile PROPERTIES
+        QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
+    )
+endif()
+
 install(TARGETS RemoteAccessMobile
     BUNDLE DESTINATION .
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-# Add FileManager sources
-target_sources(RemoteAccessMobile PRIVATE
-    src/filemanager.h
-    src/filemanager.cpp
-)
+# REMOVE THIS LINE - qt_add_qml_module already finalizes the target
+# qt_finalize_target(RemoteAccessMobile)

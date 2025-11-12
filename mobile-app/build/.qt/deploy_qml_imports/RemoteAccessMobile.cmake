@@ -9,7 +9,7 @@ endif()
 
 _qt_internal_deploy_qml_imports_for_target(
     ${__qt_opts}
-    IMPORTS_FILE "/home/victor/Videos/remote-access-system/mobile-app/build/.qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.cmake"
+    IMPORTS_FILE "/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.qt_plugins/Qt6_QmlPlugins_Imports_RemoteAccessMobile.cmake"
     PLUGINS_FOUND __qt_internal_plugins_found
     QML_DIR     "${arg_QML_DIR}"
     PLUGINS_DIR "${arg_PLUGINS_DIR}"

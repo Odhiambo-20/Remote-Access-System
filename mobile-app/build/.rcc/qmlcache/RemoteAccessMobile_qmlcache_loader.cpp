@@ -12,6 +12,55 @@ namespace _0x5f_RemoteAccess_qml_main_qml {
         reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
     };
 }
+namespace _0x5f_RemoteAccess_qml_FileExplorerView_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _0x5f_RemoteAccess_qml_PCListView_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _0x5f_RemoteAccess_qml_AddPCView_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _0x5f_RemoteAccess_qml_SettingsView_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _0x5f_RemoteAccess_qml_components_FileItem_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _0x5f_RemoteAccess_qml_components_PCCard_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
+namespace _0x5f_RemoteAccess_qml_components_ProgressBar_qml { 
+    extern const unsigned char qmlData[];
+    extern const QQmlPrivate::AOTCompiledFunction aotBuiltFunctions[];
+    const QQmlPrivate::CachedQmlUnit unit = {
+        reinterpret_cast<const QV4::CompiledData::Unit*>(&qmlData), &aotBuiltFunctions[0], nullptr
+    };
+}
 
 }
 namespace {
@@ -27,6 +76,13 @@ Q_GLOBAL_STATIC(Registry, unitRegistry)
 
 Registry::Registry() {
     resourcePathToCachedUnit.insert(QStringLiteral("/RemoteAccess/qml/main.qml"), &QmlCacheGeneratedCode::_0x5f_RemoteAccess_qml_main_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/RemoteAccess/qml/FileExplorerView.qml"), &QmlCacheGeneratedCode::_0x5f_RemoteAccess_qml_FileExplorerView_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/RemoteAccess/qml/PCListView.qml"), &QmlCacheGeneratedCode::_0x5f_RemoteAccess_qml_PCListView_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/RemoteAccess/qml/AddPCView.qml"), &QmlCacheGeneratedCode::_0x5f_RemoteAccess_qml_AddPCView_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/RemoteAccess/qml/SettingsView.qml"), &QmlCacheGeneratedCode::_0x5f_RemoteAccess_qml_SettingsView_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/RemoteAccess/qml/components/FileItem.qml"), &QmlCacheGeneratedCode::_0x5f_RemoteAccess_qml_components_FileItem_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/RemoteAccess/qml/components/PCCard.qml"), &QmlCacheGeneratedCode::_0x5f_RemoteAccess_qml_components_PCCard_qml::unit);
+    resourcePathToCachedUnit.insert(QStringLiteral("/RemoteAccess/qml/components/ProgressBar.qml"), &QmlCacheGeneratedCode::_0x5f_RemoteAccess_qml_components_ProgressBar_qml::unit);
     QQmlPrivate::RegisterQmlUnitCacheHook registration;
     registration.structVersion = 0;
     registration.lookupCachedQmlUnit = &lookupCachedUnit;

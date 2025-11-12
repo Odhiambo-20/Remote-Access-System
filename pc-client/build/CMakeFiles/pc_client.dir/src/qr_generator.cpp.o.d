@@ -1,7 +1,7 @@
 CMakeFiles/pc_client.dir/src/qr_generator.cpp.o: \
- /home/victor/Videos/remote-access-system/pc-client/src/qr_generator.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/src/qr_generator.cpp \
  /usr/include/stdc-predef.h \
- /home/victor/Videos/remote-access-system/pc-client/src/../include/qr_generator.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/src/../include/qr_generator.h \
  /usr/include/c++/12/string \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \

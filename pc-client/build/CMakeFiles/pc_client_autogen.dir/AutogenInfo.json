@@ -1,16 +1,16 @@
 {
-	"BUILD_DIR" : "/home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen",
-	"CMAKE_BINARY_DIR" : "/home/victor/Videos/remote-access-system/pc-client/build",
-	"CMAKE_CURRENT_BINARY_DIR" : "/home/victor/Videos/remote-access-system/pc-client/build",
-	"CMAKE_CURRENT_SOURCE_DIR" : "/home/victor/Videos/remote-access-system/pc-client",
+	"BUILD_DIR" : "/home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen",
+	"CMAKE_BINARY_DIR" : "/home/victor/Documents/Desktop/remote-access-system/pc-client/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/victor/Documents/Desktop/remote-access-system/pc-client/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/victor/Documents/Desktop/remote-access-system/pc-client",
 	"CMAKE_EXECUTABLE" : "/usr/bin/cmake",
 	"CMAKE_LIST_FILES" : 
 	[
-		"/home/victor/Videos/remote-access-system/pc-client/CMakeLists.txt",
-		"/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles/3.25.1/CMakeSystem.cmake",
+		"/home/victor/Documents/Desktop/remote-access-system/pc-client/CMakeLists.txt",
+		"/home/victor/Documents/Desktop/remote-access-system/pc-client/build/CMakeFiles/3.25.1/CMakeSystem.cmake",
 		"/usr/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake",
-		"/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles/3.25.1/CMakeCCompiler.cmake",
-		"/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles/3.25.1/CMakeCXXCompiler.cmake",
+		"/home/victor/Documents/Desktop/remote-access-system/pc-client/build/CMakeFiles/3.25.1/CMakeCCompiler.cmake",
+		"/home/victor/Documents/Desktop/remote-access-system/pc-client/build/CMakeFiles/3.25.1/CMakeCXXCompiler.cmake",
 		"/usr/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake",
 		"/usr/share/cmake-3.25/Modules/CMakeGenericSystem.cmake",
 		"/usr/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake",
@@ -60,75 +60,75 @@
 		"/usr/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake",
 		"/usr/share/cmake-3.25/Modules/FindPackageMessage.cmake"
 	],
-	"CMAKE_SOURCE_DIR" : "/home/victor/Videos/remote-access-system/pc-client",
+	"CMAKE_SOURCE_DIR" : "/home/victor/Documents/Desktop/remote-access-system/pc-client",
 	"DEP_FILE" : "",
 	"DEP_FILE_RULE_NAME" : "",
 	"HEADERS" : 
 	[
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/include/account_manager.h",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/include/account_manager.h",
 			"MU",
 			"6YEA5652QU/moc_account_manager.cpp",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/include/connection_manager.h",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/include/connection_manager.h",
 			"MU",
 			"6YEA5652QU/moc_connection_manager.cpp",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/include/file_handler.h",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/include/file_handler.h",
 			"MU",
 			"6YEA5652QU/moc_file_handler.cpp",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/include/file_manager.h",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/include/file_manager.h",
 			"MU",
 			"6YEA5652QU/moc_file_manager.cpp",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/include/file_server.h",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/include/file_server.h",
 			"MU",
 			"6YEA5652QU/moc_file_server.cpp",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/include/http_server.h",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/include/http_server.h",
 			"MU",
 			"6YEA5652QU/moc_http_server.cpp",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/include/pc_identifier.h",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/include/pc_identifier.h",
 			"MU",
 			"6YEA5652QU/moc_pc_identifier.cpp",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/include/qr_generator.h",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/include/qr_generator.h",
 			"MU",
 			"6YEA5652QU/moc_qr_generator.cpp",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/include/relay_client.h",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/include/relay_client.h",
 			"MU",
 			"6YEA5652QU/moc_relay_client.cpp",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/include/remote_control_server.h",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/include/remote_control_server.h",
 			"MU",
 			"6YEA5652QU/moc_remote_control_server.cpp",
 			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
-	"INCLUDE_DIR" : "/home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/include",
-	"MOC_COMPILATION_FILE" : "/home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/mocs_compilation.cpp",
+	"INCLUDE_DIR" : "/home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/include",
+	"MOC_COMPILATION_FILE" : "/home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : [ "QT_CORE_LIB", "QT_NETWORK_LIB", "QT_NO_DEBUG" ],
 	"MOC_DEPEND_FILTERS" : 
 	[
@@ -139,8 +139,8 @@
 	],
 	"MOC_INCLUDES" : 
 	[
-		"/home/victor/Videos/remote-access-system/pc-client/include",
-		"/home/victor/Videos/remote-access-system/common/include",
+		"/home/victor/Documents/Desktop/remote-access-system/pc-client/include",
+		"/home/victor/Documents/Desktop/remote-access-system/common/include",
 		"/usr/include/x86_64-linux-gnu/qt5",
 		"/usr/include/x86_64-linux-gnu/qt5/QtCore",
 		"/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++",
@@ -164,81 +164,81 @@
 		"-c",
 		"/usr/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp"
 	],
-	"MOC_PREDEFS_FILE" : "/home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/moc_predefs.h",
+	"MOC_PREDEFS_FILE" : "/home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : [],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 4,
-	"PARSE_CACHE_FILE" : "/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles/pc_client_autogen.dir/ParseCache.txt",
+	"PARSE_CACHE_FILE" : "/home/victor/Documents/Desktop/remote-access-system/pc-client/build/CMakeFiles/pc_client_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "/usr/lib/qt5/bin/moc",
 	"QT_UIC_EXECUTABLE" : "",
 	"QT_VERSION_MAJOR" : 5,
 	"QT_VERSION_MINOR" : 15,
-	"SETTINGS_FILE" : "/home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles/pc_client_autogen.dir/AutogenUsed.txt",
+	"SETTINGS_FILE" : "/home/victor/Documents/Desktop/remote-access-system/pc-client/build/CMakeFiles/pc_client_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
 		[
-			"/home/victor/Videos/remote-access-system/common/src/crypto.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/common/src/crypto.cpp",
 			"MU",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/common/src/utils.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp",
 			"MU",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/src/account_manager.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/src/account_manager.cpp",
 			"MU",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/src/connection_manager.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/src/connection_manager.cpp",
 			"MU",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/src/file_handler.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/src/file_handler.cpp",
 			"MU",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/src/file_manager.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/src/file_manager.cpp",
 			"MU",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/src/file_server.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/src/file_server.cpp",
 			"MU",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/src/http_server.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/src/http_server.cpp",
 			"MU",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/src/main.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/src/main.cpp",
 			"MU",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/src/pc_identifier.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/src/pc_identifier.cpp",
 			"MU",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/src/qr_generator.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/src/qr_generator.cpp",
 			"MU",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/src/relay_client.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/src/relay_client.cpp",
 			"MU",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/pc-client/src/remote_control_server.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/pc-client/src/remote_control_server.cpp",
 			"MU",
 			null
 		]

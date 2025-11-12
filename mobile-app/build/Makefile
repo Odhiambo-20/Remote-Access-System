@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/victor/Videos/remote-access-system/mobile-app
+CMAKE_SOURCE_DIR = /home/victor/Documents/Desktop/remote-access-system/mobile-app
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/victor/Videos/remote-access-system/mobile-app/build
+CMAKE_BINARY_DIR = /home/victor/Documents/Desktop/remote-access-system/mobile-app/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,9 +132,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles /home/victor/Videos/remote-access-system/mobile-app/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles /home/victor/Documents/Desktop/remote-access-system/mobile-app/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -340,6 +340,174 @@ RemoteAccessMobile_autogen/mocs_compilation.s: RemoteAccessMobile_autogen/mocs_c
 RemoteAccessMobile_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/RemoteAccessMobile_autogen/mocs_compilation.cpp.s
 .PHONY : RemoteAccessMobile_autogen/mocs_compilation.cpp.s
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.o: build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.o
+
+# target to build an object file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.o
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.i: build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.i
+
+# target to preprocess a source file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.i
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.s: build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.s
+
+# target to generate assembly for a file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp.s
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.o: build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.o
+
+# target to build an object file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.o
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.i: build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.i
+
+# target to preprocess a source file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.i
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.s: build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.s
+
+# target to generate assembly for a file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp.s
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.o: build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.o
+
+# target to build an object file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.o
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.i: build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.i
+
+# target to preprocess a source file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.i
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.s: build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.s
+
+# target to generate assembly for a file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp.s
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.o: build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.o
+
+# target to build an object file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.o
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.i: build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.i
+
+# target to preprocess a source file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.i
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.s: build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.s
+
+# target to generate assembly for a file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp.s
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.o: build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.o
+
+# target to build an object file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.o
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.i: build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.i
+
+# target to preprocess a source file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.i
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.s: build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.s
+
+# target to generate assembly for a file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp.s
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.o: build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.o
+
+# target to build an object file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.o
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.i: build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.i
+
+# target to preprocess a source file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.i
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.s: build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.s
+
+# target to generate assembly for a file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp.s
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.o: build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.o
+
+# target to build an object file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.o
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.o
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.i: build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.i
+
+# target to preprocess a source file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.i
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.i
+
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.s: build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.s
+
+# target to generate assembly for a file
+build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RemoteAccessMobile.dir/build.make CMakeFiles/RemoteAccessMobile.dir/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.s
+.PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp.s
 
 build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.o: build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp.o
 .PHONY : build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.o
@@ -656,6 +824,27 @@ help:
 	@echo "... RemoteAccessMobile_autogen/mocs_compilation.o"
 	@echo "... RemoteAccessMobile_autogen/mocs_compilation.i"
 	@echo "... RemoteAccessMobile_autogen/mocs_compilation.s"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.o"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.i"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.s"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.o"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.i"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.s"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.o"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.i"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.s"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.o"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.i"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.s"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.o"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.i"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.s"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.o"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.i"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.s"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.o"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.i"
+	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.s"
 	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.o"
 	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.i"
 	@echo "... build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.s"

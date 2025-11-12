@@ -18,7 +18,12 @@ enum class MessageType : uint8_t {
     FILE_LIST_RESPONSE = 3,
     FILE_DOWNLOAD = 4,
     FILE_UPLOAD = 5,
-    HEARTBEAT = 6
+    HEARTBEAT = 6,
+    FILE_COPY = 7,
+    FILE_MOVE = 8,
+    FILE_RENAME = 9,
+    FILE_DELETE = 10,
+    CREATE_FOLDER = 11
 };
 
 struct Message {
@@ -51,6 +56,14 @@ private:
     Crypto crypto_;
     std::vector<unsigned char> key_;
     std::vector<unsigned char> iv_;
+    
+    // File operation handlers
+    bool HandleDownload(const std::string& file_path, Message& response);
+    bool HandleCopy(const std::string& source_path, const std::string& dest_path, Message& response);
+    bool HandleMove(const std::string& source_path, const std::string& dest_path, Message& response);
+    bool HandleRename(const std::string& old_path, const std::string& new_path, Message& response);
+    bool HandleDelete(const std::string& file_path, Message& response);
+    bool HandleCreateFolder(const std::string& folder_path, Message& response);
     
     // Serialization helpers
     std::vector<unsigned char> SerializeMessage(const Message& msg);

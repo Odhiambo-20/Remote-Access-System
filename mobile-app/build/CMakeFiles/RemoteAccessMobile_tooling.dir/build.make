@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/victor/Videos/remote-access-system/mobile-app
+CMAKE_SOURCE_DIR = /home/victor/Documents/Desktop/remote-access-system/mobile-app
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/victor/Videos/remote-access-system/mobile-app/build
+CMAKE_BINARY_DIR = /home/victor/Documents/Desktop/remote-access-system/mobile-app/build
 
 # Utility rule file for RemoteAccessMobile_tooling.
 
@@ -66,10 +66,45 @@ include CMakeFiles/RemoteAccessMobile_tooling.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/RemoteAccessMobile_tooling.dir/progress.make
 
-RemoteAccess/qml/main.qml: /home/victor/Videos/remote-access-system/mobile-app/qml/main.qml
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating RemoteAccess/qml/main.qml"
-	cd /home/victor/Videos/remote-access-system/mobile-app && /usr/bin/cmake -E copy /home/victor/Videos/remote-access-system/mobile-app/qml/main.qml /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccess/qml/main.qml
+RemoteAccess/qml/main.qml: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/main.qml
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating RemoteAccess/qml/main.qml"
+	cd /home/victor/Documents/Desktop/remote-access-system/mobile-app && /usr/bin/cmake -E copy /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/main.qml /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/qml/main.qml
 
+RemoteAccess/qml/FileExplorerView.qml: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/FileExplorerView.qml
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating RemoteAccess/qml/FileExplorerView.qml"
+	cd /home/victor/Documents/Desktop/remote-access-system/mobile-app && /usr/bin/cmake -E copy /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/FileExplorerView.qml /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/qml/FileExplorerView.qml
+
+RemoteAccess/qml/PCListView.qml: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/PCListView.qml
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating RemoteAccess/qml/PCListView.qml"
+	cd /home/victor/Documents/Desktop/remote-access-system/mobile-app && /usr/bin/cmake -E copy /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/PCListView.qml /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/qml/PCListView.qml
+
+RemoteAccess/qml/AddPCView.qml: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/AddPCView.qml
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating RemoteAccess/qml/AddPCView.qml"
+	cd /home/victor/Documents/Desktop/remote-access-system/mobile-app && /usr/bin/cmake -E copy /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/AddPCView.qml /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/qml/AddPCView.qml
+
+RemoteAccess/qml/SettingsView.qml: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/SettingsView.qml
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating RemoteAccess/qml/SettingsView.qml"
+	cd /home/victor/Documents/Desktop/remote-access-system/mobile-app && /usr/bin/cmake -E copy /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/SettingsView.qml /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/qml/SettingsView.qml
+
+RemoteAccess/qml/components/FileItem.qml: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/FileItem.qml
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating RemoteAccess/qml/components/FileItem.qml"
+	cd /home/victor/Documents/Desktop/remote-access-system/mobile-app && /usr/bin/cmake -E copy /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/FileItem.qml /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/qml/components/FileItem.qml
+
+RemoteAccess/qml/components/PCCard.qml: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/PCCard.qml
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Generating RemoteAccess/qml/components/PCCard.qml"
+	cd /home/victor/Documents/Desktop/remote-access-system/mobile-app && /usr/bin/cmake -E copy /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/PCCard.qml /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/qml/components/PCCard.qml
+
+RemoteAccess/qml/components/ProgressBar.qml: /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/ProgressBar.qml
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Generating RemoteAccess/qml/components/ProgressBar.qml"
+	cd /home/victor/Documents/Desktop/remote-access-system/mobile-app && /usr/bin/cmake -E copy /home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/ProgressBar.qml /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccess/qml/components/ProgressBar.qml
+
+RemoteAccessMobile_tooling: RemoteAccess/qml/AddPCView.qml
+RemoteAccessMobile_tooling: RemoteAccess/qml/FileExplorerView.qml
+RemoteAccessMobile_tooling: RemoteAccess/qml/PCListView.qml
+RemoteAccessMobile_tooling: RemoteAccess/qml/SettingsView.qml
+RemoteAccessMobile_tooling: RemoteAccess/qml/components/FileItem.qml
+RemoteAccessMobile_tooling: RemoteAccess/qml/components/PCCard.qml
+RemoteAccessMobile_tooling: RemoteAccess/qml/components/ProgressBar.qml
 RemoteAccessMobile_tooling: RemoteAccess/qml/main.qml
 RemoteAccessMobile_tooling: CMakeFiles/RemoteAccessMobile_tooling.dir/build.make
 .PHONY : RemoteAccessMobile_tooling
@@ -83,6 +118,6 @@ CMakeFiles/RemoteAccessMobile_tooling.dir/clean:
 .PHONY : CMakeFiles/RemoteAccessMobile_tooling.dir/clean
 
 CMakeFiles/RemoteAccessMobile_tooling.dir/depend:
-	cd /home/victor/Videos/remote-access-system/mobile-app/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Videos/remote-access-system/mobile-app /home/victor/Videos/remote-access-system/mobile-app /home/victor/Videos/remote-access-system/mobile-app/build /home/victor/Videos/remote-access-system/mobile-app/build /home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_tooling.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/victor/Documents/Desktop/remote-access-system/mobile-app/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Documents/Desktop/remote-access-system/mobile-app /home/victor/Documents/Desktop/remote-access-system/mobile-app /home/victor/Documents/Desktop/remote-access-system/mobile-app/build /home/victor/Documents/Desktop/remote-access-system/mobile-app/build /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_tooling.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/RemoteAccessMobile_tooling.dir/depend
 

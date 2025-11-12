@@ -1,15 +1,15 @@
 {
-	"BUILD_DIR" : "/home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen",
-	"CMAKE_BINARY_DIR" : "/home/victor/Videos/remote-access-system/mobile-app/build",
-	"CMAKE_CURRENT_BINARY_DIR" : "/home/victor/Videos/remote-access-system/mobile-app/build",
-	"CMAKE_CURRENT_SOURCE_DIR" : "/home/victor/Videos/remote-access-system/mobile-app",
+	"BUILD_DIR" : "/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen",
+	"CMAKE_BINARY_DIR" : "/home/victor/Documents/Desktop/remote-access-system/mobile-app/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/victor/Documents/Desktop/remote-access-system/mobile-app/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/victor/Documents/Desktop/remote-access-system/mobile-app",
 	"CMAKE_EXECUTABLE" : "/usr/bin/cmake",
 	"CMAKE_LIST_FILES" : 
 	[
-		"/home/victor/Videos/remote-access-system/mobile-app/CMakeLists.txt",
-		"/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles/3.25.1/CMakeSystem.cmake",
+		"/home/victor/Documents/Desktop/remote-access-system/mobile-app/CMakeLists.txt",
+		"/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles/3.25.1/CMakeSystem.cmake",
 		"/usr/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake",
-		"/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles/3.25.1/CMakeCXXCompiler.cmake",
+		"/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles/3.25.1/CMakeCXXCompiler.cmake",
 		"/usr/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake",
 		"/usr/share/cmake-3.25/Modules/CMakeGenericSystem.cmake",
 		"/usr/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake",
@@ -265,51 +265,51 @@
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt6Qml/Qt6qmldirTemplate.cmake.in"
 	],
-	"CMAKE_SOURCE_DIR" : "/home/victor/Videos/remote-access-system/mobile-app",
+	"CMAKE_SOURCE_DIR" : "/home/victor/Documents/Desktop/remote-access-system/mobile-app",
 	"DEP_FILE" : "",
 	"DEP_FILE_RULE_NAME" : "",
 	"HEADERS" : 
 	[
 		[
-			"/home/victor/Videos/remote-access-system/mobile-app/include/remote_control_client.h",
+			"/home/victor/Documents/Desktop/remote-access-system/mobile-app/include/remote_control_client.h",
 			"Mu",
 			"6YEA5652QU/moc_remote_control_client.cpp",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/mobile-app/include/settings_manager.h",
+			"/home/victor/Documents/Desktop/remote-access-system/mobile-app/include/settings_manager.h",
 			"Mu",
 			"6YEA5652QU/moc_settings_manager.cpp",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/mobile-app/src/connection_manager.h",
+			"/home/victor/Documents/Desktop/remote-access-system/mobile-app/src/connection_manager.h",
 			"Mu",
 			"UVLADIE3JM/moc_connection_manager.cpp",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/mobile-app/src/filemanager.h",
+			"/home/victor/Documents/Desktop/remote-access-system/mobile-app/src/filemanager.h",
 			"Mu",
 			"UVLADIE3JM/moc_filemanager.cpp",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/mobile-app/src/pc_list_model.h",
+			"/home/victor/Documents/Desktop/remote-access-system/mobile-app/src/pc_list_model.h",
 			"Mu",
 			"UVLADIE3JM/moc_pc_list_model.cpp",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/mobile-app/src/pcmanager.h",
+			"/home/victor/Documents/Desktop/remote-access-system/mobile-app/src/pcmanager.h",
 			"Mu",
 			"UVLADIE3JM/moc_pcmanager.cpp",
 			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
-	"INCLUDE_DIR" : "/home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/include",
-	"MOC_COMPILATION_FILE" : "/home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/mocs_compilation.cpp",
+	"INCLUDE_DIR" : "/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/include",
+	"MOC_COMPILATION_FILE" : "/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : 
 	[
 		"QT_CORE_LIB",
@@ -331,9 +331,9 @@
 	],
 	"MOC_INCLUDES" : 
 	[
-		"/home/victor/Videos/remote-access-system/mobile-app/include",
-		"/home/victor/Videos/remote-access-system/mobile-app/src",
-		"/home/victor/Videos/remote-access-system/mobile-app",
+		"/home/victor/Documents/Desktop/remote-access-system/mobile-app/include",
+		"/home/victor/Documents/Desktop/remote-access-system/mobile-app/src",
+		"/home/victor/Documents/Desktop/remote-access-system/mobile-app",
 		"/usr/include/x86_64-linux-gnu/qt6/QtQml/6.4.2",
 		"/usr/include/x86_64-linux-gnu/qt6/QtQml/6.4.2/QtQml",
 		"/usr/include/x86_64-linux-gnu/qt6/QtCore/6.4.2",
@@ -374,62 +374,69 @@
 		"-c",
 		"/usr/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp"
 	],
-	"MOC_PREDEFS_FILE" : "/home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/moc_predefs.h",
+	"MOC_PREDEFS_FILE" : "/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : 
 	[
-		"/home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp",
-		"/home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp",
-		"/home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qrc_qmake_RemoteAccess.cpp",
-		"/home/victor/Videos/remote-access-system/mobile-app/build/remoteaccessmobile_qmltyperegistrations.cpp"
+		"/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/AddPCView_qml.cpp",
+		"/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/FileExplorerView_qml.cpp",
+		"/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/PCListView_qml.cpp",
+		"/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/SettingsView_qml.cpp",
+		"/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/FileItem_qml.cpp",
+		"/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/PCCard_qml.cpp",
+		"/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/components/ProgressBar_qml.cpp",
+		"/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qml/main_qml.cpp",
+		"/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qrc_RemoteAccessMobile_raw_qml_0.cpp",
+		"/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qrc_qmake_RemoteAccess.cpp",
+		"/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/remoteaccessmobile_qmltyperegistrations.cpp"
 	],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 4,
-	"PARSE_CACHE_FILE" : "/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_autogen.dir/ParseCache.txt",
+	"PARSE_CACHE_FILE" : "/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "/usr/lib/qt6/libexec/moc",
 	"QT_UIC_EXECUTABLE" : "",
 	"QT_VERSION_MAJOR" : 6,
 	"QT_VERSION_MINOR" : 4,
-	"SETTINGS_FILE" : "/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_autogen.dir/AutogenUsed.txt",
+	"SETTINGS_FILE" : "/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
 		[
-			"/home/victor/Videos/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/.rcc/qmlcache/RemoteAccessMobile_qmlcache_loader.cpp",
 			"Mu",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/mobile-app/src/connection_manager.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/mobile-app/src/connection_manager.cpp",
 			"Mu",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/mobile-app/src/filemanager.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/mobile-app/src/filemanager.cpp",
 			"Mu",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/mobile-app/src/main.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/mobile-app/src/main.cpp",
 			"Mu",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/mobile-app/src/pc_list_model.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/mobile-app/src/pc_list_model.cpp",
 			"Mu",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/mobile-app/src/pcmanager.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/mobile-app/src/pcmanager.cpp",
 			"Mu",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/mobile-app/src/remote_control_client.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/mobile-app/src/remote_control_client.cpp",
 			"Mu",
 			null
 		],
 		[
-			"/home/victor/Videos/remote-access-system/mobile-app/src/settings_manager.cpp",
+			"/home/victor/Documents/Desktop/remote-access-system/mobile-app/src/settings_manager.cpp",
 			"Mu",
 			null
 		]

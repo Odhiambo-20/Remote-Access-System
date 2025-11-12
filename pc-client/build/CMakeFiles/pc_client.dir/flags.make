@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DQT_CORE_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG
 
-CXX_INCLUDES = -I/home/victor/Videos/remote-access-system/pc-client/build/pc_client_autogen/include -I/home/victor/Videos/remote-access-system/pc-client/include -I/home/victor/Videos/remote-access-system/pc-client/../common/include -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt5/QtNetwork
+CXX_INCLUDES = -I/home/victor/Documents/Desktop/remote-access-system/pc-client/build/pc_client_autogen/include -I/home/victor/Documents/Desktop/remote-access-system/pc-client/include -I/home/victor/Documents/Desktop/remote-access-system/pc-client/../common/include -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt5/QtNetwork
 
 CXX_FLAGS = -Wall -Wextra -Wpedantic -Wno-unused-parameter -fPIC -std=gnu++17
 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/victor/Videos/remote-access-system/relay-server
+# Install script for directory: /home/victor/Documents/Desktop/remote-access-system/relay-server
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -57,7 +57,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/usr/local/bin" TYPE EXECUTABLE FILES "/home/victor/Videos/remote-access-system/relay-server/build/relay_server")
+  file(INSTALL DESTINATION "/usr/local/bin" TYPE EXECUTABLE FILES "/home/victor/Documents/Desktop/remote-access-system/relay-server/build/relay_server")
   if(EXISTS "$ENV{DESTDIR}/usr/local/bin/relay_server" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}/usr/local/bin/relay_server")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -74,5 +74,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/victor/Videos/remote-access-system/relay-server/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/victor/Documents/Desktop/remote-access-system/relay-server/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -1,0 +1,76 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.remoteaccess.app"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/home/victor/Videos/remote-access-system/mobile-app/android/app/src/main/AndroidManifest.xml:3:5-67
+11-->/home/victor/Videos/remote-access-system/mobile-app/android/app/src/main/AndroidManifest.xml:3:22-64
+12
+13    <permission
+13-->[androidx.core:core:1.9.0] /home/victor/.gradle/caches/transforms-3/6b8f70eacaea457f2c8ec8c1d2a003d3/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+14        android:name="com.remoteaccess.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+14-->[androidx.core:core:1.9.0] /home/victor/.gradle/caches/transforms-3/6b8f70eacaea457f2c8ec8c1d2a003d3/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+15        android:protectionLevel="signature" />
+15-->[androidx.core:core:1.9.0] /home/victor/.gradle/caches/transforms-3/6b8f70eacaea457f2c8ec8c1d2a003d3/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+16
+17    <uses-permission android:name="com.remoteaccess.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+17-->[androidx.core:core:1.9.0] /home/victor/.gradle/caches/transforms-3/6b8f70eacaea457f2c8ec8c1d2a003d3/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+17-->[androidx.core:core:1.9.0] /home/victor/.gradle/caches/transforms-3/6b8f70eacaea457f2c8ec8c1d2a003d3/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+18
+19    <application
+19-->/home/victor/Videos/remote-access-system/mobile-app/android/app/src/main/AndroidManifest.xml:4:5-11:19
+20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+20-->[androidx.core:core:1.9.0] /home/victor/.gradle/caches/transforms-3/6b8f70eacaea457f2c8ec8c1d2a003d3/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+21        android:extractNativeLibs="true"
+22        android:label="Remote Access"
+22-->/home/victor/Videos/remote-access-system/mobile-app/android/app/src/main/AndroidManifest.xml:4:18-47
+23        android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+23-->/home/victor/Videos/remote-access-system/mobile-app/android/app/src/main/AndroidManifest.xml:4:48-104
+24        <activity
+24-->/home/victor/Videos/remote-access-system/mobile-app/android/app/src/main/AndroidManifest.xml:5:9-10:20
+25            android:name="com.remoteaccess.app.MainActivity"
+25-->/home/victor/Videos/remote-access-system/mobile-app/android/app/src/main/AndroidManifest.xml:5:19-47
+26            android:exported="true" >
+26-->/home/victor/Videos/remote-access-system/mobile-app/android/app/src/main/AndroidManifest.xml:5:48-71
+27            <intent-filter>
+27-->/home/victor/Videos/remote-access-system/mobile-app/android/app/src/main/AndroidManifest.xml:6:13-9:29
+28                <action android:name="android.intent.action.MAIN" />
+28-->/home/victor/Videos/remote-access-system/mobile-app/android/app/src/main/AndroidManifest.xml:7:17-69
+28-->/home/victor/Videos/remote-access-system/mobile-app/android/app/src/main/AndroidManifest.xml:7:25-66
+29
+30                <category android:name="android.intent.category.LAUNCHER" />
+30-->/home/victor/Videos/remote-access-system/mobile-app/android/app/src/main/AndroidManifest.xml:8:17-77
+30-->/home/victor/Videos/remote-access-system/mobile-app/android/app/src/main/AndroidManifest.xml:8:27-74
+31            </intent-filter>
+32        </activity>
+33
+34        <provider
+34-->[androidx.emoji2:emoji2:1.2.0] /home/victor/.gradle/caches/transforms-3/ffc9f230be04c872a4d3d8344b79f804/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+35            android:name="androidx.startup.InitializationProvider"
+35-->[androidx.emoji2:emoji2:1.2.0] /home/victor/.gradle/caches/transforms-3/ffc9f230be04c872a4d3d8344b79f804/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+36            android:authorities="com.remoteaccess.app.androidx-startup"
+36-->[androidx.emoji2:emoji2:1.2.0] /home/victor/.gradle/caches/transforms-3/ffc9f230be04c872a4d3d8344b79f804/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+37            android:exported="false" >
+37-->[androidx.emoji2:emoji2:1.2.0] /home/victor/.gradle/caches/transforms-3/ffc9f230be04c872a4d3d8344b79f804/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+38            <meta-data
+38-->[androidx.emoji2:emoji2:1.2.0] /home/victor/.gradle/caches/transforms-3/ffc9f230be04c872a4d3d8344b79f804/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+39                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+39-->[androidx.emoji2:emoji2:1.2.0] /home/victor/.gradle/caches/transforms-3/ffc9f230be04c872a4d3d8344b79f804/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+40                android:value="androidx.startup" />
+40-->[androidx.emoji2:emoji2:1.2.0] /home/victor/.gradle/caches/transforms-3/ffc9f230be04c872a4d3d8344b79f804/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+41            <meta-data
+41-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/victor/.gradle/caches/transforms-3/f7160d686e87b49efc26932fa8e94d5a/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+42                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+42-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/victor/.gradle/caches/transforms-3/f7160d686e87b49efc26932fa8e94d5a/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+43                android:value="androidx.startup" />
+43-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/victor/.gradle/caches/transforms-3/f7160d686e87b49efc26932fa8e94d5a/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+44        </provider>
+45    </application>
+46
+47</manifest>

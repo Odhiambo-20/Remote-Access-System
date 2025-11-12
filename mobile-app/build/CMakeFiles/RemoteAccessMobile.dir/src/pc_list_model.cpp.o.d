@@ -1,7 +1,7 @@
 CMakeFiles/RemoteAccessMobile.dir/src/pc_list_model.cpp.o: \
- /home/victor/Videos/remote-access-system/mobile-app/src/pc_list_model.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/pc_list_model.cpp \
  /usr/include/stdc-predef.h \
- /home/victor/Videos/remote-access-system/mobile-app/src/pc_list_model.h \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/pc_list_model.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QAbstractListModel \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qhash.h \

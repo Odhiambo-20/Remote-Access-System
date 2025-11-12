@@ -1,4 +1,4 @@
-# Install script for directory: /home/victor/Videos/remote-access-system/mobile-app
+# Install script for directory: /home/victor/Documents/Desktop/remote-access-system/mobile-app
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -49,7 +49,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/RemoteAccessMobile"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/RemoteAccessMobile" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/RemoteAccessMobile")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -66,5 +66,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/victor/Videos/remote-access-system/mobile-app/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

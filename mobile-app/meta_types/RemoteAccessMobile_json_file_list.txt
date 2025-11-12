@@ -1,0 +1,6 @@
+/home/victor/Documents/Desktop/remote-access-system/mobile-app/RemoteAccessMobile_autogen/include/../6YEA5652QU/moc_remote_control_client.cpp.json
+/home/victor/Documents/Desktop/remote-access-system/mobile-app/RemoteAccessMobile_autogen/include/../6YEA5652QU/moc_settings_manager.cpp.json
+/home/victor/Documents/Desktop/remote-access-system/mobile-app/RemoteAccessMobile_autogen/include/../UVLADIE3JM/moc_connection_manager.cpp.json
+/home/victor/Documents/Desktop/remote-access-system/mobile-app/RemoteAccessMobile_autogen/include/../UVLADIE3JM/moc_filemanager.cpp.json
+/home/victor/Documents/Desktop/remote-access-system/mobile-app/RemoteAccessMobile_autogen/include/../UVLADIE3JM/moc_pc_list_model.cpp.json
+/home/victor/Documents/Desktop/remote-access-system/mobile-app/RemoteAccessMobile_autogen/include/../UVLADIE3JM/moc_pcmanager.cpp.json

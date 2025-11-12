@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/victor/Videos/remote-access-system/mobile-app
+CMAKE_SOURCE_DIR = /home/victor/Documents/Desktop/remote-access-system/mobile-app
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/victor/Videos/remote-access-system/mobile-app/build
+CMAKE_BINARY_DIR = /home/victor/Documents/Desktop/remote-access-system/mobile-app/build
 
 # Utility rule file for RemoteAccessMobile_automoc_json_extraction.
 
@@ -67,8 +67,8 @@ include CMakeFiles/RemoteAccessMobile_automoc_json_extraction.dir/compiler_depen
 include CMakeFiles/RemoteAccessMobile_automoc_json_extraction.dir/progress.make
 
 CMakeFiles/RemoteAccessMobile_automoc_json_extraction: /usr/lib/qt6/libexec/cmake_automoc_parser
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running AUTOMOC file extraction for target RemoteAccessMobile"
-	/usr/lib/qt6/libexec/cmake_automoc_parser --cmake-autogen-cache-file /home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_autogen.dir/ParseCache.txt --cmake-autogen-info-file /home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_autogen.dir/AutogenInfo.json --output-file-path /home/victor/Videos/remote-access-system/mobile-app/build/meta_types/RemoteAccessMobile_json_file_list.txt --timestamp-file-path /home/victor/Videos/remote-access-system/mobile-app/build/meta_types/RemoteAccessMobile_json_file_list.txt.timestamp --cmake-autogen-include-dir-path /home/victor/Videos/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/include
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running AUTOMOC file extraction for target RemoteAccessMobile"
+	/usr/lib/qt6/libexec/cmake_automoc_parser --cmake-autogen-cache-file /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_autogen.dir/ParseCache.txt --cmake-autogen-info-file /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_autogen.dir/AutogenInfo.json --output-file-path /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/meta_types/RemoteAccessMobile_json_file_list.txt --timestamp-file-path /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/meta_types/RemoteAccessMobile_json_file_list.txt.timestamp --cmake-autogen-include-dir-path /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/RemoteAccessMobile_autogen/include
 
 RemoteAccessMobile_automoc_json_extraction: CMakeFiles/RemoteAccessMobile_automoc_json_extraction
 RemoteAccessMobile_automoc_json_extraction: CMakeFiles/RemoteAccessMobile_automoc_json_extraction.dir/build.make
@@ -83,6 +83,6 @@ CMakeFiles/RemoteAccessMobile_automoc_json_extraction.dir/clean:
 .PHONY : CMakeFiles/RemoteAccessMobile_automoc_json_extraction.dir/clean
 
 CMakeFiles/RemoteAccessMobile_automoc_json_extraction.dir/depend:
-	cd /home/victor/Videos/remote-access-system/mobile-app/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Videos/remote-access-system/mobile-app /home/victor/Videos/remote-access-system/mobile-app /home/victor/Videos/remote-access-system/mobile-app/build /home/victor/Videos/remote-access-system/mobile-app/build /home/victor/Videos/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_automoc_json_extraction.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/victor/Documents/Desktop/remote-access-system/mobile-app/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/victor/Documents/Desktop/remote-access-system/mobile-app /home/victor/Documents/Desktop/remote-access-system/mobile-app /home/victor/Documents/Desktop/remote-access-system/mobile-app/build /home/victor/Documents/Desktop/remote-access-system/mobile-app/build /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/CMakeFiles/RemoteAccessMobile_automoc_json_extraction.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/RemoteAccessMobile_automoc_json_extraction.dir/depend
 

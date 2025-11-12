@@ -1,5 +1,5 @@
 CMakeFiles/RemoteAccessMobile.dir/remoteaccessmobile_qmltyperegistrations.cpp.o: \
- /home/victor/Videos/remote-access-system/mobile-app/build/remoteaccessmobile_qmltyperegistrations.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/build/remoteaccessmobile_qmltyperegistrations.cpp \
  /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/qt6/QtQml/qqml.h \
  /usr/include/x86_64-linux-gnu/qt6/QtQml/qqmlprivate.h \

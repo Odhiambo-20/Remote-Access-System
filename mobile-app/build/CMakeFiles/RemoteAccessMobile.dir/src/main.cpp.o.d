@@ -1,5 +1,5 @@
 CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.o: \
- /home/victor/Videos/remote-access-system/mobile-app/src/main.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/main.cpp \
  /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/QGuiApplication \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qguiapplication.h \
@@ -346,7 +346,7 @@ CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtQml/qqmlabstracturlinterceptor.h \
  /usr/include/x86_64-linux-gnu/qt6/QtQml/QQmlContext \
  /usr/include/x86_64-linux-gnu/qt6/QtQml/qqmlcontext.h \
- /home/victor/Videos/remote-access-system/mobile-app/src/connection_manager.h \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/connection_manager.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QObject \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qobject.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QString \
@@ -361,8 +361,8 @@ CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QTimer \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qtimer.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qbasictimer.h \
- /home/victor/Videos/remote-access-system/mobile-app/src/pcmanager.h \
- /home/victor/Videos/remote-access-system/mobile-app/src/filemanager.h \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/pcmanager.h \
+ /home/victor/Documents/Desktop/remote-access-system/mobile-app/src/filemanager.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QFile \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qfile.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qfiledevice.h \
@@ -386,4 +386,13 @@ CMakeFiles/RemoteAccessMobile.dir/src/main.cpp.o: \
  /usr/include/c++/12/bits/ostream.tcc \
  /usr/include/c++/12/bits/istream.tcc \
  /usr/include/c++/12/bits/sstream.tcc /usr/include/c++/12/codecvt \
- /usr/include/c++/12/bits/fs_dir.h /usr/include/c++/12/bits/fs_ops.h
+ /usr/include/c++/12/bits/fs_dir.h /usr/include/c++/12/bits/fs_ops.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QVariantList \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qjsonarray.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qjsonvalue.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qcborvalue.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qdatetime.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qcalendar.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qcborcommon.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qregularexpression.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/quuid.h

@@ -1,7 +1,7 @@
 CMakeFiles/pc_client.dir/src/pc_identifier.cpp.o: \
- /home/victor/Videos/remote-access-system/pc-client/src/pc_identifier.cpp \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/src/pc_identifier.cpp \
  /usr/include/stdc-predef.h \
- /home/victor/Videos/remote-access-system/pc-client/include/pc_identifier.h \
+ /home/victor/Documents/Desktop/remote-access-system/pc-client/include/pc_identifier.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/QObject \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qobject.h \
  /usr/include/x86_64-linux-gnu/qt5/QtCore/qobjectdefs.h \

@@ -1,6 +1,13 @@
 <RCC>
   <qresource prefix="/RemoteAccess/">
-    <file alias="qml/main.qml">/home/victor/Videos/remote-access-system/mobile-app/qml/main.qml</file>
+    <file alias="qml/main.qml">/home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/main.qml</file>
+    <file alias="qml/FileExplorerView.qml">/home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/FileExplorerView.qml</file>
+    <file alias="qml/PCListView.qml">/home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/PCListView.qml</file>
+    <file alias="qml/AddPCView.qml">/home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/AddPCView.qml</file>
+    <file alias="qml/SettingsView.qml">/home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/SettingsView.qml</file>
+    <file alias="qml/components/FileItem.qml">/home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/FileItem.qml</file>
+    <file alias="qml/components/PCCard.qml">/home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/PCCard.qml</file>
+    <file alias="qml/components/ProgressBar.qml">/home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/ProgressBar.qml</file>
   </qresource>
 </RCC>
 

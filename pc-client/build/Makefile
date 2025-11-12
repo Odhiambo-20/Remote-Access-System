@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/victor/Videos/remote-access-system/pc-client
+CMAKE_SOURCE_DIR = /home/victor/Documents/Desktop/remote-access-system/pc-client
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/victor/Videos/remote-access-system/pc-client/build
+CMAKE_BINARY_DIR = /home/victor/Documents/Desktop/remote-access-system/pc-client/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles /home/victor/Videos/remote-access-system/pc-client/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/victor/Documents/Desktop/remote-access-system/pc-client/build/CMakeFiles /home/victor/Documents/Desktop/remote-access-system/pc-client/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/victor/Videos/remote-access-system/pc-client/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/victor/Documents/Desktop/remote-access-system/pc-client/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -142,53 +142,53 @@ pc_client_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client_autogen.dir/build.make CMakeFiles/pc_client_autogen.dir/build
 .PHONY : pc_client_autogen/fast
 
-home/victor/Videos/remote-access-system/common/src/crypto.o: home/victor/Videos/remote-access-system/common/src/crypto.cpp.o
-.PHONY : home/victor/Videos/remote-access-system/common/src/crypto.o
+home/victor/Documents/Desktop/remote-access-system/common/src/crypto.o: home/victor/Documents/Desktop/remote-access-system/common/src/crypto.cpp.o
+.PHONY : home/victor/Documents/Desktop/remote-access-system/common/src/crypto.o
 
 # target to build an object file
-home/victor/Videos/remote-access-system/common/src/crypto.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Videos/remote-access-system/common/src/crypto.cpp.o
-.PHONY : home/victor/Videos/remote-access-system/common/src/crypto.cpp.o
+home/victor/Documents/Desktop/remote-access-system/common/src/crypto.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Documents/Desktop/remote-access-system/common/src/crypto.cpp.o
+.PHONY : home/victor/Documents/Desktop/remote-access-system/common/src/crypto.cpp.o
 
-home/victor/Videos/remote-access-system/common/src/crypto.i: home/victor/Videos/remote-access-system/common/src/crypto.cpp.i
-.PHONY : home/victor/Videos/remote-access-system/common/src/crypto.i
+home/victor/Documents/Desktop/remote-access-system/common/src/crypto.i: home/victor/Documents/Desktop/remote-access-system/common/src/crypto.cpp.i
+.PHONY : home/victor/Documents/Desktop/remote-access-system/common/src/crypto.i
 
 # target to preprocess a source file
-home/victor/Videos/remote-access-system/common/src/crypto.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Videos/remote-access-system/common/src/crypto.cpp.i
-.PHONY : home/victor/Videos/remote-access-system/common/src/crypto.cpp.i
+home/victor/Documents/Desktop/remote-access-system/common/src/crypto.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Documents/Desktop/remote-access-system/common/src/crypto.cpp.i
+.PHONY : home/victor/Documents/Desktop/remote-access-system/common/src/crypto.cpp.i
 
-home/victor/Videos/remote-access-system/common/src/crypto.s: home/victor/Videos/remote-access-system/common/src/crypto.cpp.s
-.PHONY : home/victor/Videos/remote-access-system/common/src/crypto.s
+home/victor/Documents/Desktop/remote-access-system/common/src/crypto.s: home/victor/Documents/Desktop/remote-access-system/common/src/crypto.cpp.s
+.PHONY : home/victor/Documents/Desktop/remote-access-system/common/src/crypto.s
 
 # target to generate assembly for a file
-home/victor/Videos/remote-access-system/common/src/crypto.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Videos/remote-access-system/common/src/crypto.cpp.s
-.PHONY : home/victor/Videos/remote-access-system/common/src/crypto.cpp.s
+home/victor/Documents/Desktop/remote-access-system/common/src/crypto.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Documents/Desktop/remote-access-system/common/src/crypto.cpp.s
+.PHONY : home/victor/Documents/Desktop/remote-access-system/common/src/crypto.cpp.s
 
-home/victor/Videos/remote-access-system/common/src/utils.o: home/victor/Videos/remote-access-system/common/src/utils.cpp.o
-.PHONY : home/victor/Videos/remote-access-system/common/src/utils.o
+home/victor/Documents/Desktop/remote-access-system/common/src/utils.o: home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp.o
+.PHONY : home/victor/Documents/Desktop/remote-access-system/common/src/utils.o
 
 # target to build an object file
-home/victor/Videos/remote-access-system/common/src/utils.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Videos/remote-access-system/common/src/utils.cpp.o
-.PHONY : home/victor/Videos/remote-access-system/common/src/utils.cpp.o
+home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp.o
+.PHONY : home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp.o
 
-home/victor/Videos/remote-access-system/common/src/utils.i: home/victor/Videos/remote-access-system/common/src/utils.cpp.i
-.PHONY : home/victor/Videos/remote-access-system/common/src/utils.i
+home/victor/Documents/Desktop/remote-access-system/common/src/utils.i: home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp.i
+.PHONY : home/victor/Documents/Desktop/remote-access-system/common/src/utils.i
 
 # target to preprocess a source file
-home/victor/Videos/remote-access-system/common/src/utils.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Videos/remote-access-system/common/src/utils.cpp.i
-.PHONY : home/victor/Videos/remote-access-system/common/src/utils.cpp.i
+home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp.i
+.PHONY : home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp.i
 
-home/victor/Videos/remote-access-system/common/src/utils.s: home/victor/Videos/remote-access-system/common/src/utils.cpp.s
-.PHONY : home/victor/Videos/remote-access-system/common/src/utils.s
+home/victor/Documents/Desktop/remote-access-system/common/src/utils.s: home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp.s
+.PHONY : home/victor/Documents/Desktop/remote-access-system/common/src/utils.s
 
 # target to generate assembly for a file
-home/victor/Videos/remote-access-system/common/src/utils.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Videos/remote-access-system/common/src/utils.cpp.s
-.PHONY : home/victor/Videos/remote-access-system/common/src/utils.cpp.s
+home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pc_client.dir/build.make CMakeFiles/pc_client.dir/home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp.s
+.PHONY : home/victor/Documents/Desktop/remote-access-system/common/src/utils.cpp.s
 
 pc_client_autogen/mocs_compilation.o: pc_client_autogen/mocs_compilation.cpp.o
 .PHONY : pc_client_autogen/mocs_compilation.o
@@ -488,12 +488,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... pc_client_autogen"
 	@echo "... pc_client"
-	@echo "... home/victor/Videos/remote-access-system/common/src/crypto.o"
-	@echo "... home/victor/Videos/remote-access-system/common/src/crypto.i"
-	@echo "... home/victor/Videos/remote-access-system/common/src/crypto.s"
-	@echo "... home/victor/Videos/remote-access-system/common/src/utils.o"
-	@echo "... home/victor/Videos/remote-access-system/common/src/utils.i"
-	@echo "... home/victor/Videos/remote-access-system/common/src/utils.s"
+	@echo "... home/victor/Documents/Desktop/remote-access-system/common/src/crypto.o"
+	@echo "... home/victor/Documents/Desktop/remote-access-system/common/src/crypto.i"
+	@echo "... home/victor/Documents/Desktop/remote-access-system/common/src/crypto.s"
+	@echo "... home/victor/Documents/Desktop/remote-access-system/common/src/utils.o"
+	@echo "... home/victor/Documents/Desktop/remote-access-system/common/src/utils.i"
+	@echo "... home/victor/Documents/Desktop/remote-access-system/common/src/utils.s"
 	@echo "... pc_client_autogen/mocs_compilation.o"
 	@echo "... pc_client_autogen/mocs_compilation.i"
 	@echo "... pc_client_autogen/mocs_compilation.s"
