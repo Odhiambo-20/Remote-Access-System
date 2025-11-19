@@ -1,0 +1,149 @@
+{
+    "classes": [
+        {
+            "className": "FileManager",
+            "lineNumber": 8,
+            "methods": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "path",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 2,
+                    "name": "listFiles",
+                    "returnType": "QVariantList"
+                },
+                {
+                    "access": "public",
+                    "index": 3,
+                    "isCloned": true,
+                    "name": "listFiles",
+                    "returnType": "QVariantList"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "localPath",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "remotePath",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 4,
+                    "name": "uploadFile",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "remotePath",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 5,
+                    "name": "deleteFile",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "remotePath",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "localPath",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 6,
+                    "name": "downloadFile",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "remotePath",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 7,
+                    "isCloned": true,
+                    "name": "downloadFile",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "path",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 8,
+                    "name": "createDirectory",
+                    "returnType": "bool"
+                }
+            ],
+            "object": true,
+            "properties": [
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": false,
+                    "index": 0,
+                    "name": "currentPath",
+                    "notify": "currentPathChanged",
+                    "read": "currentPath",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "QString",
+                    "user": false,
+                    "write": "setCurrentPath"
+                }
+            ],
+            "qualifiedClassName": "FileManager",
+            "signals": [
+                {
+                    "access": "public",
+                    "index": 0,
+                    "name": "currentPathChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "success",
+                            "type": "bool"
+                        },
+                        {
+                            "name": "message",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 1,
+                    "name": "fileOperationCompleted",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "filemanager.h",
+    "outputRevision": 69
+}

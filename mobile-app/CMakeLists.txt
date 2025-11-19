@@ -6,6 +6,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+# Android-specific Qt path configuration
+if(ANDROID)
+    set(CMAKE_PREFIX_PATH "/home/victor/Qt/6.9.3/android_arm64_v8a" CACHE PATH "Qt Android installation path" FORCE)
+endif()
+
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick Network)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -58,6 +63,12 @@ set_target_properties(RemoteAccessMobile PROPERTIES
 if(ANDROID)
     set_target_properties(RemoteAccessMobile PROPERTIES
         QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
+        QT_ANDROID_ABIS "arm64-v8a"
+    )
+    
+    # Set the correct library name for Android
+    set_target_properties(RemoteAccessMobile PROPERTIES
+        OUTPUT_NAME "RemoteAccessMobile_${ANDROID_ABI}"
     )
 endif()
 
@@ -66,6 +77,3 @@ install(TARGETS RemoteAccessMobile
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
-
-# REMOVE THIS LINE - qt_add_qml_module already finalizes the target
-# qt_finalize_target(RemoteAccessMobile)

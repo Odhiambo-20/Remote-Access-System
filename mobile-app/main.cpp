@@ -23,7 +23,8 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("pcListModel", &pcListModel);
     
-    const QUrl url(QStringLiteral("qrc:/qml/main.qml"));
+    // Use the QML module URI path
+    const QUrl url(QStringLiteral("qrc:/qt/qml/RemoteAccess/qml/main.qml"));
     engine.load(url);
     
     if (engine.rootObjects().isEmpty())

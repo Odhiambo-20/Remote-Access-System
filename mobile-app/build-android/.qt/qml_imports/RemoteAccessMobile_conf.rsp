@@ -1,0 +1,14 @@
+-rootPath
+/home/victor/Documents/Desktop/remote-access-system/mobile-app
+-cmake-output
+-output-file
+/home/victor/Documents/Desktop/remote-access-system/mobile-app/build-android/.qt/qml_imports/RemoteAccessMobile_conf.cmake
+-importPath
+/home/victor/Documents/Desktop/remote-access-system/mobile-app/build-android/RemoteAccess
+-importPath
+/home/victor/Documents/Desktop/remote-access-system/mobile-app/build-android
+-importPath
+/home/victor/Qt/6.9.3/android_arm64_v8a/qml
+-qrcFiles
+/home/victor/Documents/Desktop/remote-access-system/mobile-app/build-android/.qt/rcc/qmake_RemoteAccess.qrc
+/home/victor/Documents/Desktop/remote-access-system/mobile-app/build-android/.qt/rcc/RemoteAccessMobile_raw_qml_0.qrc

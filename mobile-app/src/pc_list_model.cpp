@@ -1,66 +1,65 @@
 #include "pc_list_model.h"
 
-PCListModel::PCListModel(QObject *parent) : QAbstractListModel(parent) {
+PCListModel::PCListModel(QObject *parent)
+    : QAbstractListModel(parent)
+{
 }
 
-int PCListModel::rowCount(const QModelIndex &parent) const {
-    Q_UNUSED(parent);
-    return m_pcList.count();
+int PCListModel::rowCount(const QModelIndex &parent) const
+{
+    if (parent.isValid())
+        return 0;
+    return m_pcs.size();
 }
 
-QVariant PCListModel::data(const QModelIndex &index, int role) const {
-    if (!index.isValid() || index.row() >= m_pcList.count())
+QVariant PCListModel::data(const QModelIndex &index, int role) const
+{
+    if (!index.isValid() || index.row() >= m_pcs.size())
         return QVariant();
 
-    const PCInfo &pc = m_pcList[index.row()];
-
+    const PCInfo &pc = m_pcs[index.row()];
     switch (role) {
     case PcIdRole:
         return pc.pcId;
-    case HostnameRole:
-        return pc.hostname;
-    case UsernameRole:
-        return pc.username;
-    case IsOnlineRole:
-        return pc.isOnline;
+    case PcNameRole:
+        return pc.pcName;
+    case IpAddressRole:
+        return pc.ipAddress;
+    case StatusRole:
+        return pc.status;
+    case OsTypeRole:
+        return pc.osType;
+    case LastSeenRole:
+        return pc.lastSeen;
     default:
         return QVariant();
     }
 }
 
-QHash<int, QByteArray> PCListModel::roleNames() const {
+QHash<int, QByteArray> PCListModel::roleNames() const
+{
     QHash<int, QByteArray> roles;
     roles[PcIdRole] = "pcId";
-    roles[HostnameRole] = "hostname";
-    roles[UsernameRole] = "username";
-    roles[IsOnlineRole] = "isOnline";
+    roles[PcNameRole] = "pcName";
+    roles[IpAddressRole] = "ipAddress";
+    roles[StatusRole] = "status";
+    roles[OsTypeRole] = "osType";
+    roles[LastSeenRole] = "lastSeen";
     return roles;
 }
 
-void PCListModel::addPC(const QString &pcId, const QString &hostname, const QString &username, bool isOnline) {
-    beginInsertRows(QModelIndex(), m_pcList.count(), m_pcList.count());
-    PCInfo info;
-    info.pcId = pcId;
-    info.hostname = hostname;
-    info.username = username;
-    info.isOnline = isOnline;
-    m_pcList.append(info);
+void PCListModel::addPC(const QString &pcId, const QString &pcName,
+                        const QString &ipAddress, const QString &status,
+                        const QString &osType, const QDateTime &lastSeen)
+{
+    beginInsertRows(QModelIndex(), m_pcs.size(), m_pcs.size());
+    m_pcs.append({pcId, pcName, ipAddress, status, osType, lastSeen});
     endInsertRows();
 }
 
-void PCListModel::clear() {
+void PCListModel::clearPCs()
+{
     beginResetModel();
-    m_pcList.clear();
+    m_pcs.clear();
     endResetModel();
-}
-
-void PCListModel::updatePCStatus(const QString &pcId, bool isOnline) {
-    for (int i = 0; i < m_pcList.count(); ++i) {
-        if (m_pcList[i].pcId == pcId) {
-            m_pcList[i].isOnline = isOnline;
-            QModelIndex idx = index(i);
-            emit dataChanged(idx, idx, {IsOnlineRole});
-            break;
-        }
-    }
 }

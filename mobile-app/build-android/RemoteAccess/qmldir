@@ -1,0 +1,12 @@
+module RemoteAccess
+typeinfo RemoteAccessMobile.qmltypes
+prefer :/RemoteAccess/
+FileExplorerView 1.0 qml/FileExplorerView.qml
+PCListView 1.0 qml/PCListView.qml
+AddPCView 1.0 qml/AddPCView.qml
+SettingsView 1.0 qml/SettingsView.qml
+FileItem 1.0 qml/components/FileItem.qml
+PCCard 1.0 qml/components/PCCard.qml
+ProgressBar 1.0 qml/components/ProgressBar.qml
+depends QtQuick
+

@@ -1,0 +1,160 @@
+{
+    "classes": [
+        {
+            "className": "RemoteControlClient",
+            "lineNumber": 7,
+            "methods": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "pcId",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "relayServer",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "relayPort",
+                            "type": "int"
+                        }
+                    ],
+                    "index": 7,
+                    "name": "connectToPC",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 8,
+                    "name": "disconnect",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "x",
+                            "type": "int"
+                        },
+                        {
+                            "name": "y",
+                            "type": "int"
+                        }
+                    ],
+                    "index": 9,
+                    "name": "sendMouseMove",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "button",
+                            "type": "int"
+                        }
+                    ],
+                    "index": 10,
+                    "name": "sendMouseClick",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "key",
+                            "type": "int"
+                        }
+                    ],
+                    "index": 11,
+                    "name": "sendKeyPress",
+                    "returnType": "void"
+                }
+            ],
+            "object": true,
+            "properties": [
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": false,
+                    "index": 0,
+                    "name": "connected",
+                    "notify": "connectedChanged",
+                    "read": "isConnected",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "bool",
+                    "user": false
+                }
+            ],
+            "qualifiedClassName": "RemoteControlClient",
+            "signals": [
+                {
+                    "access": "public",
+                    "index": 0,
+                    "name": "connected",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 1,
+                    "name": "disconnected",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 2,
+                    "name": "connectedChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 3,
+                    "name": "sessionStarted",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "frameData",
+                            "type": "QByteArray"
+                        }
+                    ],
+                    "index": 4,
+                    "name": "frameReceived",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "errorMessage",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 5,
+                    "name": "error",
+                    "returnType": "void"
+                }
+            ],
+            "slots": [
+                {
+                    "access": "private",
+                    "index": 6,
+                    "name": "handleData",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "remote_control_client.h",
+    "outputRevision": 69
+}

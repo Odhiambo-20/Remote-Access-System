@@ -1,0 +1,52 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessful": true,
+                        "column": 23,
+                        "durationMicroseconds": 166,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 10
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 24,
+                        "durationMicroseconds": 58,
+                        "errorMessage": "Cannot access value for name pcList",
+                        "functionName": "width",
+                        "line": 31
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 35,
+                        "durationMicroseconds": 76,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 39
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 31,
+                        "durationMicroseconds": 61,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "text",
+                        "line": 44
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 31,
+                        "durationMicroseconds": 57,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "text",
+                        "line": 50
+                    }
+                ],
+                "filePath": "/home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/PCListView.qml"
+            }
+        ],
+        "moduleId": "RemoteAccess(RemoteAccessMobile)"
+    }
+]

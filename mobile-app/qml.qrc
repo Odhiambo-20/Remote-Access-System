@@ -1,12 +1,12 @@
 <RCC>
-    <qresource prefix="/">
+    <qresource prefix="/RemoteAccess/qml">
         <file>qml/main.qml</file>
-        <file>qml/FileExplorerView.qml</file>
         <file>qml/PCListView.qml</file>
         <file>qml/AddPCView.qml</file>
+        <file>qml/FileExplorerView.qml</file>
         <file>qml/SettingsView.qml</file>
-        <file>qml/components/FileItem.qml</file>
         <file>qml/components/PCCard.qml</file>
+        <file>qml/components/FileItem.qml</file>
         <file>qml/components/ProgressBar.qml</file>
     </qresource>
 </RCC>

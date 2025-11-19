@@ -2,24 +2,30 @@
 #define PC_LIST_MODEL_H
 
 #include <QAbstractListModel>
+#include <QDateTime>
 #include <QList>
 
 struct PCInfo {
     QString pcId;
-    QString hostname;
-    QString username;
-    bool isOnline;
+    QString pcName;
+    QString ipAddress;
+    QString status;
+    QString osType;
+    QDateTime lastSeen;
 };
 
-class PCListModel : public QAbstractListModel {
+class PCListModel : public QAbstractListModel
+{
     Q_OBJECT
 
 public:
     enum PCRoles {
         PcIdRole = Qt::UserRole + 1,
-        HostnameRole,
-        UsernameRole,
-        IsOnlineRole
+        PcNameRole,
+        IpAddressRole,
+        StatusRole,
+        OsTypeRole,
+        LastSeenRole
     };
 
     explicit PCListModel(QObject *parent = nullptr);
@@ -28,12 +34,13 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     QHash<int, QByteArray> roleNames() const override;
 
-    Q_INVOKABLE void addPC(const QString &pcId, const QString &hostname, const QString &username, bool isOnline);
-    Q_INVOKABLE void clear();
-    Q_INVOKABLE void updatePCStatus(const QString &pcId, bool isOnline);
+    Q_INVOKABLE void addPC(const QString &pcId, const QString &pcName,
+                           const QString &ipAddress, const QString &status,
+                           const QString &osType, const QDateTime &lastSeen);
+    Q_INVOKABLE void clearPCs();
 
 private:
-    QList<PCInfo> m_pcList;
+    QList<PCInfo> m_pcs;
 };
 
-#endif
+#endif // PC_LIST_MODEL_H

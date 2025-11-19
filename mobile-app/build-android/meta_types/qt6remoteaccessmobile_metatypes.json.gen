@@ -1,0 +1,1043 @@
+[
+    {
+        "classes": [
+            {
+                "className": "RemoteControlClient",
+                "lineNumber": 7,
+                "methods": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "pcId",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "relayServer",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "relayPort",
+                                "type": "int"
+                            }
+                        ],
+                        "index": 7,
+                        "name": "connectToPC",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 8,
+                        "name": "disconnect",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "x",
+                                "type": "int"
+                            },
+                            {
+                                "name": "y",
+                                "type": "int"
+                            }
+                        ],
+                        "index": 9,
+                        "name": "sendMouseMove",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "button",
+                                "type": "int"
+                            }
+                        ],
+                        "index": 10,
+                        "name": "sendMouseClick",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "key",
+                                "type": "int"
+                            }
+                        ],
+                        "index": 11,
+                        "name": "sendKeyPress",
+                        "returnType": "void"
+                    }
+                ],
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "connected",
+                        "notify": "connectedChanged",
+                        "read": "isConnected",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false
+                    }
+                ],
+                "qualifiedClassName": "RemoteControlClient",
+                "signals": [
+                    {
+                        "access": "public",
+                        "index": 0,
+                        "name": "connected",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 1,
+                        "name": "disconnected",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 2,
+                        "name": "connectedChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 3,
+                        "name": "sessionStarted",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "frameData",
+                                "type": "QByteArray"
+                            }
+                        ],
+                        "index": 4,
+                        "name": "frameReceived",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "errorMessage",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 5,
+                        "name": "error",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "private",
+                        "index": 6,
+                        "name": "handleData",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "remote_control_client.h",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "className": "SettingsManager",
+                "lineNumber": 5,
+                "methods": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "key",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "value",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 0,
+                        "name": "saveSetting",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "key",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "def",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 1,
+                        "name": "loadSetting",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "key",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 2,
+                        "isCloned": true,
+                        "name": "loadSetting",
+                        "returnType": "QString"
+                    }
+                ],
+                "object": true,
+                "qualifiedClassName": "SettingsManager",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "settings_manager.h",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "className": "ConnectionManager",
+                "lineNumber": 40,
+                "methods": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "address",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 17,
+                        "name": "setAccountServerAddress",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 18,
+                        "isConst": true,
+                        "name": "getAccountServerAddress",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "username",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "password",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 19,
+                        "name": "login",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "qrData",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 20,
+                        "name": "scanQRCode",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "qrData",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 21,
+                        "name": "parseQRCode",
+                        "returnType": "bool"
+                    },
+                    {
+                        "access": "public",
+                        "index": 22,
+                        "isConst": true,
+                        "name": "getLastScannedPCInfo",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "index": 23,
+                        "name": "connectToPC",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "pcId",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 24,
+                        "name": "connectToPC",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 25,
+                        "name": "disconnectFromPC",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "qrData",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 26,
+                        "name": "connectViaScan",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 27,
+                        "isConst": true,
+                        "name": "connectionStatus",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "index": 28,
+                        "isConst": true,
+                        "name": "isConnected",
+                        "returnType": "bool"
+                    },
+                    {
+                        "access": "public",
+                        "index": 29,
+                        "isConst": true,
+                        "name": "currentPCName",
+                        "returnType": "QString"
+                    },
+                    {
+                        "access": "public",
+                        "index": 30,
+                        "isConst": true,
+                        "name": "getSavedPCs",
+                        "returnType": "QStringList"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "pcId",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "displayName",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 31,
+                        "name": "savePC",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "pcId",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 32,
+                        "name": "removePC",
+                        "returnType": "void"
+                    }
+                ],
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "connectionStatus",
+                        "notify": "connectionStatusChanged",
+                        "read": "connectionStatus",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "isConnected",
+                        "notify": "isConnectedChanged",
+                        "read": "isConnected",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 2,
+                        "name": "currentPCName",
+                        "notify": "currentPCNameChanged",
+                        "read": "currentPCName",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    }
+                ],
+                "qualifiedClassName": "ConnectionManager",
+                "signals": [
+                    {
+                        "access": "public",
+                        "index": 0,
+                        "name": "loginSuccess",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "error",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 1,
+                        "name": "loginFailed",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "pcId",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "username",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 2,
+                        "name": "qrCodeScanned",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "success",
+                                "type": "bool"
+                            },
+                            {
+                                "name": "message",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 3,
+                        "name": "qrCodeParsed",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "error",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 4,
+                        "name": "qrCodeError",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "status",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 5,
+                        "name": "connectionStatusChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "connected",
+                                "type": "bool"
+                            }
+                        ],
+                        "index": 6,
+                        "name": "isConnectedChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "name",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 7,
+                        "name": "currentPCNameChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "pcId",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 8,
+                        "name": "pcConnected",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 9,
+                        "name": "pcDisconnected",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "error",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 10,
+                        "name": "connectionError",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 11,
+                        "name": "pcListUpdated",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "private",
+                        "index": 12,
+                        "name": "onRelayConnected",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 13,
+                        "name": "onRelayDisconnected",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 14,
+                        "name": "onRelayReadyRead",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "name": "error",
+                                "type": "QAbstractSocket::SocketError"
+                            }
+                        ],
+                        "index": 15,
+                        "name": "onRelayError",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 16,
+                        "name": "onConnectionTimeout",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "connection_manager.h",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "className": "FileManager",
+                "lineNumber": 8,
+                "methods": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "path",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 2,
+                        "name": "listFiles",
+                        "returnType": "QVariantList"
+                    },
+                    {
+                        "access": "public",
+                        "index": 3,
+                        "isCloned": true,
+                        "name": "listFiles",
+                        "returnType": "QVariantList"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "localPath",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "remotePath",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 4,
+                        "name": "uploadFile",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "remotePath",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 5,
+                        "name": "deleteFile",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "remotePath",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "localPath",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 6,
+                        "name": "downloadFile",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "remotePath",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 7,
+                        "isCloned": true,
+                        "name": "downloadFile",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "path",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 8,
+                        "name": "createDirectory",
+                        "returnType": "bool"
+                    }
+                ],
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "currentPath",
+                        "notify": "currentPathChanged",
+                        "read": "currentPath",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false,
+                        "write": "setCurrentPath"
+                    }
+                ],
+                "qualifiedClassName": "FileManager",
+                "signals": [
+                    {
+                        "access": "public",
+                        "index": 0,
+                        "name": "currentPathChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "success",
+                                "type": "bool"
+                            },
+                            {
+                                "name": "message",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 1,
+                        "name": "fileOperationCompleted",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "filemanager.h",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "className": "PCListModel",
+                "lineNumber": 17,
+                "methods": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "pcId",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "pcName",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "ipAddress",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "status",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "osType",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "lastSeen",
+                                "type": "QDateTime"
+                            }
+                        ],
+                        "index": 0,
+                        "name": "addPC",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 1,
+                        "name": "clearPCs",
+                        "returnType": "void"
+                    }
+                ],
+                "object": true,
+                "qualifiedClassName": "PCListModel",
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QAbstractListModel"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "pc_list_model.h",
+        "outputRevision": 69
+    },
+    {
+        "classes": [
+            {
+                "className": "PCManager",
+                "lineNumber": 8,
+                "methods": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "relayServerAddress",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "port",
+                                "type": "int"
+                            }
+                        ],
+                        "index": 11,
+                        "name": "queryPCList",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "relayServerAddress",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 12,
+                        "isCloned": true,
+                        "name": "queryPCList",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "pcId",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "relayServerAddress",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 13,
+                        "name": "connectToPC",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 14,
+                        "name": "disconnectFromPC",
+                        "returnType": "void"
+                    }
+                ],
+                "object": true,
+                "properties": [
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 0,
+                        "name": "connectedPcId",
+                        "notify": "connectedPcIdChanged",
+                        "read": "connectedPcId",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "QString",
+                        "user": false
+                    },
+                    {
+                        "constant": false,
+                        "designable": true,
+                        "final": false,
+                        "index": 1,
+                        "name": "isConnected",
+                        "notify": "isConnectedChanged",
+                        "read": "isConnected",
+                        "required": false,
+                        "scriptable": true,
+                        "stored": true,
+                        "type": "bool",
+                        "user": false
+                    }
+                ],
+                "qualifiedClassName": "PCManager",
+                "signals": [
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "pcList",
+                                "type": "QStringList"
+                            }
+                        ],
+                        "index": 0,
+                        "name": "pcListUpdated",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "pcId",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 1,
+                        "name": "connectionEstablished",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "error",
+                                "type": "QString"
+                            }
+                        ],
+                        "index": 2,
+                        "name": "connectionFailed",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 3,
+                        "name": "connectedPcIdChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 4,
+                        "name": "isConnectedChanged",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "index": 5,
+                        "name": "clearPCList",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "public",
+                        "arguments": [
+                            {
+                                "name": "pcId",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "hostname",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "username",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "isOnline",
+                                "type": "bool"
+                            }
+                        ],
+                        "index": 6,
+                        "name": "addPCToList",
+                        "returnType": "void"
+                    }
+                ],
+                "slots": [
+                    {
+                        "access": "private",
+                        "index": 7,
+                        "name": "onConnected",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 8,
+                        "name": "onReadyRead",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "index": 9,
+                        "name": "onDisconnected",
+                        "returnType": "void"
+                    },
+                    {
+                        "access": "private",
+                        "arguments": [
+                            {
+                                "name": "error",
+                                "type": "QAbstractSocket::SocketError"
+                            }
+                        ],
+                        "index": 10,
+                        "name": "onError",
+                        "returnType": "void"
+                    }
+                ],
+                "superClasses": [
+                    {
+                        "access": "public",
+                        "name": "QObject"
+                    }
+                ]
+            }
+        ],
+        "inputFile": "pcmanager.h",
+        "outputRevision": 69
+    }
+]

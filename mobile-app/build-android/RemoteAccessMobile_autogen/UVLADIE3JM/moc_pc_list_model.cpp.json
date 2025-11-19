@@ -1,0 +1,58 @@
+{
+    "classes": [
+        {
+            "className": "PCListModel",
+            "lineNumber": 17,
+            "methods": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "pcId",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "pcName",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "ipAddress",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "status",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "osType",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "lastSeen",
+                            "type": "QDateTime"
+                        }
+                    ],
+                    "index": 0,
+                    "name": "addPC",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "index": 1,
+                    "name": "clearPCs",
+                    "returnType": "void"
+                }
+            ],
+            "object": true,
+            "qualifiedClassName": "PCListModel",
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QAbstractListModel"
+                }
+            ]
+        }
+    ],
+    "inputFile": "pc_list_model.h",
+    "outputRevision": 69
+}

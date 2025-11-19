@@ -1,0 +1,32 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace 'org.qtproject.example.RemoteAccessMobile'
+    compileSdkVersion 34
+    buildToolsVersion '34.0.0'
+    ndkVersion '25.1.8937393'
+    
+    sourceSets {
+        main {
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+            java.srcDirs = ['/home/victor/Qt/6.9.3/android_arm64_v8a/src/android/java', 'src/main/java']
+            res.srcDirs = ['src/main/res', 'res']
+            assets.srcDirs = ['src/main/assets', 'assets']
+            jniLibs.srcDirs = ['src/main/jniLibs', 'libs']
+       }
+    }
+    
+    defaultConfig {
+        minSdk 21
+        targetSdk 34
+    }
+    
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+}

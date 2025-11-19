@@ -79,6 +79,9 @@ make
 ./RemoteAccessMobile
 ```
 
+####  Start everything at once
+./deploy_and_run.sh start
+
 ## Usage Flow:
 
 1. **Start Services**:

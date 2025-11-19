@@ -1,0 +1,20 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessful": true,
+                        "column": 20,
+                        "durationMicroseconds": 200,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 2
+                    }
+                ],
+                "filePath": "/home/victor/Documents/Desktop/remote-access-system/mobile-app/qml/components/ProgressBar.qml"
+            }
+        ],
+        "moduleId": "RemoteAccess(RemoteAccessMobile)"
+    }
+]

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+/home/victor/Qt/6.9.3/gcc_64/libexec/qt-android-runner.py \
+    --adb "/home/victor/Android/Sdk/platform-tools/adb" \
+    --build-path "/home/victor/Documents/Desktop/remote-access-system/mobile-app/build-android/android-build" \
+    --apk "/home/victor/Documents/Desktop/remote-access-system/mobile-app/build-android/android-build/RemoteAccessMobile.apk" \
+    $@
+

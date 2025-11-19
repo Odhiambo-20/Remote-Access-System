@@ -1,0 +1,65 @@
+{
+    "classes": [
+        {
+            "className": "SettingsManager",
+            "lineNumber": 5,
+            "methods": [
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "key",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "value",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 0,
+                    "name": "saveSetting",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "key",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "def",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 1,
+                    "name": "loadSetting",
+                    "returnType": "QString"
+                },
+                {
+                    "access": "public",
+                    "arguments": [
+                        {
+                            "name": "key",
+                            "type": "QString"
+                        }
+                    ],
+                    "index": 2,
+                    "isCloned": true,
+                    "name": "loadSetting",
+                    "returnType": "QString"
+                }
+            ],
+            "object": true,
+            "qualifiedClassName": "SettingsManager",
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "settings_manager.h",
+    "outputRevision": 69
+}

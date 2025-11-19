@@ -14,10 +14,10 @@ com.remoteaccess.app-jetified-activity-1.6.0-12 /home/victor/.gradle/caches/tran
 com.remoteaccess.app-jetified-startup-runtime-1.1.1-13 /home/victor/.gradle/caches/transforms-3/ea484b839121ca690ac139fa4adb2e6d/transformed/jetified-startup-runtime-1.1.1/res
 com.remoteaccess.app-jetified-lifecycle-process-2.4.1-14 /home/victor/.gradle/caches/transforms-3/f7160d686e87b49efc26932fa8e94d5a/transformed/jetified-lifecycle-process-2.4.1/res
 com.remoteaccess.app-jetified-emoji2-1.2.0-15 /home/victor/.gradle/caches/transforms-3/ffc9f230be04c872a4d3d8344b79f804/transformed/jetified-emoji2-1.2.0/res
-com.remoteaccess.app-pngs-16 /home/victor/Videos/remote-access-system/mobile-app/android/app/build/generated/res/pngs/release
-com.remoteaccess.app-resValues-17 /home/victor/Videos/remote-access-system/mobile-app/android/app/build/generated/res/resValues/release
-com.remoteaccess.app-packageReleaseResources-18 /home/victor/Videos/remote-access-system/mobile-app/android/app/build/intermediates/incremental/release/packageReleaseResources/merged.dir
-com.remoteaccess.app-packageReleaseResources-19 /home/victor/Videos/remote-access-system/mobile-app/android/app/build/intermediates/incremental/release/packageReleaseResources/stripped.dir
-com.remoteaccess.app-merged_res-20 /home/victor/Videos/remote-access-system/mobile-app/android/app/build/intermediates/merged_res/release
-com.remoteaccess.app-main-21 /home/victor/Videos/remote-access-system/mobile-app/android/app/src/main/res
-com.remoteaccess.app-release-22 /home/victor/Videos/remote-access-system/mobile-app/android/app/src/release/res
+com.remoteaccess.app-pngs-16 /home/victor/Documents/Desktop/remote-access-system/mobile-app/android/app/build/generated/res/pngs/release
+com.remoteaccess.app-resValues-17 /home/victor/Documents/Desktop/remote-access-system/mobile-app/android/app/build/generated/res/resValues/release
+com.remoteaccess.app-packageReleaseResources-18 /home/victor/Documents/Desktop/remote-access-system/mobile-app/android/app/build/intermediates/incremental/release/packageReleaseResources/merged.dir
+com.remoteaccess.app-packageReleaseResources-19 /home/victor/Documents/Desktop/remote-access-system/mobile-app/android/app/build/intermediates/incremental/release/packageReleaseResources/stripped.dir
+com.remoteaccess.app-merged_res-20 /home/victor/Documents/Desktop/remote-access-system/mobile-app/android/app/build/intermediates/merged_res/release
+com.remoteaccess.app-main-21 /home/victor/Documents/Desktop/remote-access-system/mobile-app/android/app/src/main/res
+com.remoteaccess.app-release-22 /home/victor/Documents/Desktop/remote-access-system/mobile-app/android/app/src/release/res

@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_RemoteAccessMobile_FILE /home/victor/Documents/Desktop/remote-access-system/mobile-app/build-android/libRemoteAccessMobile_arm64-v8a_arm64-v8a.so)
+set(__QT_DEPLOY_TARGET_RemoteAccessMobile_TYPE MODULE_LIBRARY)
