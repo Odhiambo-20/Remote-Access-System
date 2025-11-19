@@ -571,38 +571,17 @@
                         "access": "public",
                         "arguments": [
                             {
-                                "name": "pcId",
-                                "type": "QString"
-                            },
-                            {
-                                "name": "relayServer",
-                                "type": "QString"
-                            }
-                        ],
-                        "name": "connectToPC",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
                                 "name": "path",
                                 "type": "QString"
                             }
                         ],
-                        "name": "browseDirectory",
-                        "returnType": "void"
+                        "name": "listFiles",
+                        "returnType": "QVariantList"
                     },
                     {
                         "access": "public",
-                        "arguments": [
-                            {
-                                "name": "path",
-                                "type": "QString"
-                            }
-                        ],
-                        "name": "listDirectory",
-                        "returnType": "void"
+                        "name": "listFiles",
+                        "returnType": "QVariantList"
                     },
                     {
                         "access": "public",
@@ -638,69 +617,6 @@
                                 "type": "QString"
                             },
                             {
-                                "name": "expiryHours",
-                                "type": "int"
-                            }
-                        ],
-                        "name": "generateShareLink",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "remotePath",
-                                "type": "QString"
-                            }
-                        ],
-                        "name": "generateShareUrl",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "filePath",
-                                "type": "QString"
-                            }
-                        ],
-                        "name": "createShareLink",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "filePath",
-                                "type": "QString"
-                            }
-                        ],
-                        "name": "openFile",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "goBack",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "goHome",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "disconnect",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "remotePath",
-                                "type": "QString"
-                            },
-                            {
                                 "name": "localPath",
                                 "type": "QString"
                             }
@@ -723,68 +639,12 @@
                         "access": "public",
                         "arguments": [
                             {
-                                "name": "files",
-                                "type": "QVariantList"
-                            }
-                        ],
-                        "name": "downloadMultipleFiles",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "sourcePath",
-                                "type": "QString"
-                            },
-                            {
-                                "name": "destinationPath",
+                                "name": "path",
                                 "type": "QString"
                             }
                         ],
-                        "name": "copyFile",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "sourcePath",
-                                "type": "QString"
-                            },
-                            {
-                                "name": "destinationPath",
-                                "type": "QString"
-                            }
-                        ],
-                        "name": "moveFile",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "oldPath",
-                                "type": "QString"
-                            },
-                            {
-                                "name": "newName",
-                                "type": "QString"
-                            }
-                        ],
-                        "name": "renameFile",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "folderPath",
-                                "type": "QString"
-                            }
-                        ],
-                        "name": "createFolder",
-                        "returnType": "void"
+                        "name": "createDirectory",
+                        "returnType": "bool"
                     }
                 ],
                 "object": true,
@@ -794,48 +654,6 @@
                         "designable": true,
                         "final": false,
                         "index": 0,
-                        "name": "isBusy",
-                        "notify": "busyChanged",
-                        "read": "isBusy",
-                        "required": false,
-                        "scriptable": true,
-                        "stored": true,
-                        "type": "bool",
-                        "user": false
-                    },
-                    {
-                        "constant": false,
-                        "designable": true,
-                        "final": false,
-                        "index": 1,
-                        "name": "isUploading",
-                        "notify": "isUploadingChanged",
-                        "read": "isUploading",
-                        "required": false,
-                        "scriptable": true,
-                        "stored": true,
-                        "type": "bool",
-                        "user": false
-                    },
-                    {
-                        "constant": false,
-                        "designable": true,
-                        "final": false,
-                        "index": 2,
-                        "name": "uploadProgress",
-                        "notify": "uploadProgressChanged",
-                        "read": "uploadProgress",
-                        "required": false,
-                        "scriptable": true,
-                        "stored": true,
-                        "type": "int",
-                        "user": false
-                    },
-                    {
-                        "constant": false,
-                        "designable": true,
-                        "final": false,
-                        "index": 3,
                         "name": "currentPath",
                         "notify": "currentPathChanged",
                         "read": "currentPath",
@@ -843,89 +661,15 @@
                         "scriptable": true,
                         "stored": true,
                         "type": "QString",
-                        "user": false
+                        "user": false,
+                        "write": "setCurrentPath"
                     }
                 ],
                 "qualifiedClassName": "FileManager",
                 "signals": [
                     {
                         "access": "public",
-                        "name": "connected",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "disconnected",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "error",
-                                "type": "QString"
-                            }
-                        ],
-                        "name": "connectionFailed",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "entries",
-                                "type": "QStringList"
-                            }
-                        ],
-                        "name": "directoryListed",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "files",
-                                "type": "QStringList"
-                            }
-                        ],
-                        "name": "directoryListReceived",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "clearFileList",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "name",
-                                "type": "QString"
-                            },
-                            {
-                                "name": "path",
-                                "type": "QString"
-                            },
-                            {
-                                "name": "type",
-                                "type": "QString"
-                            },
-                            {
-                                "name": "size",
-                                "type": "qint64"
-                            },
-                            {
-                                "name": "isDir",
-                                "type": "bool"
-                            }
-                        ],
-                        "name": "addFileToList",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "uploadStarted",
+                        "name": "currentPathChanged",
                         "returnType": "void"
                     },
                     {
@@ -940,159 +684,7 @@
                                 "type": "QString"
                             }
                         ],
-                        "name": "uploadFinished",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "percent",
-                                "type": "int"
-                            }
-                        ],
-                        "name": "uploadProgress",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "uploadProgressChanged",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "isUploadingChanged",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "percent",
-                                "type": "int"
-                            }
-                        ],
-                        "name": "downloadProgress",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "localPath",
-                                "type": "QString"
-                            }
-                        ],
-                        "name": "downloadCompleted",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "url",
-                                "type": "QString"
-                            }
-                        ],
-                        "name": "shareLinkGenerated",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "url",
-                                "type": "QString"
-                            }
-                        ],
-                        "name": "shareLinkCreated",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "url",
-                                "type": "QString"
-                            }
-                        ],
-                        "name": "shareUrlGenerated",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "filePath",
-                                "type": "QString"
-                            }
-                        ],
-                        "name": "fileOpened",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "completed",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "message",
-                                "type": "QString"
-                            }
-                        ],
-                        "name": "error",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "message",
-                                "type": "QString"
-                            }
-                        ],
-                        "name": "errorOccurred",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "busyChanged",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "name": "currentPathChanged",
-                        "returnType": "void"
-                    }
-                ],
-                "slots": [
-                    {
-                        "access": "private",
-                        "name": "onConnected",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "private",
-                        "name": "onReadyRead",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "private",
-                        "name": "onDisconnected",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "private",
-                        "arguments": [
-                            {
-                                "name": "error",
-                                "type": "QAbstractSocket::SocketError"
-                            }
-                        ],
-                        "name": "onError",
+                        "name": "fileOperationCompleted",
                         "returnType": "void"
                     }
                 ],
@@ -1120,16 +712,24 @@
                                 "type": "QString"
                             },
                             {
-                                "name": "hostname",
+                                "name": "pcName",
                                 "type": "QString"
                             },
                             {
-                                "name": "username",
+                                "name": "ipAddress",
                                 "type": "QString"
                             },
                             {
-                                "name": "isOnline",
-                                "type": "bool"
+                                "name": "status",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "osType",
+                                "type": "QString"
+                            },
+                            {
+                                "name": "lastSeen",
+                                "type": "QDateTime"
                             }
                         ],
                         "name": "addPC",
@@ -1137,22 +737,7 @@
                     },
                     {
                         "access": "public",
-                        "name": "clear",
-                        "returnType": "void"
-                    },
-                    {
-                        "access": "public",
-                        "arguments": [
-                            {
-                                "name": "pcId",
-                                "type": "QString"
-                            },
-                            {
-                                "name": "isOnline",
-                                "type": "bool"
-                            }
-                        ],
-                        "name": "updatePCStatus",
+                        "name": "clearPCs",
                         "returnType": "void"
                     }
                 ],

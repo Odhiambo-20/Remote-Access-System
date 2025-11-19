@@ -11,16 +11,24 @@
                             "type": "QString"
                         },
                         {
-                            "name": "hostname",
+                            "name": "pcName",
                             "type": "QString"
                         },
                         {
-                            "name": "username",
+                            "name": "ipAddress",
                             "type": "QString"
                         },
                         {
-                            "name": "isOnline",
-                            "type": "bool"
+                            "name": "status",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "osType",
+                            "type": "QString"
+                        },
+                        {
+                            "name": "lastSeen",
+                            "type": "QDateTime"
                         }
                     ],
                     "name": "addPC",
@@ -28,22 +36,7 @@
                 },
                 {
                     "access": "public",
-                    "name": "clear",
-                    "returnType": "void"
-                },
-                {
-                    "access": "public",
-                    "arguments": [
-                        {
-                            "name": "pcId",
-                            "type": "QString"
-                        },
-                        {
-                            "name": "isOnline",
-                            "type": "bool"
-                        }
-                    ],
-                    "name": "updatePCStatus",
+                    "name": "clearPCs",
                     "returnType": "void"
                 }
             ],
